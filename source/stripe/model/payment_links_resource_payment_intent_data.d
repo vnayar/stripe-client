@@ -1,0 +1,26 @@
+// File automatically generated from OpenAPI spec.
+module stripe.model.payment_links_resource_payment_intent_data;
+
+import vibe.data.serialization : optional;
+import vibe.data.json : Json;
+
+import std.typecons : Nullable;
+
+
+/**
+ */
+class PaymentLinksResourcePaymentIntentData {
+  /**
+   * Indicates that you intend to make future payments with the payment method collected during
+   * checkout.
+   */
+  @optional
+  Nullable!(string) setup_future_usage;
+
+  /**
+   * Indicates when the funds will be captured from the customer's account.
+   */
+  @optional
+  Nullable!(string) capture_method;
+
+}

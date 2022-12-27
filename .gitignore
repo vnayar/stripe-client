@@ -1,0 +1,13 @@
+.dub
+docs.json
+__dummy.html
+docs/
+target/
+*.exe
+*.o
+*.obj
+*.lst
+
+# Emacs/Vim
+\#*\#
+*~

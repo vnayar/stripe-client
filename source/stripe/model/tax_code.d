@@ -1,0 +1,39 @@
+// File automatically generated from OpenAPI spec.
+module stripe.model.tax_code;
+
+import vibe.data.serialization : optional;
+import vibe.data.json : Json;
+
+import std.typecons : Nullable;
+
+
+/**
+ * [Tax codes](https://stripe.com/docs/tax/tax-categories) classify goods and services for tax
+ * purposes.
+ */
+class TaxCode {
+  /**
+   * A detailed description of which types of products the tax code represents.
+   */
+  @optional
+  Nullable!(string) description;
+
+  /**
+   * Unique identifier for the object.
+   */
+  @optional
+  Nullable!(string) id;
+
+  /**
+   * String representing the object's type. Objects of the same type share the same value.
+   */
+  @optional
+  Nullable!(string) object;
+
+  /**
+   * A short name for the tax code.
+   */
+  @optional
+  Nullable!(string) name;
+
+}
