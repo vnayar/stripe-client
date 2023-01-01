@@ -1,13 +1,24 @@
 .dub
-docs.json
-__dummy.html
-docs/
 target/
+*.a
+*.dll
+*.dylib
 *.exe
 *.o
 *.obj
+*.lib
 *.lst
+*.so
+
+# Debugging
+*.log
+callgrind_out*
 
 # Emacs/Vim
-\#*\#
 *~
+\#*\#
+
+# GNU Global
+GPATH
+GRTAGS
+GTAGS
