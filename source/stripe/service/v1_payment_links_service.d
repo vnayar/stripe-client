@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.error : Error_;
 public import stripe.model.item : Item;
 public import stripe.model.payment_link : PaymentLink;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/payment_links
  */
@@ -110,10 +111,12 @@ class V1PaymentLinksService {
   }
 
   /**
+   * <p>Returns a list of your payment links.</p>
+   * See_Also: HTTP GET `/v1/payment_links`
    */
   void getPaymentLinks(
       GetPaymentLinksParams params,
-      GetPaymentLinksResponseHandler responseHandler = null,
+      GetPaymentLinksResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -461,15 +464,18 @@ class V1PaymentLinksService {
   }
 
   /**
+   * <p>Creates a payment link.</p>
+   * See_Also: HTTP POST `/v1/payment_links`
    */
   void postPaymentLinks(
       PostPaymentLinksBody requestBody,
-      PostPaymentLinksResponseHandler responseHandler = null,
+      PostPaymentLinksResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/payment_links");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -512,10 +518,12 @@ class V1PaymentLinksService {
   }
 
   /**
+   * <p>Retrieve a payment link.</p>
+   * See_Also: HTTP GET `/v1/payment_links/{payment_link}`
    */
   void getPaymentLinksPaymentLink(
       GetPaymentLinksPaymentLinkParams params,
-      GetPaymentLinksPaymentLinkResponseHandler responseHandler = null,
+      GetPaymentLinksPaymentLinkResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -562,10 +570,12 @@ class V1PaymentLinksService {
   }
 
   /**
+   * <p>Updates a payment link.</p>
+   * See_Also: HTTP POST `/v1/payment_links/{payment_link}`
    */
   void postPaymentLinksPaymentLink(
       PostPaymentLinksPaymentLinkParams params,
-      PostPaymentLinksPaymentLinkResponseHandler responseHandler = null,
+      PostPaymentLinksPaymentLinkResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -665,10 +675,14 @@ class V1PaymentLinksService {
   }
 
   /**
+   * <p>When retrieving a payment link, there is an includable <strong>line_items</strong> property
+   * containing the first handful of those items. There is also a URL where you can retrieve the
+   * full (paginated) list of line items.</p>
+   * See_Also: HTTP GET `/v1/payment_links/{payment_link}/line_items`
    */
   void getPaymentLinksPaymentLinkLineItems(
       GetPaymentLinksPaymentLinkLineItemsParams params,
-      GetPaymentLinksPaymentLinkLineItemsResponseHandler responseHandler = null,
+      GetPaymentLinksPaymentLinkLineItemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

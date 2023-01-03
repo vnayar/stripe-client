@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.country_spec : CountrySpec;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/country_specs
  */
@@ -60,10 +61,12 @@ class V1CountrySpecsService {
   }
 
   /**
+   * <p>Returns a Country Spec for a given Country code.</p>
+   * See_Also: HTTP GET `/v1/country_specs/{country}`
    */
   void getCountrySpecsCountry(
       GetCountrySpecsCountryParams params,
-      GetCountrySpecsCountryResponseHandler responseHandler = null,
+      GetCountrySpecsCountryResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -158,10 +161,12 @@ class V1CountrySpecsService {
   }
 
   /**
+   * <p>Lists all Country Spec objects available in the API.</p>
+   * See_Also: HTTP GET `/v1/country_specs`
    */
   void getCountrySpecs(
       GetCountrySpecsParams params,
-      GetCountrySpecsResponseHandler responseHandler = null,
+      GetCountrySpecsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

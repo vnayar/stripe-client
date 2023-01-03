@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_invoiceitem : DeletedInvoiceitem;
 public import stripe.model.error : Error_;
 public import stripe.model.invoiceitem : Invoiceitem;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/invoiceitems
  */
@@ -127,10 +128,13 @@ class V1InvoiceitemsService {
   }
 
   /**
+   * <p>Returns a list of your invoice items. Invoice items are returned sorted by creation date,
+   * with the most recently created invoice items appearing first.</p>
+   * See_Also: HTTP GET `/v1/invoiceitems`
    */
   void getInvoiceitems(
       GetInvoiceitemsParams params,
-      GetInvoiceitemsResponseHandler responseHandler = null,
+      GetInvoiceitemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -351,15 +355,19 @@ class V1InvoiceitemsService {
   }
 
   /**
+   * <p>Creates an item to be added to a draft invoice (up to 250 items per invoice). If no invoice
+   * is specified, the item will be on the next invoice created for the customer specified.</p>
+   * See_Also: HTTP POST `/v1/invoiceitems`
    */
   void postInvoiceitems(
       PostInvoiceitemsBody requestBody,
-      PostInvoiceitemsResponseHandler responseHandler = null,
+      PostInvoiceitemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/invoiceitems");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -402,10 +410,12 @@ class V1InvoiceitemsService {
   }
 
   /**
+   * <p>Retrieves the invoice item with the given ID.</p>
+   * See_Also: HTTP GET `/v1/invoiceitems/{invoiceitem}`
    */
   void getInvoiceitemsInvoiceitem(
       GetInvoiceitemsInvoiceitemParams params,
-      GetInvoiceitemsInvoiceitemResponseHandler responseHandler = null,
+      GetInvoiceitemsInvoiceitemResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -452,10 +462,13 @@ class V1InvoiceitemsService {
   }
 
   /**
+   * <p>Updates the amount or description of an invoice item on an upcoming invoice. Updating an
+   * invoice item is only possible before the invoice it’s attached to is closed.</p>
+   * See_Also: HTTP POST `/v1/invoiceitems/{invoiceitem}`
    */
   void postInvoiceitemsInvoiceitem(
       PostInvoiceitemsInvoiceitemParams params,
-      PostInvoiceitemsInvoiceitemResponseHandler responseHandler = null,
+      PostInvoiceitemsInvoiceitemResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -500,10 +513,13 @@ class V1InvoiceitemsService {
   }
 
   /**
+   * <p>Deletes an invoice item, removing it from an invoice. Deleting invoice items is only
+   * possible when they’re not attached to invoices, or if it’s attached to a draft invoice.</p>
+   * See_Also: HTTP DELETE `/v1/invoiceitems/{invoiceitem}`
    */
   void deleteInvoiceitemsInvoiceitem(
       DeleteInvoiceitemsInvoiceitemParams params,
-      DeleteInvoiceitemsInvoiceitemResponseHandler responseHandler = null,
+      DeleteInvoiceitemsInvoiceitemResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,

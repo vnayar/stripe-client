@@ -34,6 +34,7 @@ public import stripe.model.payment_source : PaymentSource;
 public import stripe.model.source : Source;
 public import stripe.model.subscription : Subscription;
 public import stripe.model.tax_id : TaxId;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/customers
  */
@@ -80,10 +81,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Retrieves the subscription with the given ID.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/subscriptions/{subscription_exposed_id}`
    */
   void getCustomersCustomerSubscriptionsSubscriptionExposedId(
       GetCustomersCustomerSubscriptionsSubscriptionExposedIdParams params,
-      GetCustomersCustomerSubscriptionsSubscriptionExposedIdResponseHandler responseHandler = null,
+      GetCustomersCustomerSubscriptionsSubscriptionExposedIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -136,10 +139,15 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Updates an existing subscription on a customer to match the specified parameters. When
+   * changing plans or quantities, we will optionally prorate the price we charge next month to make
+   * up for any price changes. To preview how the proration will be calculated, use the <a
+   * href="#upcoming_invoice">upcoming invoice</a> endpoint.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/subscriptions/{subscription_exposed_id}`
    */
   void postCustomersCustomerSubscriptionsSubscriptionExposedId(
       PostCustomersCustomerSubscriptionsSubscriptionExposedIdParams params,
-      PostCustomersCustomerSubscriptionsSubscriptionExposedIdResponseHandler responseHandler = null,
+      PostCustomersCustomerSubscriptionsSubscriptionExposedIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -190,10 +198,26 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Cancels a customer’s subscription. If you set the <code>at_period_end</code> parameter to
+   * <code>true</code>, the subscription will remain active until the end of the period, at which
+   * point it will be canceled and not renewed. Otherwise, with the default <code>false</code>
+   * value, the subscription is terminated immediately. In either case, the customer will not be
+   * charged again for the subscription.</p>
+   * <p>Note, however, that any pending invoice items that you’ve created will still be charged
+   * for at the end of the period, unless manually <a href="#delete_invoiceitem">deleted</a>. If
+   * you’ve set the subscription to cancel at the end of the period, any pending prorations will
+   * also be left in place and collected at the end of the period. But if the subscription is set to
+   * cancel immediately, pending prorations will be removed.</p>
+   * <p>By default, upon subscription cancellation, Stripe will stop automatic collection of all
+   * finalized invoices for the customer. This is intended to prevent unexpected payment attempts
+   * after the customer has canceled a subscription. However, you can resume automatic collection of
+   * the invoices manually after subscription cancellation to have us proceed. Or, you could check
+   * for unpaid invoices before allowing the customer to cancel the subscription at all.</p>
+   * See_Also: HTTP DELETE `/v1/customers/{customer}/subscriptions/{subscription_exposed_id}`
    */
   void deleteCustomersCustomerSubscriptionsSubscriptionExposedId(
       DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdParams params,
-      DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdResponseHandler responseHandler = null,
+      DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -304,10 +328,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Returns a list of your customers. The customers are returned sorted by creation date, with
+   * the most recent customers appearing first.</p>
+   * See_Also: HTTP GET `/v1/customers`
    */
   void getCustomers(
       GetCustomersParams params,
-      GetCustomersResponseHandler responseHandler = null,
+      GetCustomersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -357,9 +384,11 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Creates a new customer object.</p>
+   * See_Also: HTTP POST `/v1/customers`
    */
   void postCustomers(
-      PostCustomersResponseHandler responseHandler = null,
+      PostCustomersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -411,10 +440,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Retrieves a specific customer balance transaction that updated the customer’s <a
+   * href="/docs/billing/customer/balance">balances</a>.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/balance_transactions/{transaction}`
    */
   void getCustomersCustomerBalanceTransactionsTransaction(
       GetCustomersCustomerBalanceTransactionsTransactionParams params,
-      GetCustomersCustomerBalanceTransactionsTransactionResponseHandler responseHandler = null,
+      GetCustomersCustomerBalanceTransactionsTransactionResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -467,10 +499,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Most credit balance transaction fields are immutable, but you may update its
+   * <code>description</code> and <code>metadata</code>.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/balance_transactions/{transaction}`
    */
   void postCustomersCustomerBalanceTransactionsTransaction(
       PostCustomersCustomerBalanceTransactionsTransactionParams params,
-      PostCustomersCustomerBalanceTransactionsTransactionResponseHandler responseHandler = null,
+      PostCustomersCustomerBalanceTransactionsTransactionResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -522,10 +557,11 @@ class V1CustomersService {
   }
 
   /**
+   * See_Also: HTTP GET `/v1/customers/{customer}/discount`
    */
   void getCustomersCustomerDiscount(
       GetCustomersCustomerDiscountParams params,
-      GetCustomersCustomerDiscountResponseHandler responseHandler = null,
+      GetCustomersCustomerDiscountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -572,10 +608,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Removes the currently applied discount on a customer.</p>
+   * See_Also: HTTP DELETE `/v1/customers/{customer}/discount`
    */
   void deleteCustomersCustomerDiscount(
       DeleteCustomersCustomerDiscountParams params,
-      DeleteCustomersCustomerDiscountResponseHandler responseHandler = null,
+      DeleteCustomersCustomerDiscountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -672,10 +710,15 @@ class V1CustomersService {
   }
 
   /**
+   * <p>You can see a list of the cards belonging to a customer.
+   * Note that the 10 most recent sources are always available on the <code>Customer</code> object.
+   * If you need more than those 10, you can use this API method and the <code>limit</code> and
+   * <code>starting_after</code> parameters to page through additional cards.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/cards`
    */
   void getCustomersCustomerCards(
       GetCustomersCustomerCardsParams params,
-      GetCustomersCustomerCardsResponseHandler responseHandler = null,
+      GetCustomersCustomerCardsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -728,10 +771,17 @@ class V1CustomersService {
   }
 
   /**
+   * <p>When you create a new credit card, you must specify a customer or recipient on which to
+   * create it.</p>
+   * <p>If the card’s owner has no default card, then the new card will become the default.
+   * However, if the owner already has a default, then it will not change.
+   * To change the default, you should <a href="/docs/api#update_customer">update the customer</a>
+   * to have a new <code>default_source</code>.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/cards`
    */
   void postCustomersCustomerCards(
       PostCustomersCustomerCardsParams params,
-      PostCustomersCustomerCardsResponseHandler responseHandler = null,
+      PostCustomersCustomerCardsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -831,10 +881,15 @@ class V1CustomersService {
   }
 
   /**
+   * <p>You can see a list of the customer’s active subscriptions. Note that the 10 most recent
+   * active subscriptions are always available by default on the customer object. If you need more
+   * than those 10, you can use the limit and starting_after parameters to page through additional
+   * subscriptions.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/subscriptions`
    */
   void getCustomersCustomerSubscriptions(
       GetCustomersCustomerSubscriptionsParams params,
-      GetCustomersCustomerSubscriptionsResponseHandler responseHandler = null,
+      GetCustomersCustomerSubscriptionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -887,10 +942,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Creates a new subscription on an existing customer.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/subscriptions`
    */
   void postCustomersCustomerSubscriptions(
       PostCustomersCustomerSubscriptionsParams params,
-      PostCustomersCustomerSubscriptionsResponseHandler responseHandler = null,
+      PostCustomersCustomerSubscriptionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -995,10 +1052,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>List sources for a specified customer.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/sources`
    */
   void getCustomersCustomerSources(
       GetCustomersCustomerSourcesParams params,
-      GetCustomersCustomerSourcesResponseHandler responseHandler = null,
+      GetCustomersCustomerSourcesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1053,10 +1112,17 @@ class V1CustomersService {
   }
 
   /**
+   * <p>When you create a new credit card, you must specify a customer or recipient on which to
+   * create it.</p>
+   * <p>If the card’s owner has no default card, then the new card will become the default.
+   * However, if the owner already has a default, then it will not change.
+   * To change the default, you should <a href="/docs/api#update_customer">update the customer</a>
+   * to have a new <code>default_source</code>.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/sources`
    */
   void postCustomersCustomerSources(
       PostCustomersCustomerSourcesParams params,
-      PostCustomersCustomerSourcesResponseHandler responseHandler = null,
+      PostCustomersCustomerSourcesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1110,10 +1176,14 @@ class V1CustomersService {
   }
 
   /**
+   * <p>By default, you can see the 10 most recent sources stored on a Customer directly on the
+   * object, but you can also retrieve details about a specific bank account stored on the Stripe
+   * account.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/bank_accounts/{id}`
    */
   void getCustomersCustomerBankAccountsId(
       GetCustomersCustomerBankAccountsIdParams params,
-      GetCustomersCustomerBankAccountsIdResponseHandler responseHandler = null,
+      GetCustomersCustomerBankAccountsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1166,10 +1236,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Update a specified source for a given customer.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/bank_accounts/{id}`
    */
   void postCustomersCustomerBankAccountsId(
       PostCustomersCustomerBankAccountsIdParams params,
-      PostCustomersCustomerBankAccountsIdResponseHandler responseHandler = null,
+      PostCustomersCustomerBankAccountsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1220,10 +1292,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Delete a specified source for a given customer.</p>
+   * See_Also: HTTP DELETE `/v1/customers/{customer}/bank_accounts/{id}`
    */
   void deleteCustomersCustomerBankAccountsId(
       DeleteCustomersCustomerBankAccountsIdParams params,
-      DeleteCustomersCustomerBankAccountsIdResponseHandler responseHandler = null,
+      DeleteCustomersCustomerBankAccountsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -1279,10 +1353,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Retrieves a PaymentMethod object for a given Customer.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/payment_methods/{payment_method}`
    */
   void getCustomersCustomerPaymentMethodsPaymentMethod(
       GetCustomersCustomerPaymentMethodsPaymentMethodParams params,
-      GetCustomersCustomerPaymentMethodsPaymentMethodResponseHandler responseHandler = null,
+      GetCustomersCustomerPaymentMethodsPaymentMethodResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1340,10 +1416,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>You can always see the 10 most recent cards directly on a customer; this method lets you
+   * retrieve details about a specific card stored on the customer.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/cards/{id}`
    */
   void getCustomersCustomerCardsId(
       GetCustomersCustomerCardsIdParams params,
-      GetCustomersCustomerCardsIdResponseHandler responseHandler = null,
+      GetCustomersCustomerCardsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1396,10 +1475,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Update a specified source for a given customer.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/cards/{id}`
    */
   void postCustomersCustomerCardsId(
       PostCustomersCustomerCardsIdParams params,
-      PostCustomersCustomerCardsIdResponseHandler responseHandler = null,
+      PostCustomersCustomerCardsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1450,10 +1531,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Delete a specified source for a given customer.</p>
+   * See_Also: HTTP DELETE `/v1/customers/{customer}/cards/{id}`
    */
   void deleteCustomersCustomerCardsId(
       DeleteCustomersCustomerCardsIdParams params,
-      DeleteCustomersCustomerCardsIdResponseHandler responseHandler = null,
+      DeleteCustomersCustomerCardsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -1504,10 +1587,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Verify a specified bank account for a given customer.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/bank_accounts/{id}/verify`
    */
   void postCustomersCustomerBankAccountsIdVerify(
       PostCustomersCustomerBankAccountsIdVerifyParams params,
-      PostCustomersCustomerBankAccountsIdVerifyResponseHandler responseHandler = null,
+      PostCustomersCustomerBankAccountsIdVerifyResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1559,10 +1644,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Retrieves a customer’s cash balance.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/cash_balance`
    */
   void getCustomersCustomerCashBalance(
       GetCustomersCustomerCashBalanceParams params,
-      GetCustomersCustomerCashBalanceResponseHandler responseHandler = null,
+      GetCustomersCustomerCashBalanceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1609,10 +1696,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Changes the settings on a customer’s cash balance.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/cash_balance`
    */
   void postCustomersCustomerCashBalance(
       PostCustomersCustomerCashBalanceParams params,
-      PostCustomersCustomerCashBalanceResponseHandler responseHandler = null,
+      PostCustomersCustomerCashBalanceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1666,10 +1755,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Retrieves a specific cash balance transaction, which updated the customer’s <a
+   * href="/docs/payments/customer-balance">cash balance</a>.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/cash_balance_transactions/{transaction}`
    */
   void getCustomersCustomerCashBalanceTransactionsTransaction(
       GetCustomersCustomerCashBalanceTransactionsTransactionParams params,
-      GetCustomersCustomerCashBalanceTransactionsTransactionResponseHandler responseHandler = null,
+      GetCustomersCustomerCashBalanceTransactionsTransactionResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1773,10 +1865,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Returns a list of transactions that modified the customer’s <a
+   * href="/docs/payments/customer-balance">cash balance</a>.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/cash_balance_transactions`
    */
   void getCustomersCustomerCashBalanceTransactions(
       GetCustomersCustomerCashBalanceTransactionsParams params,
-      GetCustomersCustomerCashBalanceTransactionsResponseHandler responseHandler = null,
+      GetCustomersCustomerCashBalanceTransactionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1838,10 +1933,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Retrieve a specified source for a given customer.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/sources/{id}`
    */
   void getCustomersCustomerSourcesId(
       GetCustomersCustomerSourcesIdParams params,
-      GetCustomersCustomerSourcesIdResponseHandler responseHandler = null,
+      GetCustomersCustomerSourcesIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1894,10 +1991,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Update a specified source for a given customer.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/sources/{id}`
    */
   void postCustomersCustomerSourcesId(
       PostCustomersCustomerSourcesIdParams params,
-      PostCustomersCustomerSourcesIdResponseHandler responseHandler = null,
+      PostCustomersCustomerSourcesIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1948,10 +2047,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Delete a specified source for a given customer.</p>
+   * See_Also: HTTP DELETE `/v1/customers/{customer}/sources/{id}`
    */
   void deleteCustomersCustomerSourcesId(
       DeleteCustomersCustomerSourcesIdParams params,
-      DeleteCustomersCustomerSourcesIdResponseHandler responseHandler = null,
+      DeleteCustomersCustomerSourcesIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -2053,10 +2154,15 @@ class V1CustomersService {
   }
 
   /**
+   * <p>You can see a list of the bank accounts belonging to a Customer. Note that the 10 most
+   * recent sources are always available by default on the Customer. If you need more than those 10,
+   * you can use this API method and the <code>limit</code> and <code>starting_after</code>
+   * parameters to page through additional bank accounts.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/bank_accounts`
    */
   void getCustomersCustomerBankAccounts(
       GetCustomersCustomerBankAccountsParams params,
-      GetCustomersCustomerBankAccountsResponseHandler responseHandler = null,
+      GetCustomersCustomerBankAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -2109,10 +2215,17 @@ class V1CustomersService {
   }
 
   /**
+   * <p>When you create a new credit card, you must specify a customer or recipient on which to
+   * create it.</p>
+   * <p>If the card’s owner has no default card, then the new card will become the default.
+   * However, if the owner already has a default, then it will not change.
+   * To change the default, you should <a href="/docs/api#update_customer">update the customer</a>
+   * to have a new <code>default_source</code>.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/bank_accounts`
    */
   void postCustomersCustomerBankAccounts(
       PostCustomersCustomerBankAccountsParams params,
-      PostCustomersCustomerBankAccountsResponseHandler responseHandler = null,
+      PostCustomersCustomerBankAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -2161,10 +2274,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Verify a specified bank account for a given customer.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/sources/{id}/verify`
    */
   void postCustomersCustomerSourcesIdVerify(
       PostCustomersCustomerSourcesIdVerifyParams params,
-      PostCustomersCustomerSourcesIdVerifyResponseHandler responseHandler = null,
+      PostCustomersCustomerSourcesIdVerifyResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -2220,10 +2335,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Retrieves the <code>TaxID</code> object with the given identifier.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/tax_ids/{id}`
    */
   void getCustomersCustomerTaxIdsId(
       GetCustomersCustomerTaxIdsIdParams params,
-      GetCustomersCustomerTaxIdsIdResponseHandler responseHandler = null,
+      GetCustomersCustomerTaxIdsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -2276,10 +2393,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Deletes an existing <code>TaxID</code> object.</p>
+   * See_Also: HTTP DELETE `/v1/customers/{customer}/tax_ids/{id}`
    */
   void deleteCustomersCustomerTaxIdsId(
       DeleteCustomersCustomerTaxIdsIdParams params,
-      DeleteCustomersCustomerTaxIdsIdResponseHandler responseHandler = null,
+      DeleteCustomersCustomerTaxIdsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -2385,10 +2504,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Returns a list of PaymentMethods for a given Customer</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/payment_methods`
    */
   void getCustomersCustomerPaymentMethods(
       GetCustomersCustomerPaymentMethodsParams params,
-      GetCustomersCustomerPaymentMethodsResponseHandler responseHandler = null,
+      GetCustomersCustomerPaymentMethodsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -2452,10 +2573,11 @@ class V1CustomersService {
   }
 
   /**
+   * See_Also: HTTP GET `/v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount`
    */
   void getCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(
       GetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountParams params,
-      GetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountResponseHandler responseHandler = null,
+      GetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -2508,10 +2630,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Removes the currently applied discount on a customer.</p>
+   * See_Also: HTTP DELETE
+   * `/v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount`
    */
   void deleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscount(
       DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountParams params,
-      DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountResponseHandler responseHandler = null,
+      DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -2563,10 +2688,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Retrieves a Customer object.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}`
    */
   void getCustomersCustomer(
       GetCustomersCustomerParams params,
-      GetCustomersCustomerResponseHandler responseHandler = null,
+      GetCustomersCustomerResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -2613,10 +2740,22 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Updates the specified customer by setting the values of the parameters passed. Any
+   * parameters not provided will be left unchanged. For example, if you pass the
+   * <strong>source</strong> parameter, that becomes the customer’s active source (e.g., a card)
+   * to be used for all charges in the future. When you update a customer to a new valid card source
+   * by passing the <strong>source</strong> parameter: for each of the customer’s current
+   * subscriptions, if the subscription bills automatically and is in the <code>past_due</code>
+   * state, then the latest open invoice for the subscription with automatic collection enabled will
+   * be retried. This retry will not count as an automatic retry, and will not affect the next
+   * regularly scheduled payment for the invoice. Changing the <strong>default_source</strong> for a
+   * customer will not trigger this behavior.</p>
+   * <p>This request accepts mostly the same arguments as the customer creation call.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}`
    */
   void postCustomersCustomer(
       PostCustomersCustomerParams params,
-      PostCustomersCustomerResponseHandler responseHandler = null,
+      PostCustomersCustomerResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -2661,10 +2800,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Permanently deletes a customer. It cannot be undone. Also immediately cancels any active
+   * subscriptions on the customer.</p>
+   * See_Also: HTTP DELETE `/v1/customers/{customer}`
    */
   void deleteCustomersCustomer(
       DeleteCustomersCustomerParams params,
-      DeleteCustomersCustomerResponseHandler responseHandler = null,
+      DeleteCustomersCustomerResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -2755,11 +2897,18 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Retrieve funding instructions for a customer cash balance. If funding instructions do not
+   * yet exist for the customer, new
+   * funding instructions will be created. If funding instructions have already been created for a
+   * given customer, the same
+   * funding instructions will be retrieved. In other words, we will return the same funding
+   * instructions each time.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/funding_instructions`
    */
   void postCustomersCustomerFundingInstructions(
       PostCustomersCustomerFundingInstructionsParams params,
       PostCustomersCustomerFundingInstructionsBody requestBody,
-      PostCustomersCustomerFundingInstructionsResponseHandler responseHandler = null,
+      PostCustomersCustomerFundingInstructionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -2767,6 +2916,7 @@ class V1CustomersService {
         "/v1/customers/{customer}/funding_instructions");
     if (!params.customer.isNull)
       requestor.setPathParam("customer", params.customer.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -2859,10 +3009,12 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Returns a list of tax IDs for a customer.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/tax_ids`
    */
   void getCustomersCustomerTaxIds(
       GetCustomersCustomerTaxIdsParams params,
-      GetCustomersCustomerTaxIdsResponseHandler responseHandler = null,
+      GetCustomersCustomerTaxIdsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -2942,11 +3094,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Creates a new <code>TaxID</code> object for a customer.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/tax_ids`
    */
   void postCustomersCustomerTaxIds(
       PostCustomersCustomerTaxIdsParams params,
       PostCustomersCustomerTaxIdsBody requestBody,
-      PostCustomersCustomerTaxIdsResponseHandler responseHandler = null,
+      PostCustomersCustomerTaxIdsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -2954,6 +3108,7 @@ class V1CustomersService {
         "/v1/customers/{customer}/tax_ids");
     if (!params.customer.isNull)
       requestor.setPathParam("customer", params.customer.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -3046,10 +3201,13 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Returns a list of transactions that updated the customer’s <a
+   * href="/docs/billing/customer/balance">balances</a>.</p>
+   * See_Also: HTTP GET `/v1/customers/{customer}/balance_transactions`
    */
   void getCustomersCustomerBalanceTransactions(
       GetCustomersCustomerBalanceTransactionsParams params,
-      GetCustomersCustomerBalanceTransactionsResponseHandler responseHandler = null,
+      GetCustomersCustomerBalanceTransactionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -3143,11 +3301,14 @@ class V1CustomersService {
   }
 
   /**
+   * <p>Creates an immutable transaction that updates the customer’s credit <a
+   * href="/docs/billing/customer/balance">balance</a>.</p>
+   * See_Also: HTTP POST `/v1/customers/{customer}/balance_transactions`
    */
   void postCustomersCustomerBalanceTransactions(
       PostCustomersCustomerBalanceTransactionsParams params,
       PostCustomersCustomerBalanceTransactionsBody requestBody,
-      PostCustomersCustomerBalanceTransactionsResponseHandler responseHandler = null,
+      PostCustomersCustomerBalanceTransactionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -3155,6 +3316,7 @@ class V1CustomersService {
         "/v1/customers/{customer}/balance_transactions");
     if (!params.customer.isNull)
       requestor.setPathParam("customer", params.customer.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

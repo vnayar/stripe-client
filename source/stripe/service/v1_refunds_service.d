@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.refund : Refund;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/refunds
  */
@@ -60,10 +61,12 @@ class V1RefundsService {
   }
 
   /**
+   * <p>Retrieves the details of an existing refund.</p>
+   * See_Also: HTTP GET `/v1/refunds/{refund}`
    */
   void getRefundsRefund(
       GetRefundsRefundParams params,
-      GetRefundsRefundResponseHandler responseHandler = null,
+      GetRefundsRefundResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -110,10 +113,14 @@ class V1RefundsService {
   }
 
   /**
+   * <p>Updates the specified refund by setting the values of the parameters passed. Any parameters
+   * not provided will be left unchanged.</p>
+   * <p>This request only accepts <code>metadata</code> as an argument.</p>
+   * See_Also: HTTP POST `/v1/refunds/{refund}`
    */
   void postRefundsRefund(
       PostRefundsRefundParams params,
-      PostRefundsRefundResponseHandler responseHandler = null,
+      PostRefundsRefundResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -158,10 +165,14 @@ class V1RefundsService {
   }
 
   /**
+   * <p>Cancels a refund with a status of <code>requires_action</code>.</p>
+   * <p>Refunds in other states cannot be canceled, and only refunds for payment methods that
+   * require customer action will enter the <code>requires_action</code> state.</p>
+   * See_Also: HTTP POST `/v1/refunds/{refund}/cancel`
    */
   void postRefundsRefundCancel(
       PostRefundsRefundCancelParams params,
-      PostRefundsRefundCancelResponseHandler responseHandler = null,
+      PostRefundsRefundCancelResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -268,10 +279,14 @@ class V1RefundsService {
   }
 
   /**
+   * <p>Returns a list of all refunds you’ve previously created. The refunds are returned in
+   * sorted order, with the most recent refunds appearing first. For convenience, the 10 most recent
+   * refunds are always available by default on the charge object.</p>
+   * See_Also: HTTP GET `/v1/refunds`
    */
   void getRefunds(
       GetRefundsParams params,
-      GetRefundsResponseHandler responseHandler = null,
+      GetRefundsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -321,9 +336,11 @@ class V1RefundsService {
   }
 
   /**
+   * <p>Create a refund.</p>
+   * See_Also: HTTP POST `/v1/refunds`
    */
   void postRefunds(
-      PostRefundsResponseHandler responseHandler = null,
+      PostRefundsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

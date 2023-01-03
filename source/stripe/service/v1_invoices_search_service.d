@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.invoice : Invoice;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/invoices/search
  */
@@ -103,10 +104,19 @@ class V1InvoicesSearchService {
   }
 
   /**
+   * <p>Search for invoices you’ve previously created using Stripe’s <a
+   * href="/docs/search#search-query-language">Search Query Language</a>.
+   * Don’t use search in read-after-write flows where strict consistency is necessary. Under
+   * normal operating
+   * conditions, data is searchable in less than a minute. Occasionally, propagation of new or
+   * updated data can be up
+   * to an hour behind during outages. Search functionality is not available to merchants in
+   * India.</p>
+   * See_Also: HTTP GET `/v1/invoices/search`
    */
   void getInvoicesSearch(
       GetInvoicesSearchParams params,
-      GetInvoicesSearchResponseHandler responseHandler = null,
+      GetInvoicesSearchResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

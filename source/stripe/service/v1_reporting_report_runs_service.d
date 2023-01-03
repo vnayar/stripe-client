@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.reporting.report_run : ReportingReportRun;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/reporting/report_runs
  */
@@ -60,10 +61,12 @@ class V1ReportingReportRunsService {
   }
 
   /**
+   * <p>Retrieves the details of an existing Report Run.</p>
+   * See_Also: HTTP GET `/v1/reporting/report_runs/{report_run}`
    */
   void getReportingReportRunsReportRun(
       GetReportingReportRunsReportRunParams params,
-      GetReportingReportRunsReportRunResponseHandler responseHandler = null,
+      GetReportingReportRunsReportRunResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -162,10 +165,12 @@ class V1ReportingReportRunsService {
   }
 
   /**
+   * <p>Returns a list of Report Runs, with the most recent appearing first.</p>
+   * See_Also: HTTP GET `/v1/reporting/report_runs`
    */
   void getReportingReportRuns(
       GetReportingReportRunsParams params,
-      GetReportingReportRunsResponseHandler responseHandler = null,
+      GetReportingReportRunsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -262,15 +267,19 @@ class V1ReportingReportRunsService {
   }
 
   /**
+   * <p>Creates a new object and begin running the report. (Certain report types require a <a
+   * href="https://stripe.com/docs/keys#test-live-modes">live-mode API key</a>.)</p>
+   * See_Also: HTTP POST `/v1/reporting/report_runs`
    */
   void postReportingReportRuns(
       PostReportingReportRunsBody requestBody,
-      PostReportingReportRunsResponseHandler responseHandler = null,
+      PostReportingReportRunsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/reporting/report_runs");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

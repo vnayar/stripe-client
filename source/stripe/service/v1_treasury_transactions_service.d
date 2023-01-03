@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.transaction : TreasuryTransaction;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/treasury/transactions
  */
@@ -60,10 +61,12 @@ class V1TreasuryTransactionsService {
   }
 
   /**
+   * <p>Retrieves the details of an existing Transaction.</p>
+   * See_Also: HTTP GET `/v1/treasury/transactions/{id}`
    */
   void getTreasuryTransactionsId(
       GetTreasuryTransactionsIdParams params,
-      GetTreasuryTransactionsIdResponseHandler responseHandler = null,
+      GetTreasuryTransactionsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -193,10 +196,12 @@ class V1TreasuryTransactionsService {
   }
 
   /**
+   * <p>Retrieves a list of Transaction objects.</p>
+   * See_Also: HTTP GET `/v1/treasury/transactions`
    */
   void getTreasuryTransactions(
       GetTreasuryTransactionsParams params,
-      GetTreasuryTransactionsResponseHandler responseHandler = null,
+      GetTreasuryTransactionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

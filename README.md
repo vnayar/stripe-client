@@ -77,11 +77,26 @@ Using the numbers in the comments in the example above, we can see the following
 7. When making an actual request, it can have parameters, a request body, and a handler for the
    response.
 
-## Development Dependencies
+## Development
+
+### Environment
 
 In order the build this library, the following dependencies are needed in addition to a D compiler:
 - [Docker](https://www.docker.com/): Used to run a mock stripe server during testing.
 
+### Testing
+
+Removed from the normal "unittest" configuration profile used during compilation of non-release
+builds, is a separate configuration that can be used for integration tests. The integration tests
+set an artificial Stripe API key and interact with a
+[Stipe-Mock](https://github.com/stripe/stripe-mock) server.
+
+To execute these integration tests, run the command:
+
+```
+dub test --config=integration
+```
+
 ## Future Features
 
-1. Greatly expand test coverage for many more useful endpoints.
+1. Greatly expand integration test coverage for many more useful endpoints.

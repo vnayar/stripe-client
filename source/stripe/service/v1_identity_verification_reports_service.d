@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.identity.verification_report : IdentityVerificationReport;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/identity/verification_reports
  */
@@ -118,10 +119,12 @@ class V1IdentityVerificationReportsService {
   }
 
   /**
+   * <p>List all verification reports.</p>
+   * See_Also: HTTP GET `/v1/identity/verification_reports`
    */
   void getIdentityVerificationReports(
       GetIdentityVerificationReportsParams params,
-      GetIdentityVerificationReportsResponseHandler responseHandler = null,
+      GetIdentityVerificationReportsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -183,10 +186,12 @@ class V1IdentityVerificationReportsService {
   }
 
   /**
+   * <p>Retrieves an existing VerificationReport</p>
+   * See_Also: HTTP GET `/v1/identity/verification_reports/{report}`
    */
   void getIdentityVerificationReportsReport(
       GetIdentityVerificationReportsReportParams params,
-      GetIdentityVerificationReportsReportResponseHandler responseHandler = null,
+      GetIdentityVerificationReportsReportResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

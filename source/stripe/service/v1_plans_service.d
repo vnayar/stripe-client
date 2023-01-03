@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_plan : DeletedPlan;
 public import stripe.model.error : Error_;
 public import stripe.model.plan : Plan;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/plans
  */
@@ -61,10 +62,12 @@ class V1PlansService {
   }
 
   /**
+   * <p>Retrieves the plan with the given ID.</p>
+   * See_Also: HTTP GET `/v1/plans/{plan}`
    */
   void getPlansPlan(
       GetPlansPlanParams params,
-      GetPlansPlanResponseHandler responseHandler = null,
+      GetPlansPlanResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -111,10 +114,14 @@ class V1PlansService {
   }
 
   /**
+   * <p>Updates the specified plan by setting the values of the parameters passed. Any parameters
+   * not provided are left unchanged. By design, you cannot change a plan’s ID, amount, currency,
+   * or billing cycle.</p>
+   * See_Also: HTTP POST `/v1/plans/{plan}`
    */
   void postPlansPlan(
       PostPlansPlanParams params,
-      PostPlansPlanResponseHandler responseHandler = null,
+      PostPlansPlanResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -159,10 +166,13 @@ class V1PlansService {
   }
 
   /**
+   * <p>Deleting plans means new subscribers can’t be added. Existing subscribers aren’t
+   * affected.</p>
+   * See_Also: HTTP DELETE `/v1/plans/{plan}`
    */
   void deletePlansPlan(
       DeletePlansPlanParams params,
-      DeletePlansPlanResponseHandler responseHandler = null,
+      DeletePlansPlanResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -275,10 +285,12 @@ class V1PlansService {
   }
 
   /**
+   * <p>Returns a list of your plans.</p>
+   * See_Also: HTTP GET `/v1/plans`
    */
   void getPlans(
       GetPlansParams params,
-      GetPlansResponseHandler responseHandler = null,
+      GetPlansResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -489,15 +501,19 @@ class V1PlansService {
   }
 
   /**
+   * <p>You can now model subscriptions more flexibly using the <a href="#prices">Prices API</a>. It
+   * replaces the Plans API and is backwards compatible to simplify your migration.</p>
+   * See_Also: HTTP POST `/v1/plans`
    */
   void postPlans(
       PostPlansBody requestBody,
-      PostPlansResponseHandler responseHandler = null,
+      PostPlansResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/plans");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

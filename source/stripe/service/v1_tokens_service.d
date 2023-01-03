@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.token : Token;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/tokens
  */
@@ -60,10 +61,12 @@ class V1TokensService {
   }
 
   /**
+   * <p>Retrieves the token with the given ID.</p>
+   * See_Also: HTTP GET `/v1/tokens/{token}`
    */
   void getTokensToken(
       GetTokensTokenParams params,
-      GetTokensTokenResponseHandler responseHandler = null,
+      GetTokensTokenResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -103,9 +106,13 @@ class V1TokensService {
   }
 
   /**
+   * <p>Creates a single-use token that represents a bank account’s details.
+   * This token can be used with any API method in place of a bank account dictionary. This token
+   * can be used only once, by attaching it to a <a href="#accounts">Custom account</a>.</p>
+   * See_Also: HTTP POST `/v1/tokens`
    */
   void postTokens(
-      PostTokensResponseHandler responseHandler = null,
+      PostTokensResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

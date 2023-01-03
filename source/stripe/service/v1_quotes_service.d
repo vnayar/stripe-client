@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.error : Error_;
 public import stripe.model.item : Item;
 public import stripe.model.quote : Quote;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/quotes
  */
@@ -120,10 +121,12 @@ class V1QuotesService {
   }
 
   /**
+   * <p>Returns a list of your quotes.</p>
+   * See_Also: HTTP GET `/v1/quotes`
    */
   void getQuotes(
       GetQuotesParams params,
-      GetQuotesResponseHandler responseHandler = null,
+      GetQuotesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -173,9 +176,14 @@ class V1QuotesService {
   }
 
   /**
+   * <p>A quote models prices and services for a customer. Default options for <code>header</code>,
+   * <code>description</code>, <code>footer</code>, and <code>expires_at</code> can be set in the
+   * dashboard via the <a href="https://dashboard.stripe.com/settings/billing/quote">quote
+   * template</a>.</p>
+   * See_Also: HTTP POST `/v1/quotes`
    */
   void postQuotes(
-      PostQuotesResponseHandler responseHandler = null,
+      PostQuotesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -222,10 +230,12 @@ class V1QuotesService {
   }
 
   /**
+   * <p>Download the PDF for a finalized quote</p>
+   * See_Also: HTTP GET `/v1/quotes/{quote}/pdf`
    */
   void getQuotesQuotePdf(
       GetQuotesQuotePdfParams params,
-      GetQuotesQuotePdfResponseHandler responseHandler = null,
+      GetQuotesQuotePdfResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -272,10 +282,12 @@ class V1QuotesService {
   }
 
   /**
+   * <p>Cancels the quote.</p>
+   * See_Also: HTTP POST `/v1/quotes/{quote}/cancel`
    */
   void postQuotesQuoteCancel(
       PostQuotesQuoteCancelParams params,
-      PostQuotesQuoteCancelResponseHandler responseHandler = null,
+      PostQuotesQuoteCancelResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -375,10 +387,14 @@ class V1QuotesService {
   }
 
   /**
+   * <p>When retrieving a quote, there is an includable <strong>line_items</strong> property
+   * containing the first handful of those items. There is also a URL where you can retrieve the
+   * full (paginated) list of line items.</p>
+   * See_Also: HTTP GET `/v1/quotes/{quote}/line_items`
    */
   void getQuotesQuoteLineItems(
       GetQuotesQuoteLineItemsParams params,
-      GetQuotesQuoteLineItemsResponseHandler responseHandler = null,
+      GetQuotesQuoteLineItemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -486,10 +502,16 @@ class V1QuotesService {
   }
 
   /**
+   * <p>When retrieving a quote, there is an includable <a
+   * href="https://stripe.com/docs/api/quotes/object#quote_object-computed-upfront-line_items"><stro
+   * ng>computed.upfront.line_items</strong></a> property containing the first handful of those
+   * items. There is also a URL where you can retrieve the full (paginated) list of upfront line
+   * items.</p>
+   * See_Also: HTTP GET `/v1/quotes/{quote}/computed_upfront_line_items`
    */
   void getQuotesQuoteComputedUpfrontLineItems(
       GetQuotesQuoteComputedUpfrontLineItemsParams params,
-      GetQuotesQuoteComputedUpfrontLineItemsResponseHandler responseHandler = null,
+      GetQuotesQuoteComputedUpfrontLineItemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -547,10 +569,12 @@ class V1QuotesService {
   }
 
   /**
+   * <p>Retrieves the quote with the given ID.</p>
+   * See_Also: HTTP GET `/v1/quotes/{quote}`
    */
   void getQuotesQuote(
       GetQuotesQuoteParams params,
-      GetQuotesQuoteResponseHandler responseHandler = null,
+      GetQuotesQuoteResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -597,10 +621,12 @@ class V1QuotesService {
   }
 
   /**
+   * <p>A quote models prices and services for a customer.</p>
+   * See_Also: HTTP POST `/v1/quotes/{quote}`
    */
   void postQuotesQuote(
       PostQuotesQuoteParams params,
-      PostQuotesQuoteResponseHandler responseHandler = null,
+      PostQuotesQuoteResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -645,10 +671,12 @@ class V1QuotesService {
   }
 
   /**
+   * <p>Accepts the specified quote.</p>
+   * See_Also: HTTP POST `/v1/quotes/{quote}/accept`
    */
   void postQuotesQuoteAccept(
       PostQuotesQuoteAcceptParams params,
-      PostQuotesQuoteAcceptResponseHandler responseHandler = null,
+      PostQuotesQuoteAcceptResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -693,10 +721,12 @@ class V1QuotesService {
   }
 
   /**
+   * <p>Finalizes the quote.</p>
+   * See_Also: HTTP POST `/v1/quotes/{quote}/finalize`
    */
   void postQuotesQuoteFinalize(
       PostQuotesQuoteFinalizeParams params,
-      PostQuotesQuoteFinalizeResponseHandler responseHandler = null,
+      PostQuotesQuoteFinalizeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

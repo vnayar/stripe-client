@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.issuing.settlement : IssuingSettlement;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/issuing/settlements
  */
@@ -108,10 +109,13 @@ class V1IssuingSettlementsService {
   }
 
   /**
+   * <p>Returns a list of Issuing <code>Settlement</code> objects. The objects are sorted in
+   * descending order by creation date, with the most recently created object appearing first.</p>
+   * See_Also: HTTP GET `/v1/issuing/settlements`
    */
   void getIssuingSettlements(
       GetIssuingSettlementsParams params,
-      GetIssuingSettlementsResponseHandler responseHandler = null,
+      GetIssuingSettlementsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -169,10 +173,12 @@ class V1IssuingSettlementsService {
   }
 
   /**
+   * <p>Retrieves an Issuing <code>Settlement</code> object.</p>
+   * See_Also: HTTP GET `/v1/issuing/settlements/{settlement}`
    */
   void getIssuingSettlementsSettlement(
       GetIssuingSettlementsSettlementParams params,
-      GetIssuingSettlementsSettlementResponseHandler responseHandler = null,
+      GetIssuingSettlementsSettlementResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -219,10 +225,13 @@ class V1IssuingSettlementsService {
   }
 
   /**
+   * <p>Updates the specified Issuing <code>Settlement</code> object by setting the values of the
+   * parameters passed. Any parameters not provided will be left unchanged.</p>
+   * See_Also: HTTP POST `/v1/issuing/settlements/{settlement}`
    */
   void postIssuingSettlementsSettlement(
       PostIssuingSettlementsSettlementParams params,
-      PostIssuingSettlementsSettlementResponseHandler responseHandler = null,
+      PostIssuingSettlementsSettlementResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

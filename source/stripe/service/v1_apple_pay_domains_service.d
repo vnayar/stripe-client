@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.apple_pay_domain : ApplePayDomain;
 public import stripe.model.deleted_apple_pay_domain : DeletedApplePayDomain;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/apple_pay/domains
  */
@@ -61,10 +62,12 @@ class V1ApplePayDomainsService {
   }
 
   /**
+   * <p>Retrieve an apple pay domain.</p>
+   * See_Also: HTTP GET `/v1/apple_pay/domains/{domain}`
    */
   void getApplePayDomainsDomain(
       GetApplePayDomainsDomainParams params,
-      GetApplePayDomainsDomainResponseHandler responseHandler = null,
+      GetApplePayDomainsDomainResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -111,10 +114,12 @@ class V1ApplePayDomainsService {
   }
 
   /**
+   * <p>Delete an apple pay domain.</p>
+   * See_Also: HTTP DELETE `/v1/apple_pay/domains/{domain}`
    */
   void deleteApplePayDomainsDomain(
       DeleteApplePayDomainsDomainParams params,
-      DeleteApplePayDomainsDomainResponseHandler responseHandler = null,
+      DeleteApplePayDomainsDomainResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -211,10 +216,12 @@ class V1ApplePayDomainsService {
   }
 
   /**
+   * <p>List apple pay domains.</p>
+   * See_Also: HTTP GET `/v1/apple_pay/domains`
    */
   void getApplePayDomains(
       GetApplePayDomainsParams params,
-      GetApplePayDomainsResponseHandler responseHandler = null,
+      GetApplePayDomainsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -272,15 +279,18 @@ class V1ApplePayDomainsService {
   }
 
   /**
+   * <p>Create an apple pay domain.</p>
+   * See_Also: HTTP POST `/v1/apple_pay/domains`
    */
   void postApplePayDomains(
       PostApplePayDomainsBody requestBody,
-      PostApplePayDomainsResponseHandler responseHandler = null,
+      PostApplePayDomainsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/apple_pay/domains");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

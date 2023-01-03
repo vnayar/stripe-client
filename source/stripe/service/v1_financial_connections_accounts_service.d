@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.error : Error_;
 public import stripe.model.financial_connections.account : FinancialConnectionsAccount;
 public import stripe.model.financial_connections.account_owner : FinancialConnectionsAccountOwner;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/financial_connections/accounts
  */
@@ -56,10 +57,13 @@ class V1FinancialConnectionsAccountsService {
   }
 
   /**
+   * <p>Disables your access to a Financial Connections <code>Account</code>. You will no longer be
+   * able to access data associated with the account (e.g. balances, transactions).</p>
+   * See_Also: HTTP POST `/v1/financial_connections/accounts/{account}/disconnect`
    */
   void postFinancialConnectionsAccountsAccountDisconnect(
       PostFinancialConnectionsAccountsAccountDisconnectParams params,
-      PostFinancialConnectionsAccountsAccountDisconnectResponseHandler responseHandler = null,
+      PostFinancialConnectionsAccountsAccountDisconnectResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -119,11 +123,13 @@ class V1FinancialConnectionsAccountsService {
   }
 
   /**
+   * <p>Refreshes the data associated with a Financial Connections <code>Account</code>.</p>
+   * See_Also: HTTP POST `/v1/financial_connections/accounts/{account}/refresh`
    */
   void postFinancialConnectionsAccountsAccountRefresh(
       PostFinancialConnectionsAccountsAccountRefreshParams params,
       PostFinancialConnectionsAccountsAccountRefreshBody requestBody,
-      PostFinancialConnectionsAccountsAccountRefreshResponseHandler responseHandler = null,
+      PostFinancialConnectionsAccountsAccountRefreshResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -131,6 +137,7 @@ class V1FinancialConnectionsAccountsService {
         "/v1/financial_connections/accounts/{account}/refresh");
     if (!params.account.isNull)
       requestor.setPathParam("account", params.account.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -228,10 +235,12 @@ class V1FinancialConnectionsAccountsService {
   }
 
   /**
+   * <p>Lists all owners for a given <code>Account</code></p>
+   * See_Also: HTTP GET `/v1/financial_connections/accounts/{account}/owners`
    */
   void getFinancialConnectionsAccountsAccountOwners(
       GetFinancialConnectionsAccountsAccountOwnersParams params,
-      GetFinancialConnectionsAccountsAccountOwnersResponseHandler responseHandler = null,
+      GetFinancialConnectionsAccountsAccountOwnersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -357,10 +366,12 @@ class V1FinancialConnectionsAccountsService {
   }
 
   /**
+   * <p>Returns a list of Financial Connections <code>Account</code> objects.</p>
+   * See_Also: HTTP GET `/v1/financial_connections/accounts`
    */
   void getFinancialConnectionsAccounts(
       GetFinancialConnectionsAccountsParams params,
-      GetFinancialConnectionsAccountsResponseHandler responseHandler = null,
+      GetFinancialConnectionsAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -420,10 +431,12 @@ class V1FinancialConnectionsAccountsService {
   }
 
   /**
+   * <p>Retrieves the details of an Financial Connections <code>Account</code>.</p>
+   * See_Also: HTTP GET `/v1/financial_connections/accounts/{account}`
    */
   void getFinancialConnectionsAccountsAccount(
       GetFinancialConnectionsAccountsAccountParams params,
-      GetFinancialConnectionsAccountsAccountResponseHandler responseHandler = null,
+      GetFinancialConnectionsAccountsAccountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

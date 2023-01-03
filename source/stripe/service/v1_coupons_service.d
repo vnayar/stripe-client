@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.coupon : Coupon;
 public import stripe.model.deleted_coupon : DeletedCoupon;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/coupons
  */
@@ -110,10 +111,12 @@ class V1CouponsService {
   }
 
   /**
+   * <p>Returns a list of your coupons.</p>
+   * See_Also: HTTP GET `/v1/coupons`
    */
   void getCoupons(
       GetCouponsParams params,
-      GetCouponsResponseHandler responseHandler = null,
+      GetCouponsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -159,9 +162,20 @@ class V1CouponsService {
   }
 
   /**
+   * <p>You can create coupons easily via the <a href="https://dashboard.stripe.com/coupons">coupon
+   * management</a> page of the Stripe dashboard. Coupon creation is also accessible via the API if
+   * you need to create coupons on the fly.</p>
+   * <p>A coupon has either a <code>percent_off</code> or an <code>amount_off</code> and
+   * <code>currency</code>. If you set an <code>amount_off</code>, that amount will be subtracted
+   * from any invoice’s subtotal. For example, an invoice with a subtotal of
+   * <currency>100</currency> will have a final total of <currency>0</currency> if a coupon with an
+   * <code>amount_off</code> of <amount>200</amount> is applied to it and an invoice with a subtotal
+   * of <currency>300</currency> will have a final total of <currency>100</currency> if a coupon
+   * with an <code>amount_off</code> of <amount>200</amount> is applied to it.</p>
+   * See_Also: HTTP POST `/v1/coupons`
    */
   void postCoupons(
-      PostCouponsResponseHandler responseHandler = null,
+      PostCouponsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -209,10 +223,12 @@ class V1CouponsService {
   }
 
   /**
+   * <p>Retrieves the coupon with the given ID.</p>
+   * See_Also: HTTP GET `/v1/coupons/{coupon}`
    */
   void getCouponsCoupon(
       GetCouponsCouponParams params,
-      GetCouponsCouponResponseHandler responseHandler = null,
+      GetCouponsCouponResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -259,10 +275,13 @@ class V1CouponsService {
   }
 
   /**
+   * <p>Updates the metadata of a coupon. Other coupon details (currency, duration, amount_off) are,
+   * by design, not editable.</p>
+   * See_Also: HTTP POST `/v1/coupons/{coupon}`
    */
   void postCouponsCoupon(
       PostCouponsCouponParams params,
-      PostCouponsCouponResponseHandler responseHandler = null,
+      PostCouponsCouponResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -307,10 +326,15 @@ class V1CouponsService {
   }
 
   /**
+   * <p>You can delete coupons via the <a href="https://dashboard.stripe.com/coupons">coupon
+   * management</a> page of the Stripe dashboard. However, deleting a coupon does not affect any
+   * customers who have already applied the coupon; it means that new customers can’t redeem the
+   * coupon. You can also delete coupons via the API.</p>
+   * See_Also: HTTP DELETE `/v1/coupons/{coupon}`
    */
   void deleteCouponsCoupon(
       DeleteCouponsCouponParams params,
-      DeleteCouponsCouponResponseHandler responseHandler = null,
+      DeleteCouponsCouponResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,

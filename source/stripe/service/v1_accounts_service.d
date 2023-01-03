@@ -27,6 +27,7 @@ public import stripe.model.error : Error_;
 public import stripe.model.external_account : ExternalAccount;
 public import stripe.model.login_link : LoginLink;
 public import stripe.model.person : Person;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/accounts
  */
@@ -69,10 +70,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Retrieves the details of an account.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}`
    */
   void getAccountsAccount(
       GetAccountsAccountParams params,
-      GetAccountsAccountResponseHandler responseHandler = null,
+      GetAccountsAccountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -119,10 +122,20 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Updates a <a href="/docs/connect/accounts">connected account</a> by setting the values of
+   * the parameters passed. Any parameters not provided are left unchanged. Most parameters can be
+   * changed only for Custom accounts. (These are marked <strong>Custom Only</strong> below.)
+   * Parameters marked <strong>Custom and Express</strong> are not supported for Standard
+   * accounts.</p>
+   * <p>To update your own account, use the <a
+   * href="https://dashboard.stripe.com/account">Dashboard</a>. Refer to our <a
+   * href="/docs/connect/updating-accounts">Connect</a> documentation to learn more about updating
+   * accounts.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}`
    */
   void postAccountsAccount(
       PostAccountsAccountParams params,
-      PostAccountsAccountResponseHandler responseHandler = null,
+      PostAccountsAccountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -167,10 +180,18 @@ class V1AccountsService {
   }
 
   /**
+   * <p>With <a href="/docs/connect">Connect</a>, you can delete accounts you manage.</p>
+   * <p>Accounts created using test-mode keys can be deleted at any time. Standard accounts created
+   * using live-mode keys cannot be deleted. Custom or Express accounts created using live-mode keys
+   * can only be deleted once all balances are zero.</p>
+   * <p>If you want to delete your own account, use the <a
+   * href="https://dashboard.stripe.com/account">account information tab in your account
+   * settings</a> instead.</p>
+   * See_Also: HTTP DELETE `/v1/accounts/{account}`
    */
   void deleteAccountsAccount(
       DeleteAccountsAccountParams params,
-      DeleteAccountsAccountResponseHandler responseHandler = null,
+      DeleteAccountsAccountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -288,10 +309,13 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Returns a list of people associated with the account’s legal entity. The people are
+   * returned sorted by creation date, with the most recent people appearing first.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}/people`
    */
   void getAccountsAccountPeople(
       GetAccountsAccountPeopleParams params,
-      GetAccountsAccountPeopleResponseHandler responseHandler = null,
+      GetAccountsAccountPeopleResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -346,10 +370,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Creates a new person.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/people`
    */
   void postAccountsAccountPeople(
       PostAccountsAccountPeopleParams params,
-      PostAccountsAccountPeopleResponseHandler responseHandler = null,
+      PostAccountsAccountPeopleResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -394,10 +420,14 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Creates a single-use login link for an Express account to access their Stripe dashboard.</p>
+   * <p><strong>You may only create login links for <a href="/docs/connect/express-accounts">Express
+   * accounts</a> connected to your platform</strong>.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/login_links`
    */
   void postAccountsAccountLoginLinks(
       PostAccountsAccountLoginLinksParams params,
-      PostAccountsAccountLoginLinksResponseHandler responseHandler = null,
+      PostAccountsAccountLoginLinksResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -515,10 +545,13 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Returns a list of people associated with the account’s legal entity. The people are
+   * returned sorted by creation date, with the most recent people appearing first.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}/persons`
    */
   void getAccountsAccountPersons(
       GetAccountsAccountPersonsParams params,
-      GetAccountsAccountPersonsResponseHandler responseHandler = null,
+      GetAccountsAccountPersonsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -573,10 +606,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Creates a new person.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/persons`
    */
   void postAccountsAccountPersons(
       PostAccountsAccountPersonsParams params,
-      PostAccountsAccountPersonsResponseHandler responseHandler = null,
+      PostAccountsAccountPersonsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -630,10 +665,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Retrieve a specified external account for a given account.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}/external_accounts/{id}`
    */
   void getAccountsAccountExternalAccountsId(
       GetAccountsAccountExternalAccountsIdParams params,
-      GetAccountsAccountExternalAccountsIdResponseHandler responseHandler = null,
+      GetAccountsAccountExternalAccountsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -686,10 +723,16 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Updates the metadata, account holder name, account holder type of a bank account belonging
+   * to a <a href="/docs/connect/custom-accounts">Custom account</a>, and optionally sets it as the
+   * default for its currency. Other bank account details are not editable by design.</p>
+   * <p>You can re-enable a disabled bank account by performing an update call without providing any
+   * arguments or changes.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/external_accounts/{id}`
    */
   void postAccountsAccountExternalAccountsId(
       PostAccountsAccountExternalAccountsIdParams params,
-      PostAccountsAccountExternalAccountsIdResponseHandler responseHandler = null,
+      PostAccountsAccountExternalAccountsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -740,10 +783,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Delete a specified external account for a given account.</p>
+   * See_Also: HTTP DELETE `/v1/accounts/{account}/external_accounts/{id}`
    */
   void deleteAccountsAccountExternalAccountsId(
       DeleteAccountsAccountExternalAccountsIdParams params,
-      DeleteAccountsAccountExternalAccountsIdResponseHandler responseHandler = null,
+      DeleteAccountsAccountExternalAccountsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -799,10 +844,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Retrieve a specified external account for a given account.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}/bank_accounts/{id}`
    */
   void getAccountsAccountBankAccountsId(
       GetAccountsAccountBankAccountsIdParams params,
-      GetAccountsAccountBankAccountsIdResponseHandler responseHandler = null,
+      GetAccountsAccountBankAccountsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -855,10 +902,16 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Updates the metadata, account holder name, account holder type of a bank account belonging
+   * to a <a href="/docs/connect/custom-accounts">Custom account</a>, and optionally sets it as the
+   * default for its currency. Other bank account details are not editable by design.</p>
+   * <p>You can re-enable a disabled bank account by performing an update call without providing any
+   * arguments or changes.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/bank_accounts/{id}`
    */
   void postAccountsAccountBankAccountsId(
       PostAccountsAccountBankAccountsIdParams params,
-      PostAccountsAccountBankAccountsIdResponseHandler responseHandler = null,
+      PostAccountsAccountBankAccountsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -909,10 +962,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Delete a specified external account for a given account.</p>
+   * See_Also: HTTP DELETE `/v1/accounts/{account}/bank_accounts/{id}`
    */
   void deleteAccountsAccountBankAccountsId(
       DeleteAccountsAccountBankAccountsIdParams params,
-      DeleteAccountsAccountBankAccountsIdResponseHandler responseHandler = null,
+      DeleteAccountsAccountBankAccountsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -968,10 +1023,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Retrieves an existing person.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}/people/{person}`
    */
   void getAccountsAccountPeoplePerson(
       GetAccountsAccountPeoplePersonParams params,
-      GetAccountsAccountPeoplePersonResponseHandler responseHandler = null,
+      GetAccountsAccountPeoplePersonResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1024,10 +1081,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Updates an existing person.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/people/{person}`
    */
   void postAccountsAccountPeoplePerson(
       PostAccountsAccountPeoplePersonParams params,
-      PostAccountsAccountPeoplePersonResponseHandler responseHandler = null,
+      PostAccountsAccountPeoplePersonResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1078,10 +1137,15 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Deletes an existing person’s relationship to the account’s legal entity. Any person with
+   * a relationship for an account can be deleted through the API, except if the person is the
+   * <code>account_opener</code>. If your integration is using the <code>executive</code> parameter,
+   * you cannot delete the only verified <code>executive</code> on file.</p>
+   * See_Also: HTTP DELETE `/v1/accounts/{account}/people/{person}`
    */
   void deleteAccountsAccountPeoplePerson(
       DeleteAccountsAccountPeoplePersonParams params,
-      DeleteAccountsAccountPeoplePersonResponseHandler responseHandler = null,
+      DeleteAccountsAccountPeoplePersonResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -1180,10 +1244,13 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Returns a list of accounts connected to your platform via <a
+   * href="/docs/connect">Connect</a>. If you’re not a platform, the list is empty.</p>
+   * See_Also: HTTP GET `/v1/accounts`
    */
   void getAccounts(
       GetAccountsParams params,
-      GetAccountsResponseHandler responseHandler = null,
+      GetAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1229,9 +1296,14 @@ class V1AccountsService {
   }
 
   /**
+   * <p>With <a href="/docs/connect">Connect</a>, you can create Stripe accounts for your users.
+   * To do this, you’ll first need to <a
+   * href="https://dashboard.stripe.com/account/applications/settings">register your
+   * platform</a>.</p>
+   * See_Also: HTTP POST `/v1/accounts`
    */
   void postAccounts(
-      PostAccountsResponseHandler responseHandler = null,
+      PostAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1283,10 +1355,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Retrieves information about the specified Account Capability.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}/capabilities/{capability}`
    */
   void getAccountsAccountCapabilitiesCapability(
       GetAccountsAccountCapabilitiesCapabilityParams params,
-      GetAccountsAccountCapabilitiesCapabilityResponseHandler responseHandler = null,
+      GetAccountsAccountCapabilitiesCapabilityResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1339,10 +1413,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Updates an existing Account Capability.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/capabilities/{capability}`
    */
   void postAccountsAccountCapabilitiesCapability(
       PostAccountsAccountCapabilitiesCapabilityParams params,
-      PostAccountsAccountCapabilitiesCapabilityResponseHandler responseHandler = null,
+      PostAccountsAccountCapabilitiesCapabilityResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1404,11 +1480,15 @@ class V1AccountsService {
   }
 
   /**
+   * <p>With <a href="/docs/connect">Connect</a>, you may flag accounts as suspicious.</p>
+   * <p>Test-mode Custom and Express accounts can be rejected at any time. Accounts created using
+   * live-mode keys may only be rejected once all balances are zero.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/reject`
    */
   void postAccountsAccountReject(
       PostAccountsAccountRejectParams params,
       PostAccountsAccountRejectBody requestBody,
-      PostAccountsAccountRejectResponseHandler responseHandler = null,
+      PostAccountsAccountRejectResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1416,6 +1496,7 @@ class V1AccountsService {
         "/v1/accounts/{account}/reject");
     if (!params.account.isNull)
       requestor.setPathParam("account", params.account.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -1462,10 +1543,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Retrieves an existing person.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}/persons/{person}`
    */
   void getAccountsAccountPersonsPerson(
       GetAccountsAccountPersonsPersonParams params,
-      GetAccountsAccountPersonsPersonResponseHandler responseHandler = null,
+      GetAccountsAccountPersonsPersonResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1518,10 +1601,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Updates an existing person.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/persons/{person}`
    */
   void postAccountsAccountPersonsPerson(
       PostAccountsAccountPersonsPersonParams params,
-      PostAccountsAccountPersonsPersonResponseHandler responseHandler = null,
+      PostAccountsAccountPersonsPersonResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1572,10 +1657,15 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Deletes an existing person’s relationship to the account’s legal entity. Any person with
+   * a relationship for an account can be deleted through the API, except if the person is the
+   * <code>account_opener</code>. If your integration is using the <code>executive</code> parameter,
+   * you cannot delete the only verified <code>executive</code> on file.</p>
+   * See_Also: HTTP DELETE `/v1/accounts/{account}/persons/{person}`
    */
   void deleteAccountsAccountPersonsPerson(
       DeleteAccountsAccountPersonsPersonParams params,
-      DeleteAccountsAccountPersonsPersonResponseHandler responseHandler = null,
+      DeleteAccountsAccountPersonsPersonResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -1622,10 +1712,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Create an external account for a given account.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/bank_accounts`
    */
   void postAccountsAccountBankAccounts(
       PostAccountsAccountBankAccountsParams params,
-      PostAccountsAccountBankAccountsResponseHandler responseHandler = null,
+      PostAccountsAccountBankAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1726,10 +1818,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>List external accounts for an account.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}/external_accounts`
    */
   void getAccountsAccountExternalAccounts(
       GetAccountsAccountExternalAccountsParams params,
-      GetAccountsAccountExternalAccountsResponseHandler responseHandler = null,
+      GetAccountsAccountExternalAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1782,10 +1876,12 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Create an external account for a given account.</p>
+   * See_Also: HTTP POST `/v1/accounts/{account}/external_accounts`
    */
   void postAccountsAccountExternalAccounts(
       PostAccountsAccountExternalAccountsParams params,
-      PostAccountsAccountExternalAccountsResponseHandler responseHandler = null,
+      PostAccountsAccountExternalAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1860,10 +1956,13 @@ class V1AccountsService {
   }
 
   /**
+   * <p>Returns a list of capabilities associated with the account. The capabilities are returned
+   * sorted by creation date, with the most recent capability appearing first.</p>
+   * See_Also: HTTP GET `/v1/accounts/{account}/capabilities`
    */
   void getAccountsAccountCapabilities(
       GetAccountsAccountCapabilitiesParams params,
-      GetAccountsAccountCapabilitiesResponseHandler responseHandler = null,
+      GetAccountsAccountCapabilitiesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.reporting.report_type : ReportingReportType;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/reporting/report_types
  */
@@ -81,10 +82,12 @@ class V1ReportingReportTypesService {
   }
 
   /**
+   * <p>Returns a full list of Report Types.</p>
+   * See_Also: HTTP GET `/v1/reporting/report_types`
    */
   void getReportingReportTypes(
       GetReportingReportTypesParams params,
-      GetReportingReportTypesResponseHandler responseHandler = null,
+      GetReportingReportTypesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -134,10 +137,13 @@ class V1ReportingReportTypesService {
   }
 
   /**
+   * <p>Retrieves the details of a Report Type. (Certain report types require a <a
+   * href="https://stripe.com/docs/keys#test-live-modes">live-mode API key</a>.)</p>
+   * See_Also: HTTP GET `/v1/reporting/report_types/{report_type}`
    */
   void getReportingReportTypesReportType(
       GetReportingReportTypesReportTypeParams params,
-      GetReportingReportTypesReportTypeResponseHandler responseHandler = null,
+      GetReportingReportTypesReportTypeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

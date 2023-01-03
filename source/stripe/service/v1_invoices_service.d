@@ -20,6 +20,7 @@ public import stripe.model.deleted_invoice : DeletedInvoice;
 public import stripe.model.error : Error_;
 public import stripe.model.invoice : Invoice;
 public import stripe.model.line_item : LineItem;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/invoices
  */
@@ -135,10 +136,13 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>You can list all invoices, or list the invoices for a specific customer. The invoices are
+   * returned sorted by creation date, with the most recently created invoices appearing first.</p>
+   * See_Also: HTTP GET `/v1/invoices`
    */
   void getInvoices(
       GetInvoicesParams params,
-      GetInvoicesResponseHandler responseHandler = null,
+      GetInvoicesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -194,9 +198,14 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>This endpoint creates a draft invoice for a given customer. The invoice remains a draft
+   * until you <a href="#finalize_invoice">finalize</a> the invoice, which allows you to <a
+   * href="#pay_invoice">pay</a> or <a href="#send_invoice">send</a> the invoice to your
+   * customers.</p>
+   * See_Also: HTTP POST `/v1/invoices`
    */
   void postInvoices(
-      PostInvoicesResponseHandler responseHandler = null,
+      PostInvoicesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -239,10 +248,13 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>Marking an invoice as uncollectible is useful for keeping track of bad debts that can be
+   * written off for accounting purposes.</p>
+   * See_Also: HTTP POST `/v1/invoices/{invoice}/mark_uncollectible`
    */
   void postInvoicesInvoiceMarkUncollectible(
       PostInvoicesInvoiceMarkUncollectibleParams params,
-      PostInvoicesInvoiceMarkUncollectibleResponseHandler responseHandler = null,
+      PostInvoicesInvoiceMarkUncollectibleResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -287,10 +299,16 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>Stripe automatically creates and then attempts to collect payment on invoices for customers
+   * on subscriptions according to your <a
+   * href="https://dashboard.stripe.com/account/billing/automatic">subscriptions settings</a>.
+   * However, if you’d like to attempt payment on an invoice out of the normal collection schedule
+   * or for some other reason, you can do so.</p>
+   * See_Also: HTTP POST `/v1/invoices/{invoice}/pay`
    */
   void postInvoicesInvoicePay(
       PostInvoicesInvoicePayParams params,
-      PostInvoicesInvoicePayResponseHandler responseHandler = null,
+      PostInvoicesInvoicePayResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -390,10 +408,14 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>When retrieving an invoice, you’ll get a <strong>lines</strong> property containing the
+   * total count of line items and the first handful of those items. There is also a URL where you
+   * can retrieve the full (paginated) list of line items.</p>
+   * See_Also: HTTP GET `/v1/invoices/{invoice}/lines`
    */
   void getInvoicesInvoiceLines(
       GetInvoicesInvoiceLinesParams params,
-      GetInvoicesInvoiceLinesResponseHandler responseHandler = null,
+      GetInvoicesInvoiceLinesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -446,10 +468,18 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>Stripe will automatically send invoices to customers according to your <a
+   * href="https://dashboard.stripe.com/account/billing/automatic">subscriptions settings</a>.
+   * However, if you’d like to manually send an invoice to your customer out of the normal
+   * schedule, you can do so. When sending invoices that have already been paid, there will be no
+   * reference to the payment in the email.</p>
+   * <p>Requests made in test-mode result in no emails being sent, despite sending an
+   * <code>invoice.sent</code> event.</p>
+   * See_Also: HTTP POST `/v1/invoices/{invoice}/send`
    */
   void postInvoicesInvoiceSend(
       PostInvoicesInvoiceSendParams params,
-      PostInvoicesInvoiceSendResponseHandler responseHandler = null,
+      PostInvoicesInvoiceSendResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -494,10 +524,14 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>Stripe automatically finalizes drafts before sending and attempting payment on invoices.
+   * However, if you’d like to finalize a draft invoice manually, you can do so using this
+   * method.</p>
+   * See_Also: HTTP POST `/v1/invoices/{invoice}/finalize`
    */
   void postInvoicesInvoiceFinalize(
       PostInvoicesInvoiceFinalizeParams params,
-      PostInvoicesInvoiceFinalizeResponseHandler responseHandler = null,
+      PostInvoicesInvoiceFinalizeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -542,10 +576,14 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>Mark a finalized invoice as void. This cannot be undone. Voiding an invoice is similar to <a
+   * href="#delete_invoice">deletion</a>, however it only applies to finalized invoices and
+   * maintains a papertrail where the invoice can still be found.</p>
+   * See_Also: HTTP POST `/v1/invoices/{invoice}/void`
    */
   void postInvoicesInvoiceVoid(
       PostInvoicesInvoiceVoidParams params,
-      PostInvoicesInvoiceVoidResponseHandler responseHandler = null,
+      PostInvoicesInvoiceVoidResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -595,10 +633,12 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>Retrieves the invoice with the given ID.</p>
+   * See_Also: HTTP GET `/v1/invoices/{invoice}`
    */
   void getInvoicesInvoice(
       GetInvoicesInvoiceParams params,
-      GetInvoicesInvoiceResponseHandler responseHandler = null,
+      GetInvoicesInvoiceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -645,10 +685,19 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>Draft invoices are fully editable. Once an invoice is <a
+   * href="/docs/billing/invoices/workflow#finalized">finalized</a>,
+   * monetary values, as well as <code>collection_method</code>, become uneditable.</p>
+   * <p>If you would like to stop the Stripe Billing engine from automatically finalizing,
+   * reattempting payments on,
+   * sending reminders for, or <a href="/docs/billing/invoices/reconciliation">automatically
+   * reconciling</a> invoices, pass
+   * <code>auto_advance=false</code>.</p>
+   * See_Also: HTTP POST `/v1/invoices/{invoice}`
    */
   void postInvoicesInvoice(
       PostInvoicesInvoiceParams params,
-      PostInvoicesInvoiceResponseHandler responseHandler = null,
+      PostInvoicesInvoiceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -693,10 +742,14 @@ class V1InvoicesService {
   }
 
   /**
+   * <p>Permanently deletes a one-off invoice draft. This cannot be undone. Attempts to delete
+   * invoices that are no longer in a draft state will fail; once an invoice has been finalized or
+   * if an invoice is for a subscription, it must be <a href="#void_invoice">voided</a>.</p>
+   * See_Also: HTTP DELETE `/v1/invoices/{invoice}`
    */
   void deleteInvoicesInvoice(
       DeleteInvoicesInvoiceParams params,
-      DeleteInvoicesInvoiceResponseHandler responseHandler = null,
+      DeleteInvoicesInvoiceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,

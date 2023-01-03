@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_webhook_endpoint : DeletedWebhookEndpoint;
 public import stripe.model.error : Error_;
 public import stripe.model.webhook_endpoint : WebhookEndpoint;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/webhook_endpoints
  */
@@ -104,10 +105,12 @@ class V1WebhookEndpointsService {
   }
 
   /**
+   * <p>Returns a list of your webhook endpoints.</p>
+   * See_Also: HTTP GET `/v1/webhook_endpoints`
    */
   void getWebhookEndpoints(
       GetWebhookEndpointsParams params,
-      GetWebhookEndpointsResponseHandler responseHandler = null,
+      GetWebhookEndpointsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -202,15 +205,24 @@ class V1WebhookEndpointsService {
   }
 
   /**
+   * <p>A webhook endpoint must have a <code>url</code> and a list of <code>enabled_events</code>.
+   * You may optionally specify the Boolean <code>connect</code> parameter. If set to true, then a
+   * Connect webhook endpoint that notifies the specified <code>url</code> about events from all
+   * connected accounts is created; otherwise an account webhook endpoint that notifies the
+   * specified <code>url</code> only about events from your account is created. You can also create
+   * webhook endpoints in the <a href="https://dashboard.stripe.com/account/webhooks">webhooks
+   * settings</a> section of the Dashboard.</p>
+   * See_Also: HTTP POST `/v1/webhook_endpoints`
    */
   void postWebhookEndpoints(
       PostWebhookEndpointsBody requestBody,
-      PostWebhookEndpointsResponseHandler responseHandler = null,
+      PostWebhookEndpointsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/webhook_endpoints");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -253,10 +265,12 @@ class V1WebhookEndpointsService {
   }
 
   /**
+   * <p>Retrieves the webhook endpoint with the given ID.</p>
+   * See_Also: HTTP GET `/v1/webhook_endpoints/{webhook_endpoint}`
    */
   void getWebhookEndpointsWebhookEndpoint(
       GetWebhookEndpointsWebhookEndpointParams params,
-      GetWebhookEndpointsWebhookEndpointResponseHandler responseHandler = null,
+      GetWebhookEndpointsWebhookEndpointResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -303,10 +317,13 @@ class V1WebhookEndpointsService {
   }
 
   /**
+   * <p>Updates the webhook endpoint. You may edit the <code>url</code>, the list of
+   * <code>enabled_events</code>, and the status of your endpoint.</p>
+   * See_Also: HTTP POST `/v1/webhook_endpoints/{webhook_endpoint}`
    */
   void postWebhookEndpointsWebhookEndpoint(
       PostWebhookEndpointsWebhookEndpointParams params,
-      PostWebhookEndpointsWebhookEndpointResponseHandler responseHandler = null,
+      PostWebhookEndpointsWebhookEndpointResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -351,10 +368,14 @@ class V1WebhookEndpointsService {
   }
 
   /**
+   * <p>You can also delete webhook endpoints via the <a
+   * href="https://dashboard.stripe.com/account/webhooks">webhook endpoint management</a> page of
+   * the Stripe dashboard.</p>
+   * See_Also: HTTP DELETE `/v1/webhook_endpoints/{webhook_endpoint}`
    */
   void deleteWebhookEndpointsWebhookEndpoint(
       DeleteWebhookEndpointsWebhookEndpointParams params,
-      DeleteWebhookEndpointsWebhookEndpointResponseHandler responseHandler = null,
+      DeleteWebhookEndpointsWebhookEndpointResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,

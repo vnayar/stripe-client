@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.received_debit : TreasuryReceivedDebit;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/test_helpers/treasury/received_debits
  */
@@ -115,15 +116,19 @@ class V1TestHelpersTreasuryReceivedDebitsService {
   }
 
   /**
+   * <p>Use this endpoint to simulate a test mode ReceivedDebit initiated by a third party. In live
+   * mode, you can’t directly create ReceivedDebits initiated by third parties.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/received_debits`
    */
   void postTestHelpersTreasuryReceivedDebits(
       PostTestHelpersTreasuryReceivedDebitsBody requestBody,
-      PostTestHelpersTreasuryReceivedDebitsResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryReceivedDebitsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/test_helpers/treasury/received_debits");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

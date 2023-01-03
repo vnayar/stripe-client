@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.issuing.authorization : IssuingAuthorization;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/issuing/authorizations
  */
@@ -60,10 +61,12 @@ class V1IssuingAuthorizationsService {
   }
 
   /**
+   * <p>Retrieves an Issuing <code>Authorization</code> object.</p>
+   * See_Also: HTTP GET `/v1/issuing/authorizations/{authorization}`
    */
   void getIssuingAuthorizationsAuthorization(
       GetIssuingAuthorizationsAuthorizationParams params,
-      GetIssuingAuthorizationsAuthorizationResponseHandler responseHandler = null,
+      GetIssuingAuthorizationsAuthorizationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -110,10 +113,13 @@ class V1IssuingAuthorizationsService {
   }
 
   /**
+   * <p>Updates the specified Issuing <code>Authorization</code> object by setting the values of the
+   * parameters passed. Any parameters not provided will be left unchanged.</p>
+   * See_Also: HTTP POST `/v1/issuing/authorizations/{authorization}`
    */
   void postIssuingAuthorizationsAuthorization(
       PostIssuingAuthorizationsAuthorizationParams params,
-      PostIssuingAuthorizationsAuthorizationResponseHandler responseHandler = null,
+      PostIssuingAuthorizationsAuthorizationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -158,10 +164,18 @@ class V1IssuingAuthorizationsService {
   }
 
   /**
+   * <p>Declines a pending Issuing <code>Authorization</code> object. This request should be made
+   * within the timeout window of the <a href="/docs/issuing/controls/real-time-authorizations">real
+   * time authorization</a> flow.
+   * You can also respond directly to the webhook request to decline an authorization (preferred).
+   * More details can be found <a
+   * href="https://site-admin.stripe.com/docs/issuing/controls/real-time-authorizations#authorizatio
+   * n-handling">here</a>.</p>
+   * See_Also: HTTP POST `/v1/issuing/authorizations/{authorization}/decline`
    */
   void postIssuingAuthorizationsAuthorizationDecline(
       PostIssuingAuthorizationsAuthorizationDeclineParams params,
-      PostIssuingAuthorizationsAuthorizationDeclineResponseHandler responseHandler = null,
+      PostIssuingAuthorizationsAuthorizationDeclineResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -206,10 +220,18 @@ class V1IssuingAuthorizationsService {
   }
 
   /**
+   * <p>Approves a pending Issuing <code>Authorization</code> object. This request should be made
+   * within the timeout window of the <a
+   * href="/docs/issuing/controls/real-time-authorizations">real-time authorization</a> flow. 
+   * You can also respond directly to the webhook request to approve an authorization (preferred).
+   * More details can be found <a
+   * href="https://site-admin.stripe.com/docs/issuing/controls/real-time-authorizations#authorizatio
+   * n-handling">here</a>.</p>
+   * See_Also: HTTP POST `/v1/issuing/authorizations/{authorization}/approve`
    */
   void postIssuingAuthorizationsAuthorizationApprove(
       PostIssuingAuthorizationsAuthorizationApproveParams params,
-      PostIssuingAuthorizationsAuthorizationApproveResponseHandler responseHandler = null,
+      PostIssuingAuthorizationsAuthorizationApproveResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -322,10 +344,13 @@ class V1IssuingAuthorizationsService {
   }
 
   /**
+   * <p>Returns a list of Issuing <code>Authorization</code> objects. The objects are sorted in
+   * descending order by creation date, with the most recently created object appearing first.</p>
+   * See_Also: HTTP GET `/v1/issuing/authorizations`
    */
   void getIssuingAuthorizations(
       GetIssuingAuthorizationsParams params,
-      GetIssuingAuthorizationsResponseHandler responseHandler = null,
+      GetIssuingAuthorizationsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.financial_account : TreasuryFinancialAccount;
 public import stripe.model.treasury.financial_account_features : TreasuryFinancialAccountFeatures;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/treasury/financial_accounts
  */
@@ -101,10 +102,12 @@ class V1TreasuryFinancialAccountsService {
   }
 
   /**
+   * <p>Returns a list of FinancialAccounts.</p>
+   * See_Also: HTTP GET `/v1/treasury/financial_accounts`
    */
   void getTreasuryFinancialAccounts(
       GetTreasuryFinancialAccountsParams params,
-      GetTreasuryFinancialAccountsResponseHandler responseHandler = null,
+      GetTreasuryFinancialAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -292,15 +295,19 @@ class V1TreasuryFinancialAccountsService {
   }
 
   /**
+   * <p>Creates a new FinancialAccount. For now, each connected account can only have one
+   * FinancialAccount.</p>
+   * See_Also: HTTP POST `/v1/treasury/financial_accounts`
    */
   void postTreasuryFinancialAccounts(
       PostTreasuryFinancialAccountsBody requestBody,
-      PostTreasuryFinancialAccountsResponseHandler responseHandler = null,
+      PostTreasuryFinancialAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/treasury/financial_accounts");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -343,10 +350,12 @@ class V1TreasuryFinancialAccountsService {
   }
 
   /**
+   * <p>Retrieves the details of a FinancialAccount.</p>
+   * See_Also: HTTP GET `/v1/treasury/financial_accounts/{financial_account}`
    */
   void getTreasuryFinancialAccountsFinancialAccount(
       GetTreasuryFinancialAccountsFinancialAccountParams params,
-      GetTreasuryFinancialAccountsFinancialAccountResponseHandler responseHandler = null,
+      GetTreasuryFinancialAccountsFinancialAccountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -393,10 +402,12 @@ class V1TreasuryFinancialAccountsService {
   }
 
   /**
+   * <p>Updates the details of a FinancialAccount.</p>
+   * See_Also: HTTP POST `/v1/treasury/financial_accounts/{financial_account}`
    */
   void postTreasuryFinancialAccountsFinancialAccount(
       PostTreasuryFinancialAccountsFinancialAccountParams params,
-      PostTreasuryFinancialAccountsFinancialAccountResponseHandler responseHandler = null,
+      PostTreasuryFinancialAccountsFinancialAccountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -446,10 +457,12 @@ class V1TreasuryFinancialAccountsService {
   }
 
   /**
+   * <p>Retrieves Features information associated with the FinancialAccount.</p>
+   * See_Also: HTTP GET `/v1/treasury/financial_accounts/{financial_account}/features`
    */
   void getTreasuryFinancialAccountsFinancialAccountFeatures(
       GetTreasuryFinancialAccountsFinancialAccountFeaturesParams params,
-      GetTreasuryFinancialAccountsFinancialAccountFeaturesResponseHandler responseHandler = null,
+      GetTreasuryFinancialAccountsFinancialAccountFeaturesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -496,10 +509,12 @@ class V1TreasuryFinancialAccountsService {
   }
 
   /**
+   * <p>Updates the Features associated with a FinancialAccount.</p>
+   * See_Also: HTTP POST `/v1/treasury/financial_accounts/{financial_account}/features`
    */
   void postTreasuryFinancialAccountsFinancialAccountFeatures(
       PostTreasuryFinancialAccountsFinancialAccountFeaturesParams params,
-      PostTreasuryFinancialAccountsFinancialAccountFeaturesResponseHandler responseHandler = null,
+      PostTreasuryFinancialAccountsFinancialAccountFeaturesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

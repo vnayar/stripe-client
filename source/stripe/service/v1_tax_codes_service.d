@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.tax_code : TaxCode;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/tax_codes
  */
@@ -60,10 +61,13 @@ class V1TaxCodesService {
   }
 
   /**
+   * <p>Retrieves the details of an existing tax code. Supply the unique tax code ID and Stripe will
+   * return the corresponding tax code information.</p>
+   * See_Also: HTTP GET `/v1/tax_codes/{id}`
    */
   void getTaxCodesId(
       GetTaxCodesIdParams params,
-      GetTaxCodesIdResponseHandler responseHandler = null,
+      GetTaxCodesIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -158,10 +162,13 @@ class V1TaxCodesService {
   }
 
   /**
+   * <p>A list of <a href="https://stripe.com/docs/tax/tax-categories">all tax codes available</a>
+   * to add to Products in order to allow specific tax calculations.</p>
+   * See_Also: HTTP GET `/v1/tax_codes`
    */
   void getTaxCodes(
       GetTaxCodesParams params,
-      GetTaxCodesResponseHandler responseHandler = null,
+      GetTaxCodesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

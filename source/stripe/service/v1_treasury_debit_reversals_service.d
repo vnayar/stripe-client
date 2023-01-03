@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.debit_reversal : TreasuryDebitReversal;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/treasury/debit_reversals
  */
@@ -60,10 +61,12 @@ class V1TreasuryDebitReversalsService {
   }
 
   /**
+   * <p>Retrieves a DebitReversal object.</p>
+   * See_Also: HTTP GET `/v1/treasury/debit_reversals/{debit_reversal}`
    */
   void getTreasuryDebitReversalsDebitReversal(
       GetTreasuryDebitReversalsDebitReversalParams params,
-      GetTreasuryDebitReversalsDebitReversalResponseHandler responseHandler = null,
+      GetTreasuryDebitReversalsDebitReversalResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -181,10 +184,12 @@ class V1TreasuryDebitReversalsService {
   }
 
   /**
+   * <p>Returns a list of DebitReversals.</p>
+   * See_Also: HTTP GET `/v1/treasury/debit_reversals`
    */
   void getTreasuryDebitReversals(
       GetTreasuryDebitReversalsParams params,
-      GetTreasuryDebitReversalsResponseHandler responseHandler = null,
+      GetTreasuryDebitReversalsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -260,15 +265,18 @@ class V1TreasuryDebitReversalsService {
   }
 
   /**
+   * <p>Reverses a ReceivedDebit and creates a DebitReversal object.</p>
+   * See_Also: HTTP POST `/v1/treasury/debit_reversals`
    */
   void postTreasuryDebitReversals(
       PostTreasuryDebitReversalsBody requestBody,
-      PostTreasuryDebitReversalsResponseHandler responseHandler = null,
+      PostTreasuryDebitReversalsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/treasury/debit_reversals");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

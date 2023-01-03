@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.billing_portal.session : BillingPortalSession;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/billing_portal/sessions
  */
@@ -144,15 +145,18 @@ class V1BillingPortalSessionsService {
   }
 
   /**
+   * <p>Creates a session of the customer portal.</p>
+   * See_Also: HTTP POST `/v1/billing_portal/sessions`
    */
   void postBillingPortalSessions(
       PostBillingPortalSessionsBody requestBody,
-      PostBillingPortalSessionsResponseHandler responseHandler = null,
+      PostBillingPortalSessionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/billing_portal/sessions");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

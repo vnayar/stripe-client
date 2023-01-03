@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_product : DeletedProduct;
 public import stripe.model.error : Error_;
 public import stripe.model.product : Product;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/products
  */
@@ -135,10 +136,13 @@ class V1ProductsService {
   }
 
   /**
+   * <p>Returns a list of your products. The products are returned sorted by creation date, with the
+   * most recently created products appearing first.</p>
+   * See_Also: HTTP GET `/v1/products`
    */
   void getProducts(
       GetProductsParams params,
-      GetProductsResponseHandler responseHandler = null,
+      GetProductsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -389,15 +393,18 @@ class V1ProductsService {
   }
 
   /**
+   * <p>Creates a new product object.</p>
+   * See_Also: HTTP POST `/v1/products`
    */
   void postProducts(
       PostProductsBody requestBody,
-      PostProductsResponseHandler responseHandler = null,
+      PostProductsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/products");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -440,10 +447,14 @@ class V1ProductsService {
   }
 
   /**
+   * <p>Retrieves the details of an existing product. Supply the unique product ID from either a
+   * product creation request or the product list, and Stripe will return the corresponding product
+   * information.</p>
+   * See_Also: HTTP GET `/v1/products/{id}`
    */
   void getProductsId(
       GetProductsIdParams params,
-      GetProductsIdResponseHandler responseHandler = null,
+      GetProductsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -490,10 +501,13 @@ class V1ProductsService {
   }
 
   /**
+   * <p>Updates the specific product by setting the values of the parameters passed. Any parameters
+   * not provided will be left unchanged.</p>
+   * See_Also: HTTP POST `/v1/products/{id}`
    */
   void postProductsId(
       PostProductsIdParams params,
-      PostProductsIdResponseHandler responseHandler = null,
+      PostProductsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -538,10 +552,14 @@ class V1ProductsService {
   }
 
   /**
+   * <p>Delete a product. Deleting a product is only possible if it has no prices associated with
+   * it. Additionally, deleting a product with <code>type=good</code> is only possible if it has no
+   * SKUs associated with it.</p>
+   * See_Also: HTTP DELETE `/v1/products/{id}`
    */
   void deleteProductsId(
       DeleteProductsIdParams params,
-      DeleteProductsIdResponseHandler responseHandler = null,
+      DeleteProductsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,

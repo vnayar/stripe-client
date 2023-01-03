@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.refund : Refund;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/test_helpers/refunds
  */
@@ -55,10 +56,12 @@ class V1TestHelpersRefundsService {
   }
 
   /**
+   * <p>Expire a refund with a status of <code>requires_action</code>.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/refunds/{refund}/expire`
    */
   void postTestHelpersRefundsRefundExpire(
       PostTestHelpersRefundsRefundExpireParams params,
-      PostTestHelpersRefundsRefundExpireResponseHandler responseHandler = null,
+      PostTestHelpersRefundsRefundExpireResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

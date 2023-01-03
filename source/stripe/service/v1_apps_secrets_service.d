@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.apps.secret : AppsSecret;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/apps/secrets
  */
@@ -118,10 +119,12 @@ class V1AppsSecretsService {
   }
 
   /**
+   * <p>List all secrets stored on the given scope.</p>
+   * See_Also: HTTP GET `/v1/apps/secrets`
    */
   void getAppsSecrets(
       GetAppsSecretsParams params,
-      GetAppsSecretsResponseHandler responseHandler = null,
+      GetAppsSecretsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -210,15 +213,18 @@ class V1AppsSecretsService {
   }
 
   /**
+   * <p>Create or replace a secret in the secret store.</p>
+   * See_Also: HTTP POST `/v1/apps/secrets`
    */
   void postAppsSecrets(
       PostAppsSecretsBody requestBody,
-      PostAppsSecretsResponseHandler responseHandler = null,
+      PostAppsSecretsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/apps/secrets");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

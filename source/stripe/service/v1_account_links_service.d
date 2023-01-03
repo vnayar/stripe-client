@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.account_link : AccountLink;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/account_links
  */
@@ -94,15 +95,19 @@ class V1AccountLinksService {
   }
 
   /**
+   * <p>Creates an AccountLink object that includes a single-use Stripe URL that the platform can
+   * redirect their user to in order to take them through the Connect Onboarding flow.</p>
+   * See_Also: HTTP POST `/v1/account_links`
    */
   void postAccountLinks(
       PostAccountLinksBody requestBody,
-      PostAccountLinksResponseHandler responseHandler = null,
+      PostAccountLinksResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/account_links");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

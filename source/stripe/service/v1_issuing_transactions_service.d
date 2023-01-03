@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.issuing.transaction : IssuingTransaction;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/issuing/transactions
  */
@@ -123,10 +124,13 @@ class V1IssuingTransactionsService {
   }
 
   /**
+   * <p>Returns a list of Issuing <code>Transaction</code> objects. The objects are sorted in
+   * descending order by creation date, with the most recently created object appearing first.</p>
+   * See_Also: HTTP GET `/v1/issuing/transactions`
    */
   void getIssuingTransactions(
       GetIssuingTransactionsParams params,
-      GetIssuingTransactionsResponseHandler responseHandler = null,
+      GetIssuingTransactionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -190,10 +194,12 @@ class V1IssuingTransactionsService {
   }
 
   /**
+   * <p>Retrieves an Issuing <code>Transaction</code> object.</p>
+   * See_Also: HTTP GET `/v1/issuing/transactions/{transaction}`
    */
   void getIssuingTransactionsTransaction(
       GetIssuingTransactionsTransactionParams params,
-      GetIssuingTransactionsTransactionResponseHandler responseHandler = null,
+      GetIssuingTransactionsTransactionResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -240,10 +246,13 @@ class V1IssuingTransactionsService {
   }
 
   /**
+   * <p>Updates the specified Issuing <code>Transaction</code> object by setting the values of the
+   * parameters passed. Any parameters not provided will be left unchanged.</p>
+   * See_Also: HTTP POST `/v1/issuing/transactions/{transaction}`
    */
   void postIssuingTransactionsTransaction(
       PostIssuingTransactionsTransactionParams params,
-      PostIssuingTransactionsTransactionResponseHandler responseHandler = null,
+      PostIssuingTransactionsTransactionResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

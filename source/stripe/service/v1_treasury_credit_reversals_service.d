@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.credit_reversal : TreasuryCreditReversal;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/treasury/credit_reversals
  */
@@ -121,10 +122,12 @@ class V1TreasuryCreditReversalsService {
   }
 
   /**
+   * <p>Returns a list of CreditReversals.</p>
+   * See_Also: HTTP GET `/v1/treasury/credit_reversals`
    */
   void getTreasuryCreditReversals(
       GetTreasuryCreditReversalsParams params,
-      GetTreasuryCreditReversalsResponseHandler responseHandler = null,
+      GetTreasuryCreditReversalsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -198,15 +201,18 @@ class V1TreasuryCreditReversalsService {
   }
 
   /**
+   * <p>Reverses a ReceivedCredit and creates a CreditReversal object.</p>
+   * See_Also: HTTP POST `/v1/treasury/credit_reversals`
    */
   void postTreasuryCreditReversals(
       PostTreasuryCreditReversalsBody requestBody,
-      PostTreasuryCreditReversalsResponseHandler responseHandler = null,
+      PostTreasuryCreditReversalsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/treasury/credit_reversals");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -249,10 +255,13 @@ class V1TreasuryCreditReversalsService {
   }
 
   /**
+   * <p>Retrieves the details of an existing CreditReversal by passing the unique CreditReversal ID
+   * from either the CreditReversal creation request or CreditReversal list</p>
+   * See_Also: HTTP GET `/v1/treasury/credit_reversals/{credit_reversal}`
    */
   void getTreasuryCreditReversalsCreditReversal(
       GetTreasuryCreditReversalsCreditReversalParams params,
-      GetTreasuryCreditReversalsCreditReversalResponseHandler responseHandler = null,
+      GetTreasuryCreditReversalsCreditReversalResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

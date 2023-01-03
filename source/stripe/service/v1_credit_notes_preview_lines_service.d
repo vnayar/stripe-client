@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.credit_note_line_item : CreditNoteLineItem;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/credit_notes/preview/lines
  */
@@ -191,10 +192,14 @@ class V1CreditNotesPreviewLinesService {
   }
 
   /**
+   * <p>When retrieving a credit note preview, you’ll get a <strong>lines</strong> property
+   * containing the first handful of those items. This URL you can retrieve the full (paginated)
+   * list of line items.</p>
+   * See_Also: HTTP GET `/v1/credit_notes/preview/lines`
    */
   void getCreditNotesPreviewLines(
       GetCreditNotesPreviewLinesParams params,
-      GetCreditNotesPreviewLinesResponseHandler responseHandler = null,
+      GetCreditNotesPreviewLinesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

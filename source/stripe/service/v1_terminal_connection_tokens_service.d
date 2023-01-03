@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.terminal.connection_token : TerminalConnectionToken;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/terminal/connection_tokens
  */
@@ -48,9 +49,13 @@ class V1TerminalConnectionTokensService {
   }
 
   /**
+   * <p>To connect to a reader the Stripe Terminal SDK needs to retrieve a short-lived connection
+   * token from Stripe, proxied through your server. On your backend, add an endpoint that creates
+   * and returns a connection token.</p>
+   * See_Also: HTTP POST `/v1/terminal/connection_tokens`
    */
   void postTerminalConnectionTokens(
-      PostTerminalConnectionTokensResponseHandler responseHandler = null,
+      PostTerminalConnectionTokensResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.ephemeral_key : EphemeralKey;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/ephemeral_keys
  */
@@ -48,9 +49,11 @@ class V1EphemeralKeysService {
   }
 
   /**
+   * <p>Creates a short-lived API key for a given resource.</p>
+   * See_Also: HTTP POST `/v1/ephemeral_keys`
    */
   void postEphemeralKeys(
-      PostEphemeralKeysResponseHandler responseHandler = null,
+      PostEphemeralKeysResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -93,10 +96,12 @@ class V1EphemeralKeysService {
   }
 
   /**
+   * <p>Invalidates a short-lived API key for a given resource.</p>
+   * See_Also: HTTP DELETE `/v1/ephemeral_keys/{key}`
    */
   void deleteEphemeralKeysKey(
       DeleteEphemeralKeysKeyParams params,
-      DeleteEphemeralKeysKeyResponseHandler responseHandler = null,
+      DeleteEphemeralKeysKeyResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,

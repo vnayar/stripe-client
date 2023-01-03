@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.error : Error_;
 public import stripe.model.transfer : Transfer;
 public import stripe.model.transfer_reversal : TransferReversal;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/transfers
  */
@@ -65,10 +66,13 @@ class V1TransfersService {
   }
 
   /**
+   * <p>By default, you can see the 10 most recent reversals stored directly on the transfer object,
+   * but you can also retrieve details about a specific reversal stored on the transfer.</p>
+   * See_Also: HTTP GET `/v1/transfers/{transfer}/reversals/{id}`
    */
   void getTransfersTransferReversalsId(
       GetTransfersTransferReversalsIdParams params,
-      GetTransfersTransferReversalsIdResponseHandler responseHandler = null,
+      GetTransfersTransferReversalsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -121,10 +125,14 @@ class V1TransfersService {
   }
 
   /**
+   * <p>Updates the specified reversal by setting the values of the parameters passed. Any
+   * parameters not provided will be left unchanged.</p>
+   * <p>This request only accepts metadata and description as arguments.</p>
+   * See_Also: HTTP POST `/v1/transfers/{transfer}/reversals/{id}`
    */
   void postTransfersTransferReversalsId(
       PostTransfersTransferReversalsIdParams params,
-      PostTransfersTransferReversalsIdResponseHandler responseHandler = null,
+      PostTransfersTransferReversalsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -226,10 +234,15 @@ class V1TransfersService {
   }
 
   /**
+   * <p>You can see a list of the reversals belonging to a specific transfer. Note that the 10 most
+   * recent reversals are always available by default on the transfer object. If you need more than
+   * those 10, you can use this API method and the <code>limit</code> and
+   * <code>starting_after</code> parameters to page through additional reversals.</p>
+   * See_Also: HTTP GET `/v1/transfers/{id}/reversals`
    */
   void getTransfersIdReversals(
       GetTransfersIdReversalsParams params,
-      GetTransfersIdReversalsResponseHandler responseHandler = null,
+      GetTransfersIdReversalsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -282,10 +295,17 @@ class V1TransfersService {
   }
 
   /**
+   * <p>When you create a new reversal, you must specify a transfer to create it on.</p>
+   * <p>When reversing transfers, you can optionally reverse part of the transfer. You can do so as
+   * many times as you wish until the entire transfer has been reversed.</p>
+   * <p>Once entirely reversed, a transfer can’t be reversed again. This method will return an
+   * error when called on an already-reversed transfer, or when trying to reverse more money than is
+   * left on a transfer.</p>
+   * See_Also: HTTP POST `/v1/transfers/{id}/reversals`
    */
   void postTransfersIdReversals(
       PostTransfersIdReversalsParams params,
-      PostTransfersIdReversalsResponseHandler responseHandler = null,
+      PostTransfersIdReversalsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -395,10 +415,13 @@ class V1TransfersService {
   }
 
   /**
+   * <p>Returns a list of existing transfers sent to connected accounts. The transfers are returned
+   * in sorted order, with the most recently created transfers appearing first.</p>
+   * See_Also: HTTP GET `/v1/transfers`
    */
   void getTransfers(
       GetTransfersParams params,
-      GetTransfersResponseHandler responseHandler = null,
+      GetTransfersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -516,15 +539,20 @@ class V1TransfersService {
   }
 
   /**
+   * <p>To send funds from your Stripe account to a connected account, you create a new transfer
+   * object. Your <a href="#balance">Stripe balance</a> must be able to cover the transfer amount,
+   * or you’ll receive an “Insufficient Funds” error.</p>
+   * See_Also: HTTP POST `/v1/transfers`
    */
   void postTransfers(
       PostTransfersBody requestBody,
-      PostTransfersResponseHandler responseHandler = null,
+      PostTransfersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/transfers");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -567,10 +595,14 @@ class V1TransfersService {
   }
 
   /**
+   * <p>Retrieves the details of an existing transfer. Supply the unique transfer ID from either a
+   * transfer creation request or the transfer list, and Stripe will return the corresponding
+   * transfer information.</p>
+   * See_Also: HTTP GET `/v1/transfers/{transfer}`
    */
   void getTransfersTransfer(
       GetTransfersTransferParams params,
-      GetTransfersTransferResponseHandler responseHandler = null,
+      GetTransfersTransferResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -617,10 +649,14 @@ class V1TransfersService {
   }
 
   /**
+   * <p>Updates the specified transfer by setting the values of the parameters passed. Any
+   * parameters not provided will be left unchanged.</p>
+   * <p>This request accepts only metadata as an argument.</p>
+   * See_Also: HTTP POST `/v1/transfers/{transfer}`
    */
   void postTransfersTransfer(
       PostTransfersTransferParams params,
-      PostTransfersTransferResponseHandler responseHandler = null,
+      PostTransfersTransferResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

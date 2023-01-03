@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_terminal.configuration : DeletedTerminalConfiguration;
 public import stripe.model.error : Error_;
 public import stripe.model.terminal.configuration : TerminalConfiguration;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/terminal/configurations
  */
@@ -61,10 +62,12 @@ class V1TerminalConfigurationsService {
   }
 
   /**
+   * <p>Retrieves a <code>Configuration</code> object.</p>
+   * See_Also: HTTP GET `/v1/terminal/configurations/{configuration}`
    */
   void getTerminalConfigurationsConfiguration(
       GetTerminalConfigurationsConfigurationParams params,
-      GetTerminalConfigurationsConfigurationResponseHandler responseHandler = null,
+      GetTerminalConfigurationsConfigurationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -111,10 +114,12 @@ class V1TerminalConfigurationsService {
   }
 
   /**
+   * <p>Updates a new <code>Configuration</code> object.</p>
+   * See_Also: HTTP POST `/v1/terminal/configurations/{configuration}`
    */
   void postTerminalConfigurationsConfiguration(
       PostTerminalConfigurationsConfigurationParams params,
-      PostTerminalConfigurationsConfigurationResponseHandler responseHandler = null,
+      PostTerminalConfigurationsConfigurationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -159,10 +164,12 @@ class V1TerminalConfigurationsService {
   }
 
   /**
+   * <p>Deletes a <code>Configuration</code> object.</p>
+   * See_Also: HTTP DELETE `/v1/terminal/configurations/{configuration}`
    */
   void deleteTerminalConfigurationsConfiguration(
       DeleteTerminalConfigurationsConfigurationParams params,
-      DeleteTerminalConfigurationsConfigurationResponseHandler responseHandler = null,
+      DeleteTerminalConfigurationsConfigurationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -260,10 +267,12 @@ class V1TerminalConfigurationsService {
   }
 
   /**
+   * <p>Returns a list of <code>Configuration</code> objects.</p>
+   * See_Also: HTTP GET `/v1/terminal/configurations`
    */
   void getTerminalConfigurations(
       GetTerminalConfigurationsParams params,
-      GetTerminalConfigurationsResponseHandler responseHandler = null,
+      GetTerminalConfigurationsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -309,9 +318,11 @@ class V1TerminalConfigurationsService {
   }
 
   /**
+   * <p>Creates a new <code>Configuration</code> object.</p>
+   * See_Also: HTTP POST `/v1/terminal/configurations`
    */
   void postTerminalConfigurations(
-      PostTerminalConfigurationsResponseHandler responseHandler = null,
+      PostTerminalConfigurationsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

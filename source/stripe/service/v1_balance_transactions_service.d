@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.balance_transaction : BalanceTransaction;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/balance_transactions
  */
@@ -137,10 +138,16 @@ class V1BalanceTransactionsService {
   }
 
   /**
+   * <p>Returns a list of transactions that have contributed to the Stripe account balance (e.g.,
+   * charges, transfers, and so forth). The transactions are returned in sorted order, with the most
+   * recent transactions appearing first.</p>
+   * <p>Note that this endpoint was previously called “Balance history” and used the path
+   * <code>/v1/balance/history</code>.</p>
+   * See_Also: HTTP GET `/v1/balance_transactions`
    */
   void getBalanceTransactions(
       GetBalanceTransactionsParams params,
-      GetBalanceTransactionsResponseHandler responseHandler = null,
+      GetBalanceTransactionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -206,10 +213,13 @@ class V1BalanceTransactionsService {
   }
 
   /**
+   * <p>Retrieves the balance transaction with the given ID.</p>
+   * <p>Note that this endpoint previously used the path <code>/v1/balance/history/:id</code>.</p>
+   * See_Also: HTTP GET `/v1/balance_transactions/{id}`
    */
   void getBalanceTransactionsId(
       GetBalanceTransactionsIdParams params,
-      GetBalanceTransactionsIdResponseHandler responseHandler = null,
+      GetBalanceTransactionsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.outbound_payment : TreasuryOutboundPayment;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/test_helpers/treasury/outbound_payments
  */
@@ -55,10 +56,13 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
   }
 
   /**
+   * <p>Transitions a test mode created OutboundPayment to the <code>returned</code> status. The
+   * OutboundPayment must already be in the <code>processing</code> state.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/outbound_payments/{id}/return`
    */
   void postTestHelpersTreasuryOutboundPaymentsIdReturn(
       PostTestHelpersTreasuryOutboundPaymentsIdReturnParams params,
-      PostTestHelpersTreasuryOutboundPaymentsIdReturnResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryOutboundPaymentsIdReturnResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -103,10 +107,13 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
   }
 
   /**
+   * <p>Transitions a test mode created OutboundPayment to the <code>posted</code> status. The
+   * OutboundPayment must already be in the <code>processing</code> state.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/outbound_payments/{id}/post`
    */
   void postTestHelpersTreasuryOutboundPaymentsIdPost(
       PostTestHelpersTreasuryOutboundPaymentsIdPostParams params,
-      PostTestHelpersTreasuryOutboundPaymentsIdPostResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryOutboundPaymentsIdPostResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -151,10 +158,13 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
   }
 
   /**
+   * <p>Transitions a test mode created OutboundPayment to the <code>failed</code> status. The
+   * OutboundPayment must already be in the <code>processing</code> state.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/outbound_payments/{id}/fail`
    */
   void postTestHelpersTreasuryOutboundPaymentsIdFail(
       PostTestHelpersTreasuryOutboundPaymentsIdFailParams params,
-      PostTestHelpersTreasuryOutboundPaymentsIdFailResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryOutboundPaymentsIdFailResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

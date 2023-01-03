@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.issuing.card : IssuingCard;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/test_helpers/issuing/cards
  */
@@ -55,10 +56,13 @@ class V1TestHelpersIssuingCardsService {
   }
 
   /**
+   * <p>Updates the shipping status of the specified Issuing <code>Card</code> object to
+   * <code>delivered</code>.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/issuing/cards/{card}/shipping/deliver`
    */
   void postTestHelpersIssuingCardsCardShippingDeliver(
       PostTestHelpersIssuingCardsCardShippingDeliverParams params,
-      PostTestHelpersIssuingCardsCardShippingDeliverResponseHandler responseHandler = null,
+      PostTestHelpersIssuingCardsCardShippingDeliverResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -103,10 +107,13 @@ class V1TestHelpersIssuingCardsService {
   }
 
   /**
+   * <p>Updates the shipping status of the specified Issuing <code>Card</code> object to
+   * <code>returned</code>.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/issuing/cards/{card}/shipping/return`
    */
   void postTestHelpersIssuingCardsCardShippingReturn(
       PostTestHelpersIssuingCardsCardShippingReturnParams params,
-      PostTestHelpersIssuingCardsCardShippingReturnResponseHandler responseHandler = null,
+      PostTestHelpersIssuingCardsCardShippingReturnResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -151,10 +158,13 @@ class V1TestHelpersIssuingCardsService {
   }
 
   /**
+   * <p>Updates the shipping status of the specified Issuing <code>Card</code> object to
+   * <code>failure</code>.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/issuing/cards/{card}/shipping/fail`
    */
   void postTestHelpersIssuingCardsCardShippingFail(
       PostTestHelpersIssuingCardsCardShippingFailParams params,
-      PostTestHelpersIssuingCardsCardShippingFailResponseHandler responseHandler = null,
+      PostTestHelpersIssuingCardsCardShippingFailResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -199,10 +209,13 @@ class V1TestHelpersIssuingCardsService {
   }
 
   /**
+   * <p>Updates the shipping status of the specified Issuing <code>Card</code> object to
+   * <code>shipped</code>.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/issuing/cards/{card}/shipping/ship`
    */
   void postTestHelpersIssuingCardsCardShippingShip(
       PostTestHelpersIssuingCardsCardShippingShipParams params,
-      PostTestHelpersIssuingCardsCardShippingShipResponseHandler responseHandler = null,
+      PostTestHelpersIssuingCardsCardShippingShipResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

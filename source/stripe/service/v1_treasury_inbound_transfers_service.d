@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.inbound_transfer : TreasuryInboundTransfer;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/treasury/inbound_transfers
  */
@@ -60,10 +61,12 @@ class V1TreasuryInboundTransfersService {
   }
 
   /**
+   * <p>Retrieves the details of an existing InboundTransfer.</p>
+   * See_Also: HTTP GET `/v1/treasury/inbound_transfers/{id}`
    */
   void getTreasuryInboundTransfersId(
       GetTreasuryInboundTransfersIdParams params,
-      GetTreasuryInboundTransfersIdResponseHandler responseHandler = null,
+      GetTreasuryInboundTransfersIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -172,10 +175,12 @@ class V1TreasuryInboundTransfersService {
   }
 
   /**
+   * <p>Returns a list of InboundTransfers sent from the specified FinancialAccount.</p>
+   * See_Also: HTTP GET `/v1/treasury/inbound_transfers`
    */
   void getTreasuryInboundTransfers(
       GetTreasuryInboundTransfersParams params,
-      GetTreasuryInboundTransfersResponseHandler responseHandler = null,
+      GetTreasuryInboundTransfersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -278,15 +283,18 @@ class V1TreasuryInboundTransfersService {
   }
 
   /**
+   * <p>Creates an InboundTransfer.</p>
+   * See_Also: HTTP POST `/v1/treasury/inbound_transfers`
    */
   void postTreasuryInboundTransfers(
       PostTreasuryInboundTransfersBody requestBody,
-      PostTreasuryInboundTransfersResponseHandler responseHandler = null,
+      PostTreasuryInboundTransfersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/treasury/inbound_transfers");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -324,10 +332,12 @@ class V1TreasuryInboundTransfersService {
   }
 
   /**
+   * <p>Cancels an InboundTransfer.</p>
+   * See_Also: HTTP POST `/v1/treasury/inbound_transfers/{inbound_transfer}/cancel`
    */
   void postTreasuryInboundTransfersInboundTransferCancel(
       PostTreasuryInboundTransfersInboundTransferCancelParams params,
-      PostTreasuryInboundTransfersInboundTransferCancelResponseHandler responseHandler = null,
+      PostTreasuryInboundTransfersInboundTransferCancelResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

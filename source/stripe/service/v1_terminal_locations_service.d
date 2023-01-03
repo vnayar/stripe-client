@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_terminal.location : DeletedTerminalLocation;
 public import stripe.model.error : Error_;
 public import stripe.model.terminal.location : TerminalLocation;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/terminal/locations
  */
@@ -61,10 +62,12 @@ class V1TerminalLocationsService {
   }
 
   /**
+   * <p>Retrieves a <code>Location</code> object.</p>
+   * See_Also: HTTP GET `/v1/terminal/locations/{location}`
    */
   void getTerminalLocationsLocation(
       GetTerminalLocationsLocationParams params,
-      GetTerminalLocationsLocationResponseHandler responseHandler = null,
+      GetTerminalLocationsLocationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -111,10 +114,13 @@ class V1TerminalLocationsService {
   }
 
   /**
+   * <p>Updates a <code>Location</code> object by setting the values of the parameters passed. Any
+   * parameters not provided will be left unchanged.</p>
+   * See_Also: HTTP POST `/v1/terminal/locations/{location}`
    */
   void postTerminalLocationsLocation(
       PostTerminalLocationsLocationParams params,
-      PostTerminalLocationsLocationResponseHandler responseHandler = null,
+      PostTerminalLocationsLocationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -159,10 +165,12 @@ class V1TerminalLocationsService {
   }
 
   /**
+   * <p>Deletes a <code>Location</code> object.</p>
+   * See_Also: HTTP DELETE `/v1/terminal/locations/{location}`
    */
   void deleteTerminalLocationsLocation(
       DeleteTerminalLocationsLocationParams params,
-      DeleteTerminalLocationsLocationResponseHandler responseHandler = null,
+      DeleteTerminalLocationsLocationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -255,10 +263,12 @@ class V1TerminalLocationsService {
   }
 
   /**
+   * <p>Returns a list of <code>Location</code> objects.</p>
+   * See_Also: HTTP GET `/v1/terminal/locations`
    */
   void getTerminalLocations(
       GetTerminalLocationsParams params,
-      GetTerminalLocationsResponseHandler responseHandler = null,
+      GetTerminalLocationsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -359,15 +369,20 @@ class V1TerminalLocationsService {
   }
 
   /**
+   * <p>Creates a new <code>Location</code> object.
+   * For further details, including which address fields are required in each country, see the <a
+   * href="/docs/terminal/fleet/locations">Manage locations</a> guide.</p>
+   * See_Also: HTTP POST `/v1/terminal/locations`
    */
   void postTerminalLocations(
       PostTerminalLocationsBody requestBody,
-      PostTerminalLocationsResponseHandler responseHandler = null,
+      PostTerminalLocationsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/terminal/locations");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

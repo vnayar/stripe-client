@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.review : Review;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/reviews
  */
@@ -107,10 +108,14 @@ class V1ReviewsService {
   }
 
   /**
+   * <p>Returns a list of <code>Review</code> objects that have <code>open</code> set to
+   * <code>true</code>. The objects are sorted in descending order by creation date, with the most
+   * recently created object appearing first.</p>
+   * See_Also: HTTP GET `/v1/reviews`
    */
   void getReviews(
       GetReviewsParams params,
-      GetReviewsResponseHandler responseHandler = null,
+      GetReviewsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -163,10 +168,13 @@ class V1ReviewsService {
   }
 
   /**
+   * <p>Approves a <code>Review</code> object, closing it and removing it from the list of
+   * reviews.</p>
+   * See_Also: HTTP POST `/v1/reviews/{review}/approve`
    */
   void postReviewsReviewApprove(
       PostReviewsReviewApproveParams params,
-      PostReviewsReviewApproveResponseHandler responseHandler = null,
+      PostReviewsReviewApproveResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -216,10 +224,12 @@ class V1ReviewsService {
   }
 
   /**
+   * <p>Retrieves a <code>Review</code> object.</p>
+   * See_Also: HTTP GET `/v1/reviews/{review}`
    */
   void getReviewsReview(
       GetReviewsReviewParams params,
-      GetReviewsReviewResponseHandler responseHandler = null,
+      GetReviewsReviewResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

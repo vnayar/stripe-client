@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.error : Error_;
 public import stripe.model.financial_connections.account : FinancialConnectionsAccount;
 public import stripe.model.financial_connections.account_owner : FinancialConnectionsAccountOwner;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/linked_accounts
  */
@@ -127,10 +128,12 @@ class V1LinkedAccountsService {
   }
 
   /**
+   * <p>Returns a list of Financial Connections <code>Account</code> objects.</p>
+   * See_Also: HTTP GET `/v1/linked_accounts`
    */
   void getLinkedAccounts(
       GetLinkedAccountsParams params,
-      GetLinkedAccountsResponseHandler responseHandler = null,
+      GetLinkedAccountsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -245,10 +248,12 @@ class V1LinkedAccountsService {
   }
 
   /**
+   * <p>Lists all owners for a given <code>Account</code></p>
+   * See_Also: HTTP GET `/v1/linked_accounts/{account}/owners`
    */
   void getLinkedAccountsAccountOwners(
       GetLinkedAccountsAccountOwnersParams params,
-      GetLinkedAccountsAccountOwnersResponseHandler responseHandler = null,
+      GetLinkedAccountsAccountOwnersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -318,11 +323,13 @@ class V1LinkedAccountsService {
   }
 
   /**
+   * <p>Refreshes the data associated with a Financial Connections <code>Account</code>.</p>
+   * See_Also: HTTP POST `/v1/linked_accounts/{account}/refresh`
    */
   void postLinkedAccountsAccountRefresh(
       PostLinkedAccountsAccountRefreshParams params,
       PostLinkedAccountsAccountRefreshBody requestBody,
-      PostLinkedAccountsAccountRefreshResponseHandler responseHandler = null,
+      PostLinkedAccountsAccountRefreshResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -330,6 +337,7 @@ class V1LinkedAccountsService {
         "/v1/linked_accounts/{account}/refresh");
     if (!params.account.isNull)
       requestor.setPathParam("account", params.account.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -372,10 +380,12 @@ class V1LinkedAccountsService {
   }
 
   /**
+   * <p>Retrieves the details of an Financial Connections <code>Account</code>.</p>
+   * See_Also: HTTP GET `/v1/linked_accounts/{account}`
    */
   void getLinkedAccountsAccount(
       GetLinkedAccountsAccountParams params,
-      GetLinkedAccountsAccountResponseHandler responseHandler = null,
+      GetLinkedAccountsAccountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -422,10 +432,13 @@ class V1LinkedAccountsService {
   }
 
   /**
+   * <p>Disables your access to a Financial Connections <code>Account</code>. You will no longer be
+   * able to access data associated with the account (e.g. balances, transactions).</p>
+   * See_Also: HTTP POST `/v1/linked_accounts/{account}/disconnect`
    */
   void postLinkedAccountsAccountDisconnect(
       PostLinkedAccountsAccountDisconnectParams params,
-      PostLinkedAccountsAccountDisconnectResponseHandler responseHandler = null,
+      PostLinkedAccountsAccountDisconnectResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.issuing.card : IssuingCard;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/issuing/cards
  */
@@ -60,10 +61,12 @@ class V1IssuingCardsService {
   }
 
   /**
+   * <p>Retrieves an Issuing <code>Card</code> object.</p>
+   * See_Also: HTTP GET `/v1/issuing/cards/{card}`
    */
   void getIssuingCardsCard(
       GetIssuingCardsCardParams params,
-      GetIssuingCardsCardResponseHandler responseHandler = null,
+      GetIssuingCardsCardResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -110,10 +113,13 @@ class V1IssuingCardsService {
   }
 
   /**
+   * <p>Updates the specified Issuing <code>Card</code> object by setting the values of the
+   * parameters passed. Any parameters not provided will be left unchanged.</p>
+   * See_Also: HTTP POST `/v1/issuing/cards/{card}`
    */
   void postIssuingCardsCard(
       PostIssuingCardsCardParams params,
-      PostIssuingCardsCardResponseHandler responseHandler = null,
+      PostIssuingCardsCardResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -241,10 +247,13 @@ class V1IssuingCardsService {
   }
 
   /**
+   * <p>Returns a list of Issuing <code>Card</code> objects. The objects are sorted in descending
+   * order by creation date, with the most recently created object appearing first.</p>
+   * See_Also: HTTP GET `/v1/issuing/cards`
    */
   void getIssuingCards(
       GetIssuingCardsParams params,
-      GetIssuingCardsResponseHandler responseHandler = null,
+      GetIssuingCardsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -448,15 +457,18 @@ class V1IssuingCardsService {
   }
 
   /**
+   * <p>Creates an Issuing <code>Card</code> object.</p>
+   * See_Also: HTTP POST `/v1/issuing/cards`
    */
   void postIssuingCards(
       PostIssuingCardsBody requestBody,
-      PostIssuingCardsResponseHandler responseHandler = null,
+      PostIssuingCardsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/issuing/cards");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

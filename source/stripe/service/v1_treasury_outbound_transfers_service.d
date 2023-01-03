@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.outbound_transfer : TreasuryOutboundTransfer;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/treasury/outbound_transfers
  */
@@ -117,10 +118,12 @@ class V1TreasuryOutboundTransfersService {
   }
 
   /**
+   * <p>Returns a list of OutboundTransfers sent from the specified FinancialAccount.</p>
+   * See_Also: HTTP GET `/v1/treasury/outbound_transfers`
    */
   void getTreasuryOutboundTransfers(
       GetTreasuryOutboundTransfersParams params,
-      GetTreasuryOutboundTransfersResponseHandler responseHandler = null,
+      GetTreasuryOutboundTransfersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -237,15 +240,18 @@ class V1TreasuryOutboundTransfersService {
   }
 
   /**
+   * <p>Creates an OutboundTransfer.</p>
+   * See_Also: HTTP POST `/v1/treasury/outbound_transfers`
    */
   void postTreasuryOutboundTransfers(
       PostTreasuryOutboundTransfersBody requestBody,
-      PostTreasuryOutboundTransfersResponseHandler responseHandler = null,
+      PostTreasuryOutboundTransfersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/treasury/outbound_transfers");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -288,10 +294,13 @@ class V1TreasuryOutboundTransfersService {
   }
 
   /**
+   * <p>Retrieves the details of an existing OutboundTransfer by passing the unique OutboundTransfer
+   * ID from either the OutboundTransfer creation request or OutboundTransfer list.</p>
+   * See_Also: HTTP GET `/v1/treasury/outbound_transfers/{outbound_transfer}`
    */
   void getTreasuryOutboundTransfersOutboundTransfer(
       GetTreasuryOutboundTransfersOutboundTransferParams params,
-      GetTreasuryOutboundTransfersOutboundTransferResponseHandler responseHandler = null,
+      GetTreasuryOutboundTransfersOutboundTransferResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -338,10 +347,12 @@ class V1TreasuryOutboundTransfersService {
   }
 
   /**
+   * <p>An OutboundTransfer can be canceled if the funds have not yet been paid out.</p>
+   * See_Also: HTTP POST `/v1/treasury/outbound_transfers/{outbound_transfer}/cancel`
    */
   void postTreasuryOutboundTransfersOutboundTransferCancel(
       PostTreasuryOutboundTransfersOutboundTransferCancelParams params,
-      PostTreasuryOutboundTransfersOutboundTransferCancelResponseHandler responseHandler = null,
+      PostTreasuryOutboundTransfersOutboundTransferCancelResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

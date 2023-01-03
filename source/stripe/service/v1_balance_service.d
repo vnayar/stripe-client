@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.balance : Balance;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/balance
  */
@@ -56,10 +57,16 @@ class V1BalanceService {
   }
 
   /**
+   * <p>Retrieves the current account balance, based on the authentication that was used to make the
+   * request.
+   *  For a sample request, see <a
+   * href="/docs/connect/account-balances#accounting-for-negative-balances">Accounting for negative
+   * balances</a>.</p>
+   * See_Also: HTTP GET `/v1/balance`
    */
   void getBalance(
       GetBalanceParams params,
-      GetBalanceResponseHandler responseHandler = null,
+      GetBalanceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

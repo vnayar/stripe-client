@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.exchange_rate : ExchangeRate;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/exchange_rates
  */
@@ -103,10 +104,13 @@ class V1ExchangeRatesService {
   }
 
   /**
+   * <p>Returns a list of objects that contain the rates at which foreign currencies are converted
+   * to one another. Only shows the currencies for which Stripe supports.</p>
+   * See_Also: HTTP GET `/v1/exchange_rates`
    */
   void getExchangeRates(
       GetExchangeRatesParams params,
-      GetExchangeRatesResponseHandler responseHandler = null,
+      GetExchangeRatesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -162,10 +166,12 @@ class V1ExchangeRatesService {
   }
 
   /**
+   * <p>Retrieves the exchange rates from the given currency to every supported currency.</p>
+   * See_Also: HTTP GET `/v1/exchange_rates/{rate_id}`
    */
   void getExchangeRatesRateId(
       GetExchangeRatesRateIdParams params,
-      GetExchangeRatesRateIdResponseHandler responseHandler = null,
+      GetExchangeRatesRateIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

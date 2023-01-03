@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.credit_note : CreditNote;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/credit_notes/preview
  */
@@ -141,10 +142,12 @@ class V1CreditNotesPreviewService {
   }
 
   /**
+   * <p>Get a preview of a credit note without creating it.</p>
+   * See_Also: HTTP GET `/v1/credit_notes/preview`
    */
   void getCreditNotesPreview(
       GetCreditNotesPreviewParams params,
-      GetCreditNotesPreviewResponseHandler responseHandler = null,
+      GetCreditNotesPreviewResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

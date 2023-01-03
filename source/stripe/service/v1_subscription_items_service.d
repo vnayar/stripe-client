@@ -21,6 +21,7 @@ public import stripe.model.error : Error_;
 public import stripe.model.subscription_item : SubscriptionItem;
 public import stripe.model.usage_record : UsageRecord;
 public import stripe.model.usage_record_summary : UsageRecordSummary;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/subscription_items
  */
@@ -63,10 +64,12 @@ class V1SubscriptionItemsService {
   }
 
   /**
+   * <p>Retrieves the subscription item with the given ID.</p>
+   * See_Also: HTTP GET `/v1/subscription_items/{item}`
    */
   void getSubscriptionItemsItem(
       GetSubscriptionItemsItemParams params,
-      GetSubscriptionItemsItemResponseHandler responseHandler = null,
+      GetSubscriptionItemsItemResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -113,10 +116,12 @@ class V1SubscriptionItemsService {
   }
 
   /**
+   * <p>Updates the plan or quantity of an item on a current subscription.</p>
+   * See_Also: HTTP POST `/v1/subscription_items/{item}`
    */
   void postSubscriptionItemsItem(
       PostSubscriptionItemsItemParams params,
-      PostSubscriptionItemsItemResponseHandler responseHandler = null,
+      PostSubscriptionItemsItemResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -161,10 +166,13 @@ class V1SubscriptionItemsService {
   }
 
   /**
+   * <p>Deletes an item from the subscription. Removing a subscription item from a subscription will
+   * not cancel the subscription.</p>
+   * See_Also: HTTP DELETE `/v1/subscription_items/{item}`
    */
   void deleteSubscriptionItemsItem(
       DeleteSubscriptionItemsItemParams params,
-      DeleteSubscriptionItemsItemResponseHandler responseHandler = null,
+      DeleteSubscriptionItemsItemResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -243,11 +251,29 @@ class V1SubscriptionItemsService {
   }
 
   /**
+   * <p>Creates a usage record for a specified subscription item and date, and fills it with a
+   * quantity.</p>
+   * <p>Usage records provide <code>quantity</code> information that Stripe uses to track how much a
+   * customer is using your service. With usage information and the pricing model set up by the <a
+   * href="https://stripe.com/docs/billing/subscriptions/metered-billing">metered billing</a> plan,
+   * Stripe helps you send accurate invoices to your customers.</p>
+   * <p>The default calculation for usage is to add up all the <code>quantity</code> values of the
+   * usage records within a billing period. You can change this default behavior with the billing
+   * plan’s <code>aggregate_usage</code> <a
+   * href="/docs/api/plans/create#create_plan-aggregate_usage">parameter</a>. When there is more
+   * than one usage record with the same timestamp, Stripe adds the <code>quantity</code> values
+   * together. In most cases, this is the desired resolution, however, you can change this behavior
+   * with the <code>action</code> parameter.</p>
+   * <p>The default pricing model for metered billing is <a
+   * href="/docs/api/plans/object#plan_object-billing_scheme">per-unit pricing</a>. For finer
+   * granularity, you can configure metered billing to have a <a
+   * href="https://stripe.com/docs/billing/subscriptions/tiers">tiered pricing</a> model.</p>
+   * See_Also: HTTP POST `/v1/subscription_items/{subscription_item}/usage_records`
    */
   void postSubscriptionItemsSubscriptionItemUsageRecords(
       PostSubscriptionItemsSubscriptionItemUsageRecordsParams params,
       PostSubscriptionItemsSubscriptionItemUsageRecordsBody requestBody,
-      PostSubscriptionItemsSubscriptionItemUsageRecordsResponseHandler responseHandler = null,
+      PostSubscriptionItemsSubscriptionItemUsageRecordsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -255,6 +281,7 @@ class V1SubscriptionItemsService {
         "/v1/subscription_items/{subscription_item}/usage_records");
     if (!params.subscription_item.isNull)
       requestor.setPathParam("subscription_item", params.subscription_item.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -345,10 +372,12 @@ class V1SubscriptionItemsService {
   }
 
   /**
+   * <p>Returns a list of your subscription items for a given subscription.</p>
+   * See_Also: HTTP GET `/v1/subscription_items`
    */
   void getSubscriptionItems(
       GetSubscriptionItemsParams params,
-      GetSubscriptionItemsResponseHandler responseHandler = null,
+      GetSubscriptionItemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -527,15 +556,19 @@ class V1SubscriptionItemsService {
   }
 
   /**
+   * <p>Adds a new item to an existing subscription. No existing items will be changed or
+   * replaced.</p>
+   * See_Also: HTTP POST `/v1/subscription_items`
    */
   void postSubscriptionItems(
       PostSubscriptionItemsBody requestBody,
-      PostSubscriptionItemsResponseHandler responseHandler = null,
+      PostSubscriptionItemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/subscription_items");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -625,10 +658,18 @@ class V1SubscriptionItemsService {
   }
 
   /**
+   * <p>For the specified subscription item, returns a list of summary objects. Each object in the
+   * list provides usage information that’s been summarized from multiple usage records and over a
+   * subscription billing period (e.g., 15 usage records in the month of September).</p>
+   * <p>The list is sorted in reverse-chronological order (newest first). The first list item
+   * represents the most current usage period that hasn’t ended yet. Since new usage records can
+   * still be added, the returned summary information for the subscription item’s ID should be
+   * seen as unstable until the subscription billing period ends.</p>
+   * See_Also: HTTP GET `/v1/subscription_items/{subscription_item}/usage_record_summaries`
    */
   void getSubscriptionItemsSubscriptionItemUsageRecordSummaries(
       GetSubscriptionItemsSubscriptionItemUsageRecordSummariesParams params,
-      GetSubscriptionItemsSubscriptionItemUsageRecordSummariesResponseHandler responseHandler = null,
+      GetSubscriptionItemsSubscriptionItemUsageRecordSummariesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.received_debit : TreasuryReceivedDebit;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/treasury/received_debits
  */
@@ -116,10 +117,12 @@ class V1TreasuryReceivedDebitsService {
   }
 
   /**
+   * <p>Returns a list of ReceivedDebits.</p>
+   * See_Also: HTTP GET `/v1/treasury/received_debits`
    */
   void getTreasuryReceivedDebits(
       GetTreasuryReceivedDebitsParams params,
-      GetTreasuryReceivedDebitsResponseHandler responseHandler = null,
+      GetTreasuryReceivedDebitsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -179,10 +182,13 @@ class V1TreasuryReceivedDebitsService {
   }
 
   /**
+   * <p>Retrieves the details of an existing ReceivedDebit by passing the unique ReceivedDebit ID
+   * from the ReceivedDebit list</p>
+   * See_Also: HTTP GET `/v1/treasury/received_debits/{id}`
    */
   void getTreasuryReceivedDebitsId(
       GetTreasuryReceivedDebitsIdParams params,
-      GetTreasuryReceivedDebitsIdResponseHandler responseHandler = null,
+      GetTreasuryReceivedDebitsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

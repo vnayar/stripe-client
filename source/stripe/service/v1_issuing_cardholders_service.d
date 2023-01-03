@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.issuing.cardholder : IssuingCardholder;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/issuing/cardholders
  */
@@ -60,10 +61,12 @@ class V1IssuingCardholdersService {
   }
 
   /**
+   * <p>Retrieves an Issuing <code>Cardholder</code> object.</p>
+   * See_Also: HTTP GET `/v1/issuing/cardholders/{cardholder}`
    */
   void getIssuingCardholdersCardholder(
       GetIssuingCardholdersCardholderParams params,
-      GetIssuingCardholdersCardholderResponseHandler responseHandler = null,
+      GetIssuingCardholdersCardholderResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -110,10 +113,13 @@ class V1IssuingCardholdersService {
   }
 
   /**
+   * <p>Updates the specified Issuing <code>Cardholder</code> object by setting the values of the
+   * parameters passed. Any parameters not provided will be left unchanged.</p>
+   * See_Also: HTTP POST `/v1/issuing/cardholders/{cardholder}`
    */
   void postIssuingCardholdersCardholder(
       PostIssuingCardholdersCardholderParams params,
-      PostIssuingCardholdersCardholderResponseHandler responseHandler = null,
+      PostIssuingCardholdersCardholderResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -232,10 +238,13 @@ class V1IssuingCardholdersService {
   }
 
   /**
+   * <p>Returns a list of Issuing <code>Cardholder</code> objects. The objects are sorted in
+   * descending order by creation date, with the most recently created object appearing first.</p>
+   * See_Also: HTTP GET `/v1/issuing/cardholders`
    */
   void getIssuingCardholders(
       GetIssuingCardholdersParams params,
-      GetIssuingCardholdersResponseHandler responseHandler = null,
+      GetIssuingCardholdersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -469,15 +478,18 @@ class V1IssuingCardholdersService {
   }
 
   /**
+   * <p>Creates a new Issuing <code>Cardholder</code> object that can be issued cards.</p>
+   * See_Also: HTTP POST `/v1/issuing/cardholders`
    */
   void postIssuingCardholders(
       PostIssuingCardholdersBody requestBody,
-      PostIssuingCardholdersResponseHandler responseHandler = null,
+      PostIssuingCardholdersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/issuing/cardholders");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

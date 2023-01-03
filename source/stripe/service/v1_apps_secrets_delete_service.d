@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.apps.secret : AppsSecret;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/apps/secrets/delete
  */
@@ -79,15 +80,18 @@ class V1AppsSecretsDeleteService {
   }
 
   /**
+   * <p>Deletes a secret from the secret store by name and scope.</p>
+   * See_Also: HTTP POST `/v1/apps/secrets/delete`
    */
   void postAppsSecretsDelete(
       PostAppsSecretsDeleteBody requestBody,
-      PostAppsSecretsDeleteResponseHandler responseHandler = null,
+      PostAppsSecretsDeleteResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/apps/secrets/delete");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

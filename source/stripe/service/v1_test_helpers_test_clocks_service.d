@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_test_helpers.test_clock : DeletedTestHelpersTestClock;
 public import stripe.model.error : Error_;
 public import stripe.model.test_helpers.test_clock : TestHelpersTestClock;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/test_helpers/test_clocks
  */
@@ -74,11 +75,14 @@ class V1TestHelpersTestClocksService {
   }
 
   /**
+   * <p>Starts advancing a test clock to a specified time in the future. Advancement is done when
+   * status changes to <code>Ready</code>.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/test_clocks/{test_clock}/advance`
    */
   void postTestHelpersTestClocksTestClockAdvance(
       PostTestHelpersTestClocksTestClockAdvanceParams params,
       PostTestHelpersTestClocksTestClockAdvanceBody requestBody,
-      PostTestHelpersTestClocksTestClockAdvanceResponseHandler responseHandler = null,
+      PostTestHelpersTestClocksTestClockAdvanceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -86,6 +90,7 @@ class V1TestHelpersTestClocksService {
         "/v1/test_helpers/test_clocks/{test_clock}/advance");
     if (!params.test_clock.isNull)
       requestor.setPathParam("test_clock", params.test_clock.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -171,10 +176,12 @@ class V1TestHelpersTestClocksService {
   }
 
   /**
+   * <p>Returns a list of your test clocks.</p>
+   * See_Also: HTTP GET `/v1/test_helpers/test_clocks`
    */
   void getTestHelpersTestClocks(
       GetTestHelpersTestClocksParams params,
-      GetTestHelpersTestClocksResponseHandler responseHandler = null,
+      GetTestHelpersTestClocksResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -239,15 +246,18 @@ class V1TestHelpersTestClocksService {
   }
 
   /**
+   * <p>Creates a new test clock that can be attached to new customers and quotes.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/test_clocks`
    */
   void postTestHelpersTestClocks(
       PostTestHelpersTestClocksBody requestBody,
-      PostTestHelpersTestClocksResponseHandler responseHandler = null,
+      PostTestHelpersTestClocksResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/test_helpers/test_clocks");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -290,10 +300,12 @@ class V1TestHelpersTestClocksService {
   }
 
   /**
+   * <p>Retrieves a test clock.</p>
+   * See_Also: HTTP GET `/v1/test_helpers/test_clocks/{test_clock}`
    */
   void getTestHelpersTestClocksTestClock(
       GetTestHelpersTestClocksTestClockParams params,
-      GetTestHelpersTestClocksTestClockResponseHandler responseHandler = null,
+      GetTestHelpersTestClocksTestClockResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -340,10 +352,12 @@ class V1TestHelpersTestClocksService {
   }
 
   /**
+   * <p>Deletes a test clock.</p>
+   * See_Also: HTTP DELETE `/v1/test_helpers/test_clocks/{test_clock}`
    */
   void deleteTestHelpersTestClocksTestClock(
       DeleteTestHelpersTestClocksTestClockParams params,
-      DeleteTestHelpersTestClocksTestClockResponseHandler responseHandler = null,
+      DeleteTestHelpersTestClocksTestClockResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,

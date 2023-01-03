@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.promotion_code : PromotionCode;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/promotion_codes
  */
@@ -60,10 +61,14 @@ class V1PromotionCodesService {
   }
 
   /**
+   * <p>Retrieves the promotion code with the given ID. In order to retrieve a promotion code by the
+   * customer-facing <code>code</code> use <a href="/docs/api/promotion_codes/list">list</a> with
+   * the desired <code>code</code>.</p>
+   * See_Also: HTTP GET `/v1/promotion_codes/{promotion_code}`
    */
   void getPromotionCodesPromotionCode(
       GetPromotionCodesPromotionCodeParams params,
-      GetPromotionCodesPromotionCodeResponseHandler responseHandler = null,
+      GetPromotionCodesPromotionCodeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -110,10 +115,13 @@ class V1PromotionCodesService {
   }
 
   /**
+   * <p>Updates the specified promotion code by setting the values of the parameters passed. Most
+   * fields are, by design, not editable.</p>
+   * See_Also: HTTP POST `/v1/promotion_codes/{promotion_code}`
    */
   void postPromotionCodesPromotionCode(
       PostPromotionCodesPromotionCodeParams params,
-      PostPromotionCodesPromotionCodeResponseHandler responseHandler = null,
+      PostPromotionCodesPromotionCodeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -232,10 +240,12 @@ class V1PromotionCodesService {
   }
 
   /**
+   * <p>Returns a list of your promotion codes.</p>
+   * See_Also: HTTP GET `/v1/promotion_codes`
    */
   void getPromotionCodes(
       GetPromotionCodesParams params,
-      GetPromotionCodesResponseHandler responseHandler = null,
+      GetPromotionCodesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -375,15 +385,19 @@ class V1PromotionCodesService {
   }
 
   /**
+   * <p>A promotion code points to a coupon. You can optionally restrict the code to a specific
+   * customer, redemption limit, and expiration date.</p>
+   * See_Also: HTTP POST `/v1/promotion_codes`
    */
   void postPromotionCodes(
       PostPromotionCodesBody requestBody,
-      PostPromotionCodesResponseHandler responseHandler = null,
+      PostPromotionCodesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/promotion_codes");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

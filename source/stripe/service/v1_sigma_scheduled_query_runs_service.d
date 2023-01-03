@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.scheduled_query_run : ScheduledQueryRun;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/sigma/scheduled_query_runs
  */
@@ -103,10 +104,12 @@ class V1SigmaScheduledQueryRunsService {
   }
 
   /**
+   * <p>Returns a list of scheduled query runs.</p>
+   * See_Also: HTTP GET `/v1/sigma/scheduled_query_runs`
    */
   void getSigmaScheduledQueryRuns(
       GetSigmaScheduledQueryRunsParams params,
-      GetSigmaScheduledQueryRunsResponseHandler responseHandler = null,
+      GetSigmaScheduledQueryRunsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -162,10 +165,12 @@ class V1SigmaScheduledQueryRunsService {
   }
 
   /**
+   * <p>Retrieves the details of an scheduled query run.</p>
+   * See_Also: HTTP GET `/v1/sigma/scheduled_query_runs/{scheduled_query_run}`
    */
   void getSigmaScheduledQueryRunsScheduledQueryRun(
       GetSigmaScheduledQueryRunsScheduledQueryRunParams params,
-      GetSigmaScheduledQueryRunsScheduledQueryRunResponseHandler responseHandler = null,
+      GetSigmaScheduledQueryRunsScheduledQueryRunResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

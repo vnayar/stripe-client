@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.inbound_transfer : TreasuryInboundTransfer;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/test_helpers/treasury/inbound_transfers
  */
@@ -55,10 +56,13 @@ class V1TestHelpersTreasuryInboundTransfersService {
   }
 
   /**
+   * <p>Marks the test mode InboundTransfer object as returned and links the InboundTransfer to a
+   * ReceivedDebit. The InboundTransfer must already be in the <code>succeeded</code> state.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/inbound_transfers/{id}/return`
    */
   void postTestHelpersTreasuryInboundTransfersIdReturn(
       PostTestHelpersTreasuryInboundTransfersIdReturnParams params,
-      PostTestHelpersTreasuryInboundTransfersIdReturnResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryInboundTransfersIdReturnResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -103,10 +107,13 @@ class V1TestHelpersTreasuryInboundTransfersService {
   }
 
   /**
+   * <p>Transitions a test mode created InboundTransfer to the <code>succeeded</code> status. The
+   * InboundTransfer must already be in the <code>processing</code> state.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/inbound_transfers/{id}/succeed`
    */
   void postTestHelpersTreasuryInboundTransfersIdSucceed(
       PostTestHelpersTreasuryInboundTransfersIdSucceedParams params,
-      PostTestHelpersTreasuryInboundTransfersIdSucceedResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryInboundTransfersIdSucceedResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -151,10 +158,13 @@ class V1TestHelpersTreasuryInboundTransfersService {
   }
 
   /**
+   * <p>Transitions a test mode created InboundTransfer to the <code>failed</code> status. The
+   * InboundTransfer must already be in the <code>processing</code> state.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/inbound_transfers/{id}/fail`
    */
   void postTestHelpersTreasuryInboundTransfersIdFail(
       PostTestHelpersTreasuryInboundTransfersIdFailParams params,
-      PostTestHelpersTreasuryInboundTransfersIdFailResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryInboundTransfersIdFailResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

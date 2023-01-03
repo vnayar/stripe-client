@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.event : Event;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/events
  */
@@ -126,10 +127,15 @@ class V1EventsService {
   }
 
   /**
+   * <p>List events, going back up to 30 days. Each event data is rendered according to Stripe API
+   * version at its creation time, specified in <a href="/docs/api/events/object">event object</a>
+   * <code>api_version</code> attribute (not according to your current Stripe API version or
+   * <code>Stripe-Version</code> header).</p>
+   * See_Also: HTTP GET `/v1/events`
    */
   void getEvents(
       GetEventsParams params,
-      GetEventsResponseHandler responseHandler = null,
+      GetEventsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -193,10 +199,13 @@ class V1EventsService {
   }
 
   /**
+   * <p>Retrieves the details of an event. Supply the unique identifier of the event, which you
+   * might have received in a webhook.</p>
+   * See_Also: HTTP GET `/v1/events/{id}`
    */
   void getEventsId(
       GetEventsIdParams params,
-      GetEventsIdResponseHandler responseHandler = null,
+      GetEventsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

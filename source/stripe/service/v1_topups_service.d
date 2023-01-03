@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.topup : Topup;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/topups
  */
@@ -120,10 +121,12 @@ class V1TopupsService {
   }
 
   /**
+   * <p>Returns a list of top-ups.</p>
+   * See_Also: HTTP GET `/v1/topups`
    */
   void getTopups(
       GetTopupsParams params,
-      GetTopupsResponseHandler responseHandler = null,
+      GetTopupsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -232,15 +235,18 @@ class V1TopupsService {
   }
 
   /**
+   * <p>Top up the balance of an account</p>
+   * See_Also: HTTP POST `/v1/topups`
    */
   void postTopups(
       PostTopupsBody requestBody,
-      PostTopupsResponseHandler responseHandler = null,
+      PostTopupsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/topups");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -283,10 +289,14 @@ class V1TopupsService {
   }
 
   /**
+   * <p>Retrieves the details of a top-up that has previously been created. Supply the unique top-up
+   * ID that was returned from your previous request, and Stripe will return the corresponding
+   * top-up information.</p>
+   * See_Also: HTTP GET `/v1/topups/{topup}`
    */
   void getTopupsTopup(
       GetTopupsTopupParams params,
-      GetTopupsTopupResponseHandler responseHandler = null,
+      GetTopupsTopupResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -333,10 +343,12 @@ class V1TopupsService {
   }
 
   /**
+   * <p>Updates the metadata of a top-up. Other top-up details are not editable by design.</p>
+   * See_Also: HTTP POST `/v1/topups/{topup}`
    */
   void postTopupsTopup(
       PostTopupsTopupParams params,
-      PostTopupsTopupResponseHandler responseHandler = null,
+      PostTopupsTopupResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -381,10 +393,12 @@ class V1TopupsService {
   }
 
   /**
+   * <p>Cancels a top-up. Only pending top-ups can be canceled.</p>
+   * See_Also: HTTP POST `/v1/topups/{topup}/cancel`
    */
   void postTopupsTopupCancel(
       PostTopupsTopupCancelParams params,
-      PostTopupsTopupCancelResponseHandler responseHandler = null,
+      PostTopupsTopupCancelResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

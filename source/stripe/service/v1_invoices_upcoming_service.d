@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.invoice : Invoice;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/invoices/upcoming
  */
@@ -366,10 +367,27 @@ class V1InvoicesUpcomingService {
   }
 
   /**
+   * <p>At any time, you can preview the upcoming invoice for a customer. This will show you all the
+   * charges that are pending, including subscription renewal charges, invoice item charges, etc. It
+   * will also show you any discounts that are applicable to the invoice.</p>
+   * <p>Note that when you are viewing an upcoming invoice, you are simply viewing a preview – the
+   * invoice has not yet been created. As such, the upcoming invoice will not show up in invoice
+   * listing calls, and you cannot use the API to pay or edit the invoice. If you want to change the
+   * amount that your customer will be billed, you can add, remove, or update pending invoice items,
+   * or update the customer’s discount.</p>
+   * <p>You can preview the effects of updating a subscription, including a preview of what
+   * proration will take place. To ensure that the actual proration is calculated exactly the same
+   * as the previewed proration, you should pass a <code>proration_date</code> parameter when doing
+   * the actual subscription update. The value passed in should be the same as the
+   * <code>subscription_proration_date</code> returned on the upcoming invoice resource. The
+   * recommended way to get only the prorations being previewed is to consider only proration line
+   * items where <code>period[start]</code> is equal to the <code>subscription_proration_date</code>
+   * on the upcoming invoice resource.</p>
+   * See_Also: HTTP GET `/v1/invoices/upcoming`
    */
   void getInvoicesUpcoming(
       GetInvoicesUpcomingParams params,
-      GetInvoicesUpcomingResponseHandler responseHandler = null,
+      GetInvoicesUpcomingResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

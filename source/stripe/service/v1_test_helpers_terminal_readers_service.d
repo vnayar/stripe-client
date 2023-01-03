@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.terminal.reader : TerminalReader;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/test_helpers/terminal/readers
  */
@@ -55,10 +56,13 @@ class V1TestHelpersTerminalReadersService {
   }
 
   /**
+   * <p>Presents a payment method on a simulated reader. Can be used to simulate accepting a
+   * payment, saving a card or refunding a transaction.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/terminal/readers/{reader}/present_payment_method`
    */
   void postTestHelpersTerminalReadersReaderPresentPaymentMethod(
       PostTestHelpersTerminalReadersReaderPresentPaymentMethodParams params,
-      PostTestHelpersTerminalReadersReaderPresentPaymentMethodResponseHandler responseHandler = null,
+      PostTestHelpersTerminalReadersReaderPresentPaymentMethodResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

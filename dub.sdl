@@ -3,29 +3,26 @@ description "A client library generated from Stripe's OpenAPI specification."
 authors "Vijay Nayar"
 copyright "Copyright © 2022, Vijay Nayar"
 license "LGPL"
-dependency "openapi-client" version="0.1.0"
-targetPath "target"
+dependency "openapi-client" version="~>0.2.1"
 targetType "library"
+targetPath "target"
 
 # To execute integration tests, run: dub test --config=integration
-configuration "unittest" {
+configuration "integration" {
+  targetType "library"
+  sourcePaths "test"
   # Unless explicitly excluded, the "source" path remains available.
   excludedSourceFiles "*/app.d" "*/main.d"
-  sourcePaths "test"
   importPaths "test"
-
   # Fire up a stripe-mock server for testing.
-  preRunCommands "echo Starting stripe-mock server..."
-  preRunCommands "docker run -d --rm -p 12111-12112:12111-12112 stripe/stripe-mock:latest > containerId.txt"
-  preRunCommands "sleep 1"
+  preRunCommands "echo Starting stripe-mock server..." "docker run -d --rm -p 12111-12112:12111-12112 stripe/stripe-mock:latest > containerId.txt" "sleep 1"
   # Terminate the stripe-mock server after testing.
-  postRunCommands "echo Stopping stripe-mock server..."
-  postRunCommands "docker stop `cat containerId.txt`"
-  postRunCommands "rm containerId.txt"
+  postRunCommands "echo Stopping stripe-mock server..." "docker stop `cat containerId.txt`" "rm containerId.txt"
 }
 
 # To re-create the Stripe API source files (e.g. when the OpenAPI spec changes, run the
 # command: dub build --config=generate
 configuration "generate" {
-  preGenerateCommands "dub run openapi-client@0.1.0 -- --targetDir=source --openApiSpec=json/spec3.json --packageRoot=stripe"
+  targetType "library"
+  preGenerateCommands "dub run openapi-client@0.2.1 -- --targetDir=source --openApiSpec=json/spec3.json --packageRoot=stripe"
 }

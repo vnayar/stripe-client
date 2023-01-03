@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.outbound_transfer : TreasuryOutboundTransfer;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/test_helpers/treasury/outbound_transfers
  */
@@ -55,10 +56,13 @@ class V1TestHelpersTreasuryOutboundTransfersService {
   }
 
   /**
+   * <p>Transitions a test mode created OutboundTransfer to the <code>returned</code> status. The
+   * OutboundTransfer must already be in the <code>processing</code> state.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return`
    */
   void postTestHelpersTreasuryOutboundTransfersOutboundTransferReturn(
       PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturnParams params,
-      PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturnResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturnResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -103,10 +107,13 @@ class V1TestHelpersTreasuryOutboundTransfersService {
   }
 
   /**
+   * <p>Transitions a test mode created OutboundTransfer to the <code>failed</code> status. The
+   * OutboundTransfer must already be in the <code>processing</code> state.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail`
    */
   void postTestHelpersTreasuryOutboundTransfersOutboundTransferFail(
       PostTestHelpersTreasuryOutboundTransfersOutboundTransferFailParams params,
-      PostTestHelpersTreasuryOutboundTransfersOutboundTransferFailResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryOutboundTransfersOutboundTransferFailResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -151,10 +158,13 @@ class V1TestHelpersTreasuryOutboundTransfersService {
   }
 
   /**
+   * <p>Transitions a test mode created OutboundTransfer to the <code>posted</code> status. The
+   * OutboundTransfer must already be in the <code>processing</code> state.</p>
+   * See_Also: HTTP POST `/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post`
    */
   void postTestHelpersTreasuryOutboundTransfersOutboundTransferPost(
       PostTestHelpersTreasuryOutboundTransfersOutboundTransferPostParams params,
-      PostTestHelpersTreasuryOutboundTransfersOutboundTransferPostResponseHandler responseHandler = null,
+      PostTestHelpersTreasuryOutboundTransfersOutboundTransferPostResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

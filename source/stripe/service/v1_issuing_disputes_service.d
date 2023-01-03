@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.issuing.dispute : IssuingDispute;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/issuing/disputes
  */
@@ -118,10 +119,13 @@ class V1IssuingDisputesService {
   }
 
   /**
+   * <p>Returns a list of Issuing <code>Dispute</code> objects. The objects are sorted in descending
+   * order by creation date, with the most recently created object appearing first.</p>
+   * See_Also: HTTP GET `/v1/issuing/disputes`
    */
   void getIssuingDisputes(
       GetIssuingDisputesParams params,
-      GetIssuingDisputesResponseHandler responseHandler = null,
+      GetIssuingDisputesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -171,9 +175,15 @@ class V1IssuingDisputesService {
   }
 
   /**
+   * <p>Creates an Issuing <code>Dispute</code> object. Individual pieces of evidence within the
+   * <code>evidence</code> object are optional at this point. Stripe only validates that required
+   * evidence is present during submission. Refer to <a
+   * href="/docs/issuing/purchases/disputes#dispute-reasons-and-evidence">Dispute reasons and
+   * evidence</a> for more details about evidence requirements.</p>
+   * See_Also: HTTP POST `/v1/issuing/disputes`
    */
   void postIssuingDisputes(
-      PostIssuingDisputesResponseHandler responseHandler = null,
+      PostIssuingDisputesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -221,10 +231,12 @@ class V1IssuingDisputesService {
   }
 
   /**
+   * <p>Retrieves an Issuing <code>Dispute</code> object.</p>
+   * See_Also: HTTP GET `/v1/issuing/disputes/{dispute}`
    */
   void getIssuingDisputesDispute(
       GetIssuingDisputesDisputeParams params,
-      GetIssuingDisputesDisputeResponseHandler responseHandler = null,
+      GetIssuingDisputesDisputeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -271,10 +283,14 @@ class V1IssuingDisputesService {
   }
 
   /**
+   * <p>Updates the specified Issuing <code>Dispute</code> object by setting the values of the
+   * parameters passed. Any parameters not provided will be left unchanged. Properties on the
+   * <code>evidence</code> object can be unset by passing in an empty string.</p>
+   * See_Also: HTTP POST `/v1/issuing/disputes/{dispute}`
    */
   void postIssuingDisputesDispute(
       PostIssuingDisputesDisputeParams params,
-      PostIssuingDisputesDisputeResponseHandler responseHandler = null,
+      PostIssuingDisputesDisputeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -319,10 +335,15 @@ class V1IssuingDisputesService {
   }
 
   /**
+   * <p>Submits an Issuing <code>Dispute</code> to the card network. Stripe validates that all
+   * evidence fields required for the dispute’s reason are present. For more details, see <a
+   * href="/docs/issuing/purchases/disputes#dispute-reasons-and-evidence">Dispute reasons and
+   * evidence</a>.</p>
+   * See_Also: HTTP POST `/v1/issuing/disputes/{dispute}/submit`
    */
   void postIssuingDisputesDisputeSubmit(
       PostIssuingDisputesDisputeSubmitParams params,
-      PostIssuingDisputesDisputeSubmitResponseHandler responseHandler = null,
+      PostIssuingDisputesDisputeSubmitResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

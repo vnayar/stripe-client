@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_discount : DeletedDiscount;
 public import stripe.model.error : Error_;
 public import stripe.model.subscription : Subscription;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/subscriptions
  */
@@ -61,10 +62,12 @@ class V1SubscriptionsService {
   }
 
   /**
+   * <p>Retrieves the subscription with the given ID.</p>
+   * See_Also: HTTP GET `/v1/subscriptions/{subscription_exposed_id}`
    */
   void getSubscriptionsSubscriptionExposedId(
       GetSubscriptionsSubscriptionExposedIdParams params,
-      GetSubscriptionsSubscriptionExposedIdResponseHandler responseHandler = null,
+      GetSubscriptionsSubscriptionExposedIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -111,10 +114,15 @@ class V1SubscriptionsService {
   }
 
   /**
+   * <p>Updates an existing subscription on a customer to match the specified parameters. When
+   * changing plans or quantities, we will optionally prorate the price we charge next month to make
+   * up for any price changes. To preview how the proration will be calculated, use the <a
+   * href="#upcoming_invoice">upcoming invoice</a> endpoint.</p>
+   * See_Also: HTTP POST `/v1/subscriptions/{subscription_exposed_id}`
    */
   void postSubscriptionsSubscriptionExposedId(
       PostSubscriptionsSubscriptionExposedIdParams params,
-      PostSubscriptionsSubscriptionExposedIdResponseHandler responseHandler = null,
+      PostSubscriptionsSubscriptionExposedIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -159,10 +167,23 @@ class V1SubscriptionsService {
   }
 
   /**
+   * <p>Cancels a customer’s subscription immediately. The customer will not be charged again for
+   * the subscription.</p>
+   * <p>Note, however, that any pending invoice items that you’ve created will still be charged
+   * for at the end of the period, unless manually <a href="#delete_invoiceitem">deleted</a>. If
+   * you’ve set the subscription to cancel at the end of the period, any pending prorations will
+   * also be left in place and collected at the end of the period. But if the subscription is set to
+   * cancel immediately, pending prorations will be removed.</p>
+   * <p>By default, upon subscription cancellation, Stripe will stop automatic collection of all
+   * finalized invoices for the customer. This is intended to prevent unexpected payment attempts
+   * after the customer has canceled a subscription. However, you can resume automatic collection of
+   * the invoices manually after subscription cancellation to have us proceed. Or, you could check
+   * for unpaid invoices before allowing the customer to cancel the subscription at all.</p>
+   * See_Also: HTTP DELETE `/v1/subscriptions/{subscription_exposed_id}`
    */
   void deleteSubscriptionsSubscriptionExposedId(
       DeleteSubscriptionsSubscriptionExposedIdParams params,
-      DeleteSubscriptionsSubscriptionExposedIdResponseHandler responseHandler = null,
+      DeleteSubscriptionsSubscriptionExposedIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -207,10 +228,12 @@ class V1SubscriptionsService {
   }
 
   /**
+   * <p>Removes the currently applied discount on a subscription.</p>
+   * See_Also: HTTP DELETE `/v1/subscriptions/{subscription_exposed_id}/discount`
    */
   void deleteSubscriptionsSubscriptionExposedIdDiscount(
       DeleteSubscriptionsSubscriptionExposedIdDiscountParams params,
-      DeleteSubscriptionsSubscriptionExposedIdDiscountResponseHandler responseHandler = null,
+      DeleteSubscriptionsSubscriptionExposedIdDiscountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -347,10 +370,13 @@ class V1SubscriptionsService {
   }
 
   /**
+   * <p>By default, returns a list of subscriptions that have not been canceled. In order to list
+   * canceled subscriptions, specify <code>status=canceled</code>.</p>
+   * See_Also: HTTP GET `/v1/subscriptions`
    */
   void getSubscriptions(
       GetSubscriptionsParams params,
-      GetSubscriptionsResponseHandler responseHandler = null,
+      GetSubscriptionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -816,15 +842,28 @@ class V1SubscriptionsService {
   }
 
   /**
+   * <p>Creates a new subscription on an existing customer. Each customer can have up to 500 active
+   * or scheduled subscriptions.</p>
+   * <p>When you create a subscription with <code>collection_method=charge_automatically</code>, the
+   * first invoice is finalized as part of the request.
+   * The <code>payment_behavior</code> parameter determines the exact behavior of the initial
+   * payment.</p>
+   * <p>To start subscriptions where the first invoice always begins in a <code>draft</code> status,
+   * use <a href="/docs/billing/subscriptions/subscription-schedules#managing">subscription
+   * schedules</a> instead.
+   * Schedules provide the flexibility to model more complex billing configurations that change over
+   * time.</p>
+   * See_Also: HTTP POST `/v1/subscriptions`
    */
   void postSubscriptions(
       PostSubscriptionsBody requestBody,
-      PostSubscriptionsResponseHandler responseHandler = null,
+      PostSubscriptionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/subscriptions");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

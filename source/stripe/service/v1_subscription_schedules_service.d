@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.subscription_schedule : SubscriptionSchedule;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/subscription_schedules
  */
@@ -133,10 +134,12 @@ class V1SubscriptionSchedulesService {
   }
 
   /**
+   * <p>Retrieves the list of your subscription schedules.</p>
+   * See_Also: HTTP GET `/v1/subscription_schedules`
    */
   void getSubscriptionSchedules(
       GetSubscriptionSchedulesParams params,
-      GetSubscriptionSchedulesResponseHandler responseHandler = null,
+      GetSubscriptionSchedulesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -192,9 +195,12 @@ class V1SubscriptionSchedulesService {
   }
 
   /**
+   * <p>Creates a new subscription schedule object. Each customer can have up to 500 active or
+   * scheduled subscriptions.</p>
+   * See_Also: HTTP POST `/v1/subscription_schedules`
    */
   void postSubscriptionSchedules(
-      PostSubscriptionSchedulesResponseHandler responseHandler = null,
+      PostSubscriptionSchedulesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -242,10 +248,14 @@ class V1SubscriptionSchedulesService {
   }
 
   /**
+   * <p>Retrieves the details of an existing subscription schedule. You only need to supply the
+   * unique subscription schedule identifier that was returned upon subscription schedule
+   * creation.</p>
+   * See_Also: HTTP GET `/v1/subscription_schedules/{schedule}`
    */
   void getSubscriptionSchedulesSchedule(
       GetSubscriptionSchedulesScheduleParams params,
-      GetSubscriptionSchedulesScheduleResponseHandler responseHandler = null,
+      GetSubscriptionSchedulesScheduleResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -292,10 +302,12 @@ class V1SubscriptionSchedulesService {
   }
 
   /**
+   * <p>Updates an existing subscription schedule.</p>
+   * See_Also: HTTP POST `/v1/subscription_schedules/{schedule}`
    */
   void postSubscriptionSchedulesSchedule(
       PostSubscriptionSchedulesScheduleParams params,
-      PostSubscriptionSchedulesScheduleResponseHandler responseHandler = null,
+      PostSubscriptionSchedulesScheduleResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -340,10 +352,14 @@ class V1SubscriptionSchedulesService {
   }
 
   /**
+   * <p>Cancels a subscription schedule and its associated subscription immediately (if the
+   * subscription schedule has an active subscription). A subscription schedule can only be canceled
+   * if its status is <code>not_started</code> or <code>active</code>.</p>
+   * See_Also: HTTP POST `/v1/subscription_schedules/{schedule}/cancel`
    */
   void postSubscriptionSchedulesScheduleCancel(
       PostSubscriptionSchedulesScheduleCancelParams params,
-      PostSubscriptionSchedulesScheduleCancelResponseHandler responseHandler = null,
+      PostSubscriptionSchedulesScheduleCancelResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -388,10 +404,16 @@ class V1SubscriptionSchedulesService {
   }
 
   /**
+   * <p>Releases the subscription schedule immediately, which will stop scheduling of its phases,
+   * but leave any existing subscription in place. A schedule can only be released if its status is
+   * <code>not_started</code> or <code>active</code>. If the subscription schedule is currently
+   * associated with a subscription, releasing it will remove its <code>subscription</code> property
+   * and set the subscription’s ID to the <code>released_subscription</code> property.</p>
+   * See_Also: HTTP POST `/v1/subscription_schedules/{schedule}/release`
    */
   void postSubscriptionSchedulesScheduleRelease(
       PostSubscriptionSchedulesScheduleReleaseParams params,
-      PostSubscriptionSchedulesScheduleReleaseResponseHandler responseHandler = null,
+      PostSubscriptionSchedulesScheduleReleaseResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

@@ -20,6 +20,7 @@ public import stripe.model.charge : Charge;
 public import stripe.model.dispute : Dispute;
 public import stripe.model.error : Error_;
 public import stripe.model.refund : Refund;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/charges
  */
@@ -112,10 +113,15 @@ class V1ChargesService {
   }
 
   /**
+   * <p>You can see a list of the refunds belonging to a specific charge. Note that the 10 most
+   * recent refunds are always available by default on the charge object. If you need more than
+   * those 10, you can use this API method and the <code>limit</code> and
+   * <code>starting_after</code> parameters to page through additional refunds.</p>
+   * See_Also: HTTP GET `/v1/charges/{charge}/refunds`
    */
   void getChargesChargeRefunds(
       GetChargesChargeRefundsParams params,
-      GetChargesChargeRefundsResponseHandler responseHandler = null,
+      GetChargesChargeRefundsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -168,10 +174,12 @@ class V1ChargesService {
   }
 
   /**
+   * <p>Create a refund.</p>
+   * See_Also: HTTP POST `/v1/charges/{charge}/refunds`
    */
   void postChargesChargeRefunds(
       PostChargesChargeRefundsParams params,
-      PostChargesChargeRefundsResponseHandler responseHandler = null,
+      PostChargesChargeRefundsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -216,10 +224,17 @@ class V1ChargesService {
   }
 
   /**
+   * <p>Capture the payment of an existing, uncaptured, charge. This is the second half of the
+   * two-step payment flow, where first you <a href="#create_charge">created a charge</a> with the
+   * capture option set to false.</p>
+   * <p>Uncaptured payments expire a set number of days after they are created (<a
+   * href="/docs/charges/placing-a-hold">7 by default</a>). If they are not captured by that point
+   * in time, they will be marked as refunded and will no longer be capturable.</p>
+   * See_Also: HTTP POST `/v1/charges/{charge}/capture`
    */
   void postChargesChargeCapture(
       PostChargesChargeCaptureParams params,
-      PostChargesChargeCaptureResponseHandler responseHandler = null,
+      PostChargesChargeCaptureResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -332,10 +347,13 @@ class V1ChargesService {
   }
 
   /**
+   * <p>Returns a list of charges you’ve previously created. The charges are returned in sorted
+   * order, with the most recent charges appearing first.</p>
+   * See_Also: HTTP GET `/v1/charges`
    */
   void getCharges(
       GetChargesParams params,
-      GetChargesResponseHandler responseHandler = null,
+      GetChargesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -387,9 +405,14 @@ class V1ChargesService {
   }
 
   /**
+   * <p>To charge a credit card or other payment source, you create a <code>Charge</code> object. If
+   * your API key is in test mode, the supplied payment source (e.g., card) won’t actually be
+   * charged, although everything else will occur as if in live mode. (Stripe assumes that the
+   * charge would have completed successfully).</p>
+   * See_Also: HTTP POST `/v1/charges`
    */
   void postCharges(
-      PostChargesResponseHandler responseHandler = null,
+      PostChargesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -437,10 +460,12 @@ class V1ChargesService {
   }
 
   /**
+   * <p>Retrieve a dispute for a specified charge.</p>
+   * See_Also: HTTP GET `/v1/charges/{charge}/dispute`
    */
   void getChargesChargeDispute(
       GetChargesChargeDisputeParams params,
-      GetChargesChargeDisputeResponseHandler responseHandler = null,
+      GetChargesChargeDisputeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -487,10 +512,11 @@ class V1ChargesService {
   }
 
   /**
+   * See_Also: HTTP POST `/v1/charges/{charge}/dispute`
    */
   void postChargesChargeDispute(
       PostChargesChargeDisputeParams params,
-      PostChargesChargeDisputeResponseHandler responseHandler = null,
+      PostChargesChargeDisputeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -540,10 +566,14 @@ class V1ChargesService {
   }
 
   /**
+   * <p>Retrieves the details of a charge that has previously been created. Supply the unique charge
+   * ID that was returned from your previous request, and Stripe will return the corresponding
+   * charge information. The same information is returned when creating or refunding the charge.</p>
+   * See_Also: HTTP GET `/v1/charges/{charge}`
    */
   void getChargesCharge(
       GetChargesChargeParams params,
-      GetChargesChargeResponseHandler responseHandler = null,
+      GetChargesChargeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -590,10 +620,13 @@ class V1ChargesService {
   }
 
   /**
+   * <p>Updates the specified charge by setting the values of the parameters passed. Any parameters
+   * not provided will be left unchanged.</p>
+   * See_Also: HTTP POST `/v1/charges/{charge}`
    */
   void postChargesCharge(
       PostChargesChargeParams params,
-      PostChargesChargeResponseHandler responseHandler = null,
+      PostChargesChargeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -638,10 +671,21 @@ class V1ChargesService {
   }
 
   /**
+   * <p>When you create a new refund, you must specify a Charge or a PaymentIntent object on which
+   * to create it.</p>
+   * <p>Creating a new refund will refund a charge that has previously been created but not yet
+   * refunded.
+   * Funds will be refunded to the credit or debit card that was originally charged.</p>
+   * <p>You can optionally refund only part of a charge.
+   * You can do so multiple times, until the entire charge has been refunded.</p>
+   * <p>Once entirely refunded, a charge can’t be refunded again.
+   * This method will raise an error when called on an already-refunded charge,
+   * or when trying to refund more money than is left on a charge.</p>
+   * See_Also: HTTP POST `/v1/charges/{charge}/refund`
    */
   void postChargesChargeRefund(
       PostChargesChargeRefundParams params,
-      PostChargesChargeRefundResponseHandler responseHandler = null,
+      PostChargesChargeRefundResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -686,10 +730,11 @@ class V1ChargesService {
   }
 
   /**
+   * See_Also: HTTP POST `/v1/charges/{charge}/dispute/close`
    */
   void postChargesChargeDisputeClose(
       PostChargesChargeDisputeCloseParams params,
-      PostChargesChargeDisputeCloseResponseHandler responseHandler = null,
+      PostChargesChargeDisputeCloseResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -743,10 +788,12 @@ class V1ChargesService {
   }
 
   /**
+   * <p>Retrieves the details of an existing refund.</p>
+   * See_Also: HTTP GET `/v1/charges/{charge}/refunds/{refund}`
    */
   void getChargesChargeRefundsRefund(
       GetChargesChargeRefundsRefundParams params,
-      GetChargesChargeRefundsRefundResponseHandler responseHandler = null,
+      GetChargesChargeRefundsRefundResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -799,10 +846,12 @@ class V1ChargesService {
   }
 
   /**
+   * <p>Update a specified refund.</p>
+   * See_Also: HTTP POST `/v1/charges/{charge}/refunds/{refund}`
    */
   void postChargesChargeRefundsRefund(
       PostChargesChargeRefundsRefundParams params,
-      PostChargesChargeRefundsRefundResponseHandler responseHandler = null,
+      PostChargesChargeRefundsRefundResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

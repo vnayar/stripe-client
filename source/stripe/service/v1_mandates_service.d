@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.mandate : Mandate;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/mandates
  */
@@ -60,10 +61,12 @@ class V1MandatesService {
   }
 
   /**
+   * <p>Retrieves a Mandate object.</p>
+   * See_Also: HTTP GET `/v1/mandates/{mandate}`
    */
   void getMandatesMandate(
       GetMandatesMandateParams params,
-      GetMandatesMandateResponseHandler responseHandler = null,
+      GetMandatesMandateResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

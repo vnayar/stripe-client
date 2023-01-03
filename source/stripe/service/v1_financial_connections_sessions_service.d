@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.financial_connections.session : FinancialConnectionsSession;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/financial_connections/sessions
  */
@@ -101,15 +102,19 @@ class V1FinancialConnectionsSessionsService {
   }
 
   /**
+   * <p>To launch the Financial Connections authorization flow, create a <code>Session</code>. The
+   * session’s <code>client_secret</code> can be used to launch the flow using Stripe.js.</p>
+   * See_Also: HTTP POST `/v1/financial_connections/sessions`
    */
   void postFinancialConnectionsSessions(
       PostFinancialConnectionsSessionsBody requestBody,
-      PostFinancialConnectionsSessionsResponseHandler responseHandler = null,
+      PostFinancialConnectionsSessionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/financial_connections/sessions");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -152,10 +157,12 @@ class V1FinancialConnectionsSessionsService {
   }
 
   /**
+   * <p>Retrieves the details of a Financial Connections <code>Session</code></p>
+   * See_Also: HTTP GET `/v1/financial_connections/sessions/{session}`
    */
   void getFinancialConnectionsSessionsSession(
       GetFinancialConnectionsSessionsSessionParams params,
-      GetFinancialConnectionsSessionsSessionResponseHandler responseHandler = null,
+      GetFinancialConnectionsSessionsSessionResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

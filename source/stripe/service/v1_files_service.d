@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.file : File;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/files
  */
@@ -113,10 +114,13 @@ class V1FilesService {
   }
 
   /**
+   * <p>Returns a list of the files that your account has access to. The files are returned sorted
+   * by creation date, with the most recently created files appearing first.</p>
+   * See_Also: HTTP GET `/v1/files`
    */
   void getFiles(
       GetFilesParams params,
-      GetFilesResponseHandler responseHandler = null,
+      GetFilesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -205,15 +209,22 @@ class V1FilesService {
   }
 
   /**
+   * <p>To upload a file to Stripe, you’ll need to send a request of type
+   * <code>multipart/form-data</code>. The request should contain the file you would like to upload,
+   * as well as the parameters for creating a file.</p>
+   * <p>All of Stripe’s officially supported Client libraries should have support for sending
+   * <code>multipart/form-data</code>.</p>
+   * See_Also: HTTP POST `/v1/files`
    */
   void postFiles(
       PostFilesBody requestBody,
-      PostFilesResponseHandler responseHandler = null,
+      PostFilesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/files");
+    requestor.setHeaderParam("Content-Type", "multipart/form-data");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -256,10 +267,14 @@ class V1FilesService {
   }
 
   /**
+   * <p>Retrieves the details of an existing file object. Supply the unique file ID from a file, and
+   * Stripe will return the corresponding file object. To access file contents, see the <a
+   * href="/docs/file-upload#download-file-contents">File Upload Guide</a>.</p>
+   * See_Also: HTTP GET `/v1/files/{file}`
    */
   void getFilesFile(
       GetFilesFileParams params,
-      GetFilesFileResponseHandler responseHandler = null,
+      GetFilesFileResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

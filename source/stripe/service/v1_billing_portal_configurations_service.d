@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.billing_portal.configuration : BillingPortalConfiguration;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/billing_portal/configurations
  */
@@ -60,10 +61,12 @@ class V1BillingPortalConfigurationsService {
   }
 
   /**
+   * <p>Retrieves a configuration that describes the functionality of the customer portal.</p>
+   * See_Also: HTTP GET `/v1/billing_portal/configurations/{configuration}`
    */
   void getBillingPortalConfigurationsConfiguration(
       GetBillingPortalConfigurationsConfigurationParams params,
-      GetBillingPortalConfigurationsConfigurationResponseHandler responseHandler = null,
+      GetBillingPortalConfigurationsConfigurationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -110,10 +113,12 @@ class V1BillingPortalConfigurationsService {
   }
 
   /**
+   * <p>Updates a configuration that describes the functionality of the customer portal.</p>
+   * See_Also: HTTP POST `/v1/billing_portal/configurations/{configuration}`
    */
   void postBillingPortalConfigurationsConfiguration(
       PostBillingPortalConfigurationsConfigurationParams params,
-      PostBillingPortalConfigurationsConfigurationResponseHandler responseHandler = null,
+      PostBillingPortalConfigurationsConfigurationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -218,10 +223,12 @@ class V1BillingPortalConfigurationsService {
   }
 
   /**
+   * <p>Returns a list of configurations that describe the functionality of the customer portal.</p>
+   * See_Also: HTTP GET `/v1/billing_portal/configurations`
    */
   void getBillingPortalConfigurations(
       GetBillingPortalConfigurationsParams params,
-      GetBillingPortalConfigurationsResponseHandler responseHandler = null,
+      GetBillingPortalConfigurationsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -421,15 +428,18 @@ class V1BillingPortalConfigurationsService {
   }
 
   /**
+   * <p>Creates a configuration that describes the functionality and behavior of a PortalSession</p>
+   * See_Also: HTTP POST `/v1/billing_portal/configurations`
    */
   void postBillingPortalConfigurations(
       PostBillingPortalConfigurationsBody requestBody,
-      PostBillingPortalConfigurationsResponseHandler responseHandler = null,
+      PostBillingPortalConfigurationsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/billing_portal/configurations");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

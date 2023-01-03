@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.tax_rate : TaxRate;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/tax_rates
  */
@@ -60,10 +61,12 @@ class V1TaxRatesService {
   }
 
   /**
+   * <p>Retrieves a tax rate with the given ID</p>
+   * See_Also: HTTP GET `/v1/tax_rates/{tax_rate}`
    */
   void getTaxRatesTaxRate(
       GetTaxRatesTaxRateParams params,
-      GetTaxRatesTaxRateResponseHandler responseHandler = null,
+      GetTaxRatesTaxRateResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -110,10 +113,12 @@ class V1TaxRatesService {
   }
 
   /**
+   * <p>Updates an existing tax rate.</p>
+   * See_Also: HTTP POST `/v1/tax_rates/{tax_rate}`
    */
   void postTaxRatesTaxRate(
       PostTaxRatesTaxRateParams params,
-      PostTaxRatesTaxRateResponseHandler responseHandler = null,
+      PostTaxRatesTaxRateResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -221,10 +226,13 @@ class V1TaxRatesService {
   }
 
   /**
+   * <p>Returns a list of your tax rates. Tax rates are returned sorted by creation date, with the
+   * most recently created tax rates appearing first.</p>
+   * See_Also: HTTP GET `/v1/tax_rates`
    */
   void getTaxRates(
       GetTaxRatesParams params,
-      GetTaxRatesResponseHandler responseHandler = null,
+      GetTaxRatesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -352,15 +360,18 @@ class V1TaxRatesService {
   }
 
   /**
+   * <p>Creates a new tax rate.</p>
+   * See_Also: HTTP POST `/v1/tax_rates`
    */
   void postTaxRates(
       PostTaxRatesBody requestBody,
-      PostTaxRatesResponseHandler responseHandler = null,
+      PostTaxRatesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/tax_rates");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

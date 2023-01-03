@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.treasury.outbound_payment : TreasuryOutboundPayment;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/treasury/outbound_payments
  */
@@ -60,10 +61,13 @@ class V1TreasuryOutboundPaymentsService {
   }
 
   /**
+   * <p>Retrieves the details of an existing OutboundPayment by passing the unique OutboundPayment
+   * ID from either the OutboundPayment creation request or OutboundPayment list.</p>
+   * See_Also: HTTP GET `/v1/treasury/outbound_payments/{id}`
    */
   void getTreasuryOutboundPaymentsId(
       GetTreasuryOutboundPaymentsIdParams params,
-      GetTreasuryOutboundPaymentsIdResponseHandler responseHandler = null,
+      GetTreasuryOutboundPaymentsIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -110,10 +114,12 @@ class V1TreasuryOutboundPaymentsService {
   }
 
   /**
+   * <p>Cancel an OutboundPayment.</p>
+   * See_Also: HTTP POST `/v1/treasury/outbound_payments/{id}/cancel`
    */
   void postTreasuryOutboundPaymentsIdCancel(
       PostTreasuryOutboundPaymentsIdCancelParams params,
-      PostTreasuryOutboundPaymentsIdCancelResponseHandler responseHandler = null,
+      PostTreasuryOutboundPaymentsIdCancelResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -225,10 +231,12 @@ class V1TreasuryOutboundPaymentsService {
   }
 
   /**
+   * <p>Returns a list of OutboundPayments sent from the specified FinancialAccount.</p>
+   * See_Also: HTTP GET `/v1/treasury/outbound_payments`
    */
   void getTreasuryOutboundPayments(
       GetTreasuryOutboundPaymentsParams params,
-      GetTreasuryOutboundPaymentsResponseHandler responseHandler = null,
+      GetTreasuryOutboundPaymentsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -429,15 +437,18 @@ class V1TreasuryOutboundPaymentsService {
   }
 
   /**
+   * <p>Creates an OutboundPayment.</p>
+   * See_Also: HTTP POST `/v1/treasury/outbound_payments`
    */
   void postTreasuryOutboundPayments(
       PostTreasuryOutboundPaymentsBody requestBody,
-      PostTreasuryOutboundPaymentsResponseHandler responseHandler = null,
+      PostTreasuryOutboundPaymentsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/treasury/outbound_payments");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

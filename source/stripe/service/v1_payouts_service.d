@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.payout : Payout;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/payouts
  */
@@ -55,10 +56,13 @@ class V1PayoutsService {
   }
 
   /**
+   * <p>A previously created payout can be canceled if it has not yet been paid out. Funds will be
+   * refunded to your available balance. You may not cancel automatic Stripe payouts.</p>
+   * See_Also: HTTP POST `/v1/payouts/{payout}/cancel`
    */
   void postPayoutsPayoutCancel(
       PostPayoutsPayoutCancelParams params,
-      PostPayoutsPayoutCancelResponseHandler responseHandler = null,
+      PostPayoutsPayoutCancelResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -108,10 +112,14 @@ class V1PayoutsService {
   }
 
   /**
+   * <p>Retrieves the details of an existing payout. Supply the unique payout ID from either a
+   * payout creation request or the payout list, and Stripe will return the corresponding payout
+   * information.</p>
+   * See_Also: HTTP GET `/v1/payouts/{payout}`
    */
   void getPayoutsPayout(
       GetPayoutsPayoutParams params,
-      GetPayoutsPayoutResponseHandler responseHandler = null,
+      GetPayoutsPayoutResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -158,10 +166,13 @@ class V1PayoutsService {
   }
 
   /**
+   * <p>Updates the specified payout by setting the values of the parameters passed. Any parameters
+   * not provided will be left unchanged. This request accepts only the metadata as arguments.</p>
+   * See_Also: HTTP POST `/v1/payouts/{payout}`
    */
   void postPayoutsPayout(
       PostPayoutsPayoutParams params,
-      PostPayoutsPayoutResponseHandler responseHandler = null,
+      PostPayoutsPayoutResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -272,10 +283,14 @@ class V1PayoutsService {
   }
 
   /**
+   * <p>Returns a list of existing payouts sent to third-party bank accounts or that Stripe has sent
+   * you. The payouts are returned in sorted order, with the most recently created payouts appearing
+   * first.</p>
+   * See_Also: HTTP GET `/v1/payouts`
    */
   void getPayouts(
       GetPayoutsParams params,
-      GetPayoutsResponseHandler responseHandler = null,
+      GetPayoutsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -396,15 +411,26 @@ class V1PayoutsService {
   }
 
   /**
+   * <p>To send funds to your own bank account, you create a new payout object. Your <a
+   * href="#balance">Stripe balance</a> must be able to cover the payout amount, or you’ll receive
+   * an “Insufficient Funds” error.</p>
+   * <p>If your API key is in test mode, money won’t actually be sent, though everything else will
+   * occur as if in live mode.</p>
+   * <p>If you are creating a manual payout on a Stripe account that uses multiple payment source
+   * types, you’ll need to specify the source type balance that the payout should draw from. The
+   * <a href="#balance_object">balance object</a> details available and pending amounts by source
+   * type.</p>
+   * See_Also: HTTP POST `/v1/payouts`
    */
   void postPayouts(
       PostPayoutsBody requestBody,
-      PostPayoutsResponseHandler responseHandler = null,
+      PostPayoutsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/payouts");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -442,10 +468,17 @@ class V1PayoutsService {
   }
 
   /**
+   * <p>Reverses a payout by debiting the destination bank account. Only payouts for connected
+   * accounts to US bank accounts may be reversed at this time. If the payout is in the
+   * <code>pending</code> status, <code>/v1/payouts/:id/cancel</code> should be used instead.</p>
+   * <p>By requesting a reversal via <code>/v1/payouts/:id/reverse</code>, you confirm that the
+   * authorized signatory of the selected bank account has authorized the debit on the bank account
+   * and that no other authorization is required.</p>
+   * See_Also: HTTP POST `/v1/payouts/{payout}/reverse`
    */
   void postPayoutsPayoutReverse(
       PostPayoutsPayoutReverseParams params,
-      PostPayoutsPayoutReverseResponseHandler responseHandler = null,
+      PostPayoutsPayoutReverseResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

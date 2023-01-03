@@ -20,6 +20,7 @@ public import stripe.model.error : Error_;
 public import stripe.model.source : Source;
 public import stripe.model.source_mandate_notification : SourceMandateNotification;
 public import stripe.model.source_transaction : SourceTransaction;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/sources
  */
@@ -66,10 +67,12 @@ class V1SourcesService {
   }
 
   /**
+   * <p>Retrieves a new Source MandateNotification.</p>
+   * See_Also: HTTP GET `/v1/sources/{source}/mandate_notifications/{mandate_notification}`
    */
   void getSourcesSourceMandateNotificationsMandateNotification(
       GetSourcesSourceMandateNotificationsMandateNotificationParams params,
-      GetSourcesSourceMandateNotificationsMandateNotificationResponseHandler responseHandler = null,
+      GetSourcesSourceMandateNotificationsMandateNotificationResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -111,9 +114,11 @@ class V1SourcesService {
   }
 
   /**
+   * <p>Creates a new source object.</p>
+   * See_Also: HTTP POST `/v1/sources`
    */
   void postSources(
-      PostSourcesResponseHandler responseHandler = null,
+      PostSourcesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -167,10 +172,13 @@ class V1SourcesService {
   }
 
   /**
+   * <p>Retrieves an existing source object. Supply the unique source ID from a source creation
+   * request and Stripe will return the corresponding up-to-date source object information.</p>
+   * See_Also: HTTP GET `/v1/sources/{source}`
    */
   void getSourcesSource(
       GetSourcesSourceParams params,
-      GetSourcesSourceResponseHandler responseHandler = null,
+      GetSourcesSourceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -219,10 +227,16 @@ class V1SourcesService {
   }
 
   /**
+   * <p>Updates the specified source by setting the values of the parameters passed. Any parameters
+   * not provided will be left unchanged.</p>
+   * <p>This request accepts the <code>metadata</code> and <code>owner</code> as arguments. It is
+   * also possible to update type specific information for selected payment methods. Please refer to
+   * our <a href="/docs/sources">payment method guides</a> for more detail.</p>
+   * See_Also: HTTP POST `/v1/sources/{source}`
    */
   void postSourcesSource(
       PostSourcesSourceParams params,
-      PostSourcesSourceResponseHandler responseHandler = null,
+      PostSourcesSourceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -319,10 +333,12 @@ class V1SourcesService {
   }
 
   /**
+   * <p>List source transactions for a given source.</p>
+   * See_Also: HTTP GET `/v1/sources/{source}/source_transactions`
    */
   void getSourcesSourceSourceTransactions(
       GetSourcesSourceSourceTransactionsParams params,
-      GetSourcesSourceSourceTransactionsResponseHandler responseHandler = null,
+      GetSourcesSourceSourceTransactionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -390,11 +406,13 @@ class V1SourcesService {
   }
 
   /**
+   * <p>Verify a given source.</p>
+   * See_Also: HTTP POST `/v1/sources/{source}/verify`
    */
   void postSourcesSourceVerify(
       PostSourcesSourceVerifyParams params,
       PostSourcesSourceVerifyBody requestBody,
-      PostSourcesSourceVerifyResponseHandler responseHandler = null,
+      PostSourcesSourceVerifyResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -402,6 +420,7 @@ class V1SourcesService {
         "/v1/sources/{source}/verify");
     if (!params.source.isNull)
       requestor.setPathParam("source", params.source.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -448,10 +467,14 @@ class V1SourcesService {
   }
 
   /**
+   * <p>Retrieve an existing source transaction object. Supply the unique source ID from a source
+   * creation request and the source transaction ID and Stripe will return the corresponding
+   * up-to-date source object information.</p>
+   * See_Also: HTTP GET `/v1/sources/{source}/source_transactions/{source_transaction}`
    */
   void getSourcesSourceSourceTransactionsSourceTransaction(
       GetSourcesSourceSourceTransactionsSourceTransactionParams params,
-      GetSourcesSourceSourceTransactionsSourceTransactionResponseHandler responseHandler = null,
+      GetSourcesSourceSourceTransactionsSourceTransactionResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.dispute : Dispute;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/disputes
  */
@@ -117,10 +118,12 @@ class V1DisputesService {
   }
 
   /**
+   * <p>Returns a list of your disputes.</p>
+   * See_Also: HTTP GET `/v1/disputes`
    */
   void getDisputes(
       GetDisputesParams params,
-      GetDisputesResponseHandler responseHandler = null,
+      GetDisputesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -177,10 +180,15 @@ class V1DisputesService {
   }
 
   /**
+   * <p>Closing the dispute for a charge indicates that you do not have any evidence to submit and
+   * are essentially dismissing the dispute, acknowledging it as lost.</p>
+   * <p>The status of the dispute will change from <code>needs_response</code> to <code>lost</code>.
+   * <em>Closing a dispute is irreversible</em>.</p>
+   * See_Also: HTTP POST `/v1/disputes/{dispute}/close`
    */
   void postDisputesDisputeClose(
       PostDisputesDisputeCloseParams params,
-      PostDisputesDisputeCloseResponseHandler responseHandler = null,
+      PostDisputesDisputeCloseResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -230,10 +238,12 @@ class V1DisputesService {
   }
 
   /**
+   * <p>Retrieves the dispute with the given ID.</p>
+   * See_Also: HTTP GET `/v1/disputes/{dispute}`
    */
   void getDisputesDispute(
       GetDisputesDisputeParams params,
-      GetDisputesDisputeResponseHandler responseHandler = null,
+      GetDisputesDisputeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -280,10 +290,18 @@ class V1DisputesService {
   }
 
   /**
+   * <p>When you get a dispute, contacting your customer is always the best first step. If that
+   * doesn’t work, you can submit evidence to help us resolve the dispute in your favor. You can
+   * do this in your <a href="https://dashboard.stripe.com/disputes">dashboard</a>, but if you
+   * prefer, you can use the API to submit evidence programmatically.</p>
+   * <p>Depending on your dispute type, different evidence fields will give you a better chance of
+   * winning your dispute. To figure out which evidence fields to provide, see our <a
+   * href="/docs/disputes/categories">guide to dispute types</a>.</p>
+   * See_Also: HTTP POST `/v1/disputes/{dispute}`
    */
   void postDisputesDispute(
       PostDisputesDisputeParams params,
-      PostDisputesDisputeResponseHandler responseHandler = null,
+      PostDisputesDisputeResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.credit_note : CreditNote;
 public import stripe.model.credit_note_line_item : CreditNoteLineItem;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/credit_notes
  */
@@ -111,10 +112,14 @@ class V1CreditNotesService {
   }
 
   /**
+   * <p>When retrieving a credit note, you’ll get a <strong>lines</strong> property containing the
+   * the first handful of those items. There is also a URL where you can retrieve the full
+   * (paginated) list of line items.</p>
+   * See_Also: HTTP GET `/v1/credit_notes/{credit_note}/lines`
    */
   void getCreditNotesCreditNoteLines(
       GetCreditNotesCreditNoteLinesParams params,
-      GetCreditNotesCreditNoteLinesResponseHandler responseHandler = null,
+      GetCreditNotesCreditNoteLinesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -172,10 +177,12 @@ class V1CreditNotesService {
   }
 
   /**
+   * <p>Retrieves the credit note object with the given identifier.</p>
+   * See_Also: HTTP GET `/v1/credit_notes/{id}`
    */
   void getCreditNotesId(
       GetCreditNotesIdParams params,
-      GetCreditNotesIdResponseHandler responseHandler = null,
+      GetCreditNotesIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -222,10 +229,12 @@ class V1CreditNotesService {
   }
 
   /**
+   * <p>Updates an existing credit note.</p>
+   * See_Also: HTTP POST `/v1/credit_notes/{id}`
    */
   void postCreditNotesId(
       PostCreditNotesIdParams params,
-      PostCreditNotesIdResponseHandler responseHandler = null,
+      PostCreditNotesIdResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -328,10 +337,12 @@ class V1CreditNotesService {
   }
 
   /**
+   * <p>Returns a list of credit notes.</p>
+   * See_Also: HTTP GET `/v1/credit_notes`
    */
   void getCreditNotes(
       GetCreditNotesParams params,
-      GetCreditNotesResponseHandler responseHandler = null,
+      GetCreditNotesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -483,15 +494,36 @@ class V1CreditNotesService {
   }
 
   /**
+   * <p>Issue a credit note to adjust the amount of a finalized invoice. For a
+   * <code>status=open</code> invoice, a credit note reduces
+   * its <code>amount_due</code>. For a <code>status=paid</code> invoice, a credit note does not
+   * affect its <code>amount_due</code>. Instead, it can result
+   * in any combination of the following:</p>
+   * <ul>
+   * <li>Refund: create a new refund (using <code>refund_amount</code>) or link an existing refund
+   * (using <code>refund</code>).</li>
+   * <li>Customer balance credit: credit the customer’s balance (using <code>credit_amount</code>)
+   * which will be automatically applied to their next invoice when it’s finalized.</li>
+   * <li>Outside of Stripe credit: record the amount that is or will be credited outside of Stripe
+   * (using <code>out_of_band_amount</code>).</li>
+   * </ul>
+   * <p>For post-payment credit notes the sum of the refund, credit and outside of Stripe amounts
+   * must equal the credit note total.</p>
+   * <p>You may issue multiple credit notes for an invoice. Each credit note will increment the
+   * invoice’s <code>pre_payment_credit_notes_amount</code>
+   * or <code>post_payment_credit_notes_amount</code> depending on its <code>status</code> at the
+   * time of credit note creation.</p>
+   * See_Also: HTTP POST `/v1/credit_notes`
    */
   void postCreditNotes(
       PostCreditNotesBody requestBody,
-      PostCreditNotesResponseHandler responseHandler = null,
+      PostCreditNotesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/credit_notes");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -529,10 +561,13 @@ class V1CreditNotesService {
   }
 
   /**
+   * <p>Marks a credit note as void. Learn more about <a
+   * href="/docs/billing/invoices/credit-notes#voiding">voiding credit notes</a>.</p>
+   * See_Also: HTTP POST `/v1/credit_notes/{id}/void`
    */
   void postCreditNotesIdVoid(
       PostCreditNotesIdVoidParams params,
-      PostCreditNotesIdVoidResponseHandler responseHandler = null,
+      PostCreditNotesIdVoidResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

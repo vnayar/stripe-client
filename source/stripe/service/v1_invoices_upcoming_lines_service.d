@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.line_item : LineItem;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/invoices/upcoming/lines
  */
@@ -416,10 +417,14 @@ class V1InvoicesUpcomingLinesService {
   }
 
   /**
+   * <p>When retrieving an upcoming invoice, you’ll get a <strong>lines</strong> property
+   * containing the total count of line items and the first handful of those items. There is also a
+   * URL where you can retrieve the full (paginated) list of line items.</p>
+   * See_Also: HTTP GET `/v1/invoices/upcoming/lines`
    */
   void getInvoicesUpcomingLines(
       GetInvoicesUpcomingLinesParams params,
-      GetInvoicesUpcomingLinesResponseHandler responseHandler = null,
+      GetInvoicesUpcomingLinesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

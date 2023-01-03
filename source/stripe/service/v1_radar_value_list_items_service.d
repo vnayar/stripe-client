@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_radar.value_list_item : DeletedRadarValueListItem;
 public import stripe.model.error : Error_;
 public import stripe.model.radar.value_list_item : RadarValueListItem;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/radar/value_list_items
  */
@@ -119,10 +120,13 @@ class V1RadarValueListItemsService {
   }
 
   /**
+   * <p>Returns a list of <code>ValueListItem</code> objects. The objects are sorted in descending
+   * order by creation date, with the most recently created object appearing first.</p>
+   * See_Also: HTTP GET `/v1/radar/value_list_items`
    */
   void getRadarValueListItems(
       GetRadarValueListItemsParams params,
-      GetRadarValueListItemsResponseHandler responseHandler = null,
+      GetRadarValueListItemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -193,15 +197,19 @@ class V1RadarValueListItemsService {
   }
 
   /**
+   * <p>Creates a new <code>ValueListItem</code> object, which is added to the specified parent
+   * value list.</p>
+   * See_Also: HTTP POST `/v1/radar/value_list_items`
    */
   void postRadarValueListItems(
       PostRadarValueListItemsBody requestBody,
-      PostRadarValueListItemsResponseHandler responseHandler = null,
+      PostRadarValueListItemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/radar/value_list_items");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -244,10 +252,12 @@ class V1RadarValueListItemsService {
   }
 
   /**
+   * <p>Retrieves a <code>ValueListItem</code> object.</p>
+   * See_Also: HTTP GET `/v1/radar/value_list_items/{item}`
    */
   void getRadarValueListItemsItem(
       GetRadarValueListItemsItemParams params,
-      GetRadarValueListItemsItemResponseHandler responseHandler = null,
+      GetRadarValueListItemsItemResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -294,10 +304,12 @@ class V1RadarValueListItemsService {
   }
 
   /**
+   * <p>Deletes a <code>ValueListItem</code> object, removing it from its parent value list.</p>
+   * See_Also: HTTP DELETE `/v1/radar/value_list_items/{item}`
    */
   void deleteRadarValueListItemsItem(
       DeleteRadarValueListItemsItemParams params,
-      DeleteRadarValueListItemsItemResponseHandler responseHandler = null,
+      DeleteRadarValueListItemsItemResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,

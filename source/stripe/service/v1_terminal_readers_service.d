@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.deleted_terminal.reader : DeletedTerminalReader;
 public import stripe.model.error : Error_;
 public import stripe.model.terminal.reader : TerminalReader;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/terminal/readers
  */
@@ -61,10 +62,12 @@ class V1TerminalReadersService {
   }
 
   /**
+   * <p>Retrieves a <code>Reader</code> object.</p>
+   * See_Also: HTTP GET `/v1/terminal/readers/{reader}`
    */
   void getTerminalReadersReader(
       GetTerminalReadersReaderParams params,
-      GetTerminalReadersReaderResponseHandler responseHandler = null,
+      GetTerminalReadersReaderResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -111,10 +114,13 @@ class V1TerminalReadersService {
   }
 
   /**
+   * <p>Updates a <code>Reader</code> object by setting the values of the parameters passed. Any
+   * parameters not provided will be left unchanged.</p>
+   * See_Also: HTTP POST `/v1/terminal/readers/{reader}`
    */
   void postTerminalReadersReader(
       PostTerminalReadersReaderParams params,
-      PostTerminalReadersReaderResponseHandler responseHandler = null,
+      PostTerminalReadersReaderResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -159,10 +165,12 @@ class V1TerminalReadersService {
   }
 
   /**
+   * <p>Deletes a <code>Reader</code> object.</p>
+   * See_Also: HTTP DELETE `/v1/terminal/readers/{reader}`
    */
   void deleteTerminalReadersReader(
       DeleteTerminalReadersReaderParams params,
-      DeleteTerminalReadersReaderResponseHandler responseHandler = null,
+      DeleteTerminalReadersReaderResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.DELETE,
@@ -243,11 +251,13 @@ class V1TerminalReadersService {
   }
 
   /**
+   * <p>Initiates a payment flow on a Reader.</p>
+   * See_Also: HTTP POST `/v1/terminal/readers/{reader}/process_payment_intent`
    */
   void postTerminalReadersReaderProcessPaymentIntent(
       PostTerminalReadersReaderProcessPaymentIntentParams params,
       PostTerminalReadersReaderProcessPaymentIntentBody requestBody,
-      PostTerminalReadersReaderProcessPaymentIntentResponseHandler responseHandler = null,
+      PostTerminalReadersReaderProcessPaymentIntentResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -255,6 +265,7 @@ class V1TerminalReadersService {
         "/v1/terminal/readers/{reader}/process_payment_intent");
     if (!params.reader.isNull)
       requestor.setPathParam("reader", params.reader.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -313,11 +324,13 @@ class V1TerminalReadersService {
   }
 
   /**
+   * <p>Initiates a setup intent flow on a Reader.</p>
+   * See_Also: HTTP POST `/v1/terminal/readers/{reader}/process_setup_intent`
    */
   void postTerminalReadersReaderProcessSetupIntent(
       PostTerminalReadersReaderProcessSetupIntentParams params,
       PostTerminalReadersReaderProcessSetupIntentBody requestBody,
-      PostTerminalReadersReaderProcessSetupIntentResponseHandler responseHandler = null,
+      PostTerminalReadersReaderProcessSetupIntentResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -325,6 +338,7 @@ class V1TerminalReadersService {
         "/v1/terminal/readers/{reader}/process_setup_intent");
     if (!params.reader.isNull)
       requestor.setPathParam("reader", params.reader.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -410,11 +424,13 @@ class V1TerminalReadersService {
   }
 
   /**
+   * <p>Sets reader display to show cart details.</p>
+   * See_Also: HTTP POST `/v1/terminal/readers/{reader}/set_reader_display`
    */
   void postTerminalReadersReaderSetReaderDisplay(
       PostTerminalReadersReaderSetReaderDisplayParams params,
       PostTerminalReadersReaderSetReaderDisplayBody requestBody,
-      PostTerminalReadersReaderSetReaderDisplayResponseHandler responseHandler = null,
+      PostTerminalReadersReaderSetReaderDisplayResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -422,6 +438,7 @@ class V1TerminalReadersService {
         "/v1/terminal/readers/{reader}/set_reader_display");
     if (!params.reader.isNull)
       requestor.setPathParam("reader", params.reader.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -459,10 +476,12 @@ class V1TerminalReadersService {
   }
 
   /**
+   * <p>Cancels the current reader action.</p>
+   * See_Also: HTTP POST `/v1/terminal/readers/{reader}/cancel_action`
    */
   void postTerminalReadersReaderCancelAction(
       PostTerminalReadersReaderCancelActionParams params,
-      PostTerminalReadersReaderCancelActionResponseHandler responseHandler = null,
+      PostTerminalReadersReaderCancelActionResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -573,10 +592,12 @@ class V1TerminalReadersService {
   }
 
   /**
+   * <p>Returns a list of <code>Reader</code> objects.</p>
+   * See_Also: HTTP GET `/v1/terminal/readers`
    */
   void getTerminalReaders(
       GetTerminalReadersParams params,
-      GetTerminalReadersResponseHandler responseHandler = null,
+      GetTerminalReadersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -663,15 +684,18 @@ class V1TerminalReadersService {
   }
 
   /**
+   * <p>Creates a new <code>Reader</code> object.</p>
+   * See_Also: HTTP POST `/v1/terminal/readers`
    */
   void postTerminalReaders(
       PostTerminalReadersBody requestBody,
-      PostTerminalReadersResponseHandler responseHandler = null,
+      PostTerminalReadersResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/terminal/readers");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

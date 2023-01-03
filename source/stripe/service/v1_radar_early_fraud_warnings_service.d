@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.radar.early_fraud_warning : RadarEarlyFraudWarning;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/radar/early_fraud_warnings
  */
@@ -60,10 +61,14 @@ class V1RadarEarlyFraudWarningsService {
   }
 
   /**
+   * <p>Retrieves the details of an early fraud warning that has previously been created. </p>
+   * <p>Please refer to the <a href="#early_fraud_warning_object">early fraud warning</a> object
+   * reference for more details.</p>
+   * See_Also: HTTP GET `/v1/radar/early_fraud_warnings/{early_fraud_warning}`
    */
   void getRadarEarlyFraudWarningsEarlyFraudWarning(
       GetRadarEarlyFraudWarningsEarlyFraudWarningParams params,
-      GetRadarEarlyFraudWarningsEarlyFraudWarningResponseHandler responseHandler = null,
+      GetRadarEarlyFraudWarningsEarlyFraudWarningResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -169,10 +174,12 @@ class V1RadarEarlyFraudWarningsService {
   }
 
   /**
+   * <p>Returns a list of early fraud warnings.</p>
+   * See_Also: HTTP GET `/v1/radar/early_fraud_warnings`
    */
   void getRadarEarlyFraudWarnings(
       GetRadarEarlyFraudWarningsParams params,
-      GetRadarEarlyFraudWarningsResponseHandler responseHandler = null,
+      GetRadarEarlyFraudWarningsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

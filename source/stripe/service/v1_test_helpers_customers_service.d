@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.customer_cash_balance_transaction : CustomerCashBalanceTransaction;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/test_helpers/customers
  */
@@ -88,11 +89,13 @@ class V1TestHelpersCustomersService {
   }
 
   /**
+   * <p>Create an incoming testmode bank transfer</p>
+   * See_Also: HTTP POST `/v1/test_helpers/customers/{customer}/fund_cash_balance`
    */
   void postTestHelpersCustomersCustomerFundCashBalance(
       PostTestHelpersCustomersCustomerFundCashBalanceParams params,
       PostTestHelpersCustomersCustomerFundCashBalanceBody requestBody,
-      PostTestHelpersCustomersCustomerFundCashBalanceResponseHandler responseHandler = null,
+      PostTestHelpersCustomersCustomerFundCashBalanceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -100,6 +103,7 @@ class V1TestHelpersCustomersService {
         "/v1/test_helpers/customers/{customer}/fund_cash_balance");
     if (!params.customer.isNull)
       requestor.setPathParam("customer", params.customer.get.to!string);
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

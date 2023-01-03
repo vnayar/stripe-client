@@ -19,6 +19,7 @@ import std.stdio;
 public import stripe.model.checkout.session : CheckoutSession;
 public import stripe.model.error : Error_;
 public import stripe.model.item : Item;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/checkout/sessions
  */
@@ -130,10 +131,12 @@ class V1CheckoutSessionsService {
   }
 
   /**
+   * <p>Returns a list of Checkout Sessions.</p>
+   * See_Also: HTTP GET `/v1/checkout/sessions`
    */
   void getCheckoutSessions(
       GetCheckoutSessionsParams params,
-      GetCheckoutSessionsResponseHandler responseHandler = null,
+      GetCheckoutSessionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -950,15 +953,18 @@ class V1CheckoutSessionsService {
   }
 
   /**
+   * <p>Creates a Session object.</p>
+   * See_Also: HTTP POST `/v1/checkout/sessions`
    */
   void postCheckoutSessions(
       PostCheckoutSessionsBody requestBody,
-      PostCheckoutSessionsResponseHandler responseHandler = null,
+      PostCheckoutSessionsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/checkout/sessions");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -996,10 +1002,14 @@ class V1CheckoutSessionsService {
   }
 
   /**
+   * <p>A Session can be expired when it is in one of these statuses: <code>open</code> </p>
+   * <p>After it expires, a customer can’t complete a Session and customers loading the Session
+   * see a message saying the Session is expired.</p>
+   * See_Also: HTTP POST `/v1/checkout/sessions/{session}/expire`
    */
   void postCheckoutSessionsSessionExpire(
       PostCheckoutSessionsSessionExpireParams params,
-      PostCheckoutSessionsSessionExpireResponseHandler responseHandler = null,
+      PostCheckoutSessionsSessionExpireResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -1099,10 +1109,14 @@ class V1CheckoutSessionsService {
   }
 
   /**
+   * <p>When retrieving a Checkout Session, there is an includable <strong>line_items</strong>
+   * property containing the first handful of those items. There is also a URL where you can
+   * retrieve the full (paginated) list of line items.</p>
+   * See_Also: HTTP GET `/v1/checkout/sessions/{session}/line_items`
    */
   void getCheckoutSessionsSessionLineItems(
       GetCheckoutSessionsSessionLineItemsParams params,
-      GetCheckoutSessionsSessionLineItemsResponseHandler responseHandler = null,
+      GetCheckoutSessionsSessionLineItemsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -1160,10 +1174,12 @@ class V1CheckoutSessionsService {
   }
 
   /**
+   * <p>Retrieves a Session object.</p>
+   * See_Also: HTTP GET `/v1/checkout/sessions/{session}`
    */
   void getCheckoutSessionsSession(
       GetCheckoutSessionsSessionParams params,
-      GetCheckoutSessionsSessionResponseHandler responseHandler = null,
+      GetCheckoutSessionsSessionResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

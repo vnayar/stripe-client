@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.shipping_rate : ShippingRate;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/shipping_rates
  */
@@ -60,10 +61,12 @@ class V1ShippingRatesService {
   }
 
   /**
+   * <p>Returns the shipping rate object with the given ID.</p>
+   * See_Also: HTTP GET `/v1/shipping_rates/{shipping_rate_token}`
    */
   void getShippingRatesShippingRateToken(
       GetShippingRatesShippingRateTokenParams params,
-      GetShippingRatesShippingRateTokenResponseHandler responseHandler = null,
+      GetShippingRatesShippingRateTokenResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -110,10 +113,12 @@ class V1ShippingRatesService {
   }
 
   /**
+   * <p>Updates an existing shipping rate object.</p>
+   * See_Also: HTTP POST `/v1/shipping_rates/{shipping_rate_token}`
    */
   void postShippingRatesShippingRateToken(
       PostShippingRatesShippingRateTokenParams params,
-      PostShippingRatesShippingRateTokenResponseHandler responseHandler = null,
+      PostShippingRatesShippingRateTokenResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
@@ -222,10 +227,12 @@ class V1ShippingRatesService {
   }
 
   /**
+   * <p>Returns a list of your shipping rates.</p>
+   * See_Also: HTTP GET `/v1/shipping_rates`
    */
   void getShippingRates(
       GetShippingRatesParams params,
-      GetShippingRatesResponseHandler responseHandler = null,
+      GetShippingRatesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -372,15 +379,18 @@ class V1ShippingRatesService {
   }
 
   /**
+   * <p>Creates a new shipping rate object.</p>
+   * See_Also: HTTP POST `/v1/shipping_rates`
    */
   void postShippingRates(
       PostShippingRatesBody requestBody,
-      PostShippingRatesResponseHandler responseHandler = null,
+      PostShippingRatesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/shipping_rates");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }

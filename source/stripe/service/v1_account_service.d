@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.account : Account;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/account
  */
@@ -56,10 +57,12 @@ class V1AccountService {
   }
 
   /**
+   * <p>Retrieves the details of an account.</p>
+   * See_Also: HTTP GET `/v1/account`
    */
   void getAccount(
       GetAccountParams params,
-      GetAccountResponseHandler responseHandler = null,
+      GetAccountResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

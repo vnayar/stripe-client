@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.price : Price;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/prices
  */
@@ -152,10 +153,12 @@ class V1PricesService {
   }
 
   /**
+   * <p>Returns a list of your prices.</p>
+   * See_Also: HTTP GET `/v1/prices`
    */
   void getPrices(
       GetPricesParams params,
-      GetPricesResponseHandler responseHandler = null,
+      GetPricesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -485,15 +488,18 @@ class V1PricesService {
   }
 
   /**
+   * <p>Creates a new price for an existing product. The price can be recurring or one-time.</p>
+   * See_Also: HTTP POST `/v1/prices`
    */
   void postPrices(
       PostPricesBody requestBody,
-      PostPricesResponseHandler responseHandler = null,
+      PostPricesResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/prices");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -536,10 +542,12 @@ class V1PricesService {
   }
 
   /**
+   * <p>Retrieves the price with the given ID.</p>
+   * See_Also: HTTP GET `/v1/prices/{price}`
    */
   void getPricesPrice(
       GetPricesPriceParams params,
-      GetPricesPriceResponseHandler responseHandler = null,
+      GetPricesPriceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -586,10 +594,13 @@ class V1PricesService {
   }
 
   /**
+   * <p>Updates the specified price by setting the values of the parameters passed. Any parameters
+   * not provided are left unchanged.</p>
+   * See_Also: HTTP POST `/v1/prices/{price}`
    */
   void postPricesPrice(
       PostPricesPriceParams params,
-      PostPricesPriceResponseHandler responseHandler = null,
+      PostPricesPriceResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

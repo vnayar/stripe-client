@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.apps.secret : AppsSecret;
 public import stripe.model.error : Error_;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/apps/secrets/find
  */
@@ -76,10 +77,12 @@ class V1AppsSecretsFindService {
   }
 
   /**
+   * <p>Finds a secret in the secret store by name and scope.</p>
+   * See_Also: HTTP GET `/v1/apps/secrets/find`
    */
   void getAppsSecretsFind(
       GetAppsSecretsFindParams params,
-      GetAppsSecretsFindResponseHandler responseHandler = null,
+      GetAppsSecretsFindResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,

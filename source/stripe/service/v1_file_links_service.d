@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.file_link : FileLink;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/file_links
  */
@@ -120,10 +121,12 @@ class V1FileLinksService {
   }
 
   /**
+   * <p>Returns a list of file links.</p>
+   * See_Also: HTTP GET `/v1/file_links`
    */
   void getFileLinks(
       GetFileLinksParams params,
-      GetFileLinksResponseHandler responseHandler = null,
+      GetFileLinksResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -206,15 +209,18 @@ class V1FileLinksService {
   }
 
   /**
+   * <p>Creates a new file link object.</p>
+   * See_Also: HTTP POST `/v1/file_links`
    */
   void postFileLinks(
       PostFileLinksBody requestBody,
-      PostFileLinksResponseHandler responseHandler = null,
+      PostFileLinksResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,
         Servers.getServerUrl(),
         "/v1/file_links");
+    requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
@@ -257,10 +263,12 @@ class V1FileLinksService {
   }
 
   /**
+   * <p>Retrieves the file link with the given ID.</p>
+   * See_Also: HTTP GET `/v1/file_links/{link}`
    */
   void getFileLinksLink(
       GetFileLinksLinkParams params,
-      GetFileLinksLinkResponseHandler responseHandler = null,
+      GetFileLinksLinkResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
@@ -307,10 +315,12 @@ class V1FileLinksService {
   }
 
   /**
+   * <p>Updates an existing file link object. Expired links can no longer be updated.</p>
+   * See_Also: HTTP POST `/v1/file_links/{link}`
    */
   void postFileLinksLink(
       PostFileLinksLinkParams params,
-      PostFileLinksLinkResponseHandler responseHandler = null,
+      PostFileLinksLinkResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.POST,

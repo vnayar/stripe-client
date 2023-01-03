@@ -18,6 +18,7 @@ import std.stdio;
 
 public import stripe.model.error : Error_;
 public import stripe.model.setup_attempt : SetupAttempt;
+
 /**
  * Service to make REST API calls to paths beginning with: /v1/setup_attempts
  */
@@ -116,10 +117,12 @@ class V1SetupAttemptsService {
   }
 
   /**
+   * <p>Returns a list of SetupAttempts associated with a provided SetupIntent.</p>
+   * See_Also: HTTP GET `/v1/setup_attempts`
    */
   void getSetupAttempts(
       GetSetupAttemptsParams params,
-      GetSetupAttemptsResponseHandler responseHandler = null,
+      GetSetupAttemptsResponseHandler responseHandler,
       ) {
     ApiRequest requestor = new ApiRequest(
         HTTPMethod.GET,
