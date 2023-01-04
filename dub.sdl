@@ -7,6 +7,10 @@ dependency "openapi-client" version="~>0.2.1"
 targetType "library"
 targetPath "target"
 
+# The first configuration is used to build the library when used as a dub dependency.
+configuration "library" {
+}
+
 # To execute integration tests, run: dub test --config=integration
 configuration "integration" {
   targetType "library"
