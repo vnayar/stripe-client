@@ -14,6 +14,6 @@ class PaymentMethodDetailsKonbiniStore {
    * The name of the convenience store chain where the payment was completed.
    */
   @optional
-  Nullable!(string) chain;
+  string chain;
 
 }

@@ -21,6 +21,6 @@ class ShippingRateCurrencyOption {
    * `inclusive`, `exclusive`, or `unspecified`.
    */
   @optional
-  Nullable!(string) tax_behavior;
+  string tax_behavior;
 
 }

@@ -28,25 +28,25 @@ class File {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * A filename for the file, suitable for saving to a filesystem.
    */
   @optional
-  Nullable!(string) filename;
+  string filename;
 
   /**
    * A user friendly title for the document.
    */
   @optional
-  Nullable!(string) title;
+  string title;
 
   /**
    * The URL from which the file can be downloaded using your live secret API key.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
   /**
    * The size in bytes of the file object.
@@ -66,7 +66,7 @@ class File {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -78,7 +78,7 @@ class File {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -92,13 +92,13 @@ class File {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The type of the file returned (e.g., `csv`, `pdf`, `jpg`, or `png`).
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -110,6 +110,6 @@ class File {
    * The [purpose](https://stripe.com/docs/file-upload#uploading-a-file) of the uploaded file.
    */
   @optional
-  Nullable!(string) purpose;
+  string purpose;
 
 }

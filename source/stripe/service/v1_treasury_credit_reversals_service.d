@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -30,28 +31,28 @@ class V1TreasuryCreditReversalsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * Returns objects associated with this FinancialAccount.
      */
-    Nullable!(Nullable!(string)) financial_account;
+    string financial_account;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Only return CreditReversals for the ReceivedCredit ID.
      */
-    Nullable!(Nullable!(string)) received_credit;
+    string received_credit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -59,12 +60,12 @@ class V1TreasuryCreditReversalsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return CreditReversals for a given status.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
   }
 
@@ -82,7 +83,7 @@ class V1TreasuryCreditReversalsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -94,7 +95,7 @@ class V1TreasuryCreditReversalsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -113,9 +114,11 @@ class V1TreasuryCreditReversalsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryReceivedCreditsResourceCreditReversalList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -134,19 +137,19 @@ class V1TreasuryCreditReversalsService {
         Servers.getServerUrl(),
         "/v1/treasury/credit_reversals");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.financial_account.isNull)
-      requestor.setQueryParam("financial_account", params.financial_account.get.to!string);
+      requestor.setQueryParam!("deepObject")("financial_account", params.financial_account);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.received_credit.isNull)
-      requestor.setQueryParam("received_credit", params.received_credit.get.to!string);
+      requestor.setQueryParam!("deepObject")("received_credit", params.received_credit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -159,19 +162,19 @@ class V1TreasuryCreditReversalsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * The ReceivedCredit to reverse.
      */
     @optional
-    Nullable!(string) received_credit;
+    string received_credit;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
   }
 
@@ -192,9 +195,11 @@ class V1TreasuryCreditReversalsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryCreditReversal)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -220,12 +225,12 @@ class V1TreasuryCreditReversalsService {
   static class GetTreasuryCreditReversalsCreditReversalParams {
     /**
      */
-    Nullable!(Nullable!(string)) credit_reversal;
+    string credit_reversal;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -246,9 +251,11 @@ class V1TreasuryCreditReversalsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryCreditReversal)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -268,9 +275,9 @@ class V1TreasuryCreditReversalsService {
         Servers.getServerUrl(),
         "/v1/treasury/credit_reversals/{credit_reversal}");
     if (!params.credit_reversal.isNull)
-      requestor.setPathParam("credit_reversal", params.credit_reversal.get.to!string);
+      requestor.setPathParam("credit_reversal", params.credit_reversal);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

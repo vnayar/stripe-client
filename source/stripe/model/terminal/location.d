@@ -17,7 +17,7 @@ class TerminalLocation {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -25,13 +25,13 @@ class TerminalLocation {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The ID of a configuration that will be used to customize all readers in this location.
    */
   @optional
-  Nullable!(string) configuration_overrides;
+  string configuration_overrides;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -44,7 +44,7 @@ class TerminalLocation {
    * The display name of the location.
    */
   @optional
-  Nullable!(string) display_name;
+  string display_name;
 
   @optional
   Address address;
@@ -53,6 +53,6 @@ class TerminalLocation {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
 }

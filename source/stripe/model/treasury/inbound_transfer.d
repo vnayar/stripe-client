@@ -31,7 +31,7 @@ class TreasuryInboundTransfer {
    * support `statement_descriptor`.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * Details about this InboundTransfer's failure. Only set when status is `failed`.
@@ -43,7 +43,7 @@ class TreasuryInboundTransfer {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   @optional
   TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitions status_transitions;
@@ -54,20 +54,20 @@ class TreasuryInboundTransfer {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The origin payment method to be debited for an InboundTransfer.
    */
   @optional
-  Nullable!(string) origin_payment_method;
+  string origin_payment_method;
 
   /**
    * Details about the PaymentMethod for an InboundTransfer.
@@ -98,13 +98,13 @@ class TreasuryInboundTransfer {
    * The FinancialAccount that received the funds.
    */
   @optional
-  Nullable!(string) financial_account;
+  string financial_account;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   TreasuryInboundTransfersResourceInboundTransferResourceLinkedFlows linked_flows;
@@ -113,7 +113,7 @@ class TreasuryInboundTransfer {
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -128,7 +128,7 @@ class TreasuryInboundTransfer {
    * licenses.
    */
   @optional
-  Nullable!(string) hosted_regulatory_receipt_url;
+  string hosted_regulatory_receipt_url;
 
   /**
    * Returns `true` if the funds for an InboundTransfer were returned after the InboundTransfer
@@ -144,6 +144,6 @@ class TreasuryInboundTransfer {
    * The status changes to `failed` if the transfer fails.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

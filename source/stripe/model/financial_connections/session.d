@@ -22,20 +22,20 @@ class FinancialConnectionsSession {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * For webview integrations only. Upon completing OAuth login in the native browser, the user
    * will be redirected to this URL to return to your app.
    */
   @optional
-  Nullable!(string) return_url;
+  string return_url;
 
   /**
    * A value that will be passed to the client to launch the authentication flow.
    */
   @optional
-  Nullable!(string) client_secret;
+  string client_secret;
 
   /**
    * The account holder for whom accounts are collected in this session.
@@ -54,7 +54,7 @@ class FinancialConnectionsSession {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   static class BankConnectionsResourceLinkedAccountList {
     /**
@@ -68,7 +68,7 @@ class FinancialConnectionsSession {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -80,7 +80,7 @@ class FinancialConnectionsSession {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -94,6 +94,6 @@ class FinancialConnectionsSession {
    * Permissions requested for accounts collected during this session.
    */
   @optional
-  Nullable!(string)[] permissions;
+  string[] permissions;
 
 }

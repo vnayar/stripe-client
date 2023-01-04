@@ -24,7 +24,7 @@ class CreditNote {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The aggregate amounts calculated per discount for all line items.
@@ -37,7 +37,7 @@ class CreditNote {
    * `product_unsatisfactory`
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   /**
    * The integer amount in %s representing the amount of the credit note, excluding exclusive tax
@@ -56,7 +56,7 @@ class CreditNote {
    * The link to download the PDF of the credit note.
    */
   @optional
-  Nullable!(string) pdf;
+  string pdf;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -75,7 +75,7 @@ class CreditNote {
    * credit note and its associated invoice.
    */
   @optional
-  Nullable!(string) number;
+  string number;
 
   /**
    * Amount that was credited outside of Stripe.
@@ -95,7 +95,7 @@ class CreditNote {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -107,7 +107,7 @@ class CreditNote {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -128,7 +128,7 @@ class CreditNote {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The time that the credit note was voided.
@@ -154,7 +154,7 @@ class CreditNote {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The integer amount in %s representing the amount of the credit note, excluding all tax and
@@ -176,14 +176,14 @@ class CreditNote {
    * issued when the invoice was paid.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Status of this credit note, one of `issued` or `void`. Learn more about [voiding credit
    * notes](https://stripe.com/docs/billing/invoices/credit-notes#voiding).
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * The integer amount in %s representing the total amount of the credit note, including tax and
@@ -209,7 +209,7 @@ class CreditNote {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The integer amount in %s representing the total amount of discount that was credited.
@@ -221,6 +221,6 @@ class CreditNote {
    * Customer-facing text that appears on the credit note PDF.
    */
   @optional
-  Nullable!(string) memo;
+  string memo;
 
 }

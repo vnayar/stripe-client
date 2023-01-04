@@ -15,20 +15,20 @@ class IssuingAuthorizationTreasury {
    * associated with this authorization
    */
   @optional
-  Nullable!(string)[] received_credits;
+  string[] received_credits;
 
   /**
    * The Treasury [Transaction](https://stripe.com/docs/api/treasury/transactions) associated with
    * this authorization
    */
   @optional
-  Nullable!(string) transaction;
+  string transaction;
 
   /**
    * The array of [ReceivedDebits](https://stripe.com/docs/api/treasury/received_debits)
    * associated with this authorization
    */
   @optional
-  Nullable!(string)[] received_debits;
+  string[] received_debits;
 
 }

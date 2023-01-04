@@ -22,14 +22,14 @@ class PortalSubscriptionUpdate {
    * `none`, `create_prorations`, and `always_invoice`.
    */
   @optional
-  Nullable!(string) proration_behavior;
+  string proration_behavior;
 
   /**
    * The types of subscription updates that are supported for items listed in the `products`
    * attribute. When empty, subscriptions are not updateable.
    */
   @optional
-  Nullable!(string)[] default_allowed_updates;
+  string[] default_allowed_updates;
 
   /**
    * The list of products that support subscription updates.

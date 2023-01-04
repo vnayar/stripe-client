@@ -22,7 +22,7 @@ class LineItem {
    * line item if any.
    */
   @optional
-  Nullable!(string) invoice_item;
+  string invoice_item;
 
   /**
    * The amount, in %s.
@@ -43,13 +43,13 @@ class LineItem {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The subscription that the invoice item pertains to, if any.
    */
   @optional
-  Nullable!(string) subscription;
+  string subscription;
 
   /**
    * The integer amount in %s representing the amount for this line item, excluding all tax and
@@ -71,14 +71,14 @@ class LineItem {
    * metadata of the subscription that caused the line item to be created.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Additional details for proration line items
@@ -97,7 +97,7 @@ class LineItem {
    * explicit result of a subscription.
    */
   @optional
-  Nullable!(string) subscription_item;
+  string subscription_item;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -116,7 +116,7 @@ class LineItem {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * If true, discounts will apply to this line item. Always false for prorations.
@@ -128,14 +128,14 @@ class LineItem {
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * A string identifying the type of the source of this line item, either an `invoiceitem` or a
    * `subscription`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The discounts applied to the invoice line item. Line item discounts are applied before
@@ -161,6 +161,6 @@ class LineItem {
    * discounts.
    */
   @optional
-  Nullable!(string) unit_amount_excluding_tax;
+  string unit_amount_excluding_tax;
 
 }

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,14 +27,14 @@ class V1BalanceTransactionsService {
   static class GetBalanceTransactionsParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * Only return transactions in a certain currency. Three-letter [ISO currency
      * code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported
      * currency](https://stripe.com/docs/currencies).
      */
-    Nullable!(Nullable!(string)) currency;
+    string currency;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -41,29 +42,29 @@ class V1BalanceTransactionsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * For automatic Stripe payouts only, only returns transactions that were paid out on the
      * specified payout ID.
      */
-    Nullable!(Nullable!(string)) payout;
+    string payout;
 
     /**
      * Only returns the original transaction.
      */
-    Nullable!(Nullable!(string)) source;
+    string source;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -71,7 +72,7 @@ class V1BalanceTransactionsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only returns transactions of the given type. One of: `adjustment`, `advance`,
@@ -83,7 +84,7 @@ class V1BalanceTransactionsService {
      * `stripe_fx_fee`, `tax_fee`, `topup`, `topup_reversal`, `transfer`, `transfer_cancel`,
      * `transfer_failure`, or `transfer_refund`.
      */
-    Nullable!(Nullable!(string)) type;
+    string type;
 
   }
 
@@ -101,7 +102,7 @@ class V1BalanceTransactionsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       BalanceTransaction[] data;
@@ -110,7 +111,7 @@ class V1BalanceTransactionsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -129,9 +130,11 @@ class V1BalanceTransactionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BalanceTransactionsList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -154,23 +157,23 @@ class V1BalanceTransactionsService {
         Servers.getServerUrl(),
         "/v1/balance_transactions");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.currency.isNull)
-      requestor.setQueryParam("currency", params.currency.get.to!string);
+      requestor.setQueryParam!("deepObject")("currency", params.currency);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.payout.isNull)
-      requestor.setQueryParam("payout", params.payout.get.to!string);
+      requestor.setQueryParam!("deepObject")("payout", params.payout);
     if (!params.source.isNull)
-      requestor.setQueryParam("source", params.source.get.to!string);
+      requestor.setQueryParam!("deepObject")("source", params.source);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.type.isNull)
-      requestor.setQueryParam("type", params.type.get.to!string);
+      requestor.setQueryParam!("deepObject")("type", params.type);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -179,11 +182,11 @@ class V1BalanceTransactionsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -204,9 +207,11 @@ class V1BalanceTransactionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BalanceTransaction)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -226,9 +231,9 @@ class V1BalanceTransactionsService {
         Servers.getServerUrl(),
         "/v1/balance_transactions/{id}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

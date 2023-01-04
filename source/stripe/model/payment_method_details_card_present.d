@@ -23,13 +23,13 @@ class PaymentMethodDetailsCardPresent {
    * a sense of the international breakdown of cards you've collected.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * How card details were read in this transaction.
    */
   @optional
-  Nullable!(string) read_method;
+  string read_method;
 
   /**
    * A collection of fields required to be displayed on receipts. Only required for EMV
@@ -47,7 +47,7 @@ class PaymentMethodDetailsCardPresent {
    * made with Apple Pay and Google Pay.
    */
   @optional
-  Nullable!(string) cardholder_name;
+  string cardholder_name;
 
   /**
    * Two-digit number representing the card's expiration month.
@@ -61,7 +61,7 @@ class PaymentMethodDetailsCardPresent {
    * PaymentMethod.
    */
   @optional
-  Nullable!(string) generated_card;
+  string generated_card;
 
   /**
    * Four-digit number representing the card's expiration year.
@@ -74,13 +74,13 @@ class PaymentMethodDetailsCardPresent {
    * `unknown`.
    */
   @optional
-  Nullable!(string) brand;
+  string brand;
 
   /**
    * Card funding type. Can be `credit`, `debit`, `prepaid`, or `unknown`.
    */
   @optional
-  Nullable!(string) funding;
+  string funding;
 
   /**
    * The authorized amount
@@ -98,14 +98,14 @@ class PaymentMethodDetailsCardPresent {
    * The last four digits of the card.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Identifies which network this charge was processed on. Can be `amex`, `cartes_bancaires`,
    * `diners`, `discover`, `interac`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * Uniquely identifies this particular card number. You can use this attribute to check whether
@@ -116,7 +116,7 @@ class PaymentMethodDetailsCardPresent {
    * fingerprints for the same card --- one for India and one for the rest of the world.*
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
   /**
    * Whether this [PaymentIntent](https://stripe.com/docs/api/payment_intents) is eligible for
@@ -132,6 +132,6 @@ class PaymentMethodDetailsCardPresent {
    * Authorization response cryptogram.
    */
   @optional
-  Nullable!(string) emv_auth_data;
+  string emv_auth_data;
 
 }

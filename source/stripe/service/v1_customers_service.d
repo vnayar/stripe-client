@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -42,16 +43,16 @@ class V1CustomersService {
   static class GetCustomersCustomerSubscriptionsSubscriptionExposedIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) subscription_exposed_id;
+    string subscription_exposed_id;
 
   }
 
@@ -72,9 +73,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Subscription)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -93,11 +96,11 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.subscription_exposed_id.isNull)
-      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id.get.to!string);
+      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -105,11 +108,11 @@ class V1CustomersService {
   static class PostCustomersCustomerSubscriptionsSubscriptionExposedIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) subscription_exposed_id;
+    string subscription_exposed_id;
 
   }
 
@@ -130,9 +133,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Subscription)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -154,9 +159,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.subscription_exposed_id.isNull)
-      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id.get.to!string);
+      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -164,11 +169,11 @@ class V1CustomersService {
   static class DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) subscription_exposed_id;
+    string subscription_exposed_id;
 
   }
 
@@ -189,9 +194,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Subscription)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -224,9 +231,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.subscription_exposed_id.isNull)
-      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id.get.to!string);
+      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -234,13 +241,13 @@ class V1CustomersService {
   static class GetCustomersParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A case-sensitive filter on the list based on the customer's `email` field. The value must be
      * a string.
      */
-    Nullable!(Nullable!(string)) email;
+    string email;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -248,18 +255,18 @@ class V1CustomersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -267,13 +274,13 @@ class V1CustomersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Provides a list of customers that are associated with the specified test clock. The response
      * will not include customers with test clocks if this parameter is not set.
      */
-    Nullable!(Nullable!(string)) test_clock;
+    string test_clock;
 
   }
 
@@ -291,7 +298,7 @@ class V1CustomersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Customer[] data;
@@ -300,7 +307,7 @@ class V1CustomersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -319,9 +326,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CustomerResourceCustomerList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -341,19 +350,19 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.email.isNull)
-      requestor.setQueryParam("email", params.email.get.to!string);
+      requestor.setQueryParam!("deepObject")("email", params.email);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.test_clock.isNull)
-      requestor.setQueryParam("test_clock", params.test_clock.get.to!string);
+      requestor.setQueryParam!("deepObject")("test_clock", params.test_clock);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -375,9 +384,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Customer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -401,16 +412,16 @@ class V1CustomersService {
   static class GetCustomersCustomerBalanceTransactionsTransactionParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) transaction;
+    string transaction;
 
   }
 
@@ -431,9 +442,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CustomerBalanceTransaction)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -453,11 +466,11 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/balance_transactions/{transaction}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.transaction.isNull)
-      requestor.setPathParam("transaction", params.transaction.get.to!string);
+      requestor.setPathParam("transaction", params.transaction);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -465,11 +478,11 @@ class V1CustomersService {
   static class PostCustomersCustomerBalanceTransactionsTransactionParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) transaction;
+    string transaction;
 
   }
 
@@ -490,9 +503,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CustomerBalanceTransaction)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -512,9 +527,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/balance_transactions/{transaction}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.transaction.isNull)
-      requestor.setPathParam("transaction", params.transaction.get.to!string);
+      requestor.setPathParam("transaction", params.transaction);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -522,12 +537,12 @@ class V1CustomersService {
   static class GetCustomersCustomerDiscountParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -548,9 +563,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Discount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -568,9 +585,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/discount");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -578,7 +595,7 @@ class V1CustomersService {
   static class DeleteCustomersCustomerDiscountParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -599,9 +616,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedDiscount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -620,7 +639,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/discount");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -628,7 +647,7 @@ class V1CustomersService {
   static class GetCustomersCustomerCardsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -636,18 +655,18 @@ class V1CustomersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -655,7 +674,7 @@ class V1CustomersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -673,7 +692,7 @@ class V1CustomersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Card[] data;
@@ -682,7 +701,7 @@ class V1CustomersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -701,9 +720,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CardList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -725,15 +746,15 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/cards");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -741,7 +762,7 @@ class V1CustomersService {
   static class PostCustomersCustomerCardsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -762,9 +783,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentSource)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -788,7 +811,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/cards");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -796,7 +819,7 @@ class V1CustomersService {
   static class GetCustomersCustomerSubscriptionsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -804,18 +827,18 @@ class V1CustomersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -823,7 +846,7 @@ class V1CustomersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -841,7 +864,7 @@ class V1CustomersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -853,7 +876,7 @@ class V1CustomersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -872,9 +895,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -896,15 +921,15 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/subscriptions");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -912,7 +937,7 @@ class V1CustomersService {
   static class PostCustomersCustomerSubscriptionsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -933,9 +958,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Subscription)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -954,7 +981,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/subscriptions");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -962,7 +989,7 @@ class V1CustomersService {
   static class GetCustomersCustomerSourcesParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -970,23 +997,23 @@ class V1CustomersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Filter sources according to a particular object type.
      */
-    Nullable!(Nullable!(string)) object;
+    string object;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -994,7 +1021,7 @@ class V1CustomersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -1012,7 +1039,7 @@ class V1CustomersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -1024,7 +1051,7 @@ class V1CustomersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -1043,9 +1070,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ApmsSourcesSourceList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1064,17 +1093,17 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/sources");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.object.isNull)
-      requestor.setQueryParam("object", params.object.get.to!string);
+      requestor.setQueryParam!("deepObject")("object", params.object);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1082,7 +1111,7 @@ class V1CustomersService {
   static class PostCustomersCustomerSourcesParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -1103,9 +1132,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentSource)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1129,7 +1160,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/sources");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1137,16 +1168,16 @@ class V1CustomersService {
   static class GetCustomersCustomerBankAccountsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -1167,9 +1198,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BankAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1190,11 +1223,11 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/bank_accounts/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1202,11 +1235,11 @@ class V1CustomersService {
   static class PostCustomersCustomerBankAccountsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -1227,9 +1260,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1248,9 +1283,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/bank_accounts/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1258,11 +1293,11 @@ class V1CustomersService {
   static class DeleteCustomersCustomerBankAccountsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -1283,9 +1318,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1304,9 +1341,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/bank_accounts/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1314,16 +1351,16 @@ class V1CustomersService {
   static class GetCustomersCustomerPaymentMethodsPaymentMethodParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) payment_method;
+    string payment_method;
 
   }
 
@@ -1344,9 +1381,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentMethod)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1365,11 +1404,11 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/payment_methods/{payment_method}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.payment_method.isNull)
-      requestor.setPathParam("payment_method", params.payment_method.get.to!string);
+      requestor.setPathParam("payment_method", params.payment_method);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1377,16 +1416,16 @@ class V1CustomersService {
   static class GetCustomersCustomerCardsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -1407,9 +1446,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Card)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1429,11 +1470,11 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/cards/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1441,11 +1482,11 @@ class V1CustomersService {
   static class PostCustomersCustomerCardsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -1466,9 +1507,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1487,9 +1530,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/cards/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1497,11 +1540,11 @@ class V1CustomersService {
   static class DeleteCustomersCustomerCardsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -1522,9 +1565,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1543,9 +1588,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/cards/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1553,11 +1598,11 @@ class V1CustomersService {
   static class PostCustomersCustomerBankAccountsIdVerifyParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -1578,9 +1623,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BankAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1599,9 +1646,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/bank_accounts/{id}/verify");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1609,12 +1656,12 @@ class V1CustomersService {
   static class GetCustomersCustomerCashBalanceParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -1635,9 +1682,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CashBalance)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1656,9 +1705,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/cash_balance");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1666,7 +1715,7 @@ class V1CustomersService {
   static class PostCustomersCustomerCashBalanceParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -1687,9 +1736,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CashBalance)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1708,7 +1759,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/cash_balance");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1716,16 +1767,16 @@ class V1CustomersService {
   static class GetCustomersCustomerCashBalanceTransactionsTransactionParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) transaction;
+    string transaction;
 
   }
 
@@ -1746,9 +1797,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CustomerCashBalanceTransaction)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1768,11 +1821,11 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/cash_balance_transactions/{transaction}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.transaction.isNull)
-      requestor.setPathParam("transaction", params.transaction.get.to!string);
+      requestor.setPathParam("transaction", params.transaction);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1780,7 +1833,7 @@ class V1CustomersService {
   static class GetCustomersCustomerCashBalanceTransactionsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -1788,18 +1841,18 @@ class V1CustomersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -1807,7 +1860,7 @@ class V1CustomersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -1825,7 +1878,7 @@ class V1CustomersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -1837,7 +1890,7 @@ class V1CustomersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -1856,9 +1909,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CustomerCashBalanceTransactionList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1878,15 +1933,15 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/cash_balance_transactions");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1894,16 +1949,16 @@ class V1CustomersService {
   static class GetCustomersCustomerSourcesIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -1924,9 +1979,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentSource)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1945,11 +2002,11 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/sources/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1957,11 +2014,11 @@ class V1CustomersService {
   static class PostCustomersCustomerSourcesIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -1982,9 +2039,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2003,9 +2062,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/sources/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2013,11 +2072,11 @@ class V1CustomersService {
   static class DeleteCustomersCustomerSourcesIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -2038,9 +2097,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2059,9 +2120,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/sources/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2069,7 +2130,7 @@ class V1CustomersService {
   static class GetCustomersCustomerBankAccountsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -2077,18 +2138,18 @@ class V1CustomersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -2096,7 +2157,7 @@ class V1CustomersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -2114,7 +2175,7 @@ class V1CustomersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -2126,7 +2187,7 @@ class V1CustomersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -2145,9 +2206,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BankAccountList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2169,15 +2232,15 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/bank_accounts");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2185,7 +2248,7 @@ class V1CustomersService {
   static class PostCustomersCustomerBankAccountsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -2206,9 +2269,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentSource)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2232,7 +2297,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/bank_accounts");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2240,11 +2305,11 @@ class V1CustomersService {
   static class PostCustomersCustomerSourcesIdVerifyParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -2265,9 +2330,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BankAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2286,9 +2353,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/sources/{id}/verify");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2296,16 +2363,16 @@ class V1CustomersService {
   static class GetCustomersCustomerTaxIdsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -2326,9 +2393,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TaxId)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2347,11 +2416,11 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/tax_ids/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2359,11 +2428,11 @@ class V1CustomersService {
   static class DeleteCustomersCustomerTaxIdsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -2384,9 +2453,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedTaxId)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2405,9 +2476,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/tax_ids/{id}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2415,7 +2486,7 @@ class V1CustomersService {
   static class GetCustomersCustomerPaymentMethodsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -2423,18 +2494,18 @@ class V1CustomersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -2442,14 +2513,14 @@ class V1CustomersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * An optional filter on the list, based on the object `type` field. Without the filter, the
      * list includes all current and future payment method types. If your integration expects only
      * one type of payment method in the response, make sure to provide a type value in the request.
      */
-    Nullable!(Nullable!(string)) type;
+    string type;
 
   }
 
@@ -2467,7 +2538,7 @@ class V1CustomersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       PaymentMethod[] data;
@@ -2476,7 +2547,7 @@ class V1CustomersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -2495,9 +2566,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CustomerPaymentMethodResourceList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2516,17 +2589,17 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/payment_methods");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.type.isNull)
-      requestor.setQueryParam("type", params.type.get.to!string);
+      requestor.setQueryParam!("deepObject")("type", params.type);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2534,16 +2607,16 @@ class V1CustomersService {
   static class GetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) subscription_exposed_id;
+    string subscription_exposed_id;
 
   }
 
@@ -2564,9 +2637,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Discount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2584,11 +2659,11 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.subscription_exposed_id.isNull)
-      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id.get.to!string);
+      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2596,11 +2671,11 @@ class V1CustomersService {
   static class DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Nullable!(string)) subscription_exposed_id;
+    string subscription_exposed_id;
 
   }
 
@@ -2621,9 +2696,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedDiscount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2643,9 +2720,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/subscriptions/{subscription_exposed_id}/discount");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.subscription_exposed_id.isNull)
-      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id.get.to!string);
+      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2653,12 +2730,12 @@ class V1CustomersService {
   static class GetCustomersCustomerParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -2679,9 +2756,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2700,9 +2779,9 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2710,7 +2789,7 @@ class V1CustomersService {
   static class PostCustomersCustomerParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -2731,9 +2810,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Customer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2762,7 +2843,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2770,7 +2851,7 @@ class V1CustomersService {
   static class DeleteCustomersCustomerParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -2791,9 +2872,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedCustomer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2813,7 +2896,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -2821,7 +2904,7 @@ class V1CustomersService {
   static class PostCustomersCustomerFundingInstructionsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -2831,30 +2914,30 @@ class V1CustomersService {
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The `funding_type` to get the instructions for.
      */
     @optional
-    Nullable!(string) funding_type;
+    string funding_type;
 
     static class BankTransferParams {
       @optional
-      Nullable!(string) type;
+      string type;
 
       @optional
-      Nullable!(string)[] requested_address_types;
+      string[] requested_address_types;
 
       static class EuBankAccountParams {
         @optional
-        Nullable!(string) country;
+        string country;
 
       }
 
@@ -2888,9 +2971,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FundingInstructions)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -2915,7 +3000,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/funding_instructions");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -2924,7 +3009,7 @@ class V1CustomersService {
   static class GetCustomersCustomerTaxIdsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -2932,18 +3017,18 @@ class V1CustomersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -2951,7 +3036,7 @@ class V1CustomersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -2969,7 +3054,7 @@ class V1CustomersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -2981,7 +3066,7 @@ class V1CustomersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -3000,9 +3085,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TaxIDsList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -3021,15 +3108,15 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/tax_ids");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -3037,7 +3124,7 @@ class V1CustomersService {
   static class PostCustomersCustomerTaxIdsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -3052,19 +3139,19 @@ class V1CustomersService {
      * `za_vat`
      */
     @optional
-    Nullable!(string) type;
+    string type;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * Value of the tax ID.
      */
     @optional
-    Nullable!(string) value;
+    string value;
 
   }
 
@@ -3085,9 +3172,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TaxId)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -3107,7 +3196,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/tax_ids");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -3116,7 +3205,7 @@ class V1CustomersService {
   static class GetCustomersCustomerBalanceTransactionsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -3124,18 +3213,18 @@ class V1CustomersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -3143,7 +3232,7 @@ class V1CustomersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -3161,7 +3250,7 @@ class V1CustomersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -3173,7 +3262,7 @@ class V1CustomersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -3192,9 +3281,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CustomerBalanceTransactionList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -3214,15 +3305,15 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/balance_transactions");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -3230,7 +3321,7 @@ class V1CustomersService {
   static class PostCustomersCustomerBalanceTransactionsParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -3239,7 +3330,7 @@ class V1CustomersService {
      * An arbitrary string attached to the object. Often useful for displaying to users.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -3265,13 +3356,13 @@ class V1CustomersService {
      * set, it will be updated to this value.
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
   }
 
@@ -3292,9 +3383,11 @@ class V1CustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CustomerBalanceTransaction)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -3315,7 +3408,7 @@ class V1CustomersService {
         Servers.getServerUrl(),
         "/v1/customers/{customer}/balance_transactions");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1PaymentIntentsService {
   static class PostPaymentIntentsIntentIncrementAuthorizationParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -43,7 +44,7 @@ class V1PaymentIntentsService {
      * customers’ statements. Must contain at least one letter, maximum 22 characters.
      */
     @optional
-    Nullable!(string) statement_descriptor;
+    string statement_descriptor;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -52,19 +53,19 @@ class V1PaymentIntentsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * An arbitrary string attached to the object. Often useful for displaying to users.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
     static class TransferDataUpdateParams {
       @optional
@@ -109,9 +110,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -154,7 +157,7 @@ class V1PaymentIntentsService {
         Servers.getServerUrl(),
         "/v1/payment_intents/{intent}/increment_authorization");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -163,7 +166,7 @@ class V1PaymentIntentsService {
   static class PostPaymentIntentsIntentVerifyMicrodepositsParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -184,9 +187,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -205,7 +210,7 @@ class V1PaymentIntentsService {
         Servers.getServerUrl(),
         "/v1/payment_intents/{intent}/verify_microdeposits");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -213,7 +218,7 @@ class V1PaymentIntentsService {
   static class PostPaymentIntentsIntentConfirmParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -234,9 +239,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -278,7 +285,7 @@ class V1PaymentIntentsService {
         Servers.getServerUrl(),
         "/v1/payment_intents/{intent}/confirm");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -288,16 +295,16 @@ class V1PaymentIntentsService {
      * The client secret of the PaymentIntent. Required if a publishable key is used to retrieve the
      * source.
      */
-    Nullable!(Nullable!(string)) client_secret;
+    string client_secret;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -318,9 +325,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -344,11 +353,11 @@ class V1PaymentIntentsService {
         Servers.getServerUrl(),
         "/v1/payment_intents/{intent}");
     if (!params.client_secret.isNull)
-      requestor.setQueryParam("client_secret", params.client_secret.get.to!string);
+      requestor.setQueryParam!("deepObject")("client_secret", params.client_secret);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -356,7 +365,7 @@ class V1PaymentIntentsService {
   static class PostPaymentIntentsIntentParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -377,9 +386,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -403,7 +414,7 @@ class V1PaymentIntentsService {
         Servers.getServerUrl(),
         "/v1/payment_intents/{intent}");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -411,7 +422,7 @@ class V1PaymentIntentsService {
   static class PostPaymentIntentsIntentCaptureParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -432,9 +443,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -458,7 +471,7 @@ class V1PaymentIntentsService {
         Servers.getServerUrl(),
         "/v1/payment_intents/{intent}/capture");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -466,7 +479,7 @@ class V1PaymentIntentsService {
   static class PostPaymentIntentsIntentCancelParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -487,9 +500,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -517,7 +532,7 @@ class V1PaymentIntentsService {
         Servers.getServerUrl(),
         "/v1/payment_intents/{intent}/cancel");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -525,7 +540,7 @@ class V1PaymentIntentsService {
   static class PostPaymentIntentsIntentApplyCustomerBalanceParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -546,9 +561,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -567,7 +584,7 @@ class V1PaymentIntentsService {
         Servers.getServerUrl(),
         "/v1/payment_intents/{intent}/apply_customer_balance");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -577,12 +594,12 @@ class V1PaymentIntentsService {
      * A filter on the list, based on the object `created` field. The value can be a string with an
      * integer Unix timestamp, or it can be a dictionary with a number of different query options.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * Only return PaymentIntents for the customer specified by this customer ID.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -590,18 +607,18 @@ class V1PaymentIntentsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -609,7 +626,7 @@ class V1PaymentIntentsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -627,7 +644,7 @@ class V1PaymentIntentsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       PaymentIntent[] data;
@@ -636,7 +653,7 @@ class V1PaymentIntentsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -655,9 +672,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentFlowsPaymentIntentList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -676,17 +695,17 @@ class V1PaymentIntentsService {
         Servers.getServerUrl(),
         "/v1/payment_intents");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -707,7 +726,7 @@ class V1PaymentIntentsService {
      * details.
      */
     @optional
-    Nullable!(string) transfer_group;
+    string transfer_group;
 
     static class SecretKeyParam {
       static class CustomerAcceptanceParam {
@@ -715,17 +734,17 @@ class V1PaymentIntentsService {
         Nullable!(long) accepted_at;
 
         @optional
-        Nullable!(string) type;
+        string type;
 
         @optional
         Json offline;
 
         static class OnlineParam {
           @optional
-          Nullable!(string) user_agent;
+          string user_agent;
 
           @optional
-          Nullable!(string) ip_address;
+          string ip_address;
 
         }
 
@@ -755,7 +774,7 @@ class V1PaymentIntentsService {
      * firm).
      */
     @optional
-    Nullable!(string) return_url;
+    string return_url;
 
     /**
      * Email address that the receipt for the resulting payment will be sent to. If `receipt_email`
@@ -763,7 +782,7 @@ class V1PaymentIntentsService {
      * settings](https://dashboard.stripe.com/account/emails).
      */
     @optional
-    Nullable!(string) receipt_email;
+    string receipt_email;
 
     static class PaymentMethodDataParams {
       @optional
@@ -774,7 +793,7 @@ class V1PaymentIntentsService {
 
       static class Param {
         @optional
-        Nullable!(string) bank;
+        string bank;
 
       }
 
@@ -786,13 +805,13 @@ class V1PaymentIntentsService {
 
       static class PaymentMethodParam {
         @optional
-        Nullable!(string) transit_number;
+        string transit_number;
 
         @optional
-        Nullable!(string) institution_number;
+        string institution_number;
 
         @optional
-        Nullable!(string) account_number;
+        string account_number;
 
       }
 
@@ -837,7 +856,7 @@ class V1PaymentIntentsService {
 
       static class RadarOptions {
         @optional
-        Nullable!(string) session;
+        string session;
 
       }
 
@@ -851,26 +870,26 @@ class V1PaymentIntentsService {
       Json pix;
 
       @optional
-      Nullable!(string)[string] metadata;
+      string[string] metadata;
 
       @optional
       Json link;
 
       @optional
-      Nullable!(string) type;
+      string type;
 
       static class BillingDetailsInnerParams {
         @optional
         Json email;
 
         @optional
-        Nullable!(string) phone;
+        string phone;
 
         @optional
         Json address;
 
         @optional
-        Nullable!(string) name;
+        string name;
 
       }
 
@@ -932,13 +951,13 @@ class V1PaymentIntentsService {
      * [use case for connected accounts](https://stripe.com/docs/payments/connected-accounts).
      */
     @optional
-    Nullable!(string) on_behalf_of;
+    string on_behalf_of;
 
     /**
      * Controls when the funds will be captured from the customer's account.
      */
     @optional
-    Nullable!(string) capture_method;
+    string capture_method;
 
     /**
      * ID of the Customer this PaymentIntent belongs to, if one exists.
@@ -949,14 +968,14 @@ class V1PaymentIntentsService {
      * has been confirmed and any required actions from the user are complete.
      */
     @optional
-    Nullable!(string) customer;
+    string customer;
 
     /**
      * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Set to `true` to fail the payment attempt if the PaymentIntent transitions into
@@ -972,7 +991,7 @@ class V1PaymentIntentsService {
 
     static class RadarOptions {
       @optional
-      Nullable!(string) session;
+      string session;
 
     }
 
@@ -988,7 +1007,7 @@ class V1PaymentIntentsService {
       Nullable!(int) amount;
 
       @optional
-      Nullable!(string) destination;
+      string destination;
 
     }
 
@@ -1006,7 +1025,7 @@ class V1PaymentIntentsService {
      * firm).
      */
     @optional
-    Nullable!(string) mandate;
+    string mandate;
 
     /**
      * Amount intended to be collected by this PaymentIntent. A positive integer representing how
@@ -1027,7 +1046,7 @@ class V1PaymentIntentsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * Set to `true` only when using manual confirmation and the iOS or Android SDKs to handle
@@ -1045,13 +1064,13 @@ class V1PaymentIntentsService {
      * the Charges API. We recommend that you explicitly provide the `payment_method` going forward.
      */
     @optional
-    Nullable!(string) payment_method;
+    string payment_method;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The amount of the application fee (if any) that will be requested to be applied to the
@@ -1068,7 +1087,7 @@ class V1PaymentIntentsService {
      * customers’ statements. Must contain at least one letter, maximum 22 characters.
      */
     @optional
-    Nullable!(string) statement_descriptor;
+    string statement_descriptor;
 
     static class PaymentMethodOptionsParam {
       @optional
@@ -1170,7 +1189,7 @@ class V1PaymentIntentsService {
     PaymentMethodOptionsParam payment_method_options;
 
     @optional
-    Nullable!(string) confirmation_method;
+    string confirmation_method;
 
     /**
      * Set to `true` to indicate that the customer is not in your checkout flow during this payment
@@ -1191,7 +1210,7 @@ class V1PaymentIntentsService {
      * concatenated descriptor.
      */
     @optional
-    Nullable!(string) statement_descriptor_suffix;
+    string statement_descriptor_suffix;
 
     /**
      * Indicates that you intend to make future payments with this PaymentIntent's payment method.
@@ -1206,39 +1225,39 @@ class V1PaymentIntentsService {
      * [SCA](https://stripe.com/docs/strong-customer-authentication).
      */
     @optional
-    Nullable!(string) setup_future_usage;
+    string setup_future_usage;
 
     /**
      * An arbitrary string attached to the object. Often useful for displaying to users.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
     static class OptionalFieldsShipping {
       @optional
-      Nullable!(string) phone;
+      string phone;
 
       @optional
-      Nullable!(string) carrier;
+      string carrier;
 
       static class OptionalFieldsAddress {
         @optional
-        Nullable!(string) line1;
+        string line1;
 
         @optional
-        Nullable!(string) line2;
+        string line2;
 
         @optional
-        Nullable!(string) country;
+        string country;
 
         @optional
-        Nullable!(string) postal_code;
+        string postal_code;
 
         @optional
-        Nullable!(string) city;
+        string city;
 
         @optional
-        Nullable!(string) state;
+        string state;
 
       }
 
@@ -1246,10 +1265,10 @@ class V1PaymentIntentsService {
       OptionalFieldsAddress address;
 
       @optional
-      Nullable!(string) tracking_number;
+      string tracking_number;
 
       @optional
-      Nullable!(string) name;
+      string name;
 
     }
 
@@ -1265,7 +1284,7 @@ class V1PaymentIntentsService {
      * methods from the [Stripe Dashboard](https://dashboard.stripe.com/settings/payment_methods).
      */
     @optional
-    Nullable!(string)[] payment_method_types;
+    string[] payment_method_types;
 
   }
 
@@ -1286,9 +1305,11 @@ class V1PaymentIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

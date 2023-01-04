@@ -25,7 +25,7 @@ class ApplicationFee {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * ID of the corresponding charge on the platform account, if this fee was the result of a
@@ -39,7 +39,7 @@ class ApplicationFee {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Amount in %s refunded (can be less than the amount attribute on the fee if a partial refund
@@ -85,7 +85,7 @@ class ApplicationFee {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   static class FeeRefundList {
     /**
@@ -99,7 +99,7 @@ class ApplicationFee {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -111,7 +111,7 @@ class ApplicationFee {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 

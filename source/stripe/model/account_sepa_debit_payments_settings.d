@@ -14,6 +14,6 @@ class AccountSepaDebitPaymentsSettings {
    * SEPA creditor identifier that identifies the company making the payment.
    */
   @optional
-  Nullable!(string) creditor_id;
+  string creditor_id;
 
 }

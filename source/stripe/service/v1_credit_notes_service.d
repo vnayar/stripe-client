@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,7 +28,7 @@ class V1CreditNotesService {
   static class GetCreditNotesCreditNoteLinesParams {
     /**
      */
-    Nullable!(Nullable!(string)) credit_note;
+    string credit_note;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -35,18 +36,18 @@ class V1CreditNotesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -54,7 +55,7 @@ class V1CreditNotesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -72,7 +73,7 @@ class V1CreditNotesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -84,7 +85,7 @@ class V1CreditNotesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -103,9 +104,11 @@ class V1CreditNotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CreditNoteLinesList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -126,15 +129,15 @@ class V1CreditNotesService {
         Servers.getServerUrl(),
         "/v1/credit_notes/{credit_note}/lines");
     if (!params.credit_note.isNull)
-      requestor.setPathParam("credit_note", params.credit_note.get.to!string);
+      requestor.setPathParam("credit_note", params.credit_note);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -143,11 +146,11 @@ class V1CreditNotesService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -168,9 +171,11 @@ class V1CreditNotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CreditNote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -189,9 +194,9 @@ class V1CreditNotesService {
         Servers.getServerUrl(),
         "/v1/credit_notes/{id}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -199,7 +204,7 @@ class V1CreditNotesService {
   static class PostCreditNotesIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -220,9 +225,11 @@ class V1CreditNotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CreditNote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -241,7 +248,7 @@ class V1CreditNotesService {
         Servers.getServerUrl(),
         "/v1/credit_notes/{id}");
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -250,7 +257,7 @@ class V1CreditNotesService {
     /**
      * Only return credit notes for the customer specified by this customer ID.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -258,23 +265,23 @@ class V1CreditNotesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * Only return credit notes for the invoice specified by this invoice ID.
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -282,7 +289,7 @@ class V1CreditNotesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -300,7 +307,7 @@ class V1CreditNotesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       CreditNote[] data;
@@ -309,7 +316,7 @@ class V1CreditNotesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -328,9 +335,11 @@ class V1CreditNotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CreditNotesList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -349,17 +358,17 @@ class V1CreditNotesService {
         Servers.getServerUrl(),
         "/v1/credit_notes");
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.invoice.isNull)
-      requestor.setQueryParam("invoice", params.invoice.get.to!string);
+      requestor.setQueryParam!("deepObject")("invoice", params.invoice);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -376,7 +385,7 @@ class V1CreditNotesService {
      * ID of the invoice.
      */
     @optional
-    Nullable!(string) invoice;
+    string invoice;
 
     /**
      * The integer amount in cents (or local equivalent) representing the amount that is credited
@@ -396,16 +405,16 @@ class V1CreditNotesService {
       Nullable!(int) quantity;
 
       @optional
-      Nullable!(string) invoice_line_item;
+      string invoice_line_item;
 
       @optional
-      Nullable!(string) unit_amount_decimal;
+      string unit_amount_decimal;
 
       @optional
-      Nullable!(string) description;
+      string description;
 
       @optional
-      Nullable!(string) type;
+      string type;
 
       @optional
       Json tax_rates;
@@ -423,7 +432,7 @@ class V1CreditNotesService {
      * `product_unsatisfactory`
      */
     @optional
-    Nullable!(string) reason;
+    string reason;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -432,13 +441,13 @@ class V1CreditNotesService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * ID of an existing refund to link this credit note to.
      */
     @optional
-    Nullable!(string) refund;
+    string refund;
 
     /**
      * The integer amount in cents (or local equivalent) representing the amount to credit the
@@ -458,13 +467,13 @@ class V1CreditNotesService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The credit note's memo appears on the credit note PDF.
      */
     @optional
-    Nullable!(string) memo;
+    string memo;
 
   }
 
@@ -485,9 +494,11 @@ class V1CreditNotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CreditNote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -531,7 +542,7 @@ class V1CreditNotesService {
   static class PostCreditNotesIdVoidParams {
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -552,9 +563,11 @@ class V1CreditNotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CreditNote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -574,7 +587,7 @@ class V1CreditNotesService {
         Servers.getServerUrl(),
         "/v1/credit_notes/{id}/void");
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

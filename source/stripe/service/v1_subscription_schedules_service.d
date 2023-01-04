@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,22 +28,22 @@ class V1SubscriptionSchedulesService {
     /**
      * Only return subscription schedules that were created canceled the given date interval.
      */
-    Nullable!(Json) canceled_at;
+    Json canceled_at;
 
     /**
      * Only return subscription schedules that completed during the given date interval.
      */
-    Nullable!(Json) completed_at;
+    Json completed_at;
 
     /**
      * Only return subscription schedules that were created during the given date interval.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * Only return subscription schedules for the given customer.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -50,28 +51,28 @@ class V1SubscriptionSchedulesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Only return subscription schedules that were released during the given date interval.
      */
-    Nullable!(Json) released_at;
+    Json released_at;
 
     /**
      * Only return subscription schedules that have not started yet.
      */
-    Nullable!(Nullable!(bool)) scheduled;
+    Nullable!(bool) scheduled;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -79,7 +80,7 @@ class V1SubscriptionSchedulesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -97,7 +98,7 @@ class V1SubscriptionSchedulesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       SubscriptionSchedule[] data;
@@ -106,7 +107,7 @@ class V1SubscriptionSchedulesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -125,9 +126,11 @@ class V1SubscriptionSchedulesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionSchedulesResourceScheduleList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -146,25 +149,25 @@ class V1SubscriptionSchedulesService {
         Servers.getServerUrl(),
         "/v1/subscription_schedules");
     if (!params.canceled_at.isNull)
-      requestor.setQueryParam("canceled_at", params.canceled_at.get.to!string);
+      requestor.setQueryParam!("deepObject")("canceled_at", params.canceled_at);
     if (!params.completed_at.isNull)
-      requestor.setQueryParam("completed_at", params.completed_at.get.to!string);
+      requestor.setQueryParam!("deepObject")("completed_at", params.completed_at);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.released_at.isNull)
-      requestor.setQueryParam("released_at", params.released_at.get.to!string);
+      requestor.setQueryParam!("deepObject")("released_at", params.released_at);
     if (!params.scheduled.isNull)
-      requestor.setQueryParam("scheduled", params.scheduled.get.to!string);
+      requestor.setQueryParam!("deepObject")("scheduled", params.scheduled);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -186,9 +189,11 @@ class V1SubscriptionSchedulesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionSchedule)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -214,11 +219,11 @@ class V1SubscriptionSchedulesService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) schedule;
+    string schedule;
 
   }
 
@@ -239,9 +244,11 @@ class V1SubscriptionSchedulesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionSchedule)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -262,9 +269,9 @@ class V1SubscriptionSchedulesService {
         Servers.getServerUrl(),
         "/v1/subscription_schedules/{schedule}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.schedule.isNull)
-      requestor.setPathParam("schedule", params.schedule.get.to!string);
+      requestor.setPathParam("schedule", params.schedule);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -272,7 +279,7 @@ class V1SubscriptionSchedulesService {
   static class PostSubscriptionSchedulesScheduleParams {
     /**
      */
-    Nullable!(Nullable!(string)) schedule;
+    string schedule;
 
   }
 
@@ -293,9 +300,11 @@ class V1SubscriptionSchedulesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionSchedule)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -314,7 +323,7 @@ class V1SubscriptionSchedulesService {
         Servers.getServerUrl(),
         "/v1/subscription_schedules/{schedule}");
     if (!params.schedule.isNull)
-      requestor.setPathParam("schedule", params.schedule.get.to!string);
+      requestor.setPathParam("schedule", params.schedule);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -322,7 +331,7 @@ class V1SubscriptionSchedulesService {
   static class PostSubscriptionSchedulesScheduleCancelParams {
     /**
      */
-    Nullable!(Nullable!(string)) schedule;
+    string schedule;
 
   }
 
@@ -343,9 +352,11 @@ class V1SubscriptionSchedulesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionSchedule)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -366,7 +377,7 @@ class V1SubscriptionSchedulesService {
         Servers.getServerUrl(),
         "/v1/subscription_schedules/{schedule}/cancel");
     if (!params.schedule.isNull)
-      requestor.setPathParam("schedule", params.schedule.get.to!string);
+      requestor.setPathParam("schedule", params.schedule);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -374,7 +385,7 @@ class V1SubscriptionSchedulesService {
   static class PostSubscriptionSchedulesScheduleReleaseParams {
     /**
      */
-    Nullable!(Nullable!(string)) schedule;
+    string schedule;
 
   }
 
@@ -395,9 +406,11 @@ class V1SubscriptionSchedulesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionSchedule)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -420,7 +433,7 @@ class V1SubscriptionSchedulesService {
         Servers.getServerUrl(),
         "/v1/subscription_schedules/{schedule}/release");
     if (!params.schedule.isNull)
-      requestor.setPathParam("schedule", params.schedule.get.to!string);
+      requestor.setPathParam("schedule", params.schedule);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

@@ -48,7 +48,7 @@ class Source {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   @optional
   SourceTypeGiropay giropay;
@@ -101,7 +101,7 @@ class Source {
    * source has not been attached to a customer.
    */
   @optional
-  Nullable!(string) customer;
+  string customer;
 
   /**
    * Three-letter [ISO code for the currency](https://stripe.com/docs/currencies) associated with
@@ -109,7 +109,7 @@ class Source {
    * for `single_use` sources.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   @optional
   SourceTypeSofort sofort;
@@ -132,7 +132,7 @@ class Source {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   @optional
   SourceTypeMultibanco multibanco;
@@ -149,14 +149,14 @@ class Source {
    * used.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The status of the source, one of `canceled`, `chargeable`, `consumed`, `failed`, or
    * `pending`. Only `chargeable` sources can be used to create a charge.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   @optional
   SourceTypeAuBecsDebit au_becs_debit;
@@ -169,7 +169,7 @@ class Source {
    * you charge the source.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * Either `reusable` or `single_use`. Whether this source should be reusable or not. Some source
@@ -177,13 +177,13 @@ class Source {
    * creation. If an incompatible value is passed, an error will be returned.
    */
   @optional
-  Nullable!(string) usage;
+  string usage;
 
   /**
    * The client secret of the source. Used for client-side retrieval using a publishable key.
    */
   @optional
-  Nullable!(string) client_secret;
+  string client_secret;
 
   @optional
   SourceTypeSepaDebit sepa_debit;
@@ -199,7 +199,7 @@ class Source {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   SourceRedirectFlow redirect;
@@ -215,7 +215,7 @@ class Source {
    * `code_verification`, `none`.
    */
   @optional
-  Nullable!(string) flow;
+  string flow;
 
   @optional
   SourceReceiverFlow receiver;

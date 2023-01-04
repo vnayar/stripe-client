@@ -15,7 +15,7 @@ class MandateBlik {
    * Type of the mandate.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Date at which the mandate expires.

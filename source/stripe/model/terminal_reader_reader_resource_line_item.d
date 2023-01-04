@@ -15,7 +15,7 @@ class TerminalReaderReaderResourceLineItem {
    * Description of the line item.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The amount of the line item. A positive integer in the [smallest currency

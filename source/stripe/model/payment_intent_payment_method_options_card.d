@@ -16,7 +16,7 @@ class PaymentIntentPaymentMethodOptionsCard {
    * Controls when the funds will be captured from the customer's account.
    */
   @optional
-  Nullable!(string) capture_method;
+  string capture_method;
 
   /**
    * Provides information about a card payment that customers see on their statements.
@@ -26,7 +26,7 @@ class PaymentIntentPaymentMethodOptionsCard {
    * appear truncated to 17 characters.
    */
   @optional
-  Nullable!(string) statement_descriptor_suffix_kanji;
+  string statement_descriptor_suffix_kanji;
 
   /**
    * We strongly recommend that you rely on our SCA Engine to automatically prompt your customers
@@ -39,7 +39,7 @@ class PaymentIntentPaymentMethodOptionsCard {
    * how this configuration interacts with Radar and our SCA Engine.
    */
   @optional
-  Nullable!(string) request_three_d_secure;
+  string request_three_d_secure;
 
   /**
    * Installment details for this payment (Mexico only).
@@ -54,7 +54,7 @@ class PaymentIntentPaymentMethodOptionsCard {
    * card attached to the payment intent. Can be only set confirm-time.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * Indicates that you intend to make future payments with this PaymentIntent's payment method.
@@ -69,7 +69,7 @@ class PaymentIntentPaymentMethodOptionsCard {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * Provides information about a card payment that customers see on their statements.
@@ -79,7 +79,7 @@ class PaymentIntentPaymentMethodOptionsCard {
    * appear truncated to 22 characters.
    */
   @optional
-  Nullable!(string) statement_descriptor_suffix_kana;
+  string statement_descriptor_suffix_kana;
 
   /**
    * Configuration options for setting up an eMandate for cards issued in India.

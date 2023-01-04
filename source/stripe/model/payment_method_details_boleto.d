@@ -14,6 +14,6 @@ class PaymentMethodDetailsBoleto {
    * The tax ID of the customer (CPF for individuals consumers or CNPJ for businesses consumers)
    */
   @optional
-  Nullable!(string) tax_id;
+  string tax_id;
 
 }

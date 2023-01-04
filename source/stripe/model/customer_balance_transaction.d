@@ -40,7 +40,7 @@ class CustomerBalanceTransaction {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The ID of the customer the transaction belongs to.
@@ -61,7 +61,7 @@ class CustomerBalanceTransaction {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -69,7 +69,7 @@ class CustomerBalanceTransaction {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -82,13 +82,13 @@ class CustomerBalanceTransaction {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Transaction type: `adjustment`, `applied_to_invoice`, `credit_note`, `initial`,
@@ -98,7 +98,7 @@ class CustomerBalanceTransaction {
    * types.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

@@ -27,12 +27,12 @@ class PaymentIntentPaymentMethodOptionsAcssDebit {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * Bank account verification method.
    */
   @optional
-  Nullable!(string) verification_method;
+  string verification_method;
 
 }

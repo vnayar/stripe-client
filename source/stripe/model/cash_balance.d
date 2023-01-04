@@ -18,7 +18,7 @@ class CashBalance {
    * The ID of the customer whose cash balance this object represents.
    */
   @optional
-  Nullable!(string) customer;
+  string customer;
 
   /**
    * A hash of all cash balances available to this customer. You cannot delete a customer with any
@@ -42,6 +42,6 @@ class CashBalance {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
 }

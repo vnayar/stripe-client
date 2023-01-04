@@ -37,6 +37,6 @@ class QuotesResourceRecurring {
    * The frequency at which a subscription is billed. One of `day`, `week`, `month` or `year`.
    */
   @optional
-  Nullable!(string) interval;
+  string interval;
 
 }

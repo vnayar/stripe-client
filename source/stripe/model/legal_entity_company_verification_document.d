@@ -22,7 +22,7 @@ class LegalEntityCompanyVerificationDocument {
    * A user-displayable string describing the verification state of this document.
    */
   @optional
-  Nullable!(string) details;
+  string details;
 
   /**
    * The front of a document returned by a [file upload](https://stripe.com/docs/api#create_file)
@@ -40,6 +40,6 @@ class LegalEntityCompanyVerificationDocument {
    * document.
    */
   @optional
-  Nullable!(string) details_code;
+  string details_code;
 
 }

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1PayoutsService {
   static class PostPayoutsPayoutCancelParams {
     /**
      */
-    Nullable!(Nullable!(string)) payout;
+    string payout;
 
   }
 
@@ -47,9 +48,11 @@ class V1PayoutsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Payout)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -69,7 +72,7 @@ class V1PayoutsService {
         Servers.getServerUrl(),
         "/v1/payouts/{payout}/cancel");
     if (!params.payout.isNull)
-      requestor.setPathParam("payout", params.payout.get.to!string);
+      requestor.setPathParam("payout", params.payout);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -78,11 +81,11 @@ class V1PayoutsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) payout;
+    string payout;
 
   }
 
@@ -103,9 +106,11 @@ class V1PayoutsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Payout)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -126,9 +131,9 @@ class V1PayoutsService {
         Servers.getServerUrl(),
         "/v1/payouts/{payout}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.payout.isNull)
-      requestor.setPathParam("payout", params.payout.get.to!string);
+      requestor.setPathParam("payout", params.payout);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -136,7 +141,7 @@ class V1PayoutsService {
   static class PostPayoutsPayoutParams {
     /**
      */
-    Nullable!(Nullable!(string)) payout;
+    string payout;
 
   }
 
@@ -157,9 +162,11 @@ class V1PayoutsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Payout)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -179,7 +186,7 @@ class V1PayoutsService {
         Servers.getServerUrl(),
         "/v1/payouts/{payout}");
     if (!params.payout.isNull)
-      requestor.setPathParam("payout", params.payout.get.to!string);
+      requestor.setPathParam("payout", params.payout);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -187,16 +194,16 @@ class V1PayoutsService {
   static class GetPayoutsParams {
     /**
      */
-    Nullable!(Json) arrival_date;
+    Json arrival_date;
 
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * The ID of an external account - only return payouts sent to this external account.
      */
-    Nullable!(Nullable!(string)) destination;
+    string destination;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -204,18 +211,18 @@ class V1PayoutsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -223,12 +230,12 @@ class V1PayoutsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return payouts that have the given status: `pending`, `paid`, `failed`, or `canceled`.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
   }
 
@@ -246,7 +253,7 @@ class V1PayoutsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Payout[] data;
@@ -255,7 +262,7 @@ class V1PayoutsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -274,9 +281,11 @@ class V1PayoutsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PayoutList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -297,21 +306,21 @@ class V1PayoutsService {
         Servers.getServerUrl(),
         "/v1/payouts");
     if (!params.arrival_date.isNull)
-      requestor.setQueryParam("arrival_date", params.arrival_date.get.to!string);
+      requestor.setQueryParam!("deepObject")("arrival_date", params.arrival_date);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.destination.isNull)
-      requestor.setQueryParam("destination", params.destination.get.to!string);
+      requestor.setQueryParam!("deepObject")("destination", params.destination);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -330,7 +339,7 @@ class V1PayoutsService {
      * Some may not display it at all.
      */
     @optional
-    Nullable!(string) statement_descriptor;
+    string statement_descriptor;
 
     /**
      * The balance type of your Stripe balance to draw this payout from. Balances for different
@@ -338,14 +347,14 @@ class V1PayoutsService {
      * `bank_account`, `card`, or `fpx`.
      */
     @optional
-    Nullable!(string) source_type;
+    string source_type;
 
     /**
      * The ID of a bank account or a card to send the payout to. If no destination is supplied, the
      * default external account for the specified currency will be used.
      */
     @optional
-    Nullable!(string) destination;
+    string destination;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -354,14 +363,14 @@ class V1PayoutsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * The method used to send this payout, which can be `standard` or `instant`. `instant` is only
@@ -369,19 +378,19 @@ class V1PayoutsService {
      * information](https://stripe.com/blog/instant-payouts-for-marketplaces).)
      */
     @optional
-    Nullable!(string) method;
+    string method;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * An arbitrary string attached to the object. Often useful for displaying to users.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
   }
 
@@ -402,9 +411,11 @@ class V1PayoutsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Payout)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -438,7 +449,7 @@ class V1PayoutsService {
   static class PostPayoutsPayoutReverseParams {
     /**
      */
-    Nullable!(Nullable!(string)) payout;
+    string payout;
 
   }
 
@@ -459,9 +470,11 @@ class V1PayoutsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Payout)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -485,7 +498,7 @@ class V1PayoutsService {
         Servers.getServerUrl(),
         "/v1/payouts/{payout}/reverse");
     if (!params.payout.isNull)
-      requestor.setPathParam("payout", params.payout.get.to!string);
+      requestor.setPathParam("payout", params.payout);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

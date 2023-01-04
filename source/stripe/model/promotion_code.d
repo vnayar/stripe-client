@@ -40,7 +40,7 @@ class PromotionCode {
    * promotion codes for each customer.
    */
   @optional
-  Nullable!(string) code;
+  string code;
 
   /**
    * The customer that this promotion code can be used by.
@@ -54,7 +54,7 @@ class PromotionCode {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Maximum number of times this promotion code can be redeemed.
@@ -66,7 +66,7 @@ class PromotionCode {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Whether the promotion code is currently active. A promotion code is only active if the coupon
@@ -86,7 +86,7 @@ class PromotionCode {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

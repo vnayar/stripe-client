@@ -14,42 +14,42 @@ class PaymentIntentNextActionWechatPayRedirectToAndroidApp {
    * package is static value
    */
   @optional
-  Nullable!(string) package_;
+  string package_;
 
   /**
    * A signature
    */
   @optional
-  Nullable!(string) sign;
+  string sign;
 
   /**
    * nonce_str is a random string
    */
   @optional
-  Nullable!(string) nonce_str;
+  string nonce_str;
 
   /**
    * app_id is the APP ID registered on WeChat open platform
    */
   @optional
-  Nullable!(string) app_id;
+  string app_id;
 
   /**
    * an unique trading ID assigned by WeChat Pay
    */
   @optional
-  Nullable!(string) prepay_id;
+  string prepay_id;
 
   /**
    * an unique merchant ID assigned by WeChat Pay
    */
   @optional
-  Nullable!(string) partner_id;
+  string partner_id;
 
   /**
    * Specifies the current time in epoch format
    */
   @optional
-  Nullable!(string) timestamp;
+  string timestamp;
 
 }

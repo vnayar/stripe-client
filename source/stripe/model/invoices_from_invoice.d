@@ -21,6 +21,6 @@ class InvoicesFromInvoice {
    * The relation between this invoice and the cloned invoice
    */
   @optional
-  Nullable!(string) action;
+  string action;
 
 }

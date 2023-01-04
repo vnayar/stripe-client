@@ -22,7 +22,7 @@ class BalanceAmount {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   @optional
   BalanceAmountBySourceType source_types;

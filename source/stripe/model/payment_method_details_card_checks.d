@@ -15,20 +15,20 @@ class PaymentMethodDetailsCardChecks {
    * `unchecked`.
    */
   @optional
-  Nullable!(string) cvc_check;
+  string cvc_check;
 
   /**
    * If a address line1 was provided, results of the check, one of `pass`, `fail`, `unavailable`,
    * or `unchecked`.
    */
   @optional
-  Nullable!(string) address_line1_check;
+  string address_line1_check;
 
   /**
    * If a address postal code was provided, results of the check, one of `pass`, `fail`,
    * `unavailable`, or `unchecked`.
    */
   @optional
-  Nullable!(string) address_postal_code_check;
+  string address_postal_code_check;
 
 }

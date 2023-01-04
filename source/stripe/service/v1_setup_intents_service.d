@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,16 +29,16 @@ class V1SetupIntentsService {
      * The client secret of the SetupIntent. Required if a publishable key is used to retrieve the
      * SetupIntent.
      */
-    Nullable!(Nullable!(string)) client_secret;
+    string client_secret;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -58,9 +59,11 @@ class V1SetupIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SetupIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -84,11 +87,11 @@ class V1SetupIntentsService {
         Servers.getServerUrl(),
         "/v1/setup_intents/{intent}");
     if (!params.client_secret.isNull)
-      requestor.setQueryParam("client_secret", params.client_secret.get.to!string);
+      requestor.setQueryParam!("deepObject")("client_secret", params.client_secret);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -96,7 +99,7 @@ class V1SetupIntentsService {
   static class PostSetupIntentsIntentParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -117,9 +120,11 @@ class V1SetupIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SetupIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -138,7 +143,7 @@ class V1SetupIntentsService {
         Servers.getServerUrl(),
         "/v1/setup_intents/{intent}");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -151,18 +156,18 @@ class V1SetupIntentsService {
      * and OutboundTransfers. It cannot be set to true when setting up a PaymentMethod for a
      * Customer, and defaults to false when attaching a PaymentMethod to a Customer.
      */
-    Nullable!(Nullable!(bool)) attach_to_self;
+    Nullable!(bool) attach_to_self;
 
     /**
      * A filter on the list, based on the object `created` field. The value can be a string with an
      * integer Unix timestamp, or it can be a dictionary with a number of different query options.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * Only return SetupIntents for the customer specified by this customer ID.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -170,23 +175,23 @@ class V1SetupIntentsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Only return SetupIntents associated with the specified payment method.
      */
-    Nullable!(Nullable!(string)) payment_method;
+    string payment_method;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -194,7 +199,7 @@ class V1SetupIntentsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -212,7 +217,7 @@ class V1SetupIntentsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       SetupIntent[] data;
@@ -221,7 +226,7 @@ class V1SetupIntentsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -240,9 +245,11 @@ class V1SetupIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentFlowsSetupIntentList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -261,21 +268,21 @@ class V1SetupIntentsService {
         Servers.getServerUrl(),
         "/v1/setup_intents");
     if (!params.attach_to_self.isNull)
-      requestor.setQueryParam("attach_to_self", params.attach_to_self.get.to!string);
+      requestor.setQueryParam!("deepObject")("attach_to_self", params.attach_to_self);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.payment_method.isNull)
-      requestor.setQueryParam("payment_method", params.payment_method.get.to!string);
+      requestor.setQueryParam!("deepObject")("payment_method", params.payment_method);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -297,9 +304,11 @@ class V1SetupIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SetupIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -326,7 +335,7 @@ class V1SetupIntentsService {
   static class PostSetupIntentsIntentConfirmParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -347,9 +356,11 @@ class V1SetupIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SetupIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -378,7 +389,7 @@ class V1SetupIntentsService {
         Servers.getServerUrl(),
         "/v1/setup_intents/{intent}/confirm");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -386,7 +397,7 @@ class V1SetupIntentsService {
   static class PostSetupIntentsIntentCancelParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -407,9 +418,11 @@ class V1SetupIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SetupIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -432,7 +445,7 @@ class V1SetupIntentsService {
         Servers.getServerUrl(),
         "/v1/setup_intents/{intent}/cancel");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -440,7 +453,7 @@ class V1SetupIntentsService {
   static class PostSetupIntentsIntentVerifyMicrodepositsParams {
     /**
      */
-    Nullable!(Nullable!(string)) intent;
+    string intent;
 
   }
 
@@ -461,9 +474,11 @@ class V1SetupIntentsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SetupIntent)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -482,7 +497,7 @@ class V1SetupIntentsService {
         Servers.getServerUrl(),
         "/v1/setup_intents/{intent}/verify_microdeposits");
     if (!params.intent.isNull)
-      requestor.setPathParam("intent", params.intent.get.to!string);
+      requestor.setPathParam("intent", params.intent);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

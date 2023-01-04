@@ -50,7 +50,7 @@ class Invoiceitem {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The subscription that this invoice item has been created for, if any.
@@ -76,20 +76,20 @@ class Invoiceitem {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The subscription item that this invoice item has been created for, if any.
    */
   @optional
-  Nullable!(string) subscription_item;
+  string subscription_item;
 
   @optional
   InvoiceLineItemPeriod period;
@@ -112,7 +112,7 @@ class Invoiceitem {
    * Same as `unit_amount`, but contains a decimal value with at most 12 decimal places.
    */
   @optional
-  Nullable!(string) unit_amount_decimal;
+  string unit_amount_decimal;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -124,7 +124,7 @@ class Invoiceitem {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * ID of the test clock this invoice item belongs to.
@@ -142,7 +142,7 @@ class Invoiceitem {
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The discounts which apply to the invoice item. Item discounts are applied before invoice

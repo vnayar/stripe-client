@@ -15,7 +15,7 @@ class DisputeEvidence {
    * The IP address that the customer used when making the purchase.
    */
   @optional
-  Nullable!(string) customer_purchase_ip;
+  string customer_purchase_ip;
 
   /**
    * (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any communication with
@@ -31,21 +31,21 @@ class DisputeEvidence {
    * human-readable format.
    */
   @optional
-  Nullable!(string) shipping_date;
+  string shipping_date;
 
   /**
    * The tracking number for a physical product, obtained from the delivery service. If multiple
    * tracking numbers were generated for this purchase, please separate them with commas.
    */
   @optional
-  Nullable!(string) shipping_tracking_number;
+  string shipping_tracking_number;
 
   /**
    * The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc. If
    * multiple carriers were used for this purchase, please separate them with commas.
    */
   @optional
-  Nullable!(string) shipping_carrier;
+  string shipping_carrier;
 
   /**
    * (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your refund policy, as
@@ -59,7 +59,7 @@ class DisputeEvidence {
    * address information as possible.
    */
   @optional
-  Nullable!(string) shipping_address;
+  string shipping_address;
 
   /**
    * (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation showing
@@ -73,7 +73,7 @@ class DisputeEvidence {
    * A justification for why the customer is not entitled to a refund.
    */
   @optional
-  Nullable!(string) refund_refusal_explanation;
+  string refund_refusal_explanation;
 
   /**
    * (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Any receipt or message
@@ -86,7 +86,7 @@ class DisputeEvidence {
    * The email address of the customer.
    */
   @optional
-  Nullable!(string) customer_email_address;
+  string customer_email_address;
 
   /**
    * (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Your subscription
@@ -99,7 +99,7 @@ class DisputeEvidence {
    * A description of the product or service that was sold.
    */
   @optional
-  Nullable!(string) product_description;
+  string product_description;
 
   /**
    * (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Documentation for the
@@ -131,49 +131,49 @@ class DisputeEvidence {
    * human-readable format.
    */
   @optional
-  Nullable!(string) service_date;
+  string service_date;
 
   /**
    * The billing address provided by the customer.
    */
   @optional
-  Nullable!(string) billing_address;
+  string billing_address;
 
   /**
    * The Stripe ID for the prior charge which appears to be a duplicate of the disputed charge.
    */
   @optional
-  Nullable!(string) duplicate_charge_id;
+  string duplicate_charge_id;
 
   /**
    * Documentation demonstrating that the customer was shown your refund policy prior to purchase.
    */
   @optional
-  Nullable!(string) refund_policy_disclosure;
+  string refund_policy_disclosure;
 
   /**
    * The name of the customer.
    */
   @optional
-  Nullable!(string) customer_name;
+  string customer_name;
 
   /**
    * An explanation of how and when the customer was shown your refund policy prior to purchase.
    */
   @optional
-  Nullable!(string) cancellation_policy_disclosure;
+  string cancellation_policy_disclosure;
 
   /**
    * Any additional evidence or statements.
    */
   @optional
-  Nullable!(string) uncategorized_text;
+  string uncategorized_text;
 
   /**
    * A justification for why the customer's subscription was not canceled.
    */
   @optional
-  Nullable!(string) cancellation_rebuttal;
+  string cancellation_rebuttal;
 
   /**
    * Any server or activity logs showing proof that the customer accessed or downloaded the
@@ -181,14 +181,14 @@ class DisputeEvidence {
    * timestamps, and any detailed recorded activity.
    */
   @optional
-  Nullable!(string) access_activity_log;
+  string access_activity_log;
 
   /**
    * An explanation of the difference between the disputed charge versus the prior charge that
    * appears to be a duplicate.
    */
   @optional
-  Nullable!(string) duplicate_charge_explanation;
+  string duplicate_charge_explanation;
 
   /**
    * (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) A relevant document or

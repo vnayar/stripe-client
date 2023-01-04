@@ -16,7 +16,7 @@ class InvoicePaymentMethodOptionsCustomerBalanceBankTransfer {
    * `eu_bank_transfer`, `gb_bank_transfer`, `jp_bank_transfer`, or `mx_bank_transfer`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   InvoicePaymentMethodOptionsCustomerBalanceBankTransferEuBankTransfer eu_bank_transfer;

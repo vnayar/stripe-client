@@ -15,18 +15,18 @@ class TreasuryFinancialAccountsResourceTogglesSettingStatusDetails {
    * Represents what the user should do, if anything, to activate the Feature.
    */
   @optional
-  Nullable!(string) resolution;
+  string resolution;
 
   /**
    * Represents the reason why the status is `pending` or `restricted`.
    */
   @optional
-  Nullable!(string) code;
+  string code;
 
   /**
    * The `platform_restrictions` that are restricting this Feature.
    */
   @optional
-  Nullable!(string) restriction;
+  string restriction;
 
 }

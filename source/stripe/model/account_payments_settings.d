@@ -17,21 +17,21 @@ class AccountPaymentsSettings {
    * descriptor space for the dynamic portion.
    */
   @optional
-  Nullable!(string) statement_descriptor_prefix_kanji;
+  string statement_descriptor_prefix_kanji;
 
   /**
    * The Kana variation of the default text that appears on credit card statements when a charge
    * is made (Japan only)
    */
   @optional
-  Nullable!(string) statement_descriptor_kana;
+  string statement_descriptor_kana;
 
   /**
    * The default text that appears on credit card statements when a charge is made. This field
    * prefixes any dynamic `statement_descriptor` specified on the charge.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * The Kana variation of the default text that appears on credit card statements when a charge
@@ -40,13 +40,13 @@ class AccountPaymentsSettings {
    * descriptor space for the dynamic portion.
    */
   @optional
-  Nullable!(string) statement_descriptor_prefix_kana;
+  string statement_descriptor_prefix_kana;
 
   /**
    * The Kanji variation of the default text that appears on credit card statements when a charge
    * is made (Japan only)
    */
   @optional
-  Nullable!(string) statement_descriptor_kanji;
+  string statement_descriptor_kanji;
 
 }

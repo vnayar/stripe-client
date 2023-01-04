@@ -28,6 +28,6 @@ class PaymentMethodCardGeneratedCard {
    * The charge that created this object.
    */
   @optional
-  Nullable!(string) charge;
+  string charge;
 
 }

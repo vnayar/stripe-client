@@ -20,6 +20,6 @@ class TreasuryReceivedDebitsResourceReversalDetails {
    * Set if a ReceivedDebit can't be reversed.
    */
   @optional
-  Nullable!(string) restricted_reason;
+  string restricted_reason;
 
 }

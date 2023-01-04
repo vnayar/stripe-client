@@ -16,7 +16,7 @@ class TreasuryFinancialAccountsResourceFinancialAddress {
    * The type of financial address
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   TreasuryFinancialAccountsResourceAbaRecord aba;
@@ -25,6 +25,6 @@ class TreasuryFinancialAccountsResourceFinancialAddress {
    * The list of networks that the address supports
    */
   @optional
-  Nullable!(string)[] supported_networks;
+  string[] supported_networks;
 
 }

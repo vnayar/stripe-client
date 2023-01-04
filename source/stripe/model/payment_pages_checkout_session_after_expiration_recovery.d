@@ -36,6 +36,6 @@ class PaymentPagesCheckoutSessionAfterExpirationRecovery {
    * Session
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
 }

@@ -14,24 +14,24 @@ class PaymentMethodDetailsAchCreditTransfer {
    * Name of the bank associated with the routing number.
    */
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   /**
    * Account number to transfer funds to.
    */
   @optional
-  Nullable!(string) account_number;
+  string account_number;
 
   /**
    * Routing transit number for the bank account to transfer funds to.
    */
   @optional
-  Nullable!(string) routing_number;
+  string routing_number;
 
   /**
    * SWIFT code of the bank associated with the routing number.
    */
   @optional
-  Nullable!(string) swift_code;
+  string swift_code;
 
 }

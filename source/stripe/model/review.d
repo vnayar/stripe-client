@@ -22,13 +22,13 @@ class Review {
    * `refunded`, `refunded_as_fraud`, `disputed`, or `redacted`.
    */
   @optional
-  Nullable!(string) closed_reason;
+  string closed_reason;
 
   /**
    * The reason the review was opened. One of `rule` or `manual`.
    */
   @optional
-  Nullable!(string) opened_reason;
+  string opened_reason;
 
   /**
    * The PaymentIntent ID associated with this review, if one exists.
@@ -40,26 +40,26 @@ class Review {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The IP address where the payment originated.
    */
   @optional
-  Nullable!(string) ip_address;
+  string ip_address;
 
   /**
    * The reason the review is currently open or closed. One of `rule`, `manual`, `approved`,
    * `refunded`, `refunded_as_fraud`, `disputed`, or `redacted`.
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   /**
    * The ZIP or postal code of the card used, if applicable.
    */
   @optional
-  Nullable!(string) billing_zip;
+  string billing_zip;
 
   /**
    * Information related to the location of the payment. Note that this information is an
@@ -86,7 +86,7 @@ class Review {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * If `true`, the review needs action.

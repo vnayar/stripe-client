@@ -23,12 +23,12 @@ class IssuingCardSpendingLimit {
    * this limit applies to. Omitting this field will apply the limit to all categories.
    */
   @optional
-  Nullable!(string)[] categories;
+  string[] categories;
 
   /**
    * Interval (or event) to which the amount applies.
    */
   @optional
-  Nullable!(string) interval;
+  string interval;
 
 }

@@ -14,12 +14,12 @@ class PortalSubscriptionUpdateProduct {
    * The product ID.
    */
   @optional
-  Nullable!(string) product;
+  string product;
 
   /**
    * The list of price IDs which, when subscribed to, a subscription can be updated.
    */
   @optional
-  Nullable!(string)[] prices;
+  string[] prices;
 
 }

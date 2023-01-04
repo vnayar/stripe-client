@@ -17,7 +17,7 @@ class TerminalReaderReaderResourceCart {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Tax amount for the entire cart. A positive integer in the [smallest currency

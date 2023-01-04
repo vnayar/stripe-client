@@ -15,42 +15,42 @@ class LegalEntityJapanAddress {
    * alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * Prefecture.
    */
   @optional
-  Nullable!(string) state;
+  string state;
 
   /**
    * Block/Building number.
    */
   @optional
-  Nullable!(string) line1;
+  string line1;
 
   /**
    * Town/cho-me.
    */
   @optional
-  Nullable!(string) town;
+  string town;
 
   /**
    * ZIP or postal code.
    */
   @optional
-  Nullable!(string) postal_code;
+  string postal_code;
 
   /**
    * City/Ward.
    */
   @optional
-  Nullable!(string) city;
+  string city;
 
   /**
    * Building details.
    */
   @optional
-  Nullable!(string) line2;
+  string line2;
 
 }

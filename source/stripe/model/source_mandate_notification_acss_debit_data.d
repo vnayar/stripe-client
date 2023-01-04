@@ -14,6 +14,6 @@ class SourceMandateNotificationAcssDebitData {
    * The statement descriptor associate with the debit.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
 }

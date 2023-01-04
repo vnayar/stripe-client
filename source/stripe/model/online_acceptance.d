@@ -14,12 +14,12 @@ class OnlineAcceptance {
    * The user agent of the browser from which the Mandate was accepted by the customer.
    */
   @optional
-  Nullable!(string) user_agent;
+  string user_agent;
 
   /**
    * The IP address from which the Mandate was accepted by the customer.
    */
   @optional
-  Nullable!(string) ip_address;
+  string ip_address;
 
 }

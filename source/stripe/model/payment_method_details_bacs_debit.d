@@ -14,25 +14,25 @@ class PaymentMethodDetailsBacsDebit {
    * Last four digits of the bank account number.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Sort code of the bank account. (e.g., `10-20-30`)
    */
   @optional
-  Nullable!(string) sort_code;
+  string sort_code;
 
   /**
    * Uniquely identifies this particular bank account. You can use this attribute to check whether
    * two bank accounts are the same.
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
   /**
    * ID of the mandate used to make this payment.
    */
   @optional
-  Nullable!(string) mandate;
+  string mandate;
 
 }

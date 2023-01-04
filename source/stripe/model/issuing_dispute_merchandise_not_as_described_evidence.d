@@ -28,13 +28,13 @@ class IssuingDisputeMerchandiseNotAsDescribedEvidence {
    * Result of cardholder's attempt to return the product.
    */
   @optional
-  Nullable!(string) return_status;
+  string return_status;
 
   /**
    * Explanation of why the cardholder is disputing this transaction.
    */
   @optional
-  Nullable!(string) explanation;
+  string explanation;
 
   /**
    * Date when the product was returned or attempted to be returned.
@@ -46,6 +46,6 @@ class IssuingDisputeMerchandiseNotAsDescribedEvidence {
    * Description of the cardholder's attempt to return the product.
    */
   @optional
-  Nullable!(string) return_description;
+  string return_description;
 
 }

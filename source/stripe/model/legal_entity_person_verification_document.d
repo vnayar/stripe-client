@@ -24,7 +24,7 @@ class LegalEntityPersonVerificationDocument {
    * unclear to read".
    */
   @optional
-  Nullable!(string) details;
+  string details;
 
   /**
    * The front of an ID returned by a [file upload](https://stripe.com/docs/api#create_file) with
@@ -43,6 +43,6 @@ class LegalEntityPersonVerificationDocument {
    * machine-readable code specifying the verification state for this document.
    */
   @optional
-  Nullable!(string) details_code;
+  string details_code;
 
 }

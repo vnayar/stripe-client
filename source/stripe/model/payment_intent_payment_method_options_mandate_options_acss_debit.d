@@ -15,24 +15,24 @@ class PaymentIntentPaymentMethodOptionsMandateOptionsAcssDebit {
    * or 'combined'.
    */
   @optional
-  Nullable!(string) interval_description;
+  string interval_description;
 
   /**
    * A URL for custom mandate text
    */
   @optional
-  Nullable!(string) custom_mandate_url;
+  string custom_mandate_url;
 
   /**
    * Transaction type of the mandate.
    */
   @optional
-  Nullable!(string) transaction_type;
+  string transaction_type;
 
   /**
    * Payment schedule for the mandate.
    */
   @optional
-  Nullable!(string) payment_schedule;
+  string payment_schedule;
 
 }

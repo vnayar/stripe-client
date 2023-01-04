@@ -27,14 +27,14 @@ class TreasuryReceivedDebit {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The Transaction associated with this object.
@@ -59,19 +59,19 @@ class TreasuryReceivedDebit {
    * The network used for the ReceivedDebit.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * The FinancialAccount that funds were pulled from.
    */
   @optional
-  Nullable!(string) financial_account;
+  string financial_account;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   TreasuryReceivedDebitsResourceLinkedFlows linked_flows;
@@ -80,7 +80,7 @@ class TreasuryReceivedDebit {
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -95,14 +95,14 @@ class TreasuryReceivedDebit {
    * licenses.
    */
   @optional
-  Nullable!(string) hosted_regulatory_receipt_url;
+  string hosted_regulatory_receipt_url;
 
   /**
    * Reason for the failure. A ReceivedDebit might fail because the FinancialAccount doesn't have
    * sufficient funds, is closed, or is frozen.
    */
   @optional
-  Nullable!(string) failure_code;
+  string failure_code;
 
   @optional
   TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatingPaymentMethodDetails initiating_payment_method_details;
@@ -112,6 +112,6 @@ class TreasuryReceivedDebit {
    * (approved) or `failed` (declined). The failure reason can be found under the `failure_code`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

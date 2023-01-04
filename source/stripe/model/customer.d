@@ -30,13 +30,13 @@ class Customer {
    * The customer's email address.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Current balance, if any, being stored on the customer. If negative, the customer has credit
@@ -52,7 +52,7 @@ class Customer {
    * The customer's full name or business name.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   static class TaxIDsList {
     /**
@@ -66,7 +66,7 @@ class Customer {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -78,7 +78,7 @@ class Customer {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -98,7 +98,7 @@ class Customer {
    * The customer's preferred locales (languages), ordered by preference.
    */
   @optional
-  Nullable!(string)[] preferred_locales;
+  string[] preferred_locales;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -114,7 +114,7 @@ class Customer {
    * be charged in for recurring billing purposes.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   static class ApmsSourcesSourceList {
     /**
@@ -128,7 +128,7 @@ class Customer {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -140,7 +140,7 @@ class Customer {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -154,7 +154,7 @@ class Customer {
    * The customer's phone number.
    */
   @optional
-  Nullable!(string) phone;
+  string phone;
 
   /**
    * The current multi-currency balances, if any, being stored on the customer. If positive in a
@@ -174,7 +174,7 @@ class Customer {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   static class SubscriptionList {
     /**
@@ -188,7 +188,7 @@ class Customer {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -200,7 +200,7 @@ class Customer {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -234,7 +234,7 @@ class Customer {
    * The prefix for the customer used to generate unique invoice numbers.
    */
   @optional
-  Nullable!(string) invoice_prefix;
+  string invoice_prefix;
 
   /**
    * ID of the default payment source for the customer.
@@ -276,13 +276,13 @@ class Customer {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Mailing and shipping address for the customer. Appears on invoices emailed to this customer.
@@ -295,6 +295,6 @@ class Customer {
    * set to `reverse`, invoice and receipt PDFs include the text **"Reverse charge"**.
    */
   @optional
-  Nullable!(string) tax_exempt;
+  string tax_exempt;
 
 }

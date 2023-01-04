@@ -14,6 +14,6 @@ class PaymentMethodP24 {
    * The customer's bank, if provided.
    */
   @optional
-  Nullable!(string) bank;
+  string bank;
 
 }

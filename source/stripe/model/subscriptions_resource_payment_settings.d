@@ -19,7 +19,7 @@ class SubscriptionsResourcePaymentSettings {
    * settings](https://dashboard.stripe.com/settings/billing/invoice).
    */
   @optional
-  Nullable!(string)[] payment_method_types;
+  string[] payment_method_types;
 
   /**
    * Payment-method-specific configuration to provide to invoices created by the subscription.
@@ -32,6 +32,6 @@ class SubscriptionsResourcePaymentSettings {
    * `subscription.default_payment_method` when a subscription payment succeeds.
    */
   @optional
-  Nullable!(string) save_default_payment_method;
+  string save_default_payment_method;
 
 }

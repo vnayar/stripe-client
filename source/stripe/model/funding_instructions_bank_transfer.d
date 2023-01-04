@@ -15,13 +15,13 @@ class FundingInstructionsBankTransfer {
    * The bank_transfer type
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The country of the bank account to fund
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * A list of financial addresses that can be used to fund a particular balance

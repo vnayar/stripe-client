@@ -22,6 +22,6 @@ class IssuingDisputeFraudulentEvidence {
    * Explanation of why the cardholder is disputing this transaction.
    */
   @optional
-  Nullable!(string) explanation;
+  string explanation;
 
 }

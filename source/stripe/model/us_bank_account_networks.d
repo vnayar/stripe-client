@@ -14,12 +14,12 @@ class UsBankAccountNetworks {
    * All supported networks.
    */
   @optional
-  Nullable!(string)[] supported;
+  string[] supported;
 
   /**
    * The preferred network.
    */
   @optional
-  Nullable!(string) preferred;
+  string preferred;
 
 }

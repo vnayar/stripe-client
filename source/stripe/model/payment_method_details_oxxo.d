@@ -14,6 +14,6 @@ class PaymentMethodDetailsOxxo {
    * OXXO reference number
    */
   @optional
-  Nullable!(string) number;
+  string number;
 
 }

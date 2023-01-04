@@ -14,13 +14,13 @@ class DeletedApplication {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Always true for a deleted object
@@ -32,6 +32,6 @@ class DeletedApplication {
    * The name of the application.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
 }

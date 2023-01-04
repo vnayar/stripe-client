@@ -11,12 +11,12 @@ import std.typecons : Nullable;
  */
 class SourceTypeAuBecsDebit {
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   @optional
-  Nullable!(string) bsb_number;
+  string bsb_number;
 
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

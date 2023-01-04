@@ -18,18 +18,18 @@ class TerminalConnectionToken {
    * connection tokens](https://stripe.com/docs/terminal/fleet/locations#connection-tokens).
    */
   @optional
-  Nullable!(string) location;
+  string location;
 
   /**
    * Your application should pass this token to the Stripe Terminal SDK.
    */
   @optional
-  Nullable!(string) secret;
+  string secret;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
 }

@@ -14,6 +14,6 @@ class PaymentIntentNextActionWechatPayRedirectToIosApp {
    * An universal link that redirect to WeChat Pay app
    */
   @optional
-  Nullable!(string) native_url;
+  string native_url;
 
 }

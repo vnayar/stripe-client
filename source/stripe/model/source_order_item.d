@@ -14,13 +14,13 @@ class SourceOrderItem {
    * Human-readable description for this order item.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The type of this order item. Must be `sku`, `tax`, or `shipping`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The amount (price) for this order item.
@@ -32,7 +32,7 @@ class SourceOrderItem {
    * This currency of this order item. Required when `amount` is present.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The quantity of this order item. When type is `sku`, this is the number of instances of the
@@ -46,6 +46,6 @@ class SourceOrderItem {
    * to a SKU).
    */
   @optional
-  Nullable!(string) parent;
+  string parent;
 
 }

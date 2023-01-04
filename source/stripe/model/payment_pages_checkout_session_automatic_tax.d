@@ -20,6 +20,6 @@ class PaymentPagesCheckoutSessionAutomaticTax {
    * The status of the most recent automated tax calculation for this session.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

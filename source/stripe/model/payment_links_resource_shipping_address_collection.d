@@ -16,6 +16,6 @@ class PaymentLinksResourceShippingAddressCollection {
    * MH, FM, NF, MP, PW, SD, SY, UM, VI`.
    */
   @optional
-  Nullable!(string)[] allowed_countries;
+  string[] allowed_countries;
 
 }

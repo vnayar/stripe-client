@@ -14,12 +14,12 @@ class InvoiceSettingCustomField {
    * The value of the custom field.
    */
   @optional
-  Nullable!(string) value;
+  string value;
 
   /**
    * The name of the custom field.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
 }

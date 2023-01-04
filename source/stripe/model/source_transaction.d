@@ -34,20 +34,20 @@ class SourceTransaction {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The ID of the source this transaction is attached to.
    */
   @optional
-  Nullable!(string) source;
+  string source;
 
   @optional
   SourceTransactionGbpCreditTransferData gbp_credit_transfer;
@@ -69,13 +69,13 @@ class SourceTransaction {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The type of source this transaction is attached to.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -90,6 +90,6 @@ class SourceTransaction {
    * The status of the transaction, one of `succeeded`, `pending`, or `failed`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

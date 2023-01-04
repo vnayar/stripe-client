@@ -11,12 +11,12 @@ import std.typecons : Nullable;
  */
 class SourceTypeWechat {
   @optional
-  Nullable!(string) prepay_id;
+  string prepay_id;
 
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   @optional
-  Nullable!(string) qr_code_url;
+  string qr_code_url;
 
 }

@@ -11,33 +11,33 @@ import std.typecons : Nullable;
  */
 class SourceTypeMultibanco {
   @optional
-  Nullable!(string) refund_account_holder_address_city;
+  string refund_account_holder_address_city;
 
   @optional
-  Nullable!(string) entity;
+  string entity;
 
   @optional
-  Nullable!(string) refund_iban;
+  string refund_iban;
 
   @optional
-  Nullable!(string) refund_account_holder_address_line2;
+  string refund_account_holder_address_line2;
 
   @optional
-  Nullable!(string) refund_account_holder_name;
+  string refund_account_holder_name;
 
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   @optional
-  Nullable!(string) refund_account_holder_address_postal_code;
+  string refund_account_holder_address_postal_code;
 
   @optional
-  Nullable!(string) refund_account_holder_address_country;
+  string refund_account_holder_address_country;
 
   @optional
-  Nullable!(string) refund_account_holder_address_line1;
+  string refund_account_holder_address_line1;
 
   @optional
-  Nullable!(string) refund_account_holder_address_state;
+  string refund_account_holder_address_state;
 
 }

@@ -14,12 +14,12 @@ class SecretServiceResourceScope {
    * The secret scope type.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The user ID, if type is set to "user"
    */
   @optional
-  Nullable!(string) user;
+  string user;
 
 }

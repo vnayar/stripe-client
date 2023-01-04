@@ -14,7 +14,7 @@ class ApplePayDomain {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -33,9 +33,9 @@ class ApplePayDomain {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
-  Nullable!(string) domain_name;
+  string domain_name;
 
 }

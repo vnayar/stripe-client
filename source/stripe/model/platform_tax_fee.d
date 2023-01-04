@@ -14,30 +14,30 @@ class PlatformTaxFee {
    * The type of tax (VAT).
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The payment object that caused this tax to be inflicted.
    */
   @optional
-  Nullable!(string) source_transaction;
+  string source_transaction;
 
   /**
    * The Connected account that incurred this charge.
    */
   @optional
-  Nullable!(string) account;
+  string account;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
 }

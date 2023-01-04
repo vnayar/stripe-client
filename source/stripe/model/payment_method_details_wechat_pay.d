@@ -14,13 +14,13 @@ class PaymentMethodDetailsWechatPay {
    * Transaction ID of this particular WeChat Pay transaction.
    */
   @optional
-  Nullable!(string) transaction_id;
+  string transaction_id;
 
   /**
    * Uniquely identifies this particular WeChat Pay account. You can use this attribute to check
    * whether two WeChat accounts are the same.
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

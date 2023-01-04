@@ -23,7 +23,7 @@ class CheckoutKonbiniPaymentMethodOptions {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * The number of calendar days (between 1 and 60) after which Konbini payment instructions will

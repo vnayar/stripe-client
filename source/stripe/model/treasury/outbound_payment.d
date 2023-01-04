@@ -32,7 +32,7 @@ class TreasuryOutboundPayment {
    * statement for external bank transfer).
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   @optional
   TreasuryOutboundPaymentsResourceOutboundPaymentResourceStatusTransitions status_transitions;
@@ -41,7 +41,7 @@ class TreasuryOutboundPayment {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Details about the end user.
@@ -54,7 +54,7 @@ class TreasuryOutboundPayment {
    * sent.
    */
   @optional
-  Nullable!(string) customer;
+  string customer;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -62,21 +62,21 @@ class TreasuryOutboundPayment {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The PaymentMethod via which an OutboundPayment is sent. This field can be empty if the
    * OutboundPayment was created using `destination_payment_method_data`.
    */
   @optional
-  Nullable!(string) destination_payment_method;
+  string destination_payment_method;
 
   /**
    * The Transaction associated with this object.
@@ -113,19 +113,19 @@ class TreasuryOutboundPayment {
    * The FinancialAccount that funds were pulled from.
    */
   @optional
-  Nullable!(string) financial_account;
+  string financial_account;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Details about the PaymentMethod for an OutboundPayment.
@@ -146,7 +146,7 @@ class TreasuryOutboundPayment {
    * licenses.
    */
   @optional
-  Nullable!(string) hosted_regulatory_receipt_url;
+  string hosted_regulatory_receipt_url;
 
   /**
    * Current status of the OutboundPayment: `processing`, `failed`, `posted`, `returned`,
@@ -156,6 +156,6 @@ class TreasuryOutboundPayment {
    * destination, its status will change to `returned`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

@@ -26,7 +26,7 @@ class AppsSecret {
    * The plaintext secret value to be stored.
    */
   @optional
-  Nullable!(string) payload;
+  string payload;
 
   /**
    * The Unix timestamp for the expiry time of the secret, after which the secret deletes.
@@ -38,13 +38,13 @@ class AppsSecret {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * A name for the secret that's unique within the scope.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   @optional
   SecretServiceResourceScope scope_;
@@ -60,7 +60,7 @@ class AppsSecret {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

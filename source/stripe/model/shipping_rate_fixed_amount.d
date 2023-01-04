@@ -22,7 +22,7 @@ class ShippingRateFixedAmount {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Shipping rates defined in each available currency option. Each key must be a three-letter

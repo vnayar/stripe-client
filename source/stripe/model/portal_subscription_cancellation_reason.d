@@ -20,6 +20,6 @@ class PortalSubscriptionCancellationReason {
    * Which cancellation reasons will be given as options to the customer.
    */
   @optional
-  Nullable!(string)[] options;
+  string[] options;
 
 }

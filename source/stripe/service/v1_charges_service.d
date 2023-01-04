@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,7 +29,7 @@ class V1ChargesService {
   static class GetChargesChargeRefundsParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -36,18 +37,18 @@ class V1ChargesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -55,7 +56,7 @@ class V1ChargesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -73,7 +74,7 @@ class V1ChargesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -85,7 +86,7 @@ class V1ChargesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -104,9 +105,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(RefundList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -128,15 +131,15 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}/refunds");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -144,7 +147,7 @@ class V1ChargesService {
   static class PostChargesChargeRefundsParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
   }
 
@@ -165,9 +168,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Refund)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -186,7 +191,7 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}/refunds");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -194,7 +199,7 @@ class V1ChargesService {
   static class PostChargesChargeCaptureParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
   }
 
@@ -215,9 +220,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Charge)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -241,7 +248,7 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}/capture");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -249,12 +256,12 @@ class V1ChargesService {
   static class GetChargesParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * Only return charges for the customer specified by this customer ID.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -262,24 +269,24 @@ class V1ChargesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Only return charges that were created by the PaymentIntent specified by this PaymentIntent
      * ID.
      */
-    Nullable!(Nullable!(string)) payment_intent;
+    string payment_intent;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -287,12 +294,12 @@ class V1ChargesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return charges for this transfer group.
      */
-    Nullable!(Nullable!(string)) transfer_group;
+    string transfer_group;
 
   }
 
@@ -310,7 +317,7 @@ class V1ChargesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Charge[] data;
@@ -319,7 +326,7 @@ class V1ChargesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -338,9 +345,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ChargeList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -360,21 +369,21 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.payment_intent.isNull)
-      requestor.setQueryParam("payment_intent", params.payment_intent.get.to!string);
+      requestor.setQueryParam!("deepObject")("payment_intent", params.payment_intent);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.transfer_group.isNull)
-      requestor.setQueryParam("transfer_group", params.transfer_group.get.to!string);
+      requestor.setQueryParam!("deepObject")("transfer_group", params.transfer_group);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -396,9 +405,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Charge)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -425,12 +436,12 @@ class V1ChargesService {
   static class GetChargesChargeDisputeParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -451,9 +462,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Dispute)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -472,9 +485,9 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}/dispute");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -482,7 +495,7 @@ class V1ChargesService {
   static class PostChargesChargeDisputeParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
   }
 
@@ -503,9 +516,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Dispute)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -523,7 +538,7 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}/dispute");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -531,12 +546,12 @@ class V1ChargesService {
   static class GetChargesChargeParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -557,9 +572,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Charge)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -580,9 +597,9 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -590,7 +607,7 @@ class V1ChargesService {
   static class PostChargesChargeParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
   }
 
@@ -611,9 +628,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Charge)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -633,7 +652,7 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -641,7 +660,7 @@ class V1ChargesService {
   static class PostChargesChargeRefundParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
   }
 
@@ -662,9 +681,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Charge)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -692,7 +713,7 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}/refund");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -700,7 +721,7 @@ class V1ChargesService {
   static class PostChargesChargeDisputeCloseParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
   }
 
@@ -721,9 +742,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Dispute)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -741,7 +764,7 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}/dispute/close");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -749,16 +772,16 @@ class V1ChargesService {
   static class GetChargesChargeRefundsRefundParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) refund;
+    string refund;
 
   }
 
@@ -779,9 +802,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Refund)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -800,11 +825,11 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}/refunds/{refund}");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.refund.isNull)
-      requestor.setPathParam("refund", params.refund.get.to!string);
+      requestor.setPathParam("refund", params.refund);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -812,11 +837,11 @@ class V1ChargesService {
   static class PostChargesChargeRefundsRefundParams {
     /**
      */
-    Nullable!(Nullable!(string)) charge;
+    string charge;
 
     /**
      */
-    Nullable!(Nullable!(string)) refund;
+    string refund;
 
   }
 
@@ -837,9 +862,11 @@ class V1ChargesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Refund)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -858,9 +885,9 @@ class V1ChargesService {
         Servers.getServerUrl(),
         "/v1/charges/{charge}/refunds/{refund}");
     if (!params.charge.isNull)
-      requestor.setPathParam("charge", params.charge.get.to!string);
+      requestor.setPathParam("charge", params.charge);
     if (!params.refund.isNull)
-      requestor.setPathParam("refund", params.refund.get.to!string);
+      requestor.setPathParam("refund", params.refund);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

@@ -18,7 +18,7 @@ class PaymentPagesCheckoutSessionInvoiceSettings {
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -26,7 +26,7 @@ class PaymentPagesCheckoutSessionInvoiceSettings {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The account tax IDs associated with the invoice.
@@ -44,7 +44,7 @@ class PaymentPagesCheckoutSessionInvoiceSettings {
    * Footer displayed on the invoice.
    */
   @optional
-  Nullable!(string) footer;
+  string footer;
 
   /**
    * Options for invoice PDF rendering.

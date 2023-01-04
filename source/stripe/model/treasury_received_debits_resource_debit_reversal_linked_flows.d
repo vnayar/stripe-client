@@ -14,6 +14,6 @@ class TreasuryReceivedDebitsResourceDebitReversalLinkedFlows {
    * Set if there is an Issuing dispute associated with the DebitReversal.
    */
   @optional
-  Nullable!(string) issuing_dispute;
+  string issuing_dispute;
 
 }

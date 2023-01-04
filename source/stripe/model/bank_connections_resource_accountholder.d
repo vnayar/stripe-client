@@ -23,7 +23,7 @@ class BankConnectionsResourceAccountholder {
    * Type of account holder that this account belongs to.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The ID of the Stripe account this account belongs to. Should only be present if

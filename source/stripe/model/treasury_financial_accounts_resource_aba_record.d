@@ -15,30 +15,30 @@ class TreasuryFinancialAccountsResourceAbaRecord {
    * The name of the person or business that owns the bank account.
    */
   @optional
-  Nullable!(string) account_holder_name;
+  string account_holder_name;
 
   /**
    * Routing number for the account.
    */
   @optional
-  Nullable!(string) routing_number;
+  string routing_number;
 
   /**
    * Name of the bank.
    */
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   /**
    * The account number.
    */
   @optional
-  Nullable!(string) account_number;
+  string account_number;
 
   /**
    * The last four characters of the account number.
    */
   @optional
-  Nullable!(string) account_number_last4;
+  string account_number_last4;
 
 }

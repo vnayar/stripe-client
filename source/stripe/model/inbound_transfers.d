@@ -16,7 +16,7 @@ class InboundTransfers {
    * The type of the payment method used in the InboundTransfer.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   TreasurySharedResourceBillingDetails billing_details;

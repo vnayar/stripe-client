@@ -14,12 +14,12 @@ class OutboundPaymentsPaymentMethodDetailsFinancialAccount {
    * The rails used to send funds.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * Token of the FinancialAccount.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
 }

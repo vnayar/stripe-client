@@ -20,7 +20,7 @@ class PaymentMethodCard {
    * a sense of the international breakdown of cards you've collected.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * Checks on Card address and CVC if provided.
@@ -38,7 +38,7 @@ class PaymentMethodCard {
    * Card funding type. Can be `credit`, `debit`, `prepaid`, or `unknown`.
    */
   @optional
-  Nullable!(string) funding;
+  string funding;
 
   /**
    * Four-digit number representing the card's expiration year.
@@ -51,13 +51,13 @@ class PaymentMethodCard {
    * `unknown`.
    */
   @optional
-  Nullable!(string) brand;
+  string brand;
 
   /**
    * The last four digits of the card.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * If this Card is part of a card wallet, this contains the details of the card wallet.
@@ -92,6 +92,6 @@ class PaymentMethodCard {
    * fingerprints for the same card --- one for India and one for the rest of the world.*
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

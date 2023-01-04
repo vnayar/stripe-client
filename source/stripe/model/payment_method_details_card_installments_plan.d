@@ -14,7 +14,7 @@ class PaymentMethodDetailsCardInstallmentsPlan {
    * Type of installment plan, one of `fixed_count`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * For `fixed_count` installment plans, this is the number of installment payments your customer
@@ -29,6 +29,6 @@ class PaymentMethodDetailsCardInstallmentsPlan {
    * One of `month`.
    */
   @optional
-  Nullable!(string) interval;
+  string interval;
 
 }

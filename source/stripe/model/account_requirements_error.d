@@ -15,19 +15,19 @@ class AccountRequirementsError {
    * the error.
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   /**
    * The specific user onboarding requirement field (in the requirements hash) that needs to be
    * resolved.
    */
   @optional
-  Nullable!(string) requirement;
+  string requirement;
 
   /**
    * The code for the type of error.
    */
   @optional
-  Nullable!(string) code;
+  string code;
 
 }

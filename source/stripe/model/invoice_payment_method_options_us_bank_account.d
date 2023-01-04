@@ -15,7 +15,7 @@ class InvoicePaymentMethodOptionsUsBankAccount {
    * Bank account verification method.
    */
   @optional
-  Nullable!(string) verification_method;
+  string verification_method;
 
   @optional
   InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions financial_connections;

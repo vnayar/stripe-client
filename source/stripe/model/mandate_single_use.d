@@ -20,6 +20,6 @@ class MandateSingleUse {
    * On a single use mandate, the currency of the payment.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
 }

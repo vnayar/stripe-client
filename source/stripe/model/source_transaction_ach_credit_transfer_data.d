@@ -14,24 +14,24 @@ class SourceTransactionAchCreditTransferData {
    * Last 4 digits of the account number associated with the transfer.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Customer data associated with the transfer.
    */
   @optional
-  Nullable!(string) customer_data;
+  string customer_data;
 
   /**
    * Routing number associated with the transfer.
    */
   @optional
-  Nullable!(string) routing_number;
+  string routing_number;
 
   /**
    * Bank account fingerprint associated with the transfer.
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

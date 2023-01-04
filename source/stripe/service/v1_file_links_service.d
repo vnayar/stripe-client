@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1FileLinksService {
   static class GetFileLinksParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -34,28 +35,28 @@ class V1FileLinksService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * Filter links by their expiration status. By default, all links are returned.
      */
-    Nullable!(Nullable!(bool)) expired;
+    Nullable!(bool) expired;
 
     /**
      * Only return links for the given file.
      */
-    Nullable!(Nullable!(string)) file;
+    string file;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -63,7 +64,7 @@ class V1FileLinksService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -81,7 +82,7 @@ class V1FileLinksService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -93,7 +94,7 @@ class V1FileLinksService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -112,9 +113,11 @@ class V1FileLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FileFileLinkList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -133,19 +136,19 @@ class V1FileLinksService {
         Servers.getServerUrl(),
         "/v1/file_links");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.expired.isNull)
-      requestor.setQueryParam("expired", params.expired.get.to!string);
+      requestor.setQueryParam!("deepObject")("expired", params.expired);
     if (!params.file.isNull)
-      requestor.setQueryParam("file", params.file.get.to!string);
+      requestor.setQueryParam!("deepObject")("file", params.file);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -164,7 +167,7 @@ class V1FileLinksService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * A future timestamp after which the link will no longer be usable.
@@ -179,7 +182,7 @@ class V1FileLinksService {
      * `tax_document_user_upload`, or `terminal_reader_splashscreen`.
      */
     @optional
-    Nullable!(string) file;
+    string file;
 
   }
 
@@ -200,9 +203,11 @@ class V1FileLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FileLink)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -229,11 +234,11 @@ class V1FileLinksService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) link;
+    string link;
 
   }
 
@@ -254,9 +259,11 @@ class V1FileLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FileLink)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -275,9 +282,9 @@ class V1FileLinksService {
         Servers.getServerUrl(),
         "/v1/file_links/{link}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.link.isNull)
-      requestor.setPathParam("link", params.link.get.to!string);
+      requestor.setPathParam("link", params.link);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -285,7 +292,7 @@ class V1FileLinksService {
   static class PostFileLinksLinkParams {
     /**
      */
-    Nullable!(Nullable!(string)) link;
+    string link;
 
   }
 
@@ -306,9 +313,11 @@ class V1FileLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FileLink)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -327,7 +336,7 @@ class V1FileLinksService {
         Servers.getServerUrl(),
         "/v1/file_links/{link}");
     if (!params.link.isNull)
-      requestor.setPathParam("link", params.link.get.to!string);
+      requestor.setPathParam("link", params.link);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

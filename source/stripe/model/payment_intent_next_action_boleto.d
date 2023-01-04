@@ -14,19 +14,19 @@ class PaymentIntentNextActionBoleto {
    * The URL to the downloadable boleto voucher PDF.
    */
   @optional
-  Nullable!(string) pdf;
+  string pdf;
 
   /**
    * The URL to the hosted boleto voucher page, which allows customers to view the boleto voucher.
    */
   @optional
-  Nullable!(string) hosted_voucher_url;
+  string hosted_voucher_url;
 
   /**
    * The boleto number.
    */
   @optional
-  Nullable!(string) number;
+  string number;
 
   /**
    * The timestamp after which the boleto expires.

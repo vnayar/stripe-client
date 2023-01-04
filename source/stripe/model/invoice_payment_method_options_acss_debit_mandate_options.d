@@ -14,6 +14,6 @@ class InvoicePaymentMethodOptionsAcssDebitMandateOptions {
    * Transaction type of the mandate.
    */
   @optional
-  Nullable!(string) transaction_type;
+  string transaction_type;
 
 }

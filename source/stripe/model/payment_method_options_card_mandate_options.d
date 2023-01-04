@@ -35,7 +35,7 @@ class PaymentMethodOptionsCardMandateOptions {
    * for the `amount` param.
    */
   @optional
-  Nullable!(string) amount_type;
+  string amount_type;
 
   /**
    * The number of intervals between payments. For example, `interval=month` and
@@ -50,24 +50,24 @@ class PaymentMethodOptionsCardMandateOptions {
    * Unique identifier for the mandate or subscription.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   /**
    * Specifies the type of mandates supported. Possible values are `india`.
    */
   @optional
-  Nullable!(string)[] supported_types;
+  string[] supported_types;
 
   /**
    * A description of the mandate or subscription that is meant to be displayed to the customer.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Specifies payment frequency. One of `day`, `week`, `month`, `year`, or `sporadic`.
    */
   @optional
-  Nullable!(string) interval;
+  string interval;
 
 }

@@ -14,26 +14,26 @@ class PaymentIntentNextActionPaynowDisplayQrCode {
    * The image_url_svg string used to render QR code
    */
   @optional
-  Nullable!(string) image_url_svg;
+  string image_url_svg;
 
   /**
    * The URL to the hosted PayNow instructions page, which allows customers to view the PayNow QR
    * code.
    */
   @optional
-  Nullable!(string) hosted_instructions_url;
+  string hosted_instructions_url;
 
   /**
    * The raw data string used to generate QR code, it should be used together with QR code
    * library.
    */
   @optional
-  Nullable!(string) data;
+  string data;
 
   /**
    * The image_url_png string used to render QR code
    */
   @optional
-  Nullable!(string) image_url_png;
+  string image_url_png;
 
 }

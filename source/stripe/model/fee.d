@@ -14,13 +14,13 @@ class Fee {
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Type of the fee, one of: `application_fee`, `stripe_fee` or `tax`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Amount of the fee, in cents.
@@ -33,12 +33,12 @@ class Fee {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * ID of the Connect application that earned the fee.
    */
   @optional
-  Nullable!(string) application;
+  string application;
 
 }

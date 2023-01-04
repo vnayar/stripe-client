@@ -14,19 +14,19 @@ class FinancialConnectionsAccountOwner {
    * The email address of the owner.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   /**
    * The raw physical address of the owner.
    */
   @optional
-  Nullable!(string) raw_address;
+  string raw_address;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The timestamp of the refresh that updated this owner.
@@ -38,24 +38,24 @@ class FinancialConnectionsAccountOwner {
    * The full name of the owner.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * The raw phone number of the owner.
    */
   @optional
-  Nullable!(string) phone;
+  string phone;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The ownership object that this owner belongs to.
    */
   @optional
-  Nullable!(string) ownership;
+  string ownership;
 
 }

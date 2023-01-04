@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1FinancialConnectionsSessionsService {
   static class PostFinancialConnectionsSessionsBody {
     static class FiltersParams {
       @optional
-      Nullable!(string)[] countries;
+      string[] countries;
 
     }
 
@@ -40,17 +41,17 @@ class V1FinancialConnectionsSessionsService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     static class AccountholderParams {
       @optional
-      Nullable!(string) customer;
+      string customer;
 
       @optional
-      Nullable!(string) type;
+      string type;
 
       @optional
-      Nullable!(string) account;
+      string account;
 
     }
 
@@ -65,14 +66,14 @@ class V1FinancialConnectionsSessionsService {
      * Possible values are `balances`, `transactions`, `ownership`, and `payment_method`.
      */
     @optional
-    Nullable!(string)[] permissions;
+    string[] permissions;
 
     /**
      * For webview integrations only. Upon completing OAuth login in the native browser, the user
      * will be redirected to this URL to return to your app.
      */
     @optional
-    Nullable!(string) return_url;
+    string return_url;
 
   }
 
@@ -93,9 +94,11 @@ class V1FinancialConnectionsSessionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FinancialConnectionsSession)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -123,11 +126,11 @@ class V1FinancialConnectionsSessionsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) session;
+    string session;
 
   }
 
@@ -148,9 +151,11 @@ class V1FinancialConnectionsSessionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FinancialConnectionsSession)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -169,9 +174,9 @@ class V1FinancialConnectionsSessionsService {
         Servers.getServerUrl(),
         "/v1/financial_connections/sessions/{session}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.session.isNull)
-      requestor.setPathParam("session", params.session.get.to!string);
+      requestor.setPathParam("session", params.session);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

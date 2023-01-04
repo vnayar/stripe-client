@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,11 +29,11 @@ class V1PlansService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) plan;
+    string plan;
 
   }
 
@@ -53,9 +54,11 @@ class V1PlansService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Plan)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -74,9 +77,9 @@ class V1PlansService {
         Servers.getServerUrl(),
         "/v1/plans/{plan}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.plan.isNull)
-      requestor.setPathParam("plan", params.plan.get.to!string);
+      requestor.setPathParam("plan", params.plan);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -84,7 +87,7 @@ class V1PlansService {
   static class PostPlansPlanParams {
     /**
      */
-    Nullable!(Nullable!(string)) plan;
+    string plan;
 
   }
 
@@ -105,9 +108,11 @@ class V1PlansService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Plan)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -128,7 +133,7 @@ class V1PlansService {
         Servers.getServerUrl(),
         "/v1/plans/{plan}");
     if (!params.plan.isNull)
-      requestor.setPathParam("plan", params.plan.get.to!string);
+      requestor.setPathParam("plan", params.plan);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -136,7 +141,7 @@ class V1PlansService {
   static class DeletePlansPlanParams {
     /**
      */
-    Nullable!(Nullable!(string)) plan;
+    string plan;
 
   }
 
@@ -157,9 +162,11 @@ class V1PlansService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedPlan)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -179,7 +186,7 @@ class V1PlansService {
         Servers.getServerUrl(),
         "/v1/plans/{plan}");
     if (!params.plan.isNull)
-      requestor.setPathParam("plan", params.plan.get.to!string);
+      requestor.setPathParam("plan", params.plan);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -189,13 +196,13 @@ class V1PlansService {
      * Only return plans that are active or inactive (e.g., pass `false` to list all inactive
      * plans).
      */
-    Nullable!(Nullable!(bool)) active;
+    Nullable!(bool) active;
 
     /**
      * A filter on the list, based on the object `created` field. The value can be a string with an
      * integer Unix timestamp, or it can be a dictionary with a number of different query options.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -203,23 +210,23 @@ class V1PlansService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Only return plans for the given product.
      */
-    Nullable!(Nullable!(string)) product;
+    string product;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -227,7 +234,7 @@ class V1PlansService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -245,7 +252,7 @@ class V1PlansService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -257,7 +264,7 @@ class V1PlansService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -276,9 +283,11 @@ class V1PlansService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PlanList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -297,19 +306,19 @@ class V1PlansService {
         Servers.getServerUrl(),
         "/v1/plans");
     if (!params.active.isNull)
-      requestor.setQueryParam("active", params.active.get.to!string);
+      requestor.setQueryParam!("deepObject")("active", params.active);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.product.isNull)
-      requestor.setQueryParam("product", params.product.get.to!string);
+      requestor.setQueryParam!("deepObject")("product", params.product);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -319,7 +328,7 @@ class V1PlansService {
      * Specifies billing frequency. Either `day`, `week`, `month` or `year`.
      */
     @optional
-    Nullable!(string) interval;
+    string interval;
 
     /**
      * A positive integer in cents (or local equivalent) (or 0 for a free plan) representing how
@@ -341,14 +350,14 @@ class V1PlansService {
      * your Stripe account. You can, however, use the same plan ID in both live and test modes.
      */
     @optional
-    Nullable!(string) id;
+    string id;
 
     static class TransformUsageParam {
       @optional
       Nullable!(int) divide_by;
 
       @optional
-      Nullable!(string) round;
+      string round;
 
     }
 
@@ -373,7 +382,7 @@ class V1PlansService {
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Specifies a usage aggregation strategy for plans of `usage_type=metered`. Allowed values are
@@ -383,7 +392,7 @@ class V1PlansService {
      * period. Defaults to `sum`.
      */
     @optional
-    Nullable!(string) aggregate_usage;
+    string aggregate_usage;
 
     @optional
     Json product;
@@ -395,7 +404,7 @@ class V1PlansService {
      * `licensed`.
      */
     @optional
-    Nullable!(string) usage_type;
+    string usage_type;
 
     /**
      * Whether the plan is currently available for new subscriptions. Defaults to `true`.
@@ -407,7 +416,7 @@ class V1PlansService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The number of intervals between subscription billings. For example, `interval=month` and
@@ -422,7 +431,7 @@ class V1PlansService {
      * `amount` and `amount_decimal` can be set.
      */
     @optional
-    Nullable!(string) amount_decimal;
+    string amount_decimal;
 
     /**
      * Describes how to compute the price per period. Either `per_unit` or `tiered`. `per_unit`
@@ -432,13 +441,13 @@ class V1PlansService {
      * tiering strategy as defined using the `tiers` and `tiers_mode` attributes.
      */
     @optional
-    Nullable!(string) billing_scheme;
+    string billing_scheme;
 
     /**
      * A brief description of the plan, hidden from customers.
      */
     @optional
-    Nullable!(string) nickname;
+    string nickname;
 
     /**
      * Defines if the tiering price should be `graduated` or `volume` based. In `volume`-based
@@ -446,11 +455,11 @@ class V1PlansService {
      * tiering pricing can successively change as the quantity grows.
      */
     @optional
-    Nullable!(string) tiers_mode;
+    string tiers_mode;
 
     static class Tier {
       @optional
-      Nullable!(string) unit_amount_decimal;
+      string unit_amount_decimal;
 
       @optional
       Nullable!(int) flat_amount;
@@ -462,7 +471,7 @@ class V1PlansService {
       Nullable!(int) unit_amount;
 
       @optional
-      Nullable!(string) flat_amount_decimal;
+      string flat_amount_decimal;
 
     }
 
@@ -492,9 +501,11 @@ class V1PlansService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Plan)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

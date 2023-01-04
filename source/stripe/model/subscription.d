@@ -40,7 +40,7 @@ class Subscription {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will
@@ -49,7 +49,7 @@ class Subscription {
    * payment instructions and mark the subscription as `active`.
    */
   @optional
-  Nullable!(string) collection_method;
+  string collection_method;
 
   /**
    * The tax rates that will apply to any subscription item that does not have `tax_rates` set.
@@ -130,7 +130,7 @@ class Subscription {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -142,7 +142,7 @@ class Subscription {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -178,7 +178,7 @@ class Subscription {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * A non-negative decimal between 0 and 100, with at most two decimal places. This represents
@@ -232,7 +232,7 @@ class Subscription {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * If specified, [pending
@@ -316,7 +316,7 @@ class Subscription {
    * reopen and pay their closed invoices.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * A date in the future at which the subscription will automatically get canceled
@@ -354,7 +354,7 @@ class Subscription {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * If specified, payment collection for this subscription will be paused.
@@ -367,7 +367,7 @@ class Subscription {
    * optionally store an explanation of the subscription for rendering in Stripe surfaces.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   @optional
   SubscriptionAutomaticTax automatic_tax;

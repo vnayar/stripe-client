@@ -35,7 +35,7 @@ class PaymentLink {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Whether the payment link's `url` is active. If `false`, customers visiting the URL will be
@@ -59,7 +59,7 @@ class PaymentLink {
    * Configuration for collecting a payment method during checkout.
    */
   @optional
-  Nullable!(string) payment_method_collection;
+  string payment_method_collection;
 
   @optional
   PaymentLinksResourceAfterCompletion after_completion;
@@ -69,7 +69,7 @@ class PaymentLink {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Whether user redeemable promotion codes are enabled.
@@ -88,13 +88,13 @@ class PaymentLink {
    * The public URL that can be shared with customers.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
   /**
    * Configuration for Customer creation during checkout.
    */
   @optional
-  Nullable!(string) customer_creation;
+  string customer_creation;
 
   /**
    * The account (if any) the payments will be attributed to for tax reporting, and where funds
@@ -113,7 +113,7 @@ class PaymentLink {
    * Configuration for collecting the customer's billing address.
    */
   @optional
-  Nullable!(string) billing_address_collection;
+  string billing_address_collection;
 
   /**
    * When set, provides configuration to gather active consent from customers.
@@ -127,7 +127,7 @@ class PaymentLink {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   static class PaymentLinksResourceListLineItems {
     /**
@@ -141,7 +141,7 @@ class PaymentLink {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -153,7 +153,7 @@ class PaymentLink {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -203,7 +203,7 @@ class PaymentLink {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   PaymentLinksResourcePhoneNumberCollection phone_number_collection;
@@ -214,14 +214,14 @@ class PaymentLink {
    * settings](https://dashboard.stripe.com/settings/payment_methods).
    */
   @optional
-  Nullable!(string)[] payment_method_types;
+  string[] payment_method_types;
 
   /**
    * Indicates the type of transaction being performed which customizes relevant text on the page,
    * such as the submit button.
    */
   @optional
-  Nullable!(string) submit_type;
+  string submit_type;
 
   @optional
   PaymentLinksResourceAutomaticTax automatic_tax;

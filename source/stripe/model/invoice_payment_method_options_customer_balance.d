@@ -16,7 +16,7 @@ class InvoicePaymentMethodOptionsCustomerBalance {
    * Permitted values include: `bank_transfer`.
    */
   @optional
-  Nullable!(string) funding_type;
+  string funding_type;
 
   @optional
   InvoicePaymentMethodOptionsCustomerBalanceBankTransfer bank_transfer;

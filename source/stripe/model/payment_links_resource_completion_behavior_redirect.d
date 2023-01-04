@@ -14,6 +14,6 @@ class PaymentLinksResourceCompletionBehaviorRedirect {
    * The URL the customer will be redirected to after the purchase is complete.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
 }

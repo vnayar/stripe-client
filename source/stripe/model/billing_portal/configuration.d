@@ -23,7 +23,7 @@ class BillingPortalConfiguration {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -31,7 +31,7 @@ class BillingPortalConfiguration {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   @optional
   PortalBusinessProfile business_profile;
@@ -70,7 +70,7 @@ class BillingPortalConfiguration {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was last updated. Measured in seconds since the Unix epoch.
@@ -91,6 +91,6 @@ class BillingPortalConfiguration {
    * -return_url) when creating the session.
    */
   @optional
-  Nullable!(string) default_return_url;
+  string default_return_url;
 
 }

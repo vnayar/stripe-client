@@ -14,31 +14,31 @@ class PaymentMethodAcssDebit {
    * Last four digits of the bank account number.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Transit number of the bank account.
    */
   @optional
-  Nullable!(string) transit_number;
+  string transit_number;
 
   /**
    * Name of the bank associated with the bank account.
    */
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   /**
    * Institution number of the bank account.
    */
   @optional
-  Nullable!(string) institution_number;
+  string institution_number;
 
   /**
    * Uniquely identifies this particular bank account. You can use this attribute to check whether
    * two bank accounts are the same.
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

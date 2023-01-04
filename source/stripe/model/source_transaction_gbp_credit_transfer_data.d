@@ -16,43 +16,43 @@ class SourceTransactionGbpCreditTransferData {
    * supported.
    */
   @optional
-  Nullable!(string) funding_method;
+  string funding_method;
 
   /**
    * Sender account number associated with the transfer.
    */
   @optional
-  Nullable!(string) sender_account_number;
+  string sender_account_number;
 
   /**
    * Last 4 digits of sender account number associated with the transfer.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Sender name associated with the transfer.
    */
   @optional
-  Nullable!(string) sender_name;
+  string sender_name;
 
   /**
    * Sender entered arbitrary information about the transfer.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   /**
    * Sender sort code associated with the transfer.
    */
   @optional
-  Nullable!(string) sender_sort_code;
+  string sender_sort_code;
 
   /**
    * Bank account fingerprint associated with the Stripe owned bank account receiving the
    * transfer.
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

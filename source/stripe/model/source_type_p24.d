@@ -11,6 +11,6 @@ import std.typecons : Nullable;
  */
 class SourceTypeP24 {
   @optional
-  Nullable!(string) reference;
+  string reference;
 
 }

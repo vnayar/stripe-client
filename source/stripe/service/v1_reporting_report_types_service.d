@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,7 +28,7 @@ class V1ReportingReportTypesService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -45,7 +46,7 @@ class V1ReportingReportTypesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       ReportingReportType[] data;
@@ -54,7 +55,7 @@ class V1ReportingReportTypesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -73,9 +74,11 @@ class V1ReportingReportTypesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FinancialReportingFinanceReportTypeList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -94,7 +97,7 @@ class V1ReportingReportTypesService {
         Servers.getServerUrl(),
         "/v1/reporting/report_types");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -103,11 +106,11 @@ class V1ReportingReportTypesService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) report_type;
+    string report_type;
 
   }
 
@@ -128,9 +131,11 @@ class V1ReportingReportTypesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ReportingReportType)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -150,9 +155,9 @@ class V1ReportingReportTypesService {
         Servers.getServerUrl(),
         "/v1/reporting/report_types/{report_type}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.report_type.isNull)
-      requestor.setPathParam("report_type", params.report_type.get.to!string);
+      requestor.setPathParam("report_type", params.report_type);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

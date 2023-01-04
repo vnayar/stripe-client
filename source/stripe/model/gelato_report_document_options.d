@@ -24,7 +24,7 @@ class GelatoReportDocumentOptions {
    * document_type_not_allowed error code.
    */
   @optional
-  Nullable!(string)[] allowed_types;
+  string[] allowed_types;
 
   /**
    * Disable image uploads, identity document images have to be captured using the device’s

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1TestHelpersTerminalReadersService {
   static class PostTestHelpersTerminalReadersReaderPresentPaymentMethodParams {
     /**
      */
-    Nullable!(Nullable!(string)) reader;
+    string reader;
 
   }
 
@@ -47,9 +48,11 @@ class V1TestHelpersTerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TerminalReader)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -69,7 +72,7 @@ class V1TestHelpersTerminalReadersService {
         Servers.getServerUrl(),
         "/v1/test_helpers/terminal/readers/{reader}/present_payment_method");
     if (!params.reader.isNull)
-      requestor.setPathParam("reader", params.reader.get.to!string);
+      requestor.setPathParam("reader", params.reader);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

@@ -21,7 +21,7 @@ class IssuingDisputeCanceledEvidence {
    * Description of the merchandise or service that was purchased.
    */
   @optional
-  Nullable!(string) product_description;
+  string product_description;
 
   /**
    * Date when order was canceled.
@@ -33,7 +33,7 @@ class IssuingDisputeCanceledEvidence {
    * Explanation of why the cardholder is disputing this transaction.
    */
   @optional
-  Nullable!(string) explanation;
+  string explanation;
 
   /**
    * Date when the product was returned or attempted to be returned.
@@ -58,18 +58,18 @@ class IssuingDisputeCanceledEvidence {
    * Reason for canceling the order.
    */
   @optional
-  Nullable!(string) cancellation_reason;
+  string cancellation_reason;
 
   /**
    * Whether the product was a merchandise or service.
    */
   @optional
-  Nullable!(string) product_type;
+  string product_type;
 
   /**
    * Result of cardholder's attempt to return the product.
    */
   @optional
-  Nullable!(string) return_status;
+  string return_status;
 
 }

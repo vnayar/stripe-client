@@ -35,7 +35,7 @@ class IssuingSettlement {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The total amount of fees owed to the network.
@@ -49,20 +49,20 @@ class IssuingSettlement {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The Settlement Identification Number assigned by the network.
    */
   @optional
-  Nullable!(string) network_settlement_identifier;
+  string network_settlement_identifier;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -81,19 +81,19 @@ class IssuingSettlement {
    * The card network for this settlement report. One of ["visa"]
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The Bank Identification Number reflecting this settlement record.
    */
   @optional
-  Nullable!(string) bin;
+  string bin;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -111,6 +111,6 @@ class IssuingSettlement {
    * One of `international` or `uk_national_net`.
    */
   @optional
-  Nullable!(string) settlement_service;
+  string settlement_service;
 
 }

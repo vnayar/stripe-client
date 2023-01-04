@@ -43,7 +43,7 @@ class TreasuryTransactionsResourceFlowDetails {
    * Type of the flow that created the Transaction. Set to the same value as `flow_type`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   TreasuryReceivedDebit received_debit;

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,12 +27,12 @@ class V1IssuingCardsService {
   static class GetIssuingCardsCardParams {
     /**
      */
-    Nullable!(Nullable!(string)) card;
+    string card;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -52,9 +53,11 @@ class V1IssuingCardsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCard)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -73,9 +76,9 @@ class V1IssuingCardsService {
         Servers.getServerUrl(),
         "/v1/issuing/cards/{card}");
     if (!params.card.isNull)
-      requestor.setPathParam("card", params.card.get.to!string);
+      requestor.setPathParam("card", params.card);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -83,7 +86,7 @@ class V1IssuingCardsService {
   static class PostIssuingCardsCardParams {
     /**
      */
-    Nullable!(Nullable!(string)) card;
+    string card;
 
   }
 
@@ -104,9 +107,11 @@ class V1IssuingCardsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCard)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -126,7 +131,7 @@ class V1IssuingCardsService {
         Servers.getServerUrl(),
         "/v1/issuing/cards/{card}");
     if (!params.card.isNull)
-      requestor.setPathParam("card", params.card.get.to!string);
+      requestor.setPathParam("card", params.card);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -135,12 +140,12 @@ class V1IssuingCardsService {
     /**
      * Only return cards belonging to the Cardholder with the provided ID.
      */
-    Nullable!(Nullable!(string)) cardholder;
+    string cardholder;
 
     /**
      * Only return cards that were issued during the given date interval.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -148,33 +153,33 @@ class V1IssuingCardsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Only return cards that have the given expiration month.
      */
-    Nullable!(Nullable!(int)) exp_month;
+    Nullable!(int) exp_month;
 
     /**
      * Only return cards that have the given expiration year.
      */
-    Nullable!(Nullable!(int)) exp_year;
+    Nullable!(int) exp_year;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * Only return cards that have the given last four digits.
      */
-    Nullable!(Nullable!(string)) last4;
+    string last4;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -182,17 +187,17 @@ class V1IssuingCardsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return cards that have the given status. One of `active`, `inactive`, or `canceled`.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
     /**
      * Only return cards that have the given type. One of `virtual` or `physical`.
      */
-    Nullable!(Nullable!(string)) type;
+    string type;
 
   }
 
@@ -210,7 +215,7 @@ class V1IssuingCardsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       IssuingCard[] data;
@@ -219,7 +224,7 @@ class V1IssuingCardsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -238,9 +243,11 @@ class V1IssuingCardsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCardList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -260,27 +267,27 @@ class V1IssuingCardsService {
         Servers.getServerUrl(),
         "/v1/issuing/cards");
     if (!params.cardholder.isNull)
-      requestor.setQueryParam("cardholder", params.cardholder.get.to!string);
+      requestor.setQueryParam!("deepObject")("cardholder", params.cardholder);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.exp_month.isNull)
-      requestor.setQueryParam("exp_month", params.exp_month.get.to!string);
+      requestor.setQueryParam!("deepObject")("exp_month", params.exp_month);
     if (!params.exp_year.isNull)
-      requestor.setQueryParam("exp_year", params.exp_year.get.to!string);
+      requestor.setQueryParam!("deepObject")("exp_year", params.exp_year);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.last4.isNull)
-      requestor.setQueryParam("last4", params.last4.get.to!string);
+      requestor.setQueryParam!("deepObject")("last4", params.last4);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     if (!params.type.isNull)
-      requestor.setQueryParam("type", params.type.get.to!string);
+      requestor.setQueryParam!("deepObject")("type", params.type);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -292,10 +299,10 @@ class V1IssuingCardsService {
         Nullable!(int) amount;
 
         @optional
-        Nullable!(string)[] categories;
+        string[] categories;
 
         @optional
-        Nullable!(string) interval;
+        string interval;
 
       }
 
@@ -303,10 +310,10 @@ class V1IssuingCardsService {
       SpendingLimitsParam[] spending_limits;
 
       @optional
-      Nullable!(string)[] allowed_categories;
+      string[] allowed_categories;
 
       @optional
-      Nullable!(string)[] blocked_categories;
+      string[] blocked_categories;
 
     }
 
@@ -321,7 +328,7 @@ class V1IssuingCardsService {
      * The card this is meant to be a replacement for (if any).
      */
     @optional
-    Nullable!(string) replacement_for;
+    string replacement_for;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -330,70 +337,70 @@ class V1IssuingCardsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * The currency for the card.
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * If `replacement_for` is specified, this should indicate why that card is being replaced.
      */
     @optional
-    Nullable!(string) replacement_reason;
+    string replacement_reason;
 
     /**
      * The [Cardholder](https://stripe.com/docs/api#issuing_cardholder_object) object with which the
      * card will be associated.
      */
     @optional
-    Nullable!(string) cardholder;
+    string cardholder;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     @optional
-    Nullable!(string) financial_account;
+    string financial_account;
 
     /**
      * The type of card to issue. Possible values are `physical` or `virtual`.
      */
     @optional
-    Nullable!(string) type;
+    string type;
 
     static class ShippingSpecs {
       @optional
-      Nullable!(string) service;
+      string service;
 
       @optional
       Nullable!(bool) require_signature;
 
       @optional
-      Nullable!(string) name;
+      string name;
 
       static class RequiredAddress {
         @optional
-        Nullable!(string) line1;
+        string line1;
 
         @optional
-        Nullable!(string) line2;
+        string line2;
 
         @optional
-        Nullable!(string) country;
+        string country;
 
         @optional
-        Nullable!(string) postal_code;
+        string postal_code;
 
         @optional
-        Nullable!(string) city;
+        string city;
 
         @optional
-        Nullable!(string) state;
+        string state;
 
       }
 
@@ -401,14 +408,14 @@ class V1IssuingCardsService {
       RequiredAddress address;
 
       @optional
-      Nullable!(string) type;
+      string type;
 
       @optional
-      Nullable!(string) phone_number;
+      string phone_number;
 
       static class CustomsParam {
         @optional
-        Nullable!(string) eori_number;
+        string eori_number;
 
       }
 
@@ -427,7 +434,7 @@ class V1IssuingCardsService {
      * Whether authorizations can be approved on this card. Defaults to `inactive`.
      */
     @optional
-    Nullable!(string) status;
+    string status;
 
   }
 
@@ -448,9 +455,11 @@ class V1IssuingCardsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCard)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

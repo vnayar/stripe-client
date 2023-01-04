@@ -14,6 +14,6 @@ class SigmaScheduledQueryRunError {
    * Information about the run failure.
    */
   @optional
-  Nullable!(string) message;
+  string message;
 
 }

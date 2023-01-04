@@ -15,42 +15,42 @@ class FundingInstructionsBankTransferZenginRecord {
    * The account number
    */
   @optional
-  Nullable!(string) account_number;
+  string account_number;
 
   /**
    * The bank code of the account
    */
   @optional
-  Nullable!(string) bank_code;
+  string bank_code;
 
   /**
    * The branch code of the account
    */
   @optional
-  Nullable!(string) branch_code;
+  string branch_code;
 
   /**
    * The account holder name
    */
   @optional
-  Nullable!(string) account_holder_name;
+  string account_holder_name;
 
   /**
    * The bank name of the account
    */
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   /**
    * The branch name of the account
    */
   @optional
-  Nullable!(string) branch_name;
+  string branch_name;
 
   /**
    * The bank account type. In Japan, this can only be `futsu` or `toza`.
    */
   @optional
-  Nullable!(string) account_type;
+  string account_type;
 
 }

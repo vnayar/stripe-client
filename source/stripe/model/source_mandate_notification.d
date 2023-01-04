@@ -30,14 +30,14 @@ class SourceMandateNotification {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The reason of the mandate notification. Valid reasons are `mandate_confirmed` or
    * `debit_initiated`.
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   @optional
   Source source;
@@ -59,14 +59,14 @@ class SourceMandateNotification {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The type of source this mandate notification is attached to. Should be the source type
    * identifier code for the payment method, such as `three_d_secure`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -81,6 +81,6 @@ class SourceMandateNotification {
    * The status of the mandate notification. Valid statuses are `pending` or `submitted`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

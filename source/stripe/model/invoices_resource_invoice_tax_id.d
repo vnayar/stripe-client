@@ -20,12 +20,12 @@ class InvoicesResourceInvoiceTaxId {
    * `tr_tin`, `eg_tin`, `ph_tin`, or `unknown`
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The value of the tax ID.
    */
   @optional
-  Nullable!(string) value;
+  string value;
 
 }

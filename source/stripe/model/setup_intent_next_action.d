@@ -17,7 +17,7 @@ class SetupIntentNextAction {
    * `alipay_handle_redirect`, `oxxo_display_details`, or `verify_with_microdeposits`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   SetupIntentNextActionRedirectToUrl redirect_to_url;

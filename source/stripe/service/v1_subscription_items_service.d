@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -30,11 +31,11 @@ class V1SubscriptionItemsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) item;
+    string item;
 
   }
 
@@ -55,9 +56,11 @@ class V1SubscriptionItemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionItem)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -76,9 +79,9 @@ class V1SubscriptionItemsService {
         Servers.getServerUrl(),
         "/v1/subscription_items/{item}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.item.isNull)
-      requestor.setPathParam("item", params.item.get.to!string);
+      requestor.setPathParam("item", params.item);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -86,7 +89,7 @@ class V1SubscriptionItemsService {
   static class PostSubscriptionItemsItemParams {
     /**
      */
-    Nullable!(Nullable!(string)) item;
+    string item;
 
   }
 
@@ -107,9 +110,11 @@ class V1SubscriptionItemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionItem)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -128,7 +133,7 @@ class V1SubscriptionItemsService {
         Servers.getServerUrl(),
         "/v1/subscription_items/{item}");
     if (!params.item.isNull)
-      requestor.setPathParam("item", params.item.get.to!string);
+      requestor.setPathParam("item", params.item);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -136,7 +141,7 @@ class V1SubscriptionItemsService {
   static class DeleteSubscriptionItemsItemParams {
     /**
      */
-    Nullable!(Nullable!(string)) item;
+    string item;
 
   }
 
@@ -157,9 +162,11 @@ class V1SubscriptionItemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedSubscriptionItem)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -179,7 +186,7 @@ class V1SubscriptionItemsService {
         Servers.getServerUrl(),
         "/v1/subscription_items/{item}");
     if (!params.item.isNull)
-      requestor.setPathParam("item", params.item.get.to!string);
+      requestor.setPathParam("item", params.item);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -187,7 +194,7 @@ class V1SubscriptionItemsService {
   static class PostSubscriptionItemsSubscriptionItemUsageRecordsParams {
     /**
      */
-    Nullable!(Nullable!(string)) subscription_item;
+    string subscription_item;
 
   }
 
@@ -209,13 +216,13 @@ class V1SubscriptionItemsService {
      * sholds), `increment` is the only allowed value.
      */
     @optional
-    Nullable!(string) action;
+    string action;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The usage quantity for the specified timestamp.
@@ -242,9 +249,11 @@ class V1SubscriptionItemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(UsageRecord)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -280,7 +289,7 @@ class V1SubscriptionItemsService {
         Servers.getServerUrl(),
         "/v1/subscription_items/{subscription_item}/usage_records");
     if (!params.subscription_item.isNull)
-      requestor.setPathParam("subscription_item", params.subscription_item.get.to!string);
+      requestor.setPathParam("subscription_item", params.subscription_item);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -293,18 +302,18 @@ class V1SubscriptionItemsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -312,12 +321,12 @@ class V1SubscriptionItemsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * The ID of the subscription whose items will be retrieved.
      */
-    Nullable!(Nullable!(string)) subscription;
+    string subscription;
 
   }
 
@@ -335,7 +344,7 @@ class V1SubscriptionItemsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       SubscriptionItem[] data;
@@ -344,7 +353,7 @@ class V1SubscriptionItemsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -363,9 +372,11 @@ class V1SubscriptionItemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionsItemsSubscriptionItemList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -384,15 +395,15 @@ class V1SubscriptionItemsService {
         Servers.getServerUrl(),
         "/v1/subscription_items");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.subscription.isNull)
-      requestor.setQueryParam("subscription", params.subscription.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription", params.subscription);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -405,13 +416,13 @@ class V1SubscriptionItemsService {
      * a trial), or if an item's `quantity` changes.
      */
     @optional
-    Nullable!(string) proration_behavior;
+    string proration_behavior;
 
     /**
      * The identifier of the subscription to modify.
      */
     @optional
-    Nullable!(string) subscription;
+    string subscription;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -420,7 +431,7 @@ class V1SubscriptionItemsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * The quantity you'd like to apply to the subscription item you're creating.
@@ -437,17 +448,17 @@ class V1SubscriptionItemsService {
 
     static class RecurringPriceData {
       @optional
-      Nullable!(string) currency;
+      string currency;
 
       @optional
-      Nullable!(string) unit_amount_decimal;
+      string unit_amount_decimal;
 
       static class RecurringAdhoc {
         @optional
         Nullable!(int) interval_count;
 
         @optional
-        Nullable!(string) interval;
+        string interval;
 
       }
 
@@ -455,10 +466,10 @@ class V1SubscriptionItemsService {
       RecurringAdhoc recurring;
 
       @optional
-      Nullable!(string) product;
+      string product;
 
       @optional
-      Nullable!(string) tax_behavior;
+      string tax_behavior;
 
       @optional
       Nullable!(int) unit_amount;
@@ -475,7 +486,7 @@ class V1SubscriptionItemsService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * Use `allow_incomplete` to transition the subscription to `status=past_due` if a payment is
@@ -502,7 +513,7 @@ class V1SubscriptionItemsService {
      * [changelog](https://stripe.com/docs/upgrades#2019-03-14) to learn more.
      */
     @optional
-    Nullable!(string) payment_behavior;
+    string payment_behavior;
 
     /**
      * If set, the proration will be calculated as though the subscription was updated at the given
@@ -526,7 +537,7 @@ class V1SubscriptionItemsService {
      * The ID of the price object.
      */
     @optional
-    Nullable!(string) price;
+    string price;
 
   }
 
@@ -547,9 +558,11 @@ class V1SubscriptionItemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionItem)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -580,18 +593,18 @@ class V1SubscriptionItemsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -599,11 +612,11 @@ class V1SubscriptionItemsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      */
-    Nullable!(Nullable!(string)) subscription_item;
+    string subscription_item;
 
   }
 
@@ -621,7 +634,7 @@ class V1SubscriptionItemsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       UsageRecordSummary[] data;
@@ -630,7 +643,7 @@ class V1SubscriptionItemsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -649,9 +662,11 @@ class V1SubscriptionItemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(UsageEventsResourceUsageRecordSummaryList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -676,15 +691,15 @@ class V1SubscriptionItemsService {
         Servers.getServerUrl(),
         "/v1/subscription_items/{subscription_item}/usage_record_summaries");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.subscription_item.isNull)
-      requestor.setPathParam("subscription_item", params.subscription_item.get.to!string);
+      requestor.setPathParam("subscription_item", params.subscription_item);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

@@ -16,24 +16,24 @@ class TaxCode {
    * A detailed description of which types of products the tax code represents.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * A short name for the tax code.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
 }

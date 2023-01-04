@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -29,15 +30,15 @@ class V1BillingPortalSessionsService {
      * customer’s `preferred_locales` or browser’s locale is used.
      */
     @optional
-    Nullable!(string) locale;
+    string locale;
 
     static class FlowDataParam {
       @optional
-      Nullable!(string) type;
+      string type;
 
       static class FlowDataSubscriptionCancelParam {
         @optional
-        Nullable!(string) subscription;
+        string subscription;
 
       }
 
@@ -46,11 +47,11 @@ class V1BillingPortalSessionsService {
 
       static class FlowDataAfterCompletionParam {
         @optional
-        Nullable!(string) type;
+        string type;
 
         static class AfterCompletionHostedConfirmationParam {
           @optional
-          Nullable!(string) custom_message;
+          string custom_message;
 
         }
 
@@ -59,7 +60,7 @@ class V1BillingPortalSessionsService {
 
         static class AfterCompletionRedirectParam {
           @optional
-          Nullable!(string) return_url;
+          string return_url;
 
         }
 
@@ -84,7 +85,7 @@ class V1BillingPortalSessionsService {
      * your website.
      */
     @optional
-    Nullable!(string) return_url;
+    string return_url;
 
     /**
      * The ID of an existing
@@ -93,19 +94,19 @@ class V1BillingPortalSessionsService {
      * default configuration.
      */
     @optional
-    Nullable!(string) configuration;
+    string configuration;
 
     /**
      * The ID of an existing customer.
      */
     @optional
-    Nullable!(string) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The `on_behalf_of` account to use for this session. When specified, only subscriptions and
@@ -115,7 +116,7 @@ class V1BillingPortalSessionsService {
      * the `on_behalf_of` account's branding settings, which the portal displays.
      */
     @optional
-    Nullable!(string) on_behalf_of;
+    string on_behalf_of;
 
   }
 
@@ -136,9 +137,11 @@ class V1BillingPortalSessionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BillingPortalSession)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

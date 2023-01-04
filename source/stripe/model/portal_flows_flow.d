@@ -16,7 +16,7 @@ class PortalFlowsFlow {
    * Type of flow that the customer will go through.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Configuration when `flow.type=subscription_cancel`.

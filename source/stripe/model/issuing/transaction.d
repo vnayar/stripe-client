@@ -43,7 +43,7 @@ class IssuingTransaction {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -51,14 +51,14 @@ class IssuingTransaction {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * ID of the [balance transaction](https://stripe.com/docs/api/balance_transactions) associated
@@ -98,14 +98,14 @@ class IssuingTransaction {
    * The currency with which the merchant is taking payment.
    */
   @optional
-  Nullable!(string) merchant_currency;
+  string merchant_currency;
 
   /**
    * The digital wallet used for this transaction. One of `apple_pay`, `google_pay`, or
    * `samsung_pay`.
    */
   @optional
-  Nullable!(string) wallet;
+  string wallet;
 
   /**
    * Detailed breakdown of amount components. These amounts are denominated in `currency` and in
@@ -118,7 +118,7 @@ class IssuingTransaction {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * If you've disputed the transaction, the ID of the dispute.
@@ -146,7 +146,7 @@ class IssuingTransaction {
    * The nature of the transaction.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The `Authorization` object that led to this transaction.

@@ -14,6 +14,6 @@ class TreasuryFinancialAccountsResourceClosedStatusDetails {
    * The array that contains reasons for a FinancialAccount closure.
    */
   @optional
-  Nullable!(string)[] reasons;
+  string[] reasons;
 
 }

@@ -24,6 +24,6 @@ class TerminalReaderReaderResourceProcessSetupIntentAction {
    * PaymentMethod.
    */
   @optional
-  Nullable!(string) generated_card;
+  string generated_card;
 
 }

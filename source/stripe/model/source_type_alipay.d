@@ -11,12 +11,12 @@ import std.typecons : Nullable;
  */
 class SourceTypeAlipay {
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   @optional
-  Nullable!(string) native_url;
+  string native_url;
 
   @optional
-  Nullable!(string) data_string;
+  string data_string;
 
 }

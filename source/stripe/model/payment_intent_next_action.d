@@ -76,7 +76,7 @@ class PaymentIntentNextAction {
    * `alipay_handle_redirect`, `oxxo_display_details`, or `verify_with_microdeposits`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   PaymentIntentNextActionWechatPayRedirectToIosApp wechat_pay_redirect_to_ios_app;

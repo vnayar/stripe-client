@@ -24,7 +24,7 @@ class IssuingDisputeEvidence {
    * The reason for filing the dispute. Its value will match the field containing the evidence.
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   @optional
   IssuingDisputeMerchandiseNotAsDescribedEvidence merchandise_not_as_described;

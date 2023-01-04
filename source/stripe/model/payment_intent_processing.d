@@ -18,6 +18,6 @@ class PaymentIntentProcessing {
    * Type of the payment method for which payment is in `processing` state, one of `card`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
 }

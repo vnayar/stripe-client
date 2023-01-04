@@ -15,7 +15,7 @@ class PaymentMethodOptionsKonbini {
    * convenience store.
    */
   @optional
-  Nullable!(string) product_description;
+  string product_description;
 
   /**
    * The timestamp at which the Konbini payment instructions will expire. Only one of
@@ -37,7 +37,7 @@ class PaymentMethodOptionsKonbini {
    * applicable convenience stores.
    */
   @optional
-  Nullable!(string) confirmation_number;
+  string confirmation_number;
 
   /**
    * Indicates that you intend to make future payments with this PaymentIntent's payment method.
@@ -52,6 +52,6 @@ class PaymentMethodOptionsKonbini {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
 }

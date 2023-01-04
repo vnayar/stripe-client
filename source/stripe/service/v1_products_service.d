@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -29,12 +30,12 @@ class V1ProductsService {
      * Only return products that are active or inactive (e.g., pass `false` to list all inactive
      * products).
      */
-    Nullable!(Nullable!(bool)) active;
+    Nullable!(bool) active;
 
     /**
      * Only return products that were created during the given date interval.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -42,30 +43,30 @@ class V1ProductsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * Only return products with the given IDs. Cannot be used with
      * [starting_after](https://stripe.com/docs/api#list_products-starting_after) or
      * [ending_before](https://stripe.com/docs/api#list_products-ending_before).
      */
-    Nullable!(Nullable!(string)[]) ids;
+    string[] ids;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Only return products that can be shipped (i.e., physical, not digital products).
      */
-    Nullable!(Nullable!(bool)) shippable;
+    Nullable!(bool) shippable;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -73,12 +74,12 @@ class V1ProductsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return products with the given url.
      */
-    Nullable!(Nullable!(string)) url;
+    string url;
 
   }
 
@@ -96,7 +97,7 @@ class V1ProductsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -108,7 +109,7 @@ class V1ProductsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -127,9 +128,11 @@ class V1ProductsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ProductList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -149,23 +152,23 @@ class V1ProductsService {
         Servers.getServerUrl(),
         "/v1/products");
     if (!params.active.isNull)
-      requestor.setQueryParam("active", params.active.get.to!string);
+      requestor.setQueryParam!("deepObject")("active", params.active);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.ids.isNull)
-      requestor.setQueryParam("ids", params.ids.get.to!string);
+      requestor.setQueryParam!("deepObject")("ids", params.ids);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.shippable.isNull)
-      requestor.setQueryParam("shippable", params.shippable.get.to!string);
+      requestor.setQueryParam!("deepObject")("shippable", params.shippable);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.url.isNull)
-      requestor.setQueryParam("url", params.url.get.to!string);
+      requestor.setQueryParam!("deepObject")("url", params.url);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -176,13 +179,13 @@ class V1ProductsService {
      * invoices. When set, this will be included in associated invoice line item descriptions.
      */
     @optional
-    Nullable!(string) unit_label;
+    string unit_label;
 
     /**
      * A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
      */
     @optional
-    Nullable!(string) tax_code;
+    string tax_code;
 
     /**
      * An arbitrary string to be displayed on your customer's credit card or bank statement. While
@@ -194,14 +197,14 @@ class V1ProductsService {
      *  It must contain at least one letter.
      */
     @optional
-    Nullable!(string) statement_descriptor;
+    string statement_descriptor;
 
     /**
      * An identifier will be randomly generated by Stripe. You can optionally override this ID, but
      * the ID must be unique across all products in your Stripe account.
      */
     @optional
-    Nullable!(string) id;
+    string id;
 
     static class PackageDimensionsSpecs {
       @optional
@@ -229,15 +232,15 @@ class V1ProductsService {
       Nullable!(int) unit_amount;
 
       @optional
-      Nullable!(string) currency;
+      string currency;
 
       @optional
-      Nullable!(string) unit_amount_decimal;
+      string unit_amount_decimal;
 
       static class CurrencyOption {
         static class Tier {
           @optional
-          Nullable!(string) unit_amount_decimal;
+          string unit_amount_decimal;
 
           @optional
           Nullable!(int) flat_amount;
@@ -249,7 +252,7 @@ class V1ProductsService {
           Nullable!(int) unit_amount;
 
           @optional
-          Nullable!(string) flat_amount_decimal;
+          string flat_amount_decimal;
 
         }
 
@@ -257,7 +260,7 @@ class V1ProductsService {
         Tier[] tiers;
 
         @optional
-        Nullable!(string) unit_amount_decimal;
+        string unit_amount_decimal;
 
         static class CustomUnitAmount {
           @optional
@@ -281,7 +284,7 @@ class V1ProductsService {
         Nullable!(int) unit_amount;
 
         @optional
-        Nullable!(string) tax_behavior;
+        string tax_behavior;
 
       }
 
@@ -293,7 +296,7 @@ class V1ProductsService {
         Nullable!(int) interval_count;
 
         @optional
-        Nullable!(string) interval;
+        string interval;
 
       }
 
@@ -301,7 +304,7 @@ class V1ProductsService {
       RecurringAdhoc recurring;
 
       @optional
-      Nullable!(string) tax_behavior;
+      string tax_behavior;
 
     }
 
@@ -319,13 +322,13 @@ class V1ProductsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * The product's name, meant to be displayable to the customer.
      */
     @optional
-    Nullable!(string) name;
+    string name;
 
     /**
      * Whether the product is currently available for purchase. Defaults to `true`.
@@ -337,19 +340,19 @@ class V1ProductsService {
      * A URL of a publicly-accessible webpage for this product.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
      */
     @optional
-    Nullable!(string)[] images;
+    string[] images;
 
     /**
      * The product's description, meant to be displayable to the customer. Use this field to
@@ -357,7 +360,7 @@ class V1ProductsService {
      * purposes.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
     /**
      * Whether this product is shipped (i.e., physical goods).
@@ -384,9 +387,11 @@ class V1ProductsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Product)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -413,11 +418,11 @@ class V1ProductsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -438,9 +443,11 @@ class V1ProductsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Product)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -461,9 +468,9 @@ class V1ProductsService {
         Servers.getServerUrl(),
         "/v1/products/{id}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -471,7 +478,7 @@ class V1ProductsService {
   static class PostProductsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -492,9 +499,11 @@ class V1ProductsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Product)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -514,7 +523,7 @@ class V1ProductsService {
         Servers.getServerUrl(),
         "/v1/products/{id}");
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -522,7 +531,7 @@ class V1ProductsService {
   static class DeleteProductsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -543,9 +552,11 @@ class V1ProductsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedProduct)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -566,7 +577,7 @@ class V1ProductsService {
         Servers.getServerUrl(),
         "/v1/products/{id}");
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

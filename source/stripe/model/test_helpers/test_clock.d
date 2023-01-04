@@ -21,7 +21,7 @@ class TestHelpersTestClock {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Time at which all objects belonging to this clock are frozen.
@@ -33,7 +33,7 @@ class TestHelpersTestClock {
    * The custom name supplied at creation.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -46,7 +46,7 @@ class TestHelpersTestClock {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -64,6 +64,6 @@ class TestHelpersTestClock {
    * The status of the Test Clock.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

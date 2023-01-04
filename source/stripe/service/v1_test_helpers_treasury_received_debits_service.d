@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -35,45 +36,45 @@ class V1TestHelpersTreasuryReceivedDebitsService {
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The rails used for the object.
      */
     @optional
-    Nullable!(string) network;
+    string network;
 
     /**
      * The FinancialAccount to pull funds from.
      */
     @optional
-    Nullable!(string) financial_account;
+    string financial_account;
 
     /**
      * An arbitrary string attached to the object. Often useful for displaying to users.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
     static class SourceParams {
       @optional
-      Nullable!(string) type;
+      string type;
 
       static class UsBankAccountSourceParams {
         @optional
-        Nullable!(string) account_holder_name;
+        string account_holder_name;
 
         @optional
-        Nullable!(string) routing_number;
+        string routing_number;
 
         @optional
-        Nullable!(string) account_number;
+        string account_number;
 
       }
 
@@ -107,9 +108,11 @@ class V1TestHelpersTreasuryReceivedDebitsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryReceivedDebit)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

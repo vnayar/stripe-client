@@ -29,19 +29,19 @@ class Person {
    * The person's email address.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The person's last name.
    */
   @optional
-  Nullable!(string) last_name;
+  string last_name;
 
   @optional
   LegalEntityPersonVerification verification;
@@ -72,13 +72,13 @@ class Person {
    * A list of alternate names or aliases that the person is known by.
    */
   @optional
-  Nullable!(string)[] full_name_aliases;
+  string[] full_name_aliases;
 
   /**
    * The person's first name.
    */
   @optional
-  Nullable!(string) first_name;
+  string first_name;
 
   /**
    * Indicates if the person or any of their representatives, family members, or other closely
@@ -86,25 +86,25 @@ class Person {
    * any jurisdiction.
    */
   @optional
-  Nullable!(string) political_exposure;
+  string political_exposure;
 
   /**
    * The person's maiden name.
    */
   @optional
-  Nullable!(string) maiden_name;
+  string maiden_name;
 
   /**
    * The person's phone number.
    */
   @optional
-  Nullable!(string) phone;
+  string phone;
 
   /**
    * The person's gender (International regulations require either "male" or "female").
    */
   @optional
-  Nullable!(string) gender;
+  string gender;
 
   /**
    * Whether the person's `id_number` was provided.
@@ -119,7 +119,7 @@ class Person {
    * The Kanji variation of the person's last name (Japan only).
    */
   @optional
-  Nullable!(string) last_name_kanji;
+  string last_name_kanji;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -127,19 +127,19 @@ class Person {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The Kana variation of the person's last name (Japan only).
    */
   @optional
-  Nullable!(string) last_name_kana;
+  string last_name_kana;
 
   /**
    * The Kana variation of the person's first name (Japan only).
    */
   @optional
-  Nullable!(string) first_name_kana;
+  string first_name_kana;
 
   @optional
   PersonFutureRequirements future_requirements;
@@ -154,13 +154,13 @@ class Person {
    * The country where the person is a national.
    */
   @optional
-  Nullable!(string) nationality;
+  string nationality;
 
   /**
    * The Kanji variation of the person's first name (Japan only).
    */
   @optional
-  Nullable!(string) first_name_kanji;
+  string first_name_kanji;
 
   /**
    * Whether the person's `id_number_secondary` was provided.
@@ -172,13 +172,13 @@ class Person {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The account the person is associated with.
    */
   @optional
-  Nullable!(string) account;
+  string account;
 
   @optional
   LegalEntityJapanAddress address_kanji;

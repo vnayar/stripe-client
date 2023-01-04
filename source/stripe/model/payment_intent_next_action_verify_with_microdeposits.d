@@ -15,7 +15,7 @@ class PaymentIntentNextActionVerifyWithMicrodeposits {
    * account.
    */
   @optional
-  Nullable!(string) hosted_verification_url;
+  string hosted_verification_url;
 
   /**
    * The timestamp when the microdeposits are expected to land.
@@ -28,6 +28,6 @@ class PaymentIntentNextActionVerifyWithMicrodeposits {
    * verification methods.
    */
   @optional
-  Nullable!(string) microdeposit_type;
+  string microdeposit_type;
 
 }

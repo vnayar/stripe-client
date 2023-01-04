@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1TestHelpersIssuingCardsService {
   static class PostTestHelpersIssuingCardsCardShippingDeliverParams {
     /**
      */
-    Nullable!(Nullable!(string)) card;
+    string card;
 
   }
 
@@ -47,9 +48,11 @@ class V1TestHelpersIssuingCardsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCard)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -69,7 +72,7 @@ class V1TestHelpersIssuingCardsService {
         Servers.getServerUrl(),
         "/v1/test_helpers/issuing/cards/{card}/shipping/deliver");
     if (!params.card.isNull)
-      requestor.setPathParam("card", params.card.get.to!string);
+      requestor.setPathParam("card", params.card);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -77,7 +80,7 @@ class V1TestHelpersIssuingCardsService {
   static class PostTestHelpersIssuingCardsCardShippingReturnParams {
     /**
      */
-    Nullable!(Nullable!(string)) card;
+    string card;
 
   }
 
@@ -98,9 +101,11 @@ class V1TestHelpersIssuingCardsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCard)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -120,7 +125,7 @@ class V1TestHelpersIssuingCardsService {
         Servers.getServerUrl(),
         "/v1/test_helpers/issuing/cards/{card}/shipping/return");
     if (!params.card.isNull)
-      requestor.setPathParam("card", params.card.get.to!string);
+      requestor.setPathParam("card", params.card);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -128,7 +133,7 @@ class V1TestHelpersIssuingCardsService {
   static class PostTestHelpersIssuingCardsCardShippingFailParams {
     /**
      */
-    Nullable!(Nullable!(string)) card;
+    string card;
 
   }
 
@@ -149,9 +154,11 @@ class V1TestHelpersIssuingCardsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCard)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -171,7 +178,7 @@ class V1TestHelpersIssuingCardsService {
         Servers.getServerUrl(),
         "/v1/test_helpers/issuing/cards/{card}/shipping/fail");
     if (!params.card.isNull)
-      requestor.setPathParam("card", params.card.get.to!string);
+      requestor.setPathParam("card", params.card);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -179,7 +186,7 @@ class V1TestHelpersIssuingCardsService {
   static class PostTestHelpersIssuingCardsCardShippingShipParams {
     /**
      */
-    Nullable!(Nullable!(string)) card;
+    string card;
 
   }
 
@@ -200,9 +207,11 @@ class V1TestHelpersIssuingCardsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCard)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -222,7 +231,7 @@ class V1TestHelpersIssuingCardsService {
         Servers.getServerUrl(),
         "/v1/test_helpers/issuing/cards/{card}/shipping/ship");
     if (!params.card.isNull)
-      requestor.setPathParam("card", params.card.get.to!string);
+      requestor.setPathParam("card", params.card);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

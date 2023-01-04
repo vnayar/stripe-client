@@ -22,7 +22,7 @@ class IssuingDisputeServiceNotAsDescribedEvidence {
    * Reason for canceling the order.
    */
   @optional
-  Nullable!(string) cancellation_reason;
+  string cancellation_reason;
 
   /**
    * Date when order was canceled.
@@ -40,6 +40,6 @@ class IssuingDisputeServiceNotAsDescribedEvidence {
    * Explanation of why the cardholder is disputing this transaction.
    */
   @optional
-  Nullable!(string) explanation;
+  string explanation;
 
 }

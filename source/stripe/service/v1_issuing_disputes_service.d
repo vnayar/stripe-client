@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,7 +28,7 @@ class V1IssuingDisputesService {
     /**
      * Select Issuing disputes that were created during the given date interval.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -35,18 +36,18 @@ class V1IssuingDisputesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -54,17 +55,17 @@ class V1IssuingDisputesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Select Issuing disputes with the given status.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
     /**
      * Select the Issuing dispute for the given transaction.
      */
-    Nullable!(Nullable!(string)) transaction;
+    string transaction;
 
   }
 
@@ -82,7 +83,7 @@ class V1IssuingDisputesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       IssuingDispute[] data;
@@ -91,7 +92,7 @@ class V1IssuingDisputesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -110,9 +111,11 @@ class V1IssuingDisputesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingDisputeList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -132,19 +135,19 @@ class V1IssuingDisputesService {
         Servers.getServerUrl(),
         "/v1/issuing/disputes");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     if (!params.transaction.isNull)
-      requestor.setQueryParam("transaction", params.transaction.get.to!string);
+      requestor.setQueryParam!("deepObject")("transaction", params.transaction);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -166,9 +169,11 @@ class V1IssuingDisputesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingDispute)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -196,12 +201,12 @@ class V1IssuingDisputesService {
   static class GetIssuingDisputesDisputeParams {
     /**
      */
-    Nullable!(Nullable!(string)) dispute;
+    string dispute;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -222,9 +227,11 @@ class V1IssuingDisputesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingDispute)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -243,9 +250,9 @@ class V1IssuingDisputesService {
         Servers.getServerUrl(),
         "/v1/issuing/disputes/{dispute}");
     if (!params.dispute.isNull)
-      requestor.setPathParam("dispute", params.dispute.get.to!string);
+      requestor.setPathParam("dispute", params.dispute);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -253,7 +260,7 @@ class V1IssuingDisputesService {
   static class PostIssuingDisputesDisputeParams {
     /**
      */
-    Nullable!(Nullable!(string)) dispute;
+    string dispute;
 
   }
 
@@ -274,9 +281,11 @@ class V1IssuingDisputesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingDispute)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -297,7 +306,7 @@ class V1IssuingDisputesService {
         Servers.getServerUrl(),
         "/v1/issuing/disputes/{dispute}");
     if (!params.dispute.isNull)
-      requestor.setPathParam("dispute", params.dispute.get.to!string);
+      requestor.setPathParam("dispute", params.dispute);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -305,7 +314,7 @@ class V1IssuingDisputesService {
   static class PostIssuingDisputesDisputeSubmitParams {
     /**
      */
-    Nullable!(Nullable!(string)) dispute;
+    string dispute;
 
   }
 
@@ -326,9 +335,11 @@ class V1IssuingDisputesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingDispute)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -350,7 +361,7 @@ class V1IssuingDisputesService {
         Servers.getServerUrl(),
         "/v1/issuing/disputes/{dispute}/submit");
     if (!params.dispute.isNull)
-      requestor.setPathParam("dispute", params.dispute.get.to!string);
+      requestor.setPathParam("dispute", params.dispute);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

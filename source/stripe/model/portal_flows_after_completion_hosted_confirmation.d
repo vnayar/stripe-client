@@ -14,6 +14,6 @@ class PortalFlowsAfterCompletionHostedConfirmation {
    * A custom message to display to the customer after the flow is completed.
    */
   @optional
-  Nullable!(string) custom_message;
+  string custom_message;
 
 }

@@ -25,12 +25,12 @@ class PortalSubscriptionCancel {
    * `create_prorations`.
    */
   @optional
-  Nullable!(string) proration_behavior;
+  string proration_behavior;
 
   /**
    * Whether to cancel subscriptions immediately or at the end of the billing period.
    */
   @optional
-  Nullable!(string) mode;
+  string mode;
 
 }

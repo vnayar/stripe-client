@@ -20,13 +20,13 @@ class TaxId {
    * Two-letter ISO code representing the country of the tax ID.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * ID of the customer.
@@ -51,7 +51,7 @@ class TaxId {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Type of the tax ID, one of `ae_trn`, `au_abn`, `au_arn`, `bg_uic`, `br_cnpj`, `br_cpf`,
@@ -63,7 +63,7 @@ class TaxId {
    * `za_vat`. Note that some legacy tax IDs have type `unknown`
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -75,6 +75,6 @@ class TaxId {
    * Value of the tax ID.
    */
   @optional
-  Nullable!(string) value;
+  string value;
 
 }

@@ -16,7 +16,7 @@ class AccountPayoutSettings {
    * the platform's bank descriptor as set in the Dashboard.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * A Boolean indicating if Stripe should try to reclaim negative balances from an attached bank

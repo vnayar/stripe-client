@@ -22,12 +22,12 @@ class CustomerTax {
    * information.
    */
   @optional
-  Nullable!(string) automatic_tax;
+  string automatic_tax;
 
   /**
    * A recent IP address of the customer used for tax reporting and tax location inference.
    */
   @optional
-  Nullable!(string) ip_address;
+  string ip_address;
 
 }

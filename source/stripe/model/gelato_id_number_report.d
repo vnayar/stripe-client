@@ -17,13 +17,13 @@ class GelatoIdNumberReport {
    * First name.
    */
   @optional
-  Nullable!(string) first_name;
+  string first_name;
 
   /**
    * Last name.
    */
   @optional
-  Nullable!(string) last_name;
+  string last_name;
 
   /**
    * Date of birth.
@@ -41,18 +41,18 @@ class GelatoIdNumberReport {
    * Type of ID number.
    */
   @optional
-  Nullable!(string) id_number_type;
+  string id_number_type;
 
   /**
    * ID number.
    */
   @optional
-  Nullable!(string) id_number;
+  string id_number;
 
   /**
    * Status of this `id_number` check.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

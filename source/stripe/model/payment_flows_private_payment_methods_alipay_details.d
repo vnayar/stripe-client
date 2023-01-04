@@ -14,20 +14,20 @@ class PaymentFlowsPrivatePaymentMethodsAlipayDetails {
    * Transaction ID of this particular Alipay transaction.
    */
   @optional
-  Nullable!(string) transaction_id;
+  string transaction_id;
 
   /**
    * Uniquely identifies this particular Alipay account. You can use this attribute to check
    * whether two Alipay accounts are the same.
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
   /**
    * Uniquely identifies this particular Alipay account. You can use this attribute to check
    * whether two Alipay accounts are the same.
    */
   @optional
-  Nullable!(string) buyer_id;
+  string buyer_id;
 
 }

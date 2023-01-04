@@ -20,6 +20,6 @@ class TransformQuantity {
    * After division, either round the result `up` or `down`.
    */
   @optional
-  Nullable!(string) round;
+  string round;
 
 }

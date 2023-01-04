@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1TestHelpersRefundsService {
   static class PostTestHelpersRefundsRefundExpireParams {
     /**
      */
-    Nullable!(Nullable!(string)) refund;
+    string refund;
 
   }
 
@@ -47,9 +48,11 @@ class V1TestHelpersRefundsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Refund)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -68,7 +71,7 @@ class V1TestHelpersRefundsService {
         Servers.getServerUrl(),
         "/v1/test_helpers/refunds/{refund}/expire");
     if (!params.refund.isNull)
-      requestor.setPathParam("refund", params.refund.get.to!string);
+      requestor.setPathParam("refund", params.refund);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

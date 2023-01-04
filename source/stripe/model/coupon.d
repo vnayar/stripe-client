@@ -30,7 +30,7 @@ class Coupon {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -38,7 +38,7 @@ class Coupon {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Maximum number of times this coupon can be redeemed, in total, across all customers, before
@@ -52,13 +52,13 @@ class Coupon {
    * currency](https://stripe.com/docs/currencies) of the amount to take off.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Name of the coupon displayed to customers on for instance invoices or receipts.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -88,7 +88,7 @@ class Coupon {
    * coupon will get the discount.
    */
   @optional
-  Nullable!(string) duration;
+  string duration;
 
   /**
    * Percent that will be taken off the subtotal of any invoices for this customer for the
@@ -102,7 +102,7 @@ class Coupon {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * If `duration` is `repeating`, the number of months the coupon applies. Null if coupon

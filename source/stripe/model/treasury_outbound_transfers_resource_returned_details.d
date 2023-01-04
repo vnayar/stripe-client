@@ -21,6 +21,6 @@ class TreasuryOutboundTransfersResourceReturnedDetails {
    * Reason for the return.
    */
   @optional
-  Nullable!(string) code;
+  string code;
 
 }

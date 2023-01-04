@@ -31,7 +31,7 @@ class Account {
    * for authentication or messaging account holders.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   /**
    * Three-letter ISO currency code representing the default currency for the account. This must
@@ -39,19 +39,19 @@ class Account {
    * country](https://stripe.com/docs/payouts).
    */
   @optional
-  Nullable!(string) default_currency;
+  string default_currency;
 
   /**
    * The account's country.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Whether Stripe can send payouts to this account.
@@ -65,7 +65,7 @@ class Account {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Business information about the account.
@@ -102,13 +102,13 @@ class Account {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The business type.
    */
   @optional
-  Nullable!(string) business_type;
+  string business_type;
 
   @optional
   Person individual;
@@ -117,7 +117,7 @@ class Account {
    * The Stripe account type. Can be `standard`, `express`, or `custom`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the account was connected. Measured in seconds since the Unix epoch.
@@ -143,7 +143,7 @@ class Account {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * The list contains all external accounts that have been attached to the Stripe account. These
@@ -156,7 +156,7 @@ class Account {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 

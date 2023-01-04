@@ -14,6 +14,6 @@ class CustomerBalanceCustomerBalanceSettings {
    * The configuration for how funds that land in the customer cash balance are reconciled.
    */
   @optional
-  Nullable!(string) reconciliation_mode;
+  string reconciliation_mode;
 
 }

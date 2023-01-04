@@ -22,6 +22,6 @@ class SubscriptionPendingInvoiceItemInterval {
    * Specifies invoicing frequency. Either `day`, `week`, `month` or `year`.
    */
   @optional
-  Nullable!(string) interval;
+  string interval;
 
 }

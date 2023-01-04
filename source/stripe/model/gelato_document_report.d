@@ -20,13 +20,13 @@ class GelatoDocumentReport {
    * Issuing country of the document.
    */
   @optional
-  Nullable!(string) issuing_country;
+  string issuing_country;
 
   /**
    * Document ID number.
    */
   @optional
-  Nullable!(string) number;
+  string number;
 
   /**
    * Expiration date of the document.
@@ -38,19 +38,19 @@ class GelatoDocumentReport {
    * First name as it appears in the document.
    */
   @optional
-  Nullable!(string) first_name;
+  string first_name;
 
   /**
    * Last name as it appears in the document.
    */
   @optional
-  Nullable!(string) last_name;
+  string last_name;
 
   /**
    * Array of [File](https://stripe.com/docs/api/files) ids containing images for this document.
    */
   @optional
-  Nullable!(string)[] files;
+  string[] files;
 
   /**
    * Issued date of the document.
@@ -74,7 +74,7 @@ class GelatoDocumentReport {
    * Type of the document.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Details on the verification error. Present when status is `unverified`.
@@ -86,6 +86,6 @@ class GelatoDocumentReport {
    * Status of this `document` check.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

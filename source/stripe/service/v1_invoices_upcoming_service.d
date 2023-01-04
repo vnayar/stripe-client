@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -33,7 +34,7 @@ class V1InvoicesUpcomingService {
 
     }
 
-    Nullable!(AutomaticTaxParam) automatic_tax;
+    AutomaticTaxParam automatic_tax;
 
     /**
      * The code of the coupon to apply. If `subscription` or `subscription_items` is provided, the
@@ -42,34 +43,34 @@ class V1InvoicesUpcomingService {
      * from among the customer's subscriptions. The invoice can be previewed without a coupon by
      * passing this value as an empty string.
      */
-    Nullable!(Nullable!(string)) coupon;
+    string coupon;
 
     /**
      * The currency to preview this invoice in. Defaults to that of `customer` if not specified.
      */
-    Nullable!(Nullable!(string)) currency;
+    string currency;
 
     /**
      * The identifier of the customer whose upcoming invoice you'd like to retrieve.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Details about the customer you want to invoice or overrides for an existing customer.
      */
     static class CustomerDetailsParam {
       @optional
-      Nullable!(string) tax_exempt;
+      string tax_exempt;
 
       @optional
       Json shipping;
 
       static class DataParams {
         @optional
-        Nullable!(string) type;
+        string type;
 
         @optional
-        Nullable!(string) value;
+        string value;
 
       }
 
@@ -90,7 +91,7 @@ class V1InvoicesUpcomingService {
 
     }
 
-    Nullable!(CustomerDetailsParam) customer_details;
+    CustomerDetailsParam customer_details;
 
     /**
      * The coupons to redeem into discounts for the invoice preview. If not specified, inherits the
@@ -99,19 +100,19 @@ class V1InvoicesUpcomingService {
      * instead. Pass an empty string to avoid inheriting any discounts. To preview the upcoming
      * invoice for a subscription that hasn't been created, use `coupon` instead.
      */
-    Nullable!(Json) discounts;
+    Json discounts;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * List of invoice items to add or update in the upcoming invoice preview.
      */
     static class InvoiceItemPreviewParams {
       @optional
-      Nullable!(string) invoiceitem;
+      string invoiceitem;
 
       @optional
       Json tax_code;
@@ -138,23 +139,23 @@ class V1InvoicesUpcomingService {
       Json metadata;
 
       @optional
-      Nullable!(string) currency;
+      string currency;
 
       @optional
       Nullable!(int) quantity;
 
       static class OneTimePriceData {
         @optional
-        Nullable!(string) currency;
+        string currency;
 
         @optional
-        Nullable!(string) unit_amount_decimal;
+        string unit_amount_decimal;
 
         @optional
-        Nullable!(string) product;
+        string product;
 
         @optional
-        Nullable!(string) tax_behavior;
+        string tax_behavior;
 
         @optional
         Nullable!(int) unit_amount;
@@ -165,16 +166,16 @@ class V1InvoicesUpcomingService {
       OneTimePriceData price_data;
 
       @optional
-      Nullable!(string) unit_amount_decimal;
+      string unit_amount_decimal;
 
       @optional
-      Nullable!(string) tax_behavior;
+      string tax_behavior;
 
       @optional
       Json discounts;
 
       @optional
-      Nullable!(string) description;
+      string description;
 
       @optional
       Nullable!(bool) discountable;
@@ -183,17 +184,17 @@ class V1InvoicesUpcomingService {
       Json tax_rates;
 
       @optional
-      Nullable!(string) price;
+      string price;
 
     }
 
-    Nullable!(InvoiceItemPreviewParams[]) invoice_items;
+    InvoiceItemPreviewParams[] invoice_items;
 
     /**
      * The identifier of the unstarted schedule whose upcoming invoice you'd like to retrieve.
      * Cannot be used with subscription or subscription fields.
      */
-    Nullable!(Nullable!(string)) schedule;
+    string schedule;
 
     /**
      * The identifier of the subscription for which you'd like to retrieve the upcoming invoice. If
@@ -202,7 +203,7 @@ class V1InvoicesUpcomingService {
      * provided, you will retrieve the next upcoming invoice from among the customer's
      * subscriptions.
      */
-    Nullable!(Nullable!(string)) subscription;
+    string subscription;
 
     /**
      * For new subscriptions, a future timestamp to anchor the subscription's [billing
@@ -211,37 +212,37 @@ class V1InvoicesUpcomingService {
      * the month for subsequent invoices. For existing subscriptions, the value can only be set to
      * `now` or `unchanged`.
      */
-    Nullable!(Json) subscription_billing_cycle_anchor;
+    Json subscription_billing_cycle_anchor;
 
     /**
      * Timestamp indicating when the subscription should be scheduled to cancel. Will prorate if
      * within the current period and prorations have been enabled using `proration_behavior`.
      */
-    Nullable!(Json) subscription_cancel_at;
+    Json subscription_cancel_at;
 
     /**
      * Boolean indicating whether this subscription should cancel at the end of the current period.
      */
-    Nullable!(Nullable!(bool)) subscription_cancel_at_period_end;
+    Nullable!(bool) subscription_cancel_at_period_end;
 
     /**
      * This simulates the subscription being canceled or expired immediately.
      */
-    Nullable!(Nullable!(bool)) subscription_cancel_now;
+    Nullable!(bool) subscription_cancel_now;
 
     /**
      * If provided, the invoice returned will preview updating or creating a subscription with these
      * default tax rates. The default tax rates will apply to any line item that does not have
      * `tax_rates` set.
      */
-    Nullable!(Json) subscription_default_tax_rates;
+    Json subscription_default_tax_rates;
 
     /**
      * A list of up to 20 subscription items, each with an attached price.
      */
     static class SubscriptionItemUpdateParams {
       @optional
-      Nullable!(string) id;
+      string id;
 
       @optional
       Nullable!(bool) clear_usage;
@@ -257,17 +258,17 @@ class V1InvoicesUpcomingService {
 
       static class RecurringPriceData {
         @optional
-        Nullable!(string) currency;
+        string currency;
 
         @optional
-        Nullable!(string) unit_amount_decimal;
+        string unit_amount_decimal;
 
         static class RecurringAdhoc {
           @optional
           Nullable!(int) interval_count;
 
           @optional
-          Nullable!(string) interval;
+          string interval;
 
         }
 
@@ -275,10 +276,10 @@ class V1InvoicesUpcomingService {
         RecurringAdhoc recurring;
 
         @optional
-        Nullable!(string) product;
+        string product;
 
         @optional
-        Nullable!(string) tax_behavior;
+        string tax_behavior;
 
         @optional
         Nullable!(int) unit_amount;
@@ -295,11 +296,11 @@ class V1InvoicesUpcomingService {
       Nullable!(bool) deleted;
 
       @optional
-      Nullable!(string) price;
+      string price;
 
     }
 
-    Nullable!(SubscriptionItemUpdateParams[]) subscription_items;
+    SubscriptionItemUpdateParams[] subscription_items;
 
     /**
      * Determines how to handle
@@ -307,7 +308,7 @@ class V1InvoicesUpcomingService {
      * cycle changes (e.g., when switching plans, resetting `billing_cycle_anchor=now`, or starting
      * a trial), or if an item's `quantity` changes.
      */
-    Nullable!(Nullable!(string)) subscription_proration_behavior;
+    string subscription_proration_behavior;
 
     /**
      * If previewing an update to a subscription, and doing proration, `subscription_proration_date`
@@ -317,18 +318,18 @@ class V1InvoicesUpcomingService {
      * `subscription_items`, or `subscription_trial_end` are required. Also,
      * `subscription_proration_behavior` cannot be set to 'none'.
      */
-    Nullable!(Nullable!(long)) subscription_proration_date;
+    Nullable!(long) subscription_proration_date;
 
     /**
      * Date a subscription is intended to start (can be future or past)
      */
-    Nullable!(Nullable!(long)) subscription_start_date;
+    Nullable!(long) subscription_start_date;
 
     /**
      * If provided, the invoice returned will preview updating or creating a subscription with that
      * trial end. If set, one of `subscription_items` or `subscription` is required.
      */
-    Nullable!(Json) subscription_trial_end;
+    Json subscription_trial_end;
 
     /**
      * Indicates if a plan's `trial_period_days` should be applied to the subscription. Setting
@@ -337,7 +338,7 @@ class V1InvoicesUpcomingService {
      * periods on subscriptions](https://stripe.com/docs/billing/subscriptions/trials) to learn
      * more.
      */
-    Nullable!(Nullable!(bool)) subscription_trial_from_plan;
+    Nullable!(bool) subscription_trial_from_plan;
 
   }
 
@@ -358,9 +359,11 @@ class V1InvoicesUpcomingService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -394,47 +397,47 @@ class V1InvoicesUpcomingService {
         Servers.getServerUrl(),
         "/v1/invoices/upcoming");
     if (!params.automatic_tax.isNull)
-      requestor.setQueryParam("automatic_tax", params.automatic_tax.get.to!string);
+      requestor.setQueryParam!("deepObject")("automatic_tax", params.automatic_tax);
     if (!params.coupon.isNull)
-      requestor.setQueryParam("coupon", params.coupon.get.to!string);
+      requestor.setQueryParam!("deepObject")("coupon", params.coupon);
     if (!params.currency.isNull)
-      requestor.setQueryParam("currency", params.currency.get.to!string);
+      requestor.setQueryParam!("deepObject")("currency", params.currency);
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.customer_details.isNull)
-      requestor.setQueryParam("customer_details", params.customer_details.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer_details", params.customer_details);
     if (!params.discounts.isNull)
-      requestor.setQueryParam("discounts", params.discounts.get.to!string);
+      requestor.setQueryParam!("deepObject")("discounts", params.discounts);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.invoice_items.isNull)
-      requestor.setQueryParam("invoice_items", params.invoice_items.get.to!string);
+      requestor.setQueryParam!("deepObject")("invoice_items", params.invoice_items);
     if (!params.schedule.isNull)
-      requestor.setQueryParam("schedule", params.schedule.get.to!string);
+      requestor.setQueryParam!("deepObject")("schedule", params.schedule);
     if (!params.subscription.isNull)
-      requestor.setQueryParam("subscription", params.subscription.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription", params.subscription);
     if (!params.subscription_billing_cycle_anchor.isNull)
-      requestor.setQueryParam("subscription_billing_cycle_anchor", params.subscription_billing_cycle_anchor.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_billing_cycle_anchor", params.subscription_billing_cycle_anchor);
     if (!params.subscription_cancel_at.isNull)
-      requestor.setQueryParam("subscription_cancel_at", params.subscription_cancel_at.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_cancel_at", params.subscription_cancel_at);
     if (!params.subscription_cancel_at_period_end.isNull)
-      requestor.setQueryParam("subscription_cancel_at_period_end", params.subscription_cancel_at_period_end.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_cancel_at_period_end", params.subscription_cancel_at_period_end);
     if (!params.subscription_cancel_now.isNull)
-      requestor.setQueryParam("subscription_cancel_now", params.subscription_cancel_now.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_cancel_now", params.subscription_cancel_now);
     if (!params.subscription_default_tax_rates.isNull)
-      requestor.setQueryParam("subscription_default_tax_rates", params.subscription_default_tax_rates.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_default_tax_rates", params.subscription_default_tax_rates);
     if (!params.subscription_items.isNull)
-      requestor.setQueryParam("subscription_items", params.subscription_items.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_items", params.subscription_items);
     if (!params.subscription_proration_behavior.isNull)
-      requestor.setQueryParam("subscription_proration_behavior", params.subscription_proration_behavior.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_proration_behavior", params.subscription_proration_behavior);
     if (!params.subscription_proration_date.isNull)
-      requestor.setQueryParam("subscription_proration_date", params.subscription_proration_date.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_proration_date", params.subscription_proration_date);
     if (!params.subscription_start_date.isNull)
-      requestor.setQueryParam("subscription_start_date", params.subscription_start_date.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_start_date", params.subscription_start_date);
     if (!params.subscription_trial_end.isNull)
-      requestor.setQueryParam("subscription_trial_end", params.subscription_trial_end.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_trial_end", params.subscription_trial_end);
     if (!params.subscription_trial_from_plan.isNull)
-      requestor.setQueryParam("subscription_trial_from_plan", params.subscription_trial_from_plan.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription_trial_from_plan", params.subscription_trial_from_plan);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

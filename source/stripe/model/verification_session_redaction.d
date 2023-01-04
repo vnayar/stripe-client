@@ -14,6 +14,6 @@ class VerificationSessionRedaction {
    * Indicates whether this object and its related objects have been redacted or not.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

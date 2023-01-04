@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -35,12 +36,12 @@ class V1AccountsService {
   static class GetAccountsAccountParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -61,9 +62,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Account)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -82,9 +85,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -92,7 +95,7 @@ class V1AccountsService {
   static class PostAccountsAccountParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -113,9 +116,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Account)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -142,7 +147,7 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -150,7 +155,7 @@ class V1AccountsService {
   static class DeleteAccountsAccountParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -171,9 +176,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -198,7 +205,7 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -206,7 +213,7 @@ class V1AccountsService {
   static class GetAccountsAccountPeopleParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -214,18 +221,18 @@ class V1AccountsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Filters on the list of people returned based on the person's relationship to the account's
@@ -246,7 +253,7 @@ class V1AccountsService {
 
     }
 
-    Nullable!(AllPeopleRelationshipSpecs) relationship;
+    AllPeopleRelationshipSpecs relationship;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -254,7 +261,7 @@ class V1AccountsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -272,7 +279,7 @@ class V1AccountsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Person[] data;
@@ -281,7 +288,7 @@ class V1AccountsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -300,9 +307,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PersonList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -322,17 +331,17 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/people");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.relationship.isNull)
-      requestor.setQueryParam("relationship", params.relationship.get.to!string);
+      requestor.setQueryParam!("deepObject")("relationship", params.relationship);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -340,7 +349,7 @@ class V1AccountsService {
   static class PostAccountsAccountPeopleParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -361,9 +370,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Person)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -382,7 +393,7 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/people");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -390,7 +401,7 @@ class V1AccountsService {
   static class PostAccountsAccountLoginLinksParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -411,9 +422,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(LoginLink)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -434,7 +447,7 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/login_links");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -442,7 +455,7 @@ class V1AccountsService {
   static class GetAccountsAccountPersonsParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -450,18 +463,18 @@ class V1AccountsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Filters on the list of people returned based on the person's relationship to the account's
@@ -482,7 +495,7 @@ class V1AccountsService {
 
     }
 
-    Nullable!(AllPeopleRelationshipSpecs) relationship;
+    AllPeopleRelationshipSpecs relationship;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -490,7 +503,7 @@ class V1AccountsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -508,7 +521,7 @@ class V1AccountsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Person[] data;
@@ -517,7 +530,7 @@ class V1AccountsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -536,9 +549,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PersonList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -558,17 +573,17 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/persons");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.relationship.isNull)
-      requestor.setQueryParam("relationship", params.relationship.get.to!string);
+      requestor.setQueryParam!("deepObject")("relationship", params.relationship);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -576,7 +591,7 @@ class V1AccountsService {
   static class PostAccountsAccountPersonsParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -597,9 +612,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Person)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -618,7 +635,7 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/persons");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -626,16 +643,16 @@ class V1AccountsService {
   static class GetAccountsAccountExternalAccountsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -656,9 +673,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ExternalAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -677,11 +696,11 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/external_accounts/{id}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -689,11 +708,11 @@ class V1AccountsService {
   static class PostAccountsAccountExternalAccountsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -714,9 +733,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ExternalAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -739,9 +760,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/external_accounts/{id}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -749,11 +770,11 @@ class V1AccountsService {
   static class DeleteAccountsAccountExternalAccountsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -774,9 +795,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedExternalAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -795,9 +818,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/external_accounts/{id}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -805,16 +828,16 @@ class V1AccountsService {
   static class GetAccountsAccountBankAccountsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -835,9 +858,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ExternalAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -856,11 +881,11 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/bank_accounts/{id}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -868,11 +893,11 @@ class V1AccountsService {
   static class PostAccountsAccountBankAccountsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -893,9 +918,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ExternalAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -918,9 +945,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/bank_accounts/{id}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -928,11 +955,11 @@ class V1AccountsService {
   static class DeleteAccountsAccountBankAccountsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -953,9 +980,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedExternalAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -974,9 +1003,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/bank_accounts/{id}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -984,16 +1013,16 @@ class V1AccountsService {
   static class GetAccountsAccountPeoplePersonParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) person;
+    string person;
 
   }
 
@@ -1014,9 +1043,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Person)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1035,11 +1066,11 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/people/{person}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.person.isNull)
-      requestor.setPathParam("person", params.person.get.to!string);
+      requestor.setPathParam("person", params.person);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1047,11 +1078,11 @@ class V1AccountsService {
   static class PostAccountsAccountPeoplePersonParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) person;
+    string person;
 
   }
 
@@ -1072,9 +1103,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Person)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1093,9 +1126,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/people/{person}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.person.isNull)
-      requestor.setPathParam("person", params.person.get.to!string);
+      requestor.setPathParam("person", params.person);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1103,11 +1136,11 @@ class V1AccountsService {
   static class DeleteAccountsAccountPeoplePersonParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) person;
+    string person;
 
   }
 
@@ -1128,9 +1161,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedPerson)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1152,9 +1187,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/people/{person}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.person.isNull)
-      requestor.setPathParam("person", params.person.get.to!string);
+      requestor.setPathParam("person", params.person);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1162,7 +1197,7 @@ class V1AccountsService {
   static class GetAccountsParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -1170,18 +1205,18 @@ class V1AccountsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -1189,7 +1224,7 @@ class V1AccountsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -1207,7 +1242,7 @@ class V1AccountsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Account[] data;
@@ -1216,7 +1251,7 @@ class V1AccountsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -1235,9 +1270,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(AccountList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1257,15 +1294,15 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1287,9 +1324,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Account)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1316,16 +1355,16 @@ class V1AccountsService {
   static class GetAccountsAccountCapabilitiesCapabilityParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) capability;
+    string capability;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -1346,9 +1385,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Capability)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1367,11 +1408,11 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/capabilities/{capability}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.capability.isNull)
-      requestor.setPathParam("capability", params.capability.get.to!string);
+      requestor.setPathParam("capability", params.capability);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1379,11 +1420,11 @@ class V1AccountsService {
   static class PostAccountsAccountCapabilitiesCapabilityParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) capability;
+    string capability;
 
   }
 
@@ -1404,9 +1445,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Capability)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1425,9 +1468,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/capabilities/{capability}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.capability.isNull)
-      requestor.setPathParam("capability", params.capability.get.to!string);
+      requestor.setPathParam("capability", params.capability);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1435,7 +1478,7 @@ class V1AccountsService {
   static class PostAccountsAccountRejectParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -1444,13 +1487,13 @@ class V1AccountsService {
      * The reason for rejecting the account. Can be `fraud`, `terms_of_service`, or `other`.
      */
     @optional
-    Nullable!(string) reason;
+    string reason;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
   }
 
@@ -1471,9 +1514,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Account)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1495,7 +1540,7 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/reject");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -1504,16 +1549,16 @@ class V1AccountsService {
   static class GetAccountsAccountPersonsPersonParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) person;
+    string person;
 
   }
 
@@ -1534,9 +1579,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Person)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1555,11 +1602,11 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/persons/{person}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.person.isNull)
-      requestor.setPathParam("person", params.person.get.to!string);
+      requestor.setPathParam("person", params.person);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1567,11 +1614,11 @@ class V1AccountsService {
   static class PostAccountsAccountPersonsPersonParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) person;
+    string person;
 
   }
 
@@ -1592,9 +1639,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Person)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1613,9 +1662,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/persons/{person}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.person.isNull)
-      requestor.setPathParam("person", params.person.get.to!string);
+      requestor.setPathParam("person", params.person);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1623,11 +1672,11 @@ class V1AccountsService {
   static class DeleteAccountsAccountPersonsPersonParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      */
-    Nullable!(Nullable!(string)) person;
+    string person;
 
   }
 
@@ -1648,9 +1697,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedPerson)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1672,9 +1723,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/persons/{person}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.person.isNull)
-      requestor.setPathParam("person", params.person.get.to!string);
+      requestor.setPathParam("person", params.person);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1682,7 +1733,7 @@ class V1AccountsService {
   static class PostAccountsAccountBankAccountsParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -1703,9 +1754,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ExternalAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1724,7 +1777,7 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/bank_accounts");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1732,7 +1785,7 @@ class V1AccountsService {
   static class GetAccountsAccountExternalAccountsParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -1740,18 +1793,18 @@ class V1AccountsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -1759,7 +1812,7 @@ class V1AccountsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -1777,7 +1830,7 @@ class V1AccountsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * The list contains all external accounts that have been attached to the Stripe account. These
@@ -1790,7 +1843,7 @@ class V1AccountsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -1809,9 +1862,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ExternalAccountList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1830,15 +1885,15 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/external_accounts");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1846,7 +1901,7 @@ class V1AccountsService {
   static class PostAccountsAccountExternalAccountsParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -1867,9 +1922,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ExternalAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1888,7 +1945,7 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/external_accounts");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1896,12 +1953,12 @@ class V1AccountsService {
   static class GetAccountsAccountCapabilitiesParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -1919,7 +1976,7 @@ class V1AccountsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Capability[] data;
@@ -1928,7 +1985,7 @@ class V1AccountsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -1947,9 +2004,11 @@ class V1AccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(ListAccountCapability)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1969,9 +2028,9 @@ class V1AccountsService {
         Servers.getServerUrl(),
         "/v1/accounts/{account}/capabilities");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

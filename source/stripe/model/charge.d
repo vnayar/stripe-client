@@ -37,7 +37,7 @@ class Charge {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * A string that identifies this transaction as part of a group. See the [Connect
@@ -45,7 +45,7 @@ class Charge {
    * details.
    */
   @optional
-  Nullable!(string) transfer_group;
+  string transfer_group;
 
   /**
    * ID of the review associated with this charge if one exists.
@@ -57,7 +57,7 @@ class Charge {
    * This is the email address that the receipt for this charge was sent to.
    */
   @optional
-  Nullable!(string) receipt_email;
+  string receipt_email;
 
   static class RefundList {
     /**
@@ -71,7 +71,7 @@ class Charge {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -83,7 +83,7 @@ class Charge {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -124,7 +124,7 @@ class Charge {
    * Message to user further explaining reason for charge failure if available.
    */
   @optional
-  Nullable!(string) failure_message;
+  string failure_message;
 
   /**
    * ID of the customer this charge is for if one exists.
@@ -143,7 +143,7 @@ class Charge {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Amount in %s refunded (can be less than the amount attribute on the charge if a partial
@@ -165,7 +165,7 @@ class Charge {
    * looks like after the static and dynamic portions are combined.
    */
   @optional
-  Nullable!(string) calculated_statement_descriptor;
+  string calculated_statement_descriptor;
 
   /**
    * `true` if the charge succeeded, or was successfully authorized for later capture.
@@ -221,7 +221,7 @@ class Charge {
    * receipt will be stylized as an Invoice receipt.
    */
   @optional
-  Nullable!(string) receipt_url;
+  string receipt_url;
 
   /**
    * The transfer ID which created this charge. Only present if the charge came from another
@@ -237,14 +237,14 @@ class Charge {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * This is the transaction number that appears on email receipts sent for this charge. This
    * attribute will be `null` until a receipt has been sent.
    */
   @optional
-  Nullable!(string) receipt_number;
+  string receipt_number;
 
   /**
    * ID of the Connect application that created the charge.
@@ -256,7 +256,7 @@ class Charge {
    * ID of the payment method used in this charge.
    */
   @optional
-  Nullable!(string) payment_method;
+  string payment_method;
 
   /**
    * If the charge was created without capturing, this Boolean represents whether it is still
@@ -286,7 +286,7 @@ class Charge {
    * The status of the payment is either `succeeded`, `pending`, or `failed`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * For card charges, use `statement_descriptor_suffix` instead. Otherwise, you can use this
@@ -294,7 +294,7 @@ class Charge {
    * at least one letter, maximum 22 characters.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * ID of the PaymentIntent associated with this charge, if one exists.
@@ -337,19 +337,19 @@ class Charge {
    * descriptor.
    */
   @optional
-  Nullable!(string) statement_descriptor_suffix;
+  string statement_descriptor_suffix;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Shipping information for the charge.
@@ -362,6 +362,6 @@ class Charge {
    * section](https://stripe.com/docs/error-codes) for a list of codes).
    */
   @optional
-  Nullable!(string) failure_code;
+  string failure_code;
 
 }

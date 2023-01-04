@@ -31,7 +31,7 @@ class Plan {
    * The frequency at which a subscription is billed. One of `day`, `week`, `month` or `year`.
    */
   @optional
-  Nullable!(string) interval;
+  string interval;
 
   /**
    * The unit amount in %s to be charged, represented as a whole integer if possible. Only set if
@@ -51,7 +51,7 @@ class Plan {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Apply a transformation to the reported usage or set quantity before computing the amount
@@ -66,14 +66,14 @@ class Plan {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Specifies a usage aggregation strategy for plans of `usage_type=metered`. Allowed values are
@@ -83,7 +83,7 @@ class Plan {
    * period. Defaults to `sum`.
    */
   @optional
-  Nullable!(string) aggregate_usage;
+  string aggregate_usage;
 
   /**
    * The product whose pricing this plan determines.
@@ -98,7 +98,7 @@ class Plan {
    * `licensed`.
    */
   @optional
-  Nullable!(string) usage_type;
+  string usage_type;
 
   /**
    * Whether the plan can be used for new purchases.
@@ -124,14 +124,14 @@ class Plan {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The unit amount in %s to be charged, represented as a decimal string with at most 12 decimal
    * places. Only set if `billing_scheme=per_unit`.
    */
   @optional
-  Nullable!(string) amount_decimal;
+  string amount_decimal;
 
   /**
    * Describes how to compute the price per period. Either `per_unit` or `tiered`. `per_unit`
@@ -141,7 +141,7 @@ class Plan {
    * tiering strategy as defined using the `tiers` and `tiers_mode` attributes.
    */
   @optional
-  Nullable!(string) billing_scheme;
+  string billing_scheme;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -153,7 +153,7 @@ class Plan {
    * A brief description of the plan, hidden from customers.
    */
   @optional
-  Nullable!(string) nickname;
+  string nickname;
 
   /**
    * Defines if the tiering price should be `graduated` or `volume` based. In `volume`-based
@@ -161,7 +161,7 @@ class Plan {
    * tiering, pricing can change as the quantity grows.
    */
   @optional
-  Nullable!(string) tiers_mode;
+  string tiers_mode;
 
   /**
    * Each element represents a pricing tier. This parameter requires `billing_scheme` to be set to

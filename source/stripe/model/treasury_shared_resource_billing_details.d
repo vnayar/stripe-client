@@ -15,7 +15,7 @@ class TreasurySharedResourceBillingDetails {
    * Email address.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   @optional
   Address address;
@@ -24,6 +24,6 @@ class TreasurySharedResourceBillingDetails {
    * Full name.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
 }

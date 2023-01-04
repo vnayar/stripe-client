@@ -17,7 +17,7 @@ class RadarValueList {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -25,32 +25,32 @@ class RadarValueList {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The name or email address of the user who created this value list.
    */
   @optional
-  Nullable!(string) created_by;
+  string created_by;
 
   /**
    * The name of the value list.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * The type of items in the value list. One of `card_fingerprint`, `card_bin`, `email`,
    * `ip_address`, `country`, `string`, `case_sensitive_string`, or `customer_id`.
    */
   @optional
-  Nullable!(string) item_type;
+  string item_type;
 
   /**
    * The name of the value list for use in rules.
    */
   @optional
-  Nullable!(string) alias_;
+  string alias_;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -63,7 +63,7 @@ class RadarValueList {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -83,7 +83,7 @@ class RadarValueList {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -95,7 +95,7 @@ class RadarValueList {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 

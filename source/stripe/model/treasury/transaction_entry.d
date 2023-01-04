@@ -19,20 +19,20 @@ class TreasuryTransactionEntry {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Type of the flow associated with the TransactionEntry.
    */
   @optional
-  Nullable!(string) flow_type;
+  string flow_type;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Details of the flow associated with the TransactionEntry.
@@ -66,19 +66,19 @@ class TreasuryTransactionEntry {
    * The FinancialAccount associated with this object.
    */
   @optional
-  Nullable!(string) financial_account;
+  string financial_account;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The specific money movement that generated the TransactionEntry.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -90,6 +90,6 @@ class TreasuryTransactionEntry {
    * Token of the flow associated with the TransactionEntry.
    */
   @optional
-  Nullable!(string) flow;
+  string flow;
 
 }

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,7 +29,7 @@ class V1QuotesService {
     /**
      * The ID of the customer whose quotes will be retrieved.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -36,18 +37,18 @@ class V1QuotesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -55,18 +56,18 @@ class V1QuotesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * The status of the quote.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
     /**
      * Provides a list of quotes that are associated with the specified test clock. The response
      * will not include quotes with test clocks if this and the customer parameter is not set.
      */
-    Nullable!(Nullable!(string)) test_clock;
+    string test_clock;
 
   }
 
@@ -84,7 +85,7 @@ class V1QuotesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Quote[] data;
@@ -93,7 +94,7 @@ class V1QuotesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -112,9 +113,11 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(QuotesResourceQuoteList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -133,19 +136,19 @@ class V1QuotesService {
         Servers.getServerUrl(),
         "/v1/quotes");
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     if (!params.test_clock.isNull)
-      requestor.setQueryParam("test_clock", params.test_clock.get.to!string);
+      requestor.setQueryParam!("deepObject")("test_clock", params.test_clock);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -167,9 +170,11 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Quote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -197,11 +202,11 @@ class V1QuotesService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) quote;
+    string quote;
 
   }
 
@@ -210,7 +215,7 @@ class V1QuotesService {
     /**
      * Successful response.
      */
-    void delegate(Nullable!(string) response) handleResponse200;
+    void delegate(string response) handleResponse200;
 
     /**
      * Error response.
@@ -222,8 +227,10 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         writeln("Unsupported contentType application/pdf.");
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -242,9 +249,9 @@ class V1QuotesService {
         Servers.getServerUrl(),
         "/v1/quotes/{quote}/pdf");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.quote.isNull)
-      requestor.setPathParam("quote", params.quote.get.to!string);
+      requestor.setPathParam("quote", params.quote);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -252,7 +259,7 @@ class V1QuotesService {
   static class PostQuotesQuoteCancelParams {
     /**
      */
-    Nullable!(Nullable!(string)) quote;
+    string quote;
 
   }
 
@@ -273,9 +280,11 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Quote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -294,7 +303,7 @@ class V1QuotesService {
         Servers.getServerUrl(),
         "/v1/quotes/{quote}/cancel");
     if (!params.quote.isNull)
-      requestor.setPathParam("quote", params.quote.get.to!string);
+      requestor.setPathParam("quote", params.quote);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -306,22 +315,22 @@ class V1QuotesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      */
-    Nullable!(Nullable!(string)) quote;
+    string quote;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -329,7 +338,7 @@ class V1QuotesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -347,7 +356,7 @@ class V1QuotesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -359,7 +368,7 @@ class V1QuotesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -378,9 +387,11 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(QuotesResourceListLineItems)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -401,15 +412,15 @@ class V1QuotesService {
         Servers.getServerUrl(),
         "/v1/quotes/{quote}/line_items");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.quote.isNull)
-      requestor.setPathParam("quote", params.quote.get.to!string);
+      requestor.setPathParam("quote", params.quote);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -421,22 +432,22 @@ class V1QuotesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      */
-    Nullable!(Nullable!(string)) quote;
+    string quote;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -444,7 +455,7 @@ class V1QuotesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -462,7 +473,7 @@ class V1QuotesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -474,7 +485,7 @@ class V1QuotesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -493,9 +504,11 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(QuotesResourceListLineItems)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -518,15 +531,15 @@ class V1QuotesService {
         Servers.getServerUrl(),
         "/v1/quotes/{quote}/computed_upfront_line_items");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.quote.isNull)
-      requestor.setPathParam("quote", params.quote.get.to!string);
+      requestor.setPathParam("quote", params.quote);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -535,11 +548,11 @@ class V1QuotesService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) quote;
+    string quote;
 
   }
 
@@ -560,9 +573,11 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Quote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -581,9 +596,9 @@ class V1QuotesService {
         Servers.getServerUrl(),
         "/v1/quotes/{quote}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.quote.isNull)
-      requestor.setPathParam("quote", params.quote.get.to!string);
+      requestor.setPathParam("quote", params.quote);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -591,7 +606,7 @@ class V1QuotesService {
   static class PostQuotesQuoteParams {
     /**
      */
-    Nullable!(Nullable!(string)) quote;
+    string quote;
 
   }
 
@@ -612,9 +627,11 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Quote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -633,7 +650,7 @@ class V1QuotesService {
         Servers.getServerUrl(),
         "/v1/quotes/{quote}");
     if (!params.quote.isNull)
-      requestor.setPathParam("quote", params.quote.get.to!string);
+      requestor.setPathParam("quote", params.quote);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -641,7 +658,7 @@ class V1QuotesService {
   static class PostQuotesQuoteAcceptParams {
     /**
      */
-    Nullable!(Nullable!(string)) quote;
+    string quote;
 
   }
 
@@ -662,9 +679,11 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Quote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -683,7 +702,7 @@ class V1QuotesService {
         Servers.getServerUrl(),
         "/v1/quotes/{quote}/accept");
     if (!params.quote.isNull)
-      requestor.setPathParam("quote", params.quote.get.to!string);
+      requestor.setPathParam("quote", params.quote);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -691,7 +710,7 @@ class V1QuotesService {
   static class PostQuotesQuoteFinalizeParams {
     /**
      */
-    Nullable!(Nullable!(string)) quote;
+    string quote;
 
   }
 
@@ -712,9 +731,11 @@ class V1QuotesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Quote)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -733,7 +754,7 @@ class V1QuotesService {
         Servers.getServerUrl(),
         "/v1/quotes/{quote}/finalize");
     if (!params.quote.isNull)
-      requestor.setPathParam("quote", params.quote.get.to!string);
+      requestor.setPathParam("quote", params.quote);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

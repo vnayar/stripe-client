@@ -22,7 +22,7 @@ class SetupIntentPaymentMethodOptionsCard {
    * how this configuration interacts with Radar and our SCA Engine.
    */
   @optional
-  Nullable!(string) request_three_d_secure;
+  string request_three_d_secure;
 
   /**
    * Configuration options for setting up an eMandate for cards issued in India.
@@ -35,6 +35,6 @@ class SetupIntentPaymentMethodOptionsCard {
    * card attached to the setup intent. Can be only set confirm-time.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
 }

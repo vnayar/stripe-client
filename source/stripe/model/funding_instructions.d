@@ -32,19 +32,19 @@ class FundingInstructions {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The `funding_type` of the returned instructions
    */
   @optional
-  Nullable!(string) funding_type;
+  string funding_type;
 
   @optional
   FundingInstructionsBankTransfer bank_transfer;

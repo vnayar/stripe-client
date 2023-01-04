@@ -20,6 +20,6 @@ class QuotesResourceAutomaticTax {
    * The status of the most recent automated tax calculation for this quote.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

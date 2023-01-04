@@ -48,13 +48,13 @@ class SubscriptionSchedule {
    * values are `release` and `cancel`.
    */
   @optional
-  Nullable!(string) end_behavior;
+  string end_behavior;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   @optional
   SubscriptionSchedulesResourceDefaultSettings default_settings;
@@ -71,7 +71,7 @@ class SubscriptionSchedule {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Time at which the subscription schedule was canceled. Measured in seconds since the Unix
@@ -110,7 +110,7 @@ class SubscriptionSchedule {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * ID of the test clock this subscription schedule belongs to.
@@ -130,12 +130,12 @@ class SubscriptionSchedule {
    * [behavior guide](https://stripe.com/docs/billing/subscriptions/subscription-schedules).
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * ID of the subscription once managed by the subscription schedule (if it is released).
    */
   @optional
-  Nullable!(string) released_subscription;
+  string released_subscription;
 
 }

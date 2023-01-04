@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1PaymentMethodsService {
   static class PostPaymentMethodsPaymentMethodDetachParams {
     /**
      */
-    Nullable!(Nullable!(string)) payment_method;
+    string payment_method;
 
   }
 
@@ -47,9 +48,11 @@ class V1PaymentMethodsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentMethod)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -69,7 +72,7 @@ class V1PaymentMethodsService {
         Servers.getServerUrl(),
         "/v1/payment_methods/{payment_method}/detach");
     if (!params.payment_method.isNull)
-      requestor.setPathParam("payment_method", params.payment_method.get.to!string);
+      requestor.setPathParam("payment_method", params.payment_method);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -78,11 +81,11 @@ class V1PaymentMethodsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) payment_method;
+    string payment_method;
 
   }
 
@@ -103,9 +106,11 @@ class V1PaymentMethodsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentMethod)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -126,9 +131,9 @@ class V1PaymentMethodsService {
         Servers.getServerUrl(),
         "/v1/payment_methods/{payment_method}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.payment_method.isNull)
-      requestor.setPathParam("payment_method", params.payment_method.get.to!string);
+      requestor.setPathParam("payment_method", params.payment_method);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -136,7 +141,7 @@ class V1PaymentMethodsService {
   static class PostPaymentMethodsPaymentMethodParams {
     /**
      */
-    Nullable!(Nullable!(string)) payment_method;
+    string payment_method;
 
   }
 
@@ -157,9 +162,11 @@ class V1PaymentMethodsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentMethod)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -179,7 +186,7 @@ class V1PaymentMethodsService {
         Servers.getServerUrl(),
         "/v1/payment_methods/{payment_method}");
     if (!params.payment_method.isNull)
-      requestor.setPathParam("payment_method", params.payment_method.get.to!string);
+      requestor.setPathParam("payment_method", params.payment_method);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -187,7 +194,7 @@ class V1PaymentMethodsService {
   static class PostPaymentMethodsPaymentMethodAttachParams {
     /**
      */
-    Nullable!(Nullable!(string)) payment_method;
+    string payment_method;
 
   }
 
@@ -196,13 +203,13 @@ class V1PaymentMethodsService {
      * The ID of the customer to which to attach the PaymentMethod.
      */
     @optional
-    Nullable!(string) customer;
+    string customer;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
   }
 
@@ -223,9 +230,11 @@ class V1PaymentMethodsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentMethod)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -263,7 +272,7 @@ class V1PaymentMethodsService {
         Servers.getServerUrl(),
         "/v1/payment_methods/{payment_method}/attach");
     if (!params.payment_method.isNull)
-      requestor.setPathParam("payment_method", params.payment_method.get.to!string);
+      requestor.setPathParam("payment_method", params.payment_method);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -273,7 +282,7 @@ class V1PaymentMethodsService {
     /**
      * The ID of the customer whose PaymentMethods will be retrieved.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -281,18 +290,18 @@ class V1PaymentMethodsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -300,14 +309,14 @@ class V1PaymentMethodsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * An optional filter on the list, based on the object `type` field. Without the filter, the
      * list includes all current and future payment method types. If your integration expects only
      * one type of payment method in the response, make sure to provide a type value in the request.
      */
-    Nullable!(Nullable!(string)) type;
+    string type;
 
   }
 
@@ -325,7 +334,7 @@ class V1PaymentMethodsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       PaymentMethod[] data;
@@ -334,7 +343,7 @@ class V1PaymentMethodsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -353,9 +362,11 @@ class V1PaymentMethodsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentFlowsPaymentMethodList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -377,17 +388,17 @@ class V1PaymentMethodsService {
         Servers.getServerUrl(),
         "/v1/payment_methods");
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.type.isNull)
-      requestor.setQueryParam("type", params.type.get.to!string);
+      requestor.setQueryParam!("deepObject")("type", params.type);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -409,9 +420,11 @@ class V1PaymentMethodsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentMethod)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

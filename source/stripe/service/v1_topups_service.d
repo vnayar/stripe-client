@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,13 +28,13 @@ class V1TopupsService {
     /**
      * A positive integer representing how much to transfer.
      */
-    Nullable!(Json) amount;
+    Json amount;
 
     /**
      * A filter on the list, based on the object `created` field. The value can be a string with an
      * integer Unix timestamp, or it can be a dictionary with a number of different query options.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -41,18 +42,18 @@ class V1TopupsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -60,13 +61,13 @@ class V1TopupsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return top-ups that have the given status. One of `canceled`, `failed`, `pending` or
      * `succeeded`.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
   }
 
@@ -84,7 +85,7 @@ class V1TopupsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Topup[] data;
@@ -93,7 +94,7 @@ class V1TopupsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -112,9 +113,11 @@ class V1TopupsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TopupList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -133,19 +136,19 @@ class V1TopupsService {
         Servers.getServerUrl(),
         "/v1/topups");
     if (!params.amount.isNull)
-      requestor.setQueryParam("amount", params.amount.get.to!string);
+      requestor.setQueryParam!("deepObject")("amount", params.amount);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -162,13 +165,13 @@ class V1TopupsService {
      * characters.
      */
     @optional
-    Nullable!(string) statement_descriptor;
+    string statement_descriptor;
 
     /**
      * A string that identifies this top-up as part of a group.
      */
     @optional
-    Nullable!(string) transfer_group;
+    string transfer_group;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -184,7 +187,7 @@ class V1TopupsService {
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * The ID of a source to transfer funds from. For most users, this should be left unspecified
@@ -193,19 +196,19 @@ class V1TopupsService {
      * Top-ups](https://stripe.com/docs/connect/testing#testing-top-ups)).
      */
     @optional
-    Nullable!(string) source;
+    string source;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * An arbitrary string attached to the object. Often useful for displaying to users.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
   }
 
@@ -226,9 +229,11 @@ class V1TopupsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Topup)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -255,11 +260,11 @@ class V1TopupsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) topup;
+    string topup;
 
   }
 
@@ -280,9 +285,11 @@ class V1TopupsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Topup)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -303,9 +310,9 @@ class V1TopupsService {
         Servers.getServerUrl(),
         "/v1/topups/{topup}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.topup.isNull)
-      requestor.setPathParam("topup", params.topup.get.to!string);
+      requestor.setPathParam("topup", params.topup);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -313,7 +320,7 @@ class V1TopupsService {
   static class PostTopupsTopupParams {
     /**
      */
-    Nullable!(Nullable!(string)) topup;
+    string topup;
 
   }
 
@@ -334,9 +341,11 @@ class V1TopupsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Topup)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -355,7 +364,7 @@ class V1TopupsService {
         Servers.getServerUrl(),
         "/v1/topups/{topup}");
     if (!params.topup.isNull)
-      requestor.setPathParam("topup", params.topup.get.to!string);
+      requestor.setPathParam("topup", params.topup);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -363,7 +372,7 @@ class V1TopupsService {
   static class PostTopupsTopupCancelParams {
     /**
      */
-    Nullable!(Nullable!(string)) topup;
+    string topup;
 
   }
 
@@ -384,9 +393,11 @@ class V1TopupsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Topup)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -405,7 +416,7 @@ class V1TopupsService {
         Servers.getServerUrl(),
         "/v1/topups/{topup}/cancel");
     if (!params.topup.isNull)
-      requestor.setPathParam("topup", params.topup.get.to!string);
+      requestor.setPathParam("topup", params.topup);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

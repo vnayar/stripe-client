@@ -19,19 +19,19 @@ class PaymentPagesCheckoutSessionCustomerDetails {
    * recent valid email provided by the customer on the Checkout form.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   /**
    * The customer's phone number after a completed Checkout Session.
    */
   @optional
-  Nullable!(string) phone;
+  string phone;
 
   /**
    * The customer’s tax exempt status after a completed Checkout Session.
    */
   @optional
-  Nullable!(string) tax_exempt;
+  string tax_exempt;
 
   /**
    * The customer's address after a completed Checkout Session. Note: This property is populated
@@ -51,6 +51,6 @@ class PaymentPagesCheckoutSessionCustomerDetails {
    * for sessions on or after March 30, 2022.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
 }

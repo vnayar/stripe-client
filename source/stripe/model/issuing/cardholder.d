@@ -23,7 +23,7 @@ class IssuingCardholder {
    * The cardholder's email address.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   /**
    * Rules that control spending across this cardholder's cards. Refer to our
@@ -36,7 +36,7 @@ class IssuingCardholder {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -44,7 +44,7 @@ class IssuingCardholder {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Additional information about a `company` cardholder.
@@ -56,7 +56,7 @@ class IssuingCardholder {
    * The cardholder's name. This will be printed on cards issued to them.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -72,7 +72,7 @@ class IssuingCardholder {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   IssuingCardholderAddress billing;
@@ -90,7 +90,7 @@ class IssuingCardholder {
    * details.
    */
   @optional
-  Nullable!(string) phone_number;
+  string phone_number;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -102,12 +102,12 @@ class IssuingCardholder {
    * One of `individual` or `company`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Specifies whether to permit authorizations on this cardholder's cards.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

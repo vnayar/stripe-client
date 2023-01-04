@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,11 +29,11 @@ class V1SubscriptionsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) subscription_exposed_id;
+    string subscription_exposed_id;
 
   }
 
@@ -53,9 +54,11 @@ class V1SubscriptionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Subscription)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -74,9 +77,9 @@ class V1SubscriptionsService {
         Servers.getServerUrl(),
         "/v1/subscriptions/{subscription_exposed_id}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.subscription_exposed_id.isNull)
-      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id.get.to!string);
+      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -84,7 +87,7 @@ class V1SubscriptionsService {
   static class PostSubscriptionsSubscriptionExposedIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) subscription_exposed_id;
+    string subscription_exposed_id;
 
   }
 
@@ -105,9 +108,11 @@ class V1SubscriptionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Subscription)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -129,7 +134,7 @@ class V1SubscriptionsService {
         Servers.getServerUrl(),
         "/v1/subscriptions/{subscription_exposed_id}");
     if (!params.subscription_exposed_id.isNull)
-      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id.get.to!string);
+      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -137,7 +142,7 @@ class V1SubscriptionsService {
   static class DeleteSubscriptionsSubscriptionExposedIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) subscription_exposed_id;
+    string subscription_exposed_id;
 
   }
 
@@ -158,9 +163,11 @@ class V1SubscriptionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Subscription)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -190,7 +197,7 @@ class V1SubscriptionsService {
         Servers.getServerUrl(),
         "/v1/subscriptions/{subscription_exposed_id}");
     if (!params.subscription_exposed_id.isNull)
-      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id.get.to!string);
+      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -198,7 +205,7 @@ class V1SubscriptionsService {
   static class DeleteSubscriptionsSubscriptionExposedIdDiscountParams {
     /**
      */
-    Nullable!(Nullable!(string)) subscription_exposed_id;
+    string subscription_exposed_id;
 
   }
 
@@ -219,9 +226,11 @@ class V1SubscriptionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedDiscount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -240,7 +249,7 @@ class V1SubscriptionsService {
         Servers.getServerUrl(),
         "/v1/subscriptions/{subscription_exposed_id}/discount");
     if (!params.subscription_exposed_id.isNull)
-      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id.get.to!string);
+      requestor.setPathParam("subscription_exposed_id", params.subscription_exposed_id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -250,24 +259,24 @@ class V1SubscriptionsService {
      * The collection method of the subscriptions to retrieve. Either `charge_automatically` or
      * `send_invoice`.
      */
-    Nullable!(Nullable!(string)) collection_method;
+    string collection_method;
 
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      */
-    Nullable!(Json) current_period_end;
+    Json current_period_end;
 
     /**
      */
-    Nullable!(Json) current_period_start;
+    Json current_period_start;
 
     /**
      * The ID of the customer whose subscriptions will be retrieved.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -275,23 +284,23 @@ class V1SubscriptionsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Filter for subscriptions that contain this recurring price ID.
      */
-    Nullable!(Nullable!(string)) price;
+    string price;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -299,7 +308,7 @@ class V1SubscriptionsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * The status of the subscriptions to retrieve. Passing in a value of `canceled` will return all
@@ -309,13 +318,13 @@ class V1SubscriptionsService {
      * Passing in a value of `all` will return subscriptions of all statuses. If no value is
      * supplied, all subscriptions that have not been canceled are returned.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
     /**
      * Filter for subscriptions that are associated with the specified test clock. The response will
      * not include subscriptions with test clocks if this and the customer parameter is not set.
      */
-    Nullable!(Nullable!(string)) test_clock;
+    string test_clock;
 
   }
 
@@ -333,7 +342,7 @@ class V1SubscriptionsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Subscription[] data;
@@ -342,7 +351,7 @@ class V1SubscriptionsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -361,9 +370,11 @@ class V1SubscriptionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SubscriptionsSubscriptionList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -383,29 +394,29 @@ class V1SubscriptionsService {
         Servers.getServerUrl(),
         "/v1/subscriptions");
     if (!params.collection_method.isNull)
-      requestor.setQueryParam("collection_method", params.collection_method.get.to!string);
+      requestor.setQueryParam!("deepObject")("collection_method", params.collection_method);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.current_period_end.isNull)
-      requestor.setQueryParam("current_period_end", params.current_period_end.get.to!string);
+      requestor.setQueryParam!("deepObject")("current_period_end", params.current_period_end);
     if (!params.current_period_start.isNull)
-      requestor.setQueryParam("current_period_start", params.current_period_start.get.to!string);
+      requestor.setQueryParam!("deepObject")("current_period_start", params.current_period_start);
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.price.isNull)
-      requestor.setQueryParam("price", params.price.get.to!string);
+      requestor.setQueryParam!("deepObject")("price", params.price);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     if (!params.test_clock.isNull)
-      requestor.setQueryParam("test_clock", params.test_clock.get.to!string);
+      requestor.setQueryParam!("deepObject")("test_clock", params.test_clock);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -419,7 +430,7 @@ class V1SubscriptionsService {
      * `charge_automatically`.
      */
     @optional
-    Nullable!(string) collection_method;
+    string collection_method;
 
     /**
      * The tax rates that will apply to any subscription item that does not have `tax_rates` set.
@@ -461,29 +472,29 @@ class V1SubscriptionsService {
      * the `billing_cycle_anchor`. If no value is passed, the default is `create_prorations`.
      */
     @optional
-    Nullable!(string) proration_behavior;
+    string proration_behavior;
 
     /**
      * The ID of the coupon to apply to this subscription. A coupon applied to a subscription will
      * only affect invoices created for that particular subscription.
      */
     @optional
-    Nullable!(string) coupon;
+    string coupon;
 
     static class SubscriptionItemCreateParams {
       static class RecurringPriceData {
         @optional
-        Nullable!(string) currency;
+        string currency;
 
         @optional
-        Nullable!(string) unit_amount_decimal;
+        string unit_amount_decimal;
 
         static class RecurringAdhoc {
           @optional
           Nullable!(int) interval_count;
 
           @optional
-          Nullable!(string) interval;
+          string interval;
 
         }
 
@@ -491,10 +502,10 @@ class V1SubscriptionsService {
         RecurringAdhoc recurring;
 
         @optional
-        Nullable!(string) product;
+        string product;
 
         @optional
-        Nullable!(string) tax_behavior;
+        string tax_behavior;
 
         @optional
         Nullable!(int) unit_amount;
@@ -505,7 +516,7 @@ class V1SubscriptionsService {
       RecurringPriceData price_data;
 
       @optional
-      Nullable!(string)[string] metadata;
+      string[string] metadata;
 
       @optional
       Nullable!(int) quantity;
@@ -514,7 +525,7 @@ class V1SubscriptionsService {
       Json tax_rates;
 
       @optional
-      Nullable!(string) price;
+      string price;
 
       @optional
       Json billing_thresholds;
@@ -531,14 +542,14 @@ class V1SubscriptionsService {
      * The identifier of the customer to subscribe.
      */
     @optional
-    Nullable!(string) customer;
+    string customer;
 
     /**
      * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * A non-negative decimal between 0 and 100, with at most two decimal places. This represents
@@ -562,7 +573,7 @@ class V1SubscriptionsService {
      * .
      */
     @optional
-    Nullable!(string) default_payment_method;
+    string default_payment_method;
 
     static class PaymentSettings {
       @optional
@@ -593,7 +604,7 @@ class V1SubscriptionsService {
       PaymentMethodOptions payment_method_options;
 
       @optional
-      Nullable!(string) save_default_payment_method;
+      string save_default_payment_method;
 
     }
 
@@ -608,7 +619,7 @@ class V1SubscriptionsService {
       Nullable!(float) amount_percent;
 
       @optional
-      Nullable!(string) destination;
+      string destination;
 
     }
 
@@ -657,21 +668,21 @@ class V1SubscriptionsService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     static class AddInvoiceItemEntry {
       static class OneTimePriceData {
         @optional
-        Nullable!(string) currency;
+        string currency;
 
         @optional
-        Nullable!(string) unit_amount_decimal;
+        string unit_amount_decimal;
 
         @optional
-        Nullable!(string) product;
+        string product;
 
         @optional
-        Nullable!(string) tax_behavior;
+        string tax_behavior;
 
         @optional
         Nullable!(int) unit_amount;
@@ -688,7 +699,7 @@ class V1SubscriptionsService {
       Json tax_rates;
 
       @optional
-      Nullable!(string) price;
+      string price;
 
     }
 
@@ -710,7 +721,7 @@ class V1SubscriptionsService {
      * .
      */
     @optional
-    Nullable!(string) default_source;
+    string default_source;
 
     /**
      * A timestamp at which the subscription should cancel. If set to a date before the current
@@ -761,7 +772,7 @@ class V1SubscriptionsService {
      * subscription will only affect invoices created for that particular subscription.
      */
     @optional
-    Nullable!(string) promotion_code;
+    string promotion_code;
 
     /**
      * Only applies to subscriptions with `collection_method=charge_automatically`.
@@ -792,14 +803,14 @@ class V1SubscriptionsService {
      * the first invoice status.
      */
     @optional
-    Nullable!(string) payment_behavior;
+    string payment_behavior;
 
     /**
      * The subscription's description, meant to be displayable to the customer. Use this field to
      * optionally store an explanation of the subscription for rendering in Stripe surfaces.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
     static class AutomaticTaxConfig {
       @optional
@@ -833,9 +844,11 @@ class V1SubscriptionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Subscription)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

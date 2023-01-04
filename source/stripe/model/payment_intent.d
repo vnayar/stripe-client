@@ -39,7 +39,7 @@ class PaymentIntent {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * A string that identifies the resulting payment as part of a group. See the PaymentIntents
@@ -47,7 +47,7 @@ class PaymentIntent {
    * details.
    */
   @optional
-  Nullable!(string) transfer_group;
+  string transfer_group;
 
   /**
    * Amount that can be captured from this PaymentIntent.
@@ -73,7 +73,7 @@ class PaymentIntent {
    * settings](https://dashboard.stripe.com/account/emails).
    */
   @optional
-  Nullable!(string) receipt_email;
+  string receipt_email;
 
   /**
    * Settings to configure compatible payment methods from the [Stripe
@@ -98,7 +98,7 @@ class PaymentIntent {
    * (`failed_invoice`, `void_invoice`, or `automatic`).
    */
   @optional
-  Nullable!(string) cancellation_reason;
+  string cancellation_reason;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -130,7 +130,7 @@ class PaymentIntent {
    * Controls when the funds will be captured from the customer's account.
    */
   @optional
-  Nullable!(string) capture_method;
+  string capture_method;
 
   /**
    * ID of the Customer this PaymentIntent belongs to, if one exists.
@@ -155,7 +155,7 @@ class PaymentIntent {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The data with which to automatically create a Transfer when the payment is finalized. See the
@@ -192,7 +192,7 @@ class PaymentIntent {
    * ring-information-in-metadata).
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * ID of the Connect application that created the PaymentIntent.
@@ -228,14 +228,14 @@ class PaymentIntent {
    * about each PaymentIntent [status](https://stripe.com/docs/payments/intents#intent-statuses).
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * For non-card charges, you can use this value as the complete description that appears on your
    * customers’ statements. Must contain at least one letter, maximum 22 characters.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * Payment-method-specific configuration for this PaymentIntent.
@@ -244,7 +244,7 @@ class PaymentIntent {
   PaymentIntentPaymentMethodOptions payment_method_options;
 
   @optional
-  Nullable!(string) confirmation_method;
+  string confirmation_method;
 
   /**
    * The client secret of this PaymentIntent. Used for client-side retrieval using a publishable
@@ -257,7 +257,7 @@ class PaymentIntent {
    * `client_secret` should be handled.
    */
   @optional
-  Nullable!(string) client_secret;
+  string client_secret;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -273,7 +273,7 @@ class PaymentIntent {
    * concatenated descriptor.
    */
   @optional
-  Nullable!(string) statement_descriptor_suffix;
+  string statement_descriptor_suffix;
 
   /**
    * Indicates that you intend to make future payments with this PaymentIntent's payment method.
@@ -288,25 +288,25 @@ class PaymentIntent {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The list of payment method types (e.g. card) that this PaymentIntent is allowed to use.
    */
   @optional
-  Nullable!(string)[] payment_method_types;
+  string[] payment_method_types;
 
   /**
    * Shipping information for this PaymentIntent.

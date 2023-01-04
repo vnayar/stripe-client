@@ -26,7 +26,7 @@ class SetupAttempt {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   @optional
   SetupAttemptPaymentMethodDetails payment_method_details;
@@ -45,7 +45,7 @@ class SetupAttempt {
    * SetupIntent at the time of this confirmation, one of `off_session` or `on_session`.
    */
   @optional
-  Nullable!(string) usage;
+  string usage;
 
   /**
    * If present, the SetupIntent's payment method will be attached to the in-context Stripe
@@ -86,7 +86,7 @@ class SetupAttempt {
    * to. You can include both if you intend to use the payment method for both purposes.
    */
   @optional
-  Nullable!(string)[] flow_directions;
+  string[] flow_directions;
 
   /**
    * ID of the SetupIntent that this attempt belongs to.
@@ -98,7 +98,7 @@ class SetupAttempt {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The error encountered during this attempt to confirm the SetupIntent, if any.
@@ -125,6 +125,6 @@ class SetupAttempt {
    * `succeeded`, `failed`, or `abandoned`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

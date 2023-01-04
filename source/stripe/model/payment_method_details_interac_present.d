@@ -16,13 +16,13 @@ class PaymentMethodDetailsInteracPresent {
    * a sense of the international breakdown of cards you've collected.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * How card details were read in this transaction.
    */
   @optional
-  Nullable!(string) read_method;
+  string read_method;
 
   /**
    * A collection of fields required to be displayed on receipts. Only required for EMV
@@ -40,7 +40,7 @@ class PaymentMethodDetailsInteracPresent {
    * made with Apple Pay and Google Pay.
    */
   @optional
-  Nullable!(string) cardholder_name;
+  string cardholder_name;
 
   /**
    * Two-digit number representing the card's expiration month.
@@ -54,7 +54,7 @@ class PaymentMethodDetailsInteracPresent {
    * PaymentMethod.
    */
   @optional
-  Nullable!(string) generated_card;
+  string generated_card;
 
   /**
    * Four-digit number representing the card's expiration year.
@@ -66,32 +66,32 @@ class PaymentMethodDetailsInteracPresent {
    * Card brand. Can be `interac`, `mastercard` or `visa`.
    */
   @optional
-  Nullable!(string) brand;
+  string brand;
 
   /**
    * Card funding type. Can be `credit`, `debit`, `prepaid`, or `unknown`.
    */
   @optional
-  Nullable!(string) funding;
+  string funding;
 
   /**
    * The last four digits of the card.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Identifies which network this charge was processed on. Can be `amex`, `cartes_bancaires`,
    * `diners`, `discover`, `interac`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * EMV tag 5F2D. Preferred languages specified by the integrated circuit chip.
    */
   @optional
-  Nullable!(string)[] preferred_locales;
+  string[] preferred_locales;
 
   /**
    * Uniquely identifies this particular card number. You can use this attribute to check whether
@@ -102,12 +102,12 @@ class PaymentMethodDetailsInteracPresent {
    * fingerprints for the same card --- one for India and one for the rest of the world.*
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
   /**
    * Authorization response cryptogram.
    */
   @optional
-  Nullable!(string) emv_auth_data;
+  string emv_auth_data;
 
 }

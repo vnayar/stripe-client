@@ -20,6 +20,6 @@ class IssuingCardApplePay {
    * Reason the card is ineligible for Apple Pay
    */
   @optional
-  Nullable!(string) ineligible_reason;
+  string ineligible_reason;
 
 }

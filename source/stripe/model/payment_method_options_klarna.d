@@ -23,18 +23,18 @@ class PaymentMethodOptionsKlarna {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * Controls when the funds will be captured from the customer's account.
    */
   @optional
-  Nullable!(string) capture_method;
+  string capture_method;
 
   /**
    * Preferred locale of the Klarna checkout page that the customer is redirected to.
    */
   @optional
-  Nullable!(string) preferred_locale;
+  string preferred_locale;
 
 }

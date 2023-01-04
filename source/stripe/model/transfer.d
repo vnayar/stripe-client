@@ -34,7 +34,7 @@ class Transfer {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * A string that identifies this transaction as part of a group. See the [Connect
@@ -42,13 +42,13 @@ class Transfer {
    * details.
    */
   @optional
-  Nullable!(string) transfer_group;
+  string transfer_group;
 
   /**
    * The source balance this transfer came from. One of `card`, `fpx`, or `bank_account`.
    */
   @optional
-  Nullable!(string) source_type;
+  string source_type;
 
   /**
    * ID of the Stripe account the transfer was sent to.
@@ -62,14 +62,14 @@ class Transfer {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Balance transaction that describes the impact of this transfer on your account balance.
@@ -89,7 +89,7 @@ class Transfer {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -101,7 +101,7 @@ class Transfer {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -136,7 +136,7 @@ class Transfer {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Amount in %s reversed (can be less than the amount attribute on the transfer if a partial
@@ -149,7 +149,7 @@ class Transfer {
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Time that this record of the transfer was first created.

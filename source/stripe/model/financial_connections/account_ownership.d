@@ -22,13 +22,13 @@ class FinancialConnectionsAccountOwnership {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   static class BankConnectionsResourceOwnerList {
     /**
@@ -42,7 +42,7 @@ class FinancialConnectionsAccountOwnership {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -54,7 +54,7 @@ class FinancialConnectionsAccountOwnership {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 

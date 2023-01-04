@@ -16,6 +16,6 @@ class IssuingCardShippingCustoms {
    * rocedures/economic-operators-registration-and-identification-number-eori_en.
    */
   @optional
-  Nullable!(string) eori_number;
+  string eori_number;
 
 }

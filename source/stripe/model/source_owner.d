@@ -15,7 +15,7 @@ class SourceOwner {
    * Owner's email address.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   /**
    * Verified owner's phone number (including extension). Verified values are verified or provided
@@ -23,7 +23,7 @@ class SourceOwner {
    * They cannot be set or mutated.
    */
   @optional
-  Nullable!(string) verified_phone;
+  string verified_phone;
 
   /**
    * Verified owner's address. Verified values are verified or provided by the payment method
@@ -39,7 +39,7 @@ class SourceOwner {
    * mutated.
    */
   @optional
-  Nullable!(string) verified_name;
+  string verified_name;
 
   /**
    * Verified owner's email address. Verified values are verified or provided by the payment
@@ -47,19 +47,19 @@ class SourceOwner {
    * set or mutated.
    */
   @optional
-  Nullable!(string) verified_email;
+  string verified_email;
 
   /**
    * Owner's full name.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * Owner's phone number (including extension).
    */
   @optional
-  Nullable!(string) phone;
+  string phone;
 
   /**
    * Owner's address.

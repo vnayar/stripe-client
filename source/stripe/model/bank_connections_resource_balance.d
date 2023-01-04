@@ -20,7 +20,7 @@ class BankConnectionsResourceBalance {
    * this value.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The time that the external institution calculated this balance. Measured in seconds since the

@@ -14,37 +14,37 @@ class Address {
    * Address line 1 (e.g., street, PO Box, or company name).
    */
   @optional
-  Nullable!(string) line1;
+  string line1;
 
   /**
    * Address line 2 (e.g., apartment, suite, unit, or building).
    */
   @optional
-  Nullable!(string) line2;
+  string line2;
 
   /**
    * Two-letter country code ([ISO 3166-1
    * alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * ZIP or postal code.
    */
   @optional
-  Nullable!(string) postal_code;
+  string postal_code;
 
   /**
    * City, district, suburb, town, or village.
    */
   @optional
-  Nullable!(string) city;
+  string city;
 
   /**
    * State, county, province, or region.
    */
   @optional
-  Nullable!(string) state;
+  string state;
 
 }

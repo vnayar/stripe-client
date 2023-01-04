@@ -25,19 +25,19 @@ class BankAccount {
    * Two-letter ISO code representing the country the bank account is located in.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * The routing transit number for the bank account.
    */
   @optional
-  Nullable!(string) routing_number;
+  string routing_number;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The ID of the customer that the bank account is associated with.
@@ -51,14 +51,14 @@ class BankAccount {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO code for the currency](https://stripe.com/docs/payouts) paid out to the
    * bank account.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Whether this bank account is the default external account for its currency.
@@ -70,38 +70,38 @@ class BankAccount {
    * The last four digits of the bank account number.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * The name of the person or business that owns the bank account.
    */
   @optional
-  Nullable!(string) account_holder_name;
+  string account_holder_name;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * A set of available payout methods for this bank account. Only values from this set should be
    * passed as the `method` when creating a payout.
    */
   @optional
-  Nullable!(string)[] available_payout_methods;
+  string[] available_payout_methods;
 
   /**
    * The type of entity that holds the account. This can be either `individual` or `company`.
    */
   @optional
-  Nullable!(string) account_holder_type;
+  string account_holder_type;
 
   /**
    * Name of the bank associated with the routing number (e.g., `WELLS FARGO`).
    */
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   /**
    * The ID of the account that the bank account is associated with.
@@ -114,14 +114,14 @@ class BankAccount {
    * this can only be `futsu` or `toza`.
    */
   @optional
-  Nullable!(string) account_type;
+  string account_type;
 
   /**
    * Uniquely identifies this particular bank account. You can use this attribute to check whether
    * two bank accounts are the same.
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
   /**
    * For bank accounts, possible values are `new`, `validated`, `verified`, `verification_failed`,
@@ -139,6 +139,6 @@ class BankAccount {
    * stopped until account details are updated.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

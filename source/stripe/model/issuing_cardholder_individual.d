@@ -22,13 +22,13 @@ class IssuingCardholderIndividual {
    * The first name of this cardholder.
    */
   @optional
-  Nullable!(string) first_name;
+  string first_name;
 
   /**
    * The last name of this cardholder.
    */
   @optional
-  Nullable!(string) last_name;
+  string last_name;
 
   /**
    * Government-issued ID document for this cardholder.

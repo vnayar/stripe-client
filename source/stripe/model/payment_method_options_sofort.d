@@ -23,12 +23,12 @@ class PaymentMethodOptionsSofort {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * Preferred language of the SOFORT authorization page that the customer is redirected to.
    */
   @optional
-  Nullable!(string) preferred_language;
+  string preferred_language;
 
 }

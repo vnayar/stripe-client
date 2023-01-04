@@ -14,20 +14,20 @@ class DeletedBankAccount {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Three-letter [ISO code for the currency](https://stripe.com/docs/payouts) paid out to the
    * bank account.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Always true for a deleted object

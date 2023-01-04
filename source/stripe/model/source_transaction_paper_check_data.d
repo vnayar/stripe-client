@@ -15,12 +15,12 @@ class SourceTransactionPaperCheckData {
    * Unix epoch.
    */
   @optional
-  Nullable!(string) available_at;
+  string available_at;
 
   /**
    * Comma-separated list of invoice IDs associated with the paper check.
    */
   @optional
-  Nullable!(string) invoices;
+  string invoices;
 
 }

@@ -20,7 +20,7 @@ class TerminalConfiguration {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Whether this Configuration is the default for your account
@@ -42,7 +42,7 @@ class TerminalConfiguration {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   TerminalConfigurationConfigurationResourceTipping tipping;

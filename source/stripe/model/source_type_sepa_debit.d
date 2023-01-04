@@ -11,24 +11,24 @@ import std.typecons : Nullable;
  */
 class SourceTypeSepaDebit {
   @optional
-  Nullable!(string) country;
+  string country;
 
   @optional
-  Nullable!(string) bank_code;
+  string bank_code;
 
   @optional
-  Nullable!(string) branch_code;
+  string branch_code;
 
   @optional
-  Nullable!(string) mandate_reference;
+  string mandate_reference;
 
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
   @optional
-  Nullable!(string) mandate_url;
+  string mandate_url;
 
 }

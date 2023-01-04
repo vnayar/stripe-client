@@ -19,7 +19,7 @@ class PaymentMethodDetailsCard {
    * a sense of the international breakdown of cards you've collected.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * Check results by Card networks on Card address and CVC at time of payment.
@@ -37,7 +37,7 @@ class PaymentMethodDetailsCard {
    * Card funding type. Can be `credit`, `debit`, `prepaid`, or `unknown`.
    */
   @optional
-  Nullable!(string) funding;
+  string funding;
 
   /**
    * Four-digit number representing the card's expiration year.
@@ -50,13 +50,13 @@ class PaymentMethodDetailsCard {
    * `unknown`.
    */
   @optional
-  Nullable!(string) brand;
+  string brand;
 
   /**
    * The last four digits of the card.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Installment details for this payment (Mexico only).
@@ -77,7 +77,7 @@ class PaymentMethodDetailsCard {
    * `diners`, `discover`, `interac`, `jcb`, `mastercard`, `unionpay`, `visa`, or `unknown`.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * Populated if this transaction used 3D Secure authentication.
@@ -94,12 +94,12 @@ class PaymentMethodDetailsCard {
    * fingerprints for the same card --- one for India and one for the rest of the world.*
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
   /**
    * ID of the mandate used to make this payment or created by it.
    */
   @optional
-  Nullable!(string) mandate;
+  string mandate;
 
 }

@@ -15,13 +15,13 @@ class AccountDashboardSettings {
    * between accounts.
    */
   @optional
-  Nullable!(string) display_name;
+  string display_name;
 
   /**
    * The timezone used in the Stripe Dashboard for this account. A list of possible time zone
    * values is maintained at the [IANA Time Zone Database](http://www.iana.org/time-zones).
    */
   @optional
-  Nullable!(string) timezone;
+  string timezone;
 
 }

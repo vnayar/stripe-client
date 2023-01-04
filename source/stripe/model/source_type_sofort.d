@@ -11,24 +11,24 @@ import std.typecons : Nullable;
  */
 class SourceTypeSofort {
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   @optional
-  Nullable!(string) iban_last4;
+  string iban_last4;
 
   @optional
-  Nullable!(string) country;
+  string country;
 
   @optional
-  Nullable!(string) bank_code;
+  string bank_code;
 
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   @optional
-  Nullable!(string) bic;
+  string bic;
 
   @optional
-  Nullable!(string) preferred_language;
+  string preferred_language;
 
 }

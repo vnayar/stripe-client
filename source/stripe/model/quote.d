@@ -37,7 +37,7 @@ class Quote {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will
@@ -47,7 +47,7 @@ class Quote {
    * subscription as `active`. Defaults to `charge_automatically`.
    */
   @optional
-  Nullable!(string) collection_method;
+  string collection_method;
 
   /**
    * Total after discounts and taxes are applied.
@@ -68,7 +68,7 @@ class Quote {
    * A header that will be displayed on the quote PDF.
    */
   @optional
-  Nullable!(string) header;
+  string header;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -102,7 +102,7 @@ class Quote {
    * is [finalized](https://stripe.com/docs/quotes/overview#finalize).
    */
   @optional
-  Nullable!(string) number;
+  string number;
 
   /**
    * The subscription that was created or updated from this quote.
@@ -122,7 +122,7 @@ class Quote {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The subscription schedule that was created or updated from this quote.
@@ -159,7 +159,7 @@ class Quote {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   static class QuotesResourceListLineItems {
     /**
@@ -173,7 +173,7 @@ class Quote {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -185,7 +185,7 @@ class Quote {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -222,7 +222,7 @@ class Quote {
    * The status of the quote.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   @optional
   QuotesResourceTotalDetails total_details;
@@ -253,13 +253,13 @@ class Quote {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * A footer that will be displayed on the quote PDF.
    */
   @optional
-  Nullable!(string) footer;
+  string footer;
 
   /**
    * The discounts applied to this quote.
@@ -271,7 +271,7 @@ class Quote {
    * A description that will be displayed on the quote PDF.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   @optional
   QuotesResourceAutomaticTax automatic_tax;

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,27 +28,27 @@ class V1PricesSearchService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for pagination across multiple pages of results. Don't include this parameter on the
      * first call. Use the next_page value returned in a previous response to request subsequent
      * results.
      */
-    Nullable!(Nullable!(string)) page;
+    string page;
 
     /**
      * The search query string. See [search query
      * language](https://stripe.com/docs/search#search-query-language) and the list of supported
      * [query fields for prices](https://stripe.com/docs/search#query-fields-for-prices).
      */
-    Nullable!(Nullable!(string)) query;
+    string query;
 
   }
 
@@ -55,7 +56,7 @@ class V1PricesSearchService {
 
     static class SearchResult {
       @optional
-      Nullable!(string) next_page;
+      string next_page;
 
       /**
        * The total number of objects that match the query, only accurate up to 10,000.
@@ -70,13 +71,13 @@ class V1PricesSearchService {
        * String representing the object's type. Objects of the same type share the same value.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Price[] data;
 
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -95,9 +96,11 @@ class V1PricesSearchService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SearchResult)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -123,13 +126,13 @@ class V1PricesSearchService {
         Servers.getServerUrl(),
         "/v1/prices/search");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.page.isNull)
-      requestor.setQueryParam("page", params.page.get.to!string);
+      requestor.setQueryParam!("deepObject")("page", params.page);
     if (!params.query.isNull)
-      requestor.setQueryParam("query", params.query.get.to!string);
+      requestor.setQueryParam!("deepObject")("query", params.query);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

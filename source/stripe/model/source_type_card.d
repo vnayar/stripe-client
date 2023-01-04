@@ -11,45 +11,45 @@ import std.typecons : Nullable;
  */
 class SourceTypeCard {
   @optional
-  Nullable!(string) country;
+  string country;
 
   @optional
-  Nullable!(string) dynamic_last4;
+  string dynamic_last4;
 
   @optional
   Nullable!(int) exp_month;
 
   @optional
-  Nullable!(string) funding;
+  string funding;
 
   @optional
   Nullable!(int) exp_year;
 
   @optional
-  Nullable!(string) brand;
+  string brand;
 
   @optional
-  Nullable!(string) name;
+  string name;
 
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   @optional
-  Nullable!(string) cvc_check;
+  string cvc_check;
 
   @optional
-  Nullable!(string) tokenization_method;
+  string tokenization_method;
 
   @optional
-  Nullable!(string) address_zip_check;
+  string address_zip_check;
 
   @optional
-  Nullable!(string) address_line1_check;
+  string address_line1_check;
 
   @optional
-  Nullable!(string) three_d_secure;
+  string three_d_secure;
 
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

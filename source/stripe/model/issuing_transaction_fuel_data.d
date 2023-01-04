@@ -15,26 +15,26 @@ class IssuingTransactionFuelData {
    * `unleaded_super`, or `other`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The cost in cents per each unit of fuel, represented as a decimal string with at most 12
    * decimal places.
    */
   @optional
-  Nullable!(string) unit_cost_decimal;
+  string unit_cost_decimal;
 
   /**
    * The units for `volume_decimal`. One of `us_gallon` or `liter`.
    */
   @optional
-  Nullable!(string) unit;
+  string unit;
 
   /**
    * The volume of the fuel that was pumped, represented as a decimal string with at most 12
    * decimal places.
    */
   @optional
-  Nullable!(string) volume_decimal;
+  string volume_decimal;
 
 }

@@ -15,12 +15,12 @@ class PaymentLinksResourceConsentCollection {
    * to pay. If set to `none`, customers won't be shown a checkbox to accept the terms of service.
    */
   @optional
-  Nullable!(string) terms_of_service;
+  string terms_of_service;
 
   /**
    * If set to `auto`, enables the collection of customer consent for promotional communications.
    */
   @optional
-  Nullable!(string) promotions;
+  string promotions;
 
 }

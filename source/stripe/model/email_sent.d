@@ -14,7 +14,7 @@ class EmailSent {
    * The recipient's email address.
    */
   @optional
-  Nullable!(string) email_sent_to;
+  string email_sent_to;
 
   /**
    * The timestamp when the email was sent.

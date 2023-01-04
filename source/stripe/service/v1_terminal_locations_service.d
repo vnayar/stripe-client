@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,11 +29,11 @@ class V1TerminalLocationsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) location;
+    string location;
 
   }
 
@@ -53,9 +54,11 @@ class V1TerminalLocationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -74,9 +77,9 @@ class V1TerminalLocationsService {
         Servers.getServerUrl(),
         "/v1/terminal/locations/{location}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.location.isNull)
-      requestor.setPathParam("location", params.location.get.to!string);
+      requestor.setPathParam("location", params.location);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -84,7 +87,7 @@ class V1TerminalLocationsService {
   static class PostTerminalLocationsLocationParams {
     /**
      */
-    Nullable!(Nullable!(string)) location;
+    string location;
 
   }
 
@@ -105,9 +108,11 @@ class V1TerminalLocationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -127,7 +132,7 @@ class V1TerminalLocationsService {
         Servers.getServerUrl(),
         "/v1/terminal/locations/{location}");
     if (!params.location.isNull)
-      requestor.setPathParam("location", params.location.get.to!string);
+      requestor.setPathParam("location", params.location);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -135,7 +140,7 @@ class V1TerminalLocationsService {
   static class DeleteTerminalLocationsLocationParams {
     /**
      */
-    Nullable!(Nullable!(string)) location;
+    string location;
 
   }
 
@@ -156,9 +161,11 @@ class V1TerminalLocationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedTerminalLocation)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -177,7 +184,7 @@ class V1TerminalLocationsService {
         Servers.getServerUrl(),
         "/v1/terminal/locations/{location}");
     if (!params.location.isNull)
-      requestor.setPathParam("location", params.location.get.to!string);
+      requestor.setPathParam("location", params.location);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -189,18 +196,18 @@ class V1TerminalLocationsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -208,7 +215,7 @@ class V1TerminalLocationsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -226,7 +233,7 @@ class V1TerminalLocationsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       TerminalLocation[] data;
@@ -235,7 +242,7 @@ class V1TerminalLocationsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -254,9 +261,11 @@ class V1TerminalLocationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TerminalLocationLocationList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -275,13 +284,13 @@ class V1TerminalLocationsService {
         Servers.getServerUrl(),
         "/v1/terminal/locations");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -291,7 +300,7 @@ class V1TerminalLocationsService {
      * The ID of a configuration that will be used to customize all readers in this location.
      */
     @optional
-    Nullable!(string) configuration_overrides;
+    string configuration_overrides;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -306,32 +315,32 @@ class V1TerminalLocationsService {
      * A name for the location.
      */
     @optional
-    Nullable!(string) display_name;
+    string display_name;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     static class CreateLocationAddressParam {
       @optional
-      Nullable!(string) line1;
+      string line1;
 
       @optional
-      Nullable!(string) line2;
+      string line2;
 
       @optional
-      Nullable!(string) country;
+      string country;
 
       @optional
-      Nullable!(string) postal_code;
+      string postal_code;
 
       @optional
-      Nullable!(string) city;
+      string city;
 
       @optional
-      Nullable!(string) state;
+      string state;
 
     }
 
@@ -360,9 +369,11 @@ class V1TerminalLocationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TerminalLocation)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

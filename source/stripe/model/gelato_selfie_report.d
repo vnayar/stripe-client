@@ -17,7 +17,7 @@ class GelatoSelfieReport {
    * this check.
    */
   @optional
-  Nullable!(string) selfie;
+  string selfie;
 
   /**
    * Details on the verification error. Present when status is `unverified`.
@@ -30,12 +30,12 @@ class GelatoSelfieReport {
    * document used in this check.
    */
   @optional
-  Nullable!(string) document;
+  string document;
 
   /**
    * Status of this `selfie` check.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

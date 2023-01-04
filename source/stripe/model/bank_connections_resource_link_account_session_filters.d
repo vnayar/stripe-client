@@ -14,6 +14,6 @@ class BankConnectionsResourceLinkAccountSessionFilters {
    * List of countries from which to filter accounts.
    */
   @optional
-  Nullable!(string)[] countries;
+  string[] countries;
 
 }

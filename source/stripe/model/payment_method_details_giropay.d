@@ -14,13 +14,13 @@ class PaymentMethodDetailsGiropay {
    * Bank Identifier Code of the bank associated with the bank account.
    */
   @optional
-  Nullable!(string) bic;
+  string bic;
 
   /**
    * Name of the bank associated with the bank account.
    */
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   /**
    * Owner's verified full name. Values are verified or provided by Giropay directly
@@ -28,12 +28,12 @@ class PaymentMethodDetailsGiropay {
    * Giropay rarely provides this information so the attribute is usually empty.
    */
   @optional
-  Nullable!(string) verified_name;
+  string verified_name;
 
   /**
    * Bank code of bank associated with the bank account.
    */
   @optional
-  Nullable!(string) bank_code;
+  string bank_code;
 
 }

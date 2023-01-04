@@ -14,6 +14,6 @@ class PaymentLinksResourceCustomTextPosition {
    * Text may be up to 500 characters in length.
    */
   @optional
-  Nullable!(string) message;
+  string message;
 
 }

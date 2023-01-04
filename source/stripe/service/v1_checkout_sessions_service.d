@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,18 +29,18 @@ class V1CheckoutSessionsService {
     /**
      * Only return the Checkout Sessions for the Customer specified.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * Only return the Checkout Sessions for the Customer details specified.
      */
     static class CustomerDetailsParams {
       @optional
-      Nullable!(string) email;
+      string email;
 
     }
 
-    Nullable!(CustomerDetailsParams) customer_details;
+    CustomerDetailsParams customer_details;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -47,23 +48,23 @@ class V1CheckoutSessionsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Only return the Checkout Session for the PaymentIntent specified.
      */
-    Nullable!(Nullable!(string)) payment_intent;
+    string payment_intent;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -71,12 +72,12 @@ class V1CheckoutSessionsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return the Checkout Session for the subscription specified.
      */
-    Nullable!(Nullable!(string)) subscription;
+    string subscription;
 
   }
 
@@ -94,7 +95,7 @@ class V1CheckoutSessionsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       CheckoutSession[] data;
@@ -103,7 +104,7 @@ class V1CheckoutSessionsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -122,9 +123,11 @@ class V1CheckoutSessionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentPagesCheckoutSessionList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -143,21 +146,21 @@ class V1CheckoutSessionsService {
         Servers.getServerUrl(),
         "/v1/checkout/sessions");
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.customer_details.isNull)
-      requestor.setQueryParam("customer_details", params.customer_details.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer_details", params.customer_details);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.payment_intent.isNull)
-      requestor.setQueryParam("payment_intent", params.payment_intent.get.to!string);
+      requestor.setQueryParam!("deepObject")("payment_intent", params.payment_intent);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.subscription.isNull)
-      requestor.setQueryParam("subscription", params.subscription.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription", params.subscription);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -168,7 +171,7 @@ class V1CheckoutSessionsService {
      * least one recurring item.
      */
     @optional
-    Nullable!(string) mode;
+    string mode;
 
     static class CustomTextParam {
       @optional
@@ -187,13 +190,13 @@ class V1CheckoutSessionsService {
 
     static class SetupIntentDataParam {
       @optional
-      Nullable!(string) description;
+      string description;
 
       @optional
-      Nullable!(string)[string] metadata;
+      string[string] metadata;
 
       @optional
-      Nullable!(string) on_behalf_of;
+      string on_behalf_of;
 
     }
 
@@ -214,7 +217,7 @@ class V1CheckoutSessionsService {
      * trial](https://stripe.com/docs/payments/checkout/free-trials).
      */
     @optional
-    Nullable!(string) payment_method_collection;
+    string payment_method_collection;
 
     /**
      * ID of an existing Customer, if one exists. In `payment` mode, the customer’s most recent
@@ -239,14 +242,14 @@ class V1CheckoutSessionsService {
      * automatically attach the payment method to the Customer you pass in for future reuse.
      */
     @optional
-    Nullable!(string) customer;
+    string customer;
 
     /**
      * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Enables user redeemable promotion codes.
@@ -269,17 +272,17 @@ class V1CheckoutSessionsService {
      * Can only be set in `payment` and `setup` mode.
      */
     @optional
-    Nullable!(string) customer_creation;
+    string customer_creation;
 
     static class ShippingOptionParams {
       @optional
-      Nullable!(string) shipping_rate;
+      string shipping_rate;
 
       static class MethodParams {
         static class DeliveryEstimate {
           static class DeliveryEstimateBound {
             @optional
-            Nullable!(string) unit;
+            string unit;
 
             @optional
             Nullable!(int) value;
@@ -298,21 +301,21 @@ class V1CheckoutSessionsService {
         DeliveryEstimate delivery_estimate;
 
         @optional
-        Nullable!(string) tax_code;
+        string tax_code;
 
         static class FixedAmount {
           @optional
           Nullable!(int) amount;
 
           @optional
-          Nullable!(string) currency;
+          string currency;
 
           static class CurrencyOption {
             @optional
             Nullable!(int) amount;
 
             @optional
-            Nullable!(string) tax_behavior;
+            string tax_behavior;
 
           }
 
@@ -325,16 +328,16 @@ class V1CheckoutSessionsService {
         FixedAmount fixed_amount;
 
         @optional
-        Nullable!(string)[string] metadata;
+        string[string] metadata;
 
         @optional
-        Nullable!(string) display_name;
+        string display_name;
 
         @optional
-        Nullable!(string) tax_behavior;
+        string tax_behavior;
 
         @optional
-        Nullable!(string) type;
+        string type;
 
       }
 
@@ -355,10 +358,10 @@ class V1CheckoutSessionsService {
 
       static class InvoiceDataParams {
         @optional
-        Nullable!(string) description;
+        string description;
 
         @optional
-        Nullable!(string)[string] metadata;
+        string[string] metadata;
 
         @optional
         Json account_tax_ids;
@@ -367,7 +370,7 @@ class V1CheckoutSessionsService {
         Json custom_fields;
 
         @optional
-        Nullable!(string) footer;
+        string footer;
 
         @optional
         Json rendering_options;
@@ -389,17 +392,17 @@ class V1CheckoutSessionsService {
      * Specify whether Checkout should collect the customer's billing address.
      */
     @optional
-    Nullable!(string) billing_address_collection;
+    string billing_address_collection;
 
     static class CustomerUpdateParams {
       @optional
-      Nullable!(string) shipping;
+      string shipping;
 
       @optional
-      Nullable!(string) address;
+      string address;
 
       @optional
-      Nullable!(string) name;
+      string name;
 
     }
 
@@ -412,10 +415,10 @@ class V1CheckoutSessionsService {
 
     static class ConsentCollectionParams {
       @optional
-      Nullable!(string) terms_of_service;
+      string terms_of_service;
 
       @optional
-      Nullable!(string) promotions;
+      string promotions;
 
     }
 
@@ -438,7 +441,7 @@ class V1CheckoutSessionsService {
      * browser's locale is used.
      */
     @optional
-    Nullable!(string) locale;
+    string locale;
 
     /**
      * A unique string to reference the Checkout Session. This can be a
@@ -446,7 +449,7 @@ class V1CheckoutSessionsService {
      * session with your internal systems.
      */
     @optional
-    Nullable!(string) client_reference_id;
+    string client_reference_id;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -455,7 +458,7 @@ class V1CheckoutSessionsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     static class LineItemParams {
       static class PriceDataWithProductData {
@@ -463,32 +466,32 @@ class V1CheckoutSessionsService {
         Nullable!(int) unit_amount;
 
         @optional
-        Nullable!(string) currency;
+        string currency;
 
         @optional
-        Nullable!(string) product;
+        string product;
 
         @optional
-        Nullable!(string) unit_amount_decimal;
+        string unit_amount_decimal;
 
         @optional
-        Nullable!(string) tax_behavior;
+        string tax_behavior;
 
         static class ProductData {
           @optional
-          Nullable!(string) description;
+          string description;
 
           @optional
-          Nullable!(string)[string] metadata;
+          string[string] metadata;
 
           @optional
-          Nullable!(string) tax_code;
+          string tax_code;
 
           @optional
-          Nullable!(string)[] images;
+          string[] images;
 
           @optional
-          Nullable!(string) name;
+          string name;
 
         }
 
@@ -500,7 +503,7 @@ class V1CheckoutSessionsService {
           Nullable!(int) interval_count;
 
           @optional
-          Nullable!(string) interval;
+          string interval;
 
         }
 
@@ -513,16 +516,16 @@ class V1CheckoutSessionsService {
       PriceDataWithProductData price_data;
 
       @optional
-      Nullable!(string)[] dynamic_tax_rates;
+      string[] dynamic_tax_rates;
 
       @optional
       Nullable!(int) quantity;
 
       @optional
-      Nullable!(string)[] tax_rates;
+      string[] tax_rates;
 
       @optional
-      Nullable!(string) price;
+      string price;
 
       static class AdjustableQuantityParams {
         @optional
@@ -555,54 +558,54 @@ class V1CheckoutSessionsService {
 
     static class PaymentIntentDataParams {
       @optional
-      Nullable!(string) statement_descriptor;
+      string statement_descriptor;
 
       @optional
-      Nullable!(string) capture_method;
+      string capture_method;
 
       @optional
-      Nullable!(string) transfer_group;
+      string transfer_group;
 
       @optional
-      Nullable!(string)[string] metadata;
+      string[string] metadata;
 
       @optional
-      Nullable!(string) receipt_email;
+      string receipt_email;
 
       @optional
-      Nullable!(string) statement_descriptor_suffix;
+      string statement_descriptor_suffix;
 
       @optional
-      Nullable!(string) setup_future_usage;
+      string setup_future_usage;
 
       @optional
-      Nullable!(string) description;
+      string description;
 
       static class Shipping {
         @optional
-        Nullable!(string) phone;
+        string phone;
 
         @optional
-        Nullable!(string) carrier;
+        string carrier;
 
         static class Address {
           @optional
-          Nullable!(string) line1;
+          string line1;
 
           @optional
-          Nullable!(string) line2;
+          string line2;
 
           @optional
-          Nullable!(string) country;
+          string country;
 
           @optional
-          Nullable!(string) postal_code;
+          string postal_code;
 
           @optional
-          Nullable!(string) city;
+          string city;
 
           @optional
-          Nullable!(string) state;
+          string state;
 
         }
 
@@ -610,10 +613,10 @@ class V1CheckoutSessionsService {
         Address address;
 
         @optional
-        Nullable!(string) tracking_number;
+        string tracking_number;
 
         @optional
-        Nullable!(string) name;
+        string name;
 
       }
 
@@ -624,14 +627,14 @@ class V1CheckoutSessionsService {
       Nullable!(int) application_fee_amount;
 
       @optional
-      Nullable!(string) on_behalf_of;
+      string on_behalf_of;
 
       static class TransferDataParams {
         @optional
         Nullable!(int) amount;
 
         @optional
-        Nullable!(string) destination;
+        string destination;
 
       }
 
@@ -676,23 +679,23 @@ class V1CheckoutSessionsService {
      * page](https://stripe.com/docs/payments/checkout/custom-success-page).
      */
     @optional
-    Nullable!(string) success_url;
+    string success_url;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     static class SubscriptionDataParams {
       @optional
       Nullable!(int) trial_period_days;
 
       @optional
-      Nullable!(string)[string] metadata;
+      string[string] metadata;
 
       @optional
-      Nullable!(string)[] default_tax_rates;
+      string[] default_tax_rates;
 
       @optional
       Nullable!(float) application_fee_percent;
@@ -701,14 +704,14 @@ class V1CheckoutSessionsService {
       Nullable!(long) trial_end;
 
       @optional
-      Nullable!(string) description;
+      string description;
 
       static class TransferDataSpecs {
         @optional
         Nullable!(float) amount_percent;
 
         @optional
-        Nullable!(string) destination;
+        string destination;
 
       }
 
@@ -716,7 +719,7 @@ class V1CheckoutSessionsService {
       TransferDataSpecs transfer_data;
 
       @optional
-      Nullable!(string) on_behalf_of;
+      string on_behalf_of;
 
     }
 
@@ -729,7 +732,7 @@ class V1CheckoutSessionsService {
 
     static class ShippingAddressCollectionParams {
       @optional
-      Nullable!(string)[] allowed_countries;
+      string[] allowed_countries;
 
     }
 
@@ -744,7 +747,7 @@ class V1CheckoutSessionsService {
      * website.
      */
     @optional
-    Nullable!(string) cancel_url;
+    string cancel_url;
 
     static class TaxIdCollectionParams {
       @optional
@@ -761,7 +764,7 @@ class V1CheckoutSessionsService {
     static class PaymentMethodOptionsParam {
       static class PaymentMethodOptionsParam {
         @optional
-        Nullable!(string) setup_future_usage;
+        string setup_future_usage;
 
       }
 
@@ -856,14 +859,14 @@ class V1CheckoutSessionsService {
      * complete, use the `customer` field.
      */
     @optional
-    Nullable!(string) customer_email;
+    string customer_email;
 
     static class DiscountParams {
       @optional
-      Nullable!(string) coupon;
+      string coupon;
 
       @optional
-      Nullable!(string) promotion_code;
+      string promotion_code;
 
     }
 
@@ -886,7 +889,7 @@ class V1CheckoutSessionsService {
      * other characteristics.
      */
     @optional
-    Nullable!(string)[] payment_method_types;
+    string[] payment_method_types;
 
     static class PhoneNumberCollectionParams {
       @optional
@@ -910,7 +913,7 @@ class V1CheckoutSessionsService {
      * in `subscription` or `setup` mode.
      */
     @optional
-    Nullable!(string) submit_type;
+    string submit_type;
 
     static class AutomaticTaxParams {
       @optional
@@ -944,9 +947,11 @@ class V1CheckoutSessionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CheckoutSession)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -972,7 +977,7 @@ class V1CheckoutSessionsService {
   static class PostCheckoutSessionsSessionExpireParams {
     /**
      */
-    Nullable!(Nullable!(string)) session;
+    string session;
 
   }
 
@@ -993,9 +998,11 @@ class V1CheckoutSessionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CheckoutSession)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1016,7 +1023,7 @@ class V1CheckoutSessionsService {
         Servers.getServerUrl(),
         "/v1/checkout/sessions/{session}/expire");
     if (!params.session.isNull)
-      requestor.setPathParam("session", params.session.get.to!string);
+      requestor.setPathParam("session", params.session);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1028,22 +1035,22 @@ class V1CheckoutSessionsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      */
-    Nullable!(Nullable!(string)) session;
+    string session;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -1051,7 +1058,7 @@ class V1CheckoutSessionsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -1069,7 +1076,7 @@ class V1CheckoutSessionsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -1081,7 +1088,7 @@ class V1CheckoutSessionsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -1100,9 +1107,11 @@ class V1CheckoutSessionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentPagesCheckoutSessionListLineItems)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1123,15 +1132,15 @@ class V1CheckoutSessionsService {
         Servers.getServerUrl(),
         "/v1/checkout/sessions/{session}/line_items");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.session.isNull)
-      requestor.setPathParam("session", params.session.get.to!string);
+      requestor.setPathParam("session", params.session);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -1140,11 +1149,11 @@ class V1CheckoutSessionsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) session;
+    string session;
 
   }
 
@@ -1165,9 +1174,11 @@ class V1CheckoutSessionsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CheckoutSession)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -1186,9 +1197,9 @@ class V1CheckoutSessionsService {
         Servers.getServerUrl(),
         "/v1/checkout/sessions/{session}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.session.isNull)
-      requestor.setPathParam("session", params.session.get.to!string);
+      requestor.setPathParam("session", params.session);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

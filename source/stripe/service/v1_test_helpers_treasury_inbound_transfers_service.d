@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1TestHelpersTreasuryInboundTransfersService {
   static class PostTestHelpersTreasuryInboundTransfersIdReturnParams {
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -47,9 +48,11 @@ class V1TestHelpersTreasuryInboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryInboundTransfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -69,7 +72,7 @@ class V1TestHelpersTreasuryInboundTransfersService {
         Servers.getServerUrl(),
         "/v1/test_helpers/treasury/inbound_transfers/{id}/return");
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -77,7 +80,7 @@ class V1TestHelpersTreasuryInboundTransfersService {
   static class PostTestHelpersTreasuryInboundTransfersIdSucceedParams {
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -98,9 +101,11 @@ class V1TestHelpersTreasuryInboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryInboundTransfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -120,7 +125,7 @@ class V1TestHelpersTreasuryInboundTransfersService {
         Servers.getServerUrl(),
         "/v1/test_helpers/treasury/inbound_transfers/{id}/succeed");
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -128,7 +133,7 @@ class V1TestHelpersTreasuryInboundTransfersService {
   static class PostTestHelpersTreasuryInboundTransfersIdFailParams {
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -149,9 +154,11 @@ class V1TestHelpersTreasuryInboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryInboundTransfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -171,7 +178,7 @@ class V1TestHelpersTreasuryInboundTransfersService {
         Servers.getServerUrl(),
         "/v1/test_helpers/treasury/inbound_transfers/{id}/fail");
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

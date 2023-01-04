@@ -21,25 +21,25 @@ class CountrySpec {
    * accounts.
    */
   @optional
-  Nullable!(string) default_currency;
+  string default_currency;
 
   /**
    * Countries that can accept transfers from the specified country.
    */
   @optional
-  Nullable!(string)[] supported_transfer_countries;
+  string[] supported_transfer_countries;
 
   /**
    * Unique identifier for the object. Represented as the ISO country code for this country.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Currencies that can be accepted in the specified country (for payments).
    */
   @optional
-  Nullable!(string)[] supported_payment_currencies;
+  string[] supported_payment_currencies;
 
   @optional
   CountrySpecVerificationFields verification_fields;
@@ -51,18 +51,18 @@ class CountrySpec {
    * platform](https://stripe.com/docs/connect/destination-charges).
    */
   @optional
-  Nullable!(string)[] supported_payment_methods;
+  string[] supported_payment_methods;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Currencies that can be accepted in the specific country (for transfers).
    */
   @optional
-  Nullable!(string)[][string] supported_bank_account_currencies;
+  string[][string] supported_bank_account_currencies;
 
 }

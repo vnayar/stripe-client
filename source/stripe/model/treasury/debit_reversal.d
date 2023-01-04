@@ -29,7 +29,7 @@ class TreasuryDebitReversal {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -37,14 +37,14 @@ class TreasuryDebitReversal {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The Transaction associated with this object.
@@ -63,19 +63,19 @@ class TreasuryDebitReversal {
    * The rails used to reverse the funds.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * The FinancialAccount to reverse funds from.
    */
   @optional
-  Nullable!(string) financial_account;
+  string financial_account;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Other flows linked to a DebitReversal.
@@ -90,7 +90,7 @@ class TreasuryDebitReversal {
    * licenses.
    */
   @optional
-  Nullable!(string) hosted_regulatory_receipt_url;
+  string hosted_regulatory_receipt_url;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -102,12 +102,12 @@ class TreasuryDebitReversal {
    * The ReceivedDebit being reversed.
    */
   @optional
-  Nullable!(string) received_debit;
+  string received_debit;
 
   /**
    * Status of the DebitReversal
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

@@ -39,7 +39,7 @@ class QuotesResourceUpfront {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -51,7 +51,7 @@ class QuotesResourceUpfront {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 

@@ -15,7 +15,7 @@ class SetupIntentPaymentMethodOptionsUsBankAccount {
    * Bank account verification method.
    */
   @optional
-  Nullable!(string) verification_method;
+  string verification_method;
 
   @optional
   LinkedAccountOptionsUsBankAccount financial_connections;

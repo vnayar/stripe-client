@@ -37,7 +37,7 @@ class ShippingRate {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -45,7 +45,7 @@ class ShippingRate {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Whether the shipping rate can be used for new purchases. Defaults to `true`.
@@ -65,26 +65,26 @@ class ShippingRate {
    * CheckoutSessions.
    */
   @optional
-  Nullable!(string) display_name;
+  string display_name;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of
    * `inclusive`, `exclusive`, or `unspecified`.
    */
   @optional
-  Nullable!(string) tax_behavior;
+  string tax_behavior;
 
   /**
    * The type of calculation to use on the shipping rate. Can only be `fixed_amount` for now.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

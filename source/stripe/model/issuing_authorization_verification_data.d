@@ -14,26 +14,26 @@ class IssuingAuthorizationVerificationData {
    * Whether the cardholder provided a CVC and if it matched Stripe’s record.
    */
   @optional
-  Nullable!(string) cvc_check;
+  string cvc_check;
 
   /**
    * Whether the cardholder provided an address first line and if it matched the cardholder’s
    * `billing.address.line1`.
    */
   @optional
-  Nullable!(string) address_line1_check;
+  string address_line1_check;
 
   /**
    * Whether the cardholder provided a postal code and if it matched the cardholder’s
    * `billing.address.postal_code`.
    */
   @optional
-  Nullable!(string) address_postal_code_check;
+  string address_postal_code_check;
 
   /**
    * Whether the cardholder provided an expiry date and if it matched Stripe’s record.
    */
   @optional
-  Nullable!(string) expiry_check;
+  string expiry_check;
 
 }

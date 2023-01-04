@@ -17,6 +17,6 @@ class PaymentPagesCheckoutSessionShippingAddressCollection {
    * PW, SD, SY, UM, VI`.
    */
   @optional
-  Nullable!(string)[] allowed_countries;
+  string[] allowed_countries;
 
 }

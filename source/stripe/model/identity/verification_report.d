@@ -29,13 +29,13 @@ class IdentityVerificationReport {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * ID of the VerificationSession that created this report.
    */
   @optional
-  Nullable!(string) verification_session;
+  string verification_session;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -51,7 +51,7 @@ class IdentityVerificationReport {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   GelatoDocumentReport document;
@@ -60,7 +60,7 @@ class IdentityVerificationReport {
    * Type of report.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

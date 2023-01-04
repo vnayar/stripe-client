@@ -15,18 +15,18 @@ class FundingInstructionsBankTransferSpeiRecord {
    * The short banking institution name
    */
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   /**
    * The CLABE number
    */
   @optional
-  Nullable!(string) clabe;
+  string clabe;
 
   /**
    * The three-digit bank code
    */
   @optional
-  Nullable!(string) bank_code;
+  string bank_code;
 
 }

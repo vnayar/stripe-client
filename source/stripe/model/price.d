@@ -34,13 +34,13 @@ class Price {
    * characters.
    */
   @optional
-  Nullable!(string) lookup_key;
+  string lookup_key;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The unit amount in %s to be charged, represented as a whole integer if possible. Only set if
@@ -55,14 +55,14 @@ class Price {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The ID of the product this price is associated with.
@@ -95,7 +95,7 @@ class Price {
    * places. Only set if `billing_scheme=per_unit`.
    */
   @optional
-  Nullable!(string) unit_amount_decimal;
+  string unit_amount_decimal;
 
   /**
    * When set, provides configuration for the amount to be adjusted by the customer during
@@ -108,7 +108,7 @@ class Price {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of
@@ -116,14 +116,14 @@ class Price {
    * `exclusive`, it cannot be changed.
    */
   @optional
-  Nullable!(string) tax_behavior;
+  string tax_behavior;
 
   /**
    * One of `one_time` or `recurring` depending on whether the price is for a one-time purchase or
    * a recurring (subscription) purchase.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Describes how to compute the price per period. Either `per_unit` or `tiered`. `per_unit`
@@ -134,7 +134,7 @@ class Price {
    * attributes.
    */
   @optional
-  Nullable!(string) billing_scheme;
+  string billing_scheme;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -160,7 +160,7 @@ class Price {
    * A brief description of the price, hidden from customers.
    */
   @optional
-  Nullable!(string) nickname;
+  string nickname;
 
   /**
    * Defines if the tiering price should be `graduated` or `volume` based. In `volume`-based
@@ -168,7 +168,7 @@ class Price {
    * tiering, pricing can change as the quantity grows.
    */
   @optional
-  Nullable!(string) tiers_mode;
+  string tiers_mode;
 
   /**
    * Each element represents a pricing tier. This parameter requires `billing_scheme` to be set to

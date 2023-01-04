@@ -29,20 +29,20 @@ class BillingPortalSession {
    * customer’s `preferred_locales` or browser’s locale is used.
    */
   @optional
-  Nullable!(string) locale;
+  string locale;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The URL to redirect customers to when they click on the portal's link to return to your
    * website.
    */
   @optional
-  Nullable!(string) return_url;
+  string return_url;
 
   /**
    * The configuration used by this session, describing the features available.
@@ -54,13 +54,13 @@ class BillingPortalSession {
    * The ID of the customer for this session.
    */
   @optional
-  Nullable!(string) customer;
+  string customer;
 
   /**
    * The short-lived URL of the session that gives customers access to the customer portal.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -73,7 +73,7 @@ class BillingPortalSession {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -96,6 +96,6 @@ class BillingPortalSession {
    * the `on_behalf_of` account's branding settings, which the portal displays.
    */
   @optional
-  Nullable!(string) on_behalf_of;
+  string on_behalf_of;
 
 }

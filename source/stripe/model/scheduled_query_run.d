@@ -20,7 +20,7 @@ class ScheduledQueryRun {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Time at which the result expires and is no longer available for download.
@@ -38,13 +38,13 @@ class ScheduledQueryRun {
    * SQL for the query.
    */
   @optional
-  Nullable!(string) sql;
+  string sql;
 
   /**
    * Title of the query.
    */
   @optional
-  Nullable!(string) title;
+  string title;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -57,7 +57,7 @@ class ScheduledQueryRun {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -79,6 +79,6 @@ class ScheduledQueryRun {
    * `failed`, or `timed_out` otherwise.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

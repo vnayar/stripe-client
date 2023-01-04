@@ -15,12 +15,12 @@ class PaymentLinksResourcePaymentIntentData {
    * checkout.
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * Indicates when the funds will be captured from the customer's account.
    */
   @optional
-  Nullable!(string) capture_method;
+  string capture_method;
 
 }

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1IdentityVerificationReportsService {
   static class GetIdentityVerificationReportsParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -34,18 +35,18 @@ class V1IdentityVerificationReportsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -53,18 +54,18 @@ class V1IdentityVerificationReportsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return VerificationReports of this type
      */
-    Nullable!(Nullable!(string)) type;
+    string type;
 
     /**
      * Only return VerificationReports created by this VerificationSession ID. It is allowed to
      * provide a VerificationIntent ID.
      */
-    Nullable!(Nullable!(string)) verification_session;
+    string verification_session;
 
   }
 
@@ -82,7 +83,7 @@ class V1IdentityVerificationReportsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       IdentityVerificationReport[] data;
@@ -91,7 +92,7 @@ class V1IdentityVerificationReportsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -110,9 +111,11 @@ class V1IdentityVerificationReportsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(GelatoVerificationReportList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -131,19 +134,19 @@ class V1IdentityVerificationReportsService {
         Servers.getServerUrl(),
         "/v1/identity/verification_reports");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.type.isNull)
-      requestor.setQueryParam("type", params.type.get.to!string);
+      requestor.setQueryParam!("deepObject")("type", params.type);
     if (!params.verification_session.isNull)
-      requestor.setQueryParam("verification_session", params.verification_session.get.to!string);
+      requestor.setQueryParam!("deepObject")("verification_session", params.verification_session);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -152,11 +155,11 @@ class V1IdentityVerificationReportsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) report;
+    string report;
 
   }
 
@@ -177,9 +180,11 @@ class V1IdentityVerificationReportsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IdentityVerificationReport)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -198,9 +203,9 @@ class V1IdentityVerificationReportsService {
         Servers.getServerUrl(),
         "/v1/identity/verification_reports/{report}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.report.isNull)
-      requestor.setPathParam("report", params.report.get.to!string);
+      requestor.setPathParam("report", params.report);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

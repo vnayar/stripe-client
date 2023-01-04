@@ -26,7 +26,7 @@ class RadarEarlyFraudWarning {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The type of fraud labelled by the issuer. One of `card_never_received`,
@@ -34,7 +34,7 @@ class RadarEarlyFraudWarning {
    * `made_with_stolen_card`, `misc`, `unauthorized_use_of_card`.
    */
   @optional
-  Nullable!(string) fraud_type;
+  string fraud_type;
 
   /**
    * ID of the charge this early fraud warning is for, optionally expanded.
@@ -61,7 +61,7 @@ class RadarEarlyFraudWarning {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

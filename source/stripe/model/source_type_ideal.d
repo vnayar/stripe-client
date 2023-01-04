@@ -11,15 +11,15 @@ import std.typecons : Nullable;
  */
 class SourceTypeIdeal {
   @optional
-  Nullable!(string) bank;
+  string bank;
 
   @optional
-  Nullable!(string) iban_last4;
+  string iban_last4;
 
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   @optional
-  Nullable!(string) bic;
+  string bic;
 
 }

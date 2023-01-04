@@ -15,7 +15,7 @@ class PaymentMethodDetailsKlarna {
    * Can be one of `pay_later`, `pay_now`, `pay_with_financing`, or `pay_in_installments`
    */
   @optional
-  Nullable!(string) payment_method_category;
+  string payment_method_category;
 
   /**
    * Preferred language of the Klarna authorization page that the customer is redirected to.
@@ -26,6 +26,6 @@ class PaymentMethodDetailsKlarna {
    * `it-CH`, or `en-CH`
    */
   @optional
-  Nullable!(string) preferred_locale;
+  string preferred_locale;
 
 }

@@ -14,7 +14,7 @@ class ShippingRateDeliveryEstimateBound {
    * A unit of time.
    */
   @optional
-  Nullable!(string) unit;
+  string unit;
 
   /**
    * Must be greater than 0.

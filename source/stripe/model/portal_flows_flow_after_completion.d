@@ -16,7 +16,7 @@ class PortalFlowsFlowAfterCompletion {
    * The specified type of behavior after the flow is completed.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Configuration when `after_completion.type=hosted_confirmation`.

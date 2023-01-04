@@ -20,6 +20,6 @@ class InvoiceItemThresholdReason {
    * The IDs of the line items that triggered the threshold invoice.
    */
   @optional
-  Nullable!(string)[] line_item_ids;
+  string[] line_item_ids;
 
 }

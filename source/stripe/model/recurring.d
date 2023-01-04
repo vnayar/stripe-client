@@ -18,7 +18,7 @@ class Recurring {
    * period. Defaults to `sum`.
    */
   @optional
-  Nullable!(string) aggregate_usage;
+  string aggregate_usage;
 
   /**
    * The number of intervals (specified in the `interval` attribute) between subscription
@@ -34,12 +34,12 @@ class Recurring {
    * `licensed`.
    */
   @optional
-  Nullable!(string) usage_type;
+  string usage_type;
 
   /**
    * The frequency at which a subscription is billed. One of `day`, `week`, `month` or `year`.
    */
   @optional
-  Nullable!(string) interval;
+  string interval;
 
 }

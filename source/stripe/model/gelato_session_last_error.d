@@ -15,13 +15,13 @@ class GelatoSessionLastError {
    * A message that explains the reason for verification or user-session failure.
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   /**
    * A short machine-readable string giving the reason for the verification or user-session
    * failure.
    */
   @optional
-  Nullable!(string) code;
+  string code;
 
 }

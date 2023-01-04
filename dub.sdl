@@ -3,7 +3,7 @@ description "A client library generated from Stripe's OpenAPI specification."
 authors "Vijay Nayar"
 copyright "Copyright © 2022, Vijay Nayar"
 license "LGPL"
-dependency "openapi-client" version="~>0.2.1"
+dependency "openapi-client" version="~>1.0.0"
 targetType "library"
 targetPath "target"
 
@@ -13,6 +13,7 @@ configuration "library" {
 
 # To execute integration tests, run: dub test --config=integration
 configuration "integration" {
+  dependency "silly" version="~>1.2.0-dev.2"
   targetType "library"
   sourcePaths "test"
   # Unless explicitly excluded, the "source" path remains available.
@@ -28,5 +29,5 @@ configuration "integration" {
 # command: dub build --config=generate
 configuration "generate" {
   targetType "library"
-  preGenerateCommands "dub run openapi-client@0.2.1 -- --targetDir=source --openApiSpec=json/spec3.json --packageRoot=stripe"
+  preGenerateCommands "dub run openapi-client@1.0.0 -- --targetDir=source --openApiSpec=json/spec3.json --packageRoot=stripe"
 }

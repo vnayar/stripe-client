@@ -14,7 +14,7 @@ class PriceTier {
    * Same as `unit_amount`, but contains a decimal value with at most 12 decimal places.
    */
   @optional
-  Nullable!(string) unit_amount_decimal;
+  string unit_amount_decimal;
 
   /**
    * Price for the entire tier.
@@ -38,6 +38,6 @@ class PriceTier {
    * Same as `flat_amount`, but contains a decimal value with at most 12 decimal places.
    */
   @optional
-  Nullable!(string) flat_amount_decimal;
+  string flat_amount_decimal;
 
 }

@@ -15,7 +15,7 @@ class AccountUnificationAccountController {
    * `account`, if the account controls itself.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * `true` if the Connect application retrieving the resource controls the account and can

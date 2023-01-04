@@ -14,6 +14,6 @@ class TreasuryInboundTransfersResourceFailureDetails {
    * Reason for the failure.
    */
   @optional
-  Nullable!(string) code;
+  string code;
 
 }

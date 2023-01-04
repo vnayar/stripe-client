@@ -91,7 +91,7 @@ class Invoice {
    * invoice](https://stripe.com/docs/api/invoices/upcoming) for more details.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Either `charge_automatically`, or `send_invoice`. When charging automatically, Stripe will
@@ -99,7 +99,7 @@ class Invoice {
    * an invoice, Stripe will email this invoice to the customer with payment instructions.
    */
   @optional
-  Nullable!(string) collection_method;
+  string collection_method;
 
   /**
    * The tax rates applied to this invoice, if any.
@@ -112,7 +112,7 @@ class Invoice {
    * the invoice has not been finalized yet, this will be null.
    */
   @optional
-  Nullable!(string) hosted_invoice_url;
+  string hosted_invoice_url;
 
   /**
    * The difference between amount_due and amount_paid, in %s.
@@ -150,7 +150,7 @@ class Invoice {
    * `customer.phone`. Once the invoice is finalized, this field will no longer be updated.
    */
   @optional
-  Nullable!(string) customer_phone;
+  string customer_phone;
 
   /**
    * Invoices are automatically paid or sent 1 hour after webhooks are delivered, or until all
@@ -194,7 +194,7 @@ class Invoice {
    * This starts with the customer's unique invoice_prefix if it is specified.
    */
   @optional
-  Nullable!(string) number;
+  string number;
 
   /**
    * The amount of tax on this invoice. This is the sum of all the tax amounts on this invoice.
@@ -220,7 +220,7 @@ class Invoice {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -232,7 +232,7 @@ class Invoice {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -262,14 +262,14 @@ class Invoice {
    * will be null.
    */
   @optional
-  Nullable!(string) invoice_pdf;
+  string invoice_pdf;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Details of the invoice that was cloned. See the [revision
@@ -295,7 +295,7 @@ class Invoice {
    * `customer.tax_exempt`. Once the invoice is finalized, this field will no longer be updated.
    */
   @optional
-  Nullable!(string) customer_tax_exempt;
+  string customer_tax_exempt;
 
   /**
    * Whether payment was successfully collected for this invoice. An invoice can be paid (most
@@ -384,7 +384,7 @@ class Invoice {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The account tax IDs associated with the invoice. Only editable when the invoice is a draft.
@@ -403,7 +403,7 @@ class Invoice {
    * This is the transaction number that appears on email receipts sent for this invoice.
    */
   @optional
-  Nullable!(string) receipt_number;
+  string receipt_number;
 
   /**
    * The amount, in %s, that was paid.
@@ -429,7 +429,7 @@ class Invoice {
    * the invoice.
    */
   @optional
-  Nullable!(string) account_country;
+  string account_country;
 
   /**
    * Indicates the reason why the invoice was created. `subscription_cycle` indicates an invoice
@@ -443,7 +443,7 @@ class Invoice {
    * reached.
    */
   @optional
-  Nullable!(string) billing_reason;
+  string billing_reason;
 
   /**
    * The error encountered during the previous attempt to finalize the invoice. This field is
@@ -509,20 +509,20 @@ class Invoice {
    * more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview)
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * Extra information about an invoice for the customer's credit card statement.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * The customer's name. Until the invoice is finalized, this field will equal `customer.name`.
    * Once the invoice is finalized, this field will no longer be updated.
    */
   @optional
-  Nullable!(string) customer_name;
+  string customer_name;
 
   /**
    * The PaymentIntent associated with this invoice. The PaymentIntent is generated when the
@@ -546,7 +546,7 @@ class Invoice {
    * creating the invoice.
    */
   @optional
-  Nullable!(string) account_name;
+  string account_name;
 
   /**
    * Total after discounts and taxes.
@@ -559,7 +559,7 @@ class Invoice {
    * Once the invoice is finalized, this field will no longer be updated.
    */
   @optional
-  Nullable!(string) customer_email;
+  string customer_email;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -572,13 +572,13 @@ class Invoice {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Footer displayed on the invoice.
    */
   @optional
-  Nullable!(string) footer;
+  string footer;
 
   /**
    * The discounts applied to the invoice. Line item discounts are applied before invoice
@@ -592,7 +592,7 @@ class Invoice {
    * as 'memo' in the Dashboard.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Options for invoice PDF rendering.

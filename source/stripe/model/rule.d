@@ -14,18 +14,18 @@ class Rule {
    * The action taken on the payment.
    */
   @optional
-  Nullable!(string) action;
+  string action;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The predicate to evaluate the payment against.
    */
   @optional
-  Nullable!(string) predicate;
+  string predicate;
 
 }

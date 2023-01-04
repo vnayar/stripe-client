@@ -14,6 +14,6 @@ class SetupIntentPaymentMethodOptionsLink {
    * Token used for persistent Link logins.
    */
   @optional
-  Nullable!(string) persistent_token;
+  string persistent_token;
 
 }

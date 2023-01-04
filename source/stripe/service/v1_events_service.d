@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,13 +27,13 @@ class V1EventsService {
   static class GetEventsParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * Filter events by whether all webhooks were successfully delivered. If false, events which are
      * still pending or have failed all delivery attempts to a webhook endpoint will be returned.
      */
-    Nullable!(Nullable!(bool)) delivery_success;
+    Nullable!(bool) delivery_success;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -40,18 +41,18 @@ class V1EventsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -59,20 +60,20 @@ class V1EventsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * A string containing a specific event name, or group of events using * as a wildcard. The list
      * will be filtered to include only events with a matching event property.
      */
-    Nullable!(Nullable!(string)) type;
+    string type;
 
     /**
      * An array of up to 20 strings containing specific event names. The list will be filtered to
      * include only events with a matching event property. You may pass either `type` or `types`,
      * but not both.
      */
-    Nullable!(Nullable!(string)[]) types;
+    string[] types;
 
   }
 
@@ -90,7 +91,7 @@ class V1EventsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Event[] data;
@@ -99,7 +100,7 @@ class V1EventsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -118,9 +119,11 @@ class V1EventsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(NotificationEventList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -142,21 +145,21 @@ class V1EventsService {
         Servers.getServerUrl(),
         "/v1/events");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.delivery_success.isNull)
-      requestor.setQueryParam("delivery_success", params.delivery_success.get.to!string);
+      requestor.setQueryParam!("deepObject")("delivery_success", params.delivery_success);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.type.isNull)
-      requestor.setQueryParam("type", params.type.get.to!string);
+      requestor.setQueryParam!("deepObject")("type", params.type);
     if (!params.types.isNull)
-      requestor.setQueryParam("types", params.types.get.to!string);
+      requestor.setQueryParam!("deepObject")("types", params.types);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -165,11 +168,11 @@ class V1EventsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -190,9 +193,11 @@ class V1EventsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Event)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -212,9 +217,9 @@ class V1EventsService {
         Servers.getServerUrl(),
         "/v1/events/{id}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

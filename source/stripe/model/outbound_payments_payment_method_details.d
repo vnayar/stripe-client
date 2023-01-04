@@ -17,7 +17,7 @@ class OutboundPaymentsPaymentMethodDetails {
    * The type of the payment method used in the OutboundPayment.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   TreasurySharedResourceBillingDetails billing_details;

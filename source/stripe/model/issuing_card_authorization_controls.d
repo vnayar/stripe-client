@@ -25,7 +25,7 @@ class IssuingCardAuthorizationControls {
    * `blocked_categories`.
    */
   @optional
-  Nullable!(string)[] allowed_categories;
+  string[] allowed_categories;
 
   /**
    * Array of strings containing
@@ -34,13 +34,13 @@ class IssuingCardAuthorizationControls {
    * `allowed_categories`.
    */
   @optional
-  Nullable!(string)[] blocked_categories;
+  string[] blocked_categories;
 
   /**
    * Currency of the amounts within `spending_limits`. Always the same as the currency of the
    * card.
    */
   @optional
-  Nullable!(string) spending_limits_currency;
+  string spending_limits_currency;
 
 }

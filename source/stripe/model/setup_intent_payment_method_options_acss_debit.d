@@ -18,12 +18,12 @@ class SetupIntentPaymentMethodOptionsAcssDebit {
    * Currency supported by the bank account
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Bank account verification method.
    */
   @optional
-  Nullable!(string) verification_method;
+  string verification_method;
 
 }

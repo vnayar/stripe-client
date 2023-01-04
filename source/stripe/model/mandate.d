@@ -26,7 +26,7 @@ class Mandate {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   @optional
   MandatePaymentMethodDetails payment_method_details;
@@ -51,18 +51,18 @@ class Mandate {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The type of the mandate.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The status of the mandate, which indicates whether it can be used to initiate a payment.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

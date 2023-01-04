@@ -14,6 +14,6 @@ class InvoiceSettingRenderingOptions {
    * How line-item prices and amounts will be displayed with respect to tax on invoice PDFs.
    */
   @optional
-  Nullable!(string) amount_tax_display;
+  string amount_tax_display;
 
 }

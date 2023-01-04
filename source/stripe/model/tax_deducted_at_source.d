@@ -21,19 +21,19 @@ class TaxDeductedAtSource {
    * The TAN that was supplied to Stripe when TDS was assessed
    */
   @optional
-  Nullable!(string) tax_deduction_account_number;
+  string tax_deduction_account_number;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The end of the invoicing period. This TDS applies to Stripe fees collected during this

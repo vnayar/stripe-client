@@ -56,7 +56,7 @@ class PaymentMethod {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   @optional
   PaymentMethodGiropay giropay;
@@ -140,7 +140,7 @@ class PaymentMethod {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   @optional
   PaymentMethodLink link;
@@ -151,7 +151,7 @@ class PaymentMethod {
    * type.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   BillingDetails billing_details;
@@ -185,7 +185,7 @@ class PaymentMethod {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   PaymentMethodOxxo oxxo;

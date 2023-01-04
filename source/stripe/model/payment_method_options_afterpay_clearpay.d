@@ -23,13 +23,13 @@ class PaymentMethodOptionsAfterpayClearpay {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * Controls when the funds will be captured from the customer's account.
    */
   @optional
-  Nullable!(string) capture_method;
+  string capture_method;
 
   /**
    * Order identifier shown to the customer in Afterpay’s online portal. We recommend using a
@@ -38,6 +38,6 @@ class PaymentMethodOptionsAfterpayClearpay {
    * digits, underscores, backslashes and dashes.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
 }

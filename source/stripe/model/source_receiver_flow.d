@@ -14,7 +14,7 @@ class SourceReceiverFlow {
    * Type of refund attribute method, one of `email`, `manual`, or `none`.
    */
   @optional
-  Nullable!(string) refund_attributes_method;
+  string refund_attributes_method;
 
   /**
    * The total amount received by the receiver source. `amount_received = amount_returned +
@@ -29,7 +29,7 @@ class SourceReceiverFlow {
    * customer to send their funds to.
    */
   @optional
-  Nullable!(string) address;
+  string address;
 
   /**
    * The total amount that was moved to your balance. This is almost always equal to the amount
@@ -51,6 +51,6 @@ class SourceReceiverFlow {
    * Type of refund attribute status, one of `missing`, `requested`, or `available`.
    */
   @optional
-  Nullable!(string) refund_attributes_status;
+  string refund_attributes_status;
 
 }

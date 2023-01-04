@@ -20,14 +20,14 @@ class DeletedDiscount {
    * a particular invoice item or invoice line item.
    */
   @optional
-  Nullable!(string) invoice_item;
+  string invoice_item;
 
   /**
    * The invoice that the discount's coupon was applied to, if it was applied directly to a
    * particular invoice.
    */
   @optional
-  Nullable!(string) invoice;
+  string invoice;
 
   @optional
   Coupon coupon;
@@ -37,7 +37,7 @@ class DeletedDiscount {
    * API calls to expand discount IDs in an array.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Date that the coupon was applied.
@@ -56,7 +56,7 @@ class DeletedDiscount {
    * subscription.
    */
   @optional
-  Nullable!(string) subscription;
+  string subscription;
 
   /**
    * The promotion code applied to create this discount.
@@ -68,14 +68,14 @@ class DeletedDiscount {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The Checkout session that this coupon is applied to, if it is applied to a particular session
    * in payment mode. Will not be present for subscription mode.
    */
   @optional
-  Nullable!(string) checkout_session;
+  string checkout_session;
 
   /**
    * Always true for a deleted object

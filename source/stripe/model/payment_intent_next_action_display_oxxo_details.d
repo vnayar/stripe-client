@@ -15,13 +15,13 @@ class PaymentIntentNextActionDisplayOxxoDetails {
    * voucher.
    */
   @optional
-  Nullable!(string) hosted_voucher_url;
+  string hosted_voucher_url;
 
   /**
    * OXXO reference number.
    */
   @optional
-  Nullable!(string) number;
+  string number;
 
   /**
    * The timestamp after which the OXXO voucher expires.

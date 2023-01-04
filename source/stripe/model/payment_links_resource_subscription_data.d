@@ -15,7 +15,7 @@ class PaymentLinksResourceSubscriptionData {
    * optionally store an explanation of the subscription.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Integer representing the number of trial period days before the customer is charged for the

@@ -14,6 +14,6 @@ class PaymentMethodBoleto {
    * Uniquely identifies the customer tax id (CNPJ or CPF)
    */
   @optional
-  Nullable!(string) tax_id;
+  string tax_id;
 
 }

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,11 +28,11 @@ class V1TaxRatesService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) tax_rate;
+    string tax_rate;
 
   }
 
@@ -52,9 +53,11 @@ class V1TaxRatesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TaxRate)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -73,9 +76,9 @@ class V1TaxRatesService {
         Servers.getServerUrl(),
         "/v1/tax_rates/{tax_rate}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.tax_rate.isNull)
-      requestor.setPathParam("tax_rate", params.tax_rate.get.to!string);
+      requestor.setPathParam("tax_rate", params.tax_rate);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -83,7 +86,7 @@ class V1TaxRatesService {
   static class PostTaxRatesTaxRateParams {
     /**
      */
-    Nullable!(Nullable!(string)) tax_rate;
+    string tax_rate;
 
   }
 
@@ -104,9 +107,11 @@ class V1TaxRatesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TaxRate)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -125,7 +130,7 @@ class V1TaxRatesService {
         Servers.getServerUrl(),
         "/v1/tax_rates/{tax_rate}");
     if (!params.tax_rate.isNull)
-      requestor.setPathParam("tax_rate", params.tax_rate.get.to!string);
+      requestor.setPathParam("tax_rate", params.tax_rate);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -134,12 +139,12 @@ class V1TaxRatesService {
     /**
      * Optional flag to filter by tax rates that are either active or inactive (archived).
      */
-    Nullable!(Nullable!(bool)) active;
+    Nullable!(bool) active;
 
     /**
      * Optional range for filtering created date.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -147,23 +152,23 @@ class V1TaxRatesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * Optional flag to filter by tax rates that are inclusive (or those that are not inclusive).
      */
-    Nullable!(Nullable!(bool)) inclusive;
+    Nullable!(bool) inclusive;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -171,7 +176,7 @@ class V1TaxRatesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -189,7 +194,7 @@ class V1TaxRatesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       TaxRate[] data;
@@ -198,7 +203,7 @@ class V1TaxRatesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -217,9 +222,11 @@ class V1TaxRatesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TaxRatesList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -239,19 +246,19 @@ class V1TaxRatesService {
         Servers.getServerUrl(),
         "/v1/tax_rates");
     if (!params.active.isNull)
-      requestor.setQueryParam("active", params.active.get.to!string);
+      requestor.setQueryParam!("deepObject")("active", params.active);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.inclusive.isNull)
-      requestor.setQueryParam("inclusive", params.inclusive.get.to!string);
+      requestor.setQueryParam!("deepObject")("inclusive", params.inclusive);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -262,14 +269,14 @@ class V1TaxRatesService {
      * alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
      */
     @optional
-    Nullable!(string) country;
+    string country;
 
     /**
      * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2:US), without country
      * prefix. For example, "NY" for New York, United States.
      */
     @optional
-    Nullable!(string) state;
+    string state;
 
     /**
      * This specifies if the tax rate is inclusive or exclusive.
@@ -284,7 +291,7 @@ class V1TaxRatesService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * Flag determining whether the tax rate is active or inactive (archived). Inactive tax rates
@@ -304,33 +311,33 @@ class V1TaxRatesService {
      * The display name of the tax rate, which will be shown to users.
      */
     @optional
-    Nullable!(string) display_name;
+    string display_name;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The high-level tax type, such as `vat` or `sales_tax`.
      */
     @optional
-    Nullable!(string) tax_type;
+    string tax_type;
 
     /**
      * An arbitrary string attached to the tax rate for your internal use only. It will not be
      * visible to your customers.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
     /**
      * The jurisdiction for the tax rate. You can use this label field for tax reporting purposes.
      * It also appears on your customer’s invoice.
      */
     @optional
-    Nullable!(string) jurisdiction;
+    string jurisdiction;
 
   }
 
@@ -351,9 +358,11 @@ class V1TaxRatesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TaxRate)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

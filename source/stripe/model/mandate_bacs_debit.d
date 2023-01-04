@@ -15,18 +15,18 @@ class MandateBacsDebit {
    * or `accepted`.
    */
   @optional
-  Nullable!(string) network_status;
+  string network_status;
 
   /**
    * The unique reference identifying the mandate on the Bacs network.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   /**
    * The URL that will contain the mandate that the customer has signed.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
 }

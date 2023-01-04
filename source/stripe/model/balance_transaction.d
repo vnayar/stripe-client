@@ -60,21 +60,21 @@ class BalanceTransaction {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * [Learn more](https://stripe.com/docs/reports/reporting-categories) about how reporting
    * categories can help you understand balance transactions from an accounting perspective.
    */
   @optional
-  Nullable!(string) reporting_category;
+  string reporting_category;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The Stripe object to which this transaction is related.
@@ -86,7 +86,7 @@ class BalanceTransaction {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Transaction type: `adjustment`, `advance`, `advance_funding`, `anticipation_repayment`,
@@ -101,13 +101,13 @@ class BalanceTransaction {
    * accounting purposes, you might want to consider `reporting_category` instead.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -138,6 +138,6 @@ class BalanceTransaction {
    * `pending`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

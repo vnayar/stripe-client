@@ -24,7 +24,7 @@ class FileLink {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -32,7 +32,7 @@ class FileLink {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Whether this link is already expired.
@@ -44,7 +44,7 @@ class FileLink {
    * The publicly accessible URL to download the file.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -57,7 +57,7 @@ class FileLink {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

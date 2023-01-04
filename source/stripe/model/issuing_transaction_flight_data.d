@@ -15,7 +15,7 @@ class IssuingTransactionFlightData {
    * The name of the passenger.
    */
   @optional
-  Nullable!(string) passenger_name;
+  string passenger_name;
 
   /**
    * The time that the flight departed.
@@ -27,7 +27,7 @@ class IssuingTransactionFlightData {
    * The travel agency that issued the ticket.
    */
   @optional
-  Nullable!(string) travel_agency;
+  string travel_agency;
 
   /**
    * Whether the ticket is refundable.

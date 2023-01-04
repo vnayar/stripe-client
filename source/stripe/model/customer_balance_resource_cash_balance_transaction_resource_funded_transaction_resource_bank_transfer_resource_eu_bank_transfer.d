@@ -14,18 +14,18 @@ class CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionReso
    * The full name of the sender, as supplied by the sending bank.
    */
   @optional
-  Nullable!(string) sender_name;
+  string sender_name;
 
   /**
    * The last 4 digits of the IBAN of the sender of the funding.
    */
   @optional
-  Nullable!(string) iban_last4;
+  string iban_last4;
 
   /**
    * The BIC of the bank of the sender of the funding.
    */
   @optional
-  Nullable!(string) bic;
+  string bic;
 
 }

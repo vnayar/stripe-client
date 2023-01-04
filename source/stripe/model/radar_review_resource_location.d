@@ -14,13 +14,13 @@ class RadarReviewResourceLocation {
    * Two-letter ISO code representing the country where the payment originated.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * The city where the payment originated.
    */
   @optional
-  Nullable!(string) city;
+  string city;
 
   /**
    * The geographic latitude where the payment originated.
@@ -38,6 +38,6 @@ class RadarReviewResourceLocation {
    * The state/county/province/region where the payment originated.
    */
   @optional
-  Nullable!(string) region;
+  string region;
 
 }

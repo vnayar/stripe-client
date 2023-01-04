@@ -25,7 +25,7 @@ class CustomerCashBalanceTransaction {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The customer whose available cash balance changed as a result of this transaction.
@@ -46,7 +46,7 @@ class CustomerCashBalanceTransaction {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   @optional
   CustomerBalanceResourceCashBalanceTransactionResourceFundedTransaction funded;
@@ -71,7 +71,7 @@ class CustomerCashBalanceTransaction {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The type of the cash balance transaction. One of `applied_to_payment`,
@@ -81,7 +81,7 @@ class CustomerCashBalanceTransaction {
    * types.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

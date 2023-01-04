@@ -14,25 +14,25 @@ class IssuingTransactionFlightDataLeg {
    * The flight's service class.
    */
   @optional
-  Nullable!(string) service_class;
+  string service_class;
 
   /**
    * The airline carrier code.
    */
   @optional
-  Nullable!(string) carrier;
+  string carrier;
 
   /**
    * The three-letter IATA airport code that the flight departed from.
    */
   @optional
-  Nullable!(string) departure_airport_code;
+  string departure_airport_code;
 
   /**
    * The three-letter IATA airport code of the flight's destination.
    */
   @optional
-  Nullable!(string) arrival_airport_code;
+  string arrival_airport_code;
 
   /**
    * Whether a stopover is allowed on this flight.
@@ -44,6 +44,6 @@ class IssuingTransactionFlightDataLeg {
    * The flight number.
    */
   @optional
-  Nullable!(string) flight_number;
+  string flight_number;
 
 }

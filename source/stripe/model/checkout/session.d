@@ -49,20 +49,20 @@ class CheckoutSession {
    * The ID of the original expired Checkout Session that triggered the recovery flow.
    */
   @optional
-  Nullable!(string) recovered_from;
+  string recovered_from;
 
   /**
    * Unique identifier for the object. Used to pass to `redirectToCheckout`
    * in Stripe.js.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The mode of the Checkout Session.
    */
   @optional
-  Nullable!(string) mode;
+  string mode;
 
   /**
    * Total of all items after discounts and taxes are applied.
@@ -108,7 +108,7 @@ class CheckoutSession {
    * Configure whether a Checkout Session should collect a payment method.
    */
   @optional
-  Nullable!(string) payment_method_collection;
+  string payment_method_collection;
 
   /**
    * The ID of the subscription for Checkout Sessions in `subscription` mode.
@@ -131,7 +131,7 @@ class CheckoutSession {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Enables user redeemable promotion codes.
@@ -145,7 +145,7 @@ class CheckoutSession {
    * You can use this value to decide when to fulfill your customer's order.
    */
   @optional
-  Nullable!(string) payment_status;
+  string payment_status;
 
   /**
    * The URL to the Checkout Session. Redirect customers to this URL to take them to Checkout. If
@@ -154,13 +154,13 @@ class CheckoutSession {
    * This value is only present when the session is active.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
   /**
    * Configure whether a Checkout Session creates a Customer when the Checkout Session completes.
    */
   @optional
-  Nullable!(string) customer_creation;
+  string customer_creation;
 
   /**
    * The shipping rate options applied to this Session.
@@ -178,14 +178,14 @@ class CheckoutSession {
    * Describes whether Checkout should collect the customer's billing address.
    */
   @optional
-  Nullable!(string) billing_address_collection;
+  string billing_address_collection;
 
   /**
    * The IETF language tag of the locale Checkout is displayed in. If blank or `auto`, the
    * browser's locale is used.
    */
   @optional
-  Nullable!(string) locale;
+  string locale;
 
   /**
    * When set, provides configuration for the Checkout Session to gather active consent from
@@ -206,7 +206,7 @@ class CheckoutSession {
    * Session with your internal systems.
    */
   @optional
-  Nullable!(string) client_reference_id;
+  string client_reference_id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -214,7 +214,7 @@ class CheckoutSession {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   static class PaymentPagesCheckoutSessionListLineItems {
     /**
@@ -228,7 +228,7 @@ class CheckoutSession {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -240,7 +240,7 @@ class CheckoutSession {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -261,7 +261,7 @@ class CheckoutSession {
    * subscription creation is successful.
    */
   @optional
-  Nullable!(string) success_url;
+  string success_url;
 
   /**
    * The ID of the Payment Link that created this Session.
@@ -279,14 +279,14 @@ class CheckoutSession {
    * The status of the Checkout Session, one of `open`, `complete`, or `expired`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * The URL the customer will be directed to if they decide to cancel payment and return to your
    * website.
    */
   @optional
-  Nullable!(string) cancel_url;
+  string cancel_url;
 
   /**
    * Tax and discount details for the computed total amount.
@@ -324,7 +324,7 @@ class CheckoutSession {
    * complete, use the `customer` attribute.
    */
   @optional
-  Nullable!(string) customer_email;
+  string customer_email;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -349,14 +349,14 @@ class CheckoutSession {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * A list of the types of payment methods (e.g. card) this Checkout
    * Session is allowed to accept.
    */
   @optional
-  Nullable!(string)[] payment_method_types;
+  string[] payment_method_types;
 
   @optional
   PaymentPagesCheckoutSessionPhoneNumberCollection phone_number_collection;
@@ -368,7 +368,7 @@ class CheckoutSession {
    * in `subscription` or `setup` mode.
    */
   @optional
-  Nullable!(string) submit_type;
+  string submit_type;
 
   @optional
   PaymentPagesCheckoutSessionAutomaticTax automatic_tax;

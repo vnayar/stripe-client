@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,15 +29,15 @@ class V1TransfersService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
     /**
      */
-    Nullable!(Nullable!(string)) transfer;
+    string transfer;
 
   }
 
@@ -57,9 +58,11 @@ class V1TransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TransferReversal)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -79,11 +82,11 @@ class V1TransfersService {
         Servers.getServerUrl(),
         "/v1/transfers/{transfer}/reversals/{id}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     if (!params.transfer.isNull)
-      requestor.setPathParam("transfer", params.transfer.get.to!string);
+      requestor.setPathParam("transfer", params.transfer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -91,11 +94,11 @@ class V1TransfersService {
   static class PostTransfersTransferReversalsIdParams {
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
     /**
      */
-    Nullable!(Nullable!(string)) transfer;
+    string transfer;
 
   }
 
@@ -116,9 +119,11 @@ class V1TransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TransferReversal)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -139,9 +144,9 @@ class V1TransfersService {
         Servers.getServerUrl(),
         "/v1/transfers/{transfer}/reversals/{id}");
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     if (!params.transfer.isNull)
-      requestor.setPathParam("transfer", params.transfer.get.to!string);
+      requestor.setPathParam("transfer", params.transfer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -153,22 +158,22 @@ class V1TransfersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -176,7 +181,7 @@ class V1TransfersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -194,7 +199,7 @@ class V1TransfersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -206,7 +211,7 @@ class V1TransfersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -225,9 +230,11 @@ class V1TransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TransferReversalList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -249,15 +256,15 @@ class V1TransfersService {
         Servers.getServerUrl(),
         "/v1/transfers/{id}/reversals");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -265,7 +272,7 @@ class V1TransfersService {
   static class PostTransfersIdReversalsParams {
     /**
      */
-    Nullable!(Nullable!(string)) id;
+    string id;
 
   }
 
@@ -286,9 +293,11 @@ class V1TransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TransferReversal)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -312,7 +321,7 @@ class V1TransfersService {
         Servers.getServerUrl(),
         "/v1/transfers/{id}/reversals");
     if (!params.id.isNull)
-      requestor.setPathParam("id", params.id.get.to!string);
+      requestor.setPathParam("id", params.id);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -320,12 +329,12 @@ class V1TransfersService {
   static class GetTransfersParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * Only return transfers for the destination specified by this account ID.
      */
-    Nullable!(Nullable!(string)) destination;
+    string destination;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -333,18 +342,18 @@ class V1TransfersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -352,12 +361,12 @@ class V1TransfersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return transfers with the specified transfer group.
      */
-    Nullable!(Nullable!(string)) transfer_group;
+    string transfer_group;
 
   }
 
@@ -375,7 +384,7 @@ class V1TransfersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -387,7 +396,7 @@ class V1TransfersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -406,9 +415,11 @@ class V1TransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TransferList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -428,19 +439,19 @@ class V1TransfersService {
         Servers.getServerUrl(),
         "/v1/transfers");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.destination.isNull)
-      requestor.setQueryParam("destination", params.destination.get.to!string);
+      requestor.setQueryParam!("deepObject")("destination", params.destination);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.transfer_group.isNull)
-      requestor.setQueryParam("transfer_group", params.transfer_group.get.to!string);
+      requestor.setQueryParam!("deepObject")("transfer_group", params.transfer_group);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -458,21 +469,21 @@ class V1TransfersService {
      * details.
      */
     @optional
-    Nullable!(string) transfer_group;
+    string transfer_group;
 
     /**
      * The source balance to use for this transfer. One of `bank_account`, `card`, or `fpx`. For
      * most users, this will default to `card`.
      */
     @optional
-    Nullable!(string) source_type;
+    string source_type;
 
     /**
      * The ID of a connected Stripe account. <a href="/docs/connect/charges-transfers">See the
      * Connect documentation</a> for details.
      */
     @optional
-    Nullable!(string) destination;
+    string destination;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -481,19 +492,19 @@ class V1TransfersService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * 3-letter [ISO code for currency](https://stripe.com/docs/payouts).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * You can use this parameter to transfer funds from a charge before they are added to your
@@ -503,13 +514,13 @@ class V1TransfersService {
      * details.
      */
     @optional
-    Nullable!(string) source_transaction;
+    string source_transaction;
 
     /**
      * An arbitrary string attached to the object. Often useful for displaying to users.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
   }
 
@@ -530,9 +541,11 @@ class V1TransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Transfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -561,11 +574,11 @@ class V1TransfersService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) transfer;
+    string transfer;
 
   }
 
@@ -586,9 +599,11 @@ class V1TransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Transfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -609,9 +624,9 @@ class V1TransfersService {
         Servers.getServerUrl(),
         "/v1/transfers/{transfer}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.transfer.isNull)
-      requestor.setPathParam("transfer", params.transfer.get.to!string);
+      requestor.setPathParam("transfer", params.transfer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -619,7 +634,7 @@ class V1TransfersService {
   static class PostTransfersTransferParams {
     /**
      */
-    Nullable!(Nullable!(string)) transfer;
+    string transfer;
 
   }
 
@@ -640,9 +655,11 @@ class V1TransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Transfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -663,7 +680,7 @@ class V1TransfersService {
         Servers.getServerUrl(),
         "/v1/transfers/{transfer}");
     if (!params.transfer.isNull)
-      requestor.setPathParam("transfer", params.transfer.get.to!string);
+      requestor.setPathParam("transfer", params.transfer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

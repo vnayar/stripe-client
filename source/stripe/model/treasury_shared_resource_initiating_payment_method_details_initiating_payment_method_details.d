@@ -18,14 +18,14 @@ class TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatingPaymentMetho
    * Card](https://stripe.com/docs/api#issuing_cards) ID.
    */
   @optional
-  Nullable!(string) issuing_card;
+  string issuing_card;
 
   /**
    * Polymorphic type matching the originating money movement's source. This can be an external
    * account, a Stripe balance, or a FinancialAccount.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   TreasurySharedResourceBillingDetails billing_details;
@@ -40,6 +40,6 @@ class TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatingPaymentMetho
    * Set when `type` is `balance`.
    */
   @optional
-  Nullable!(string) balance;
+  string balance;
 
 }

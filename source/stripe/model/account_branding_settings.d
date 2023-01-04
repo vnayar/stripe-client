@@ -30,12 +30,12 @@ class AccountBrandingSettings {
    * A CSS hex color value representing the primary branding color for this account
    */
   @optional
-  Nullable!(string) primary_color;
+  string primary_color;
 
   /**
    * A CSS hex color value representing the secondary branding color for this account
    */
   @optional
-  Nullable!(string) secondary_color;
+  string secondary_color;
 
 }

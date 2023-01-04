@@ -21,13 +21,13 @@ class FinancialConnectionsAccount {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The name of the institution that holds this account.
    */
   @optional
-  Nullable!(string) institution_name;
+  string institution_name;
 
   /**
    * The account holder that this account belongs to.
@@ -48,7 +48,7 @@ class FinancialConnectionsAccount {
    * If `category` is `investment` or `other`, this will be `other`.
    */
   @optional
-  Nullable!(string) subcategory;
+  string subcategory;
 
   /**
    * The most recent information about the account's balance.
@@ -60,7 +60,7 @@ class FinancialConnectionsAccount {
    * The last 4 digits of the account number. If present, this will be 4 numeric characters.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * The state of the most recent attempt to refresh the account balance.
@@ -73,13 +73,13 @@ class FinancialConnectionsAccount {
    * by the institution.
    */
   @optional
-  Nullable!(string) display_name;
+  string display_name;
 
   /**
    * The type of the account. Account category is further divided in `subcategory`.
    */
   @optional
-  Nullable!(string) category;
+  string category;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -92,7 +92,7 @@ class FinancialConnectionsAccount {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The [PaymentMethod
@@ -100,7 +100,7 @@ class FinancialConnectionsAccount {
    * can be created from this account.
    */
   @optional
-  Nullable!(string)[] supported_payment_method_types;
+  string[] supported_payment_method_types;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -118,7 +118,7 @@ class FinancialConnectionsAccount {
    * The list of permissions granted by this account.
    */
   @optional
-  Nullable!(string)[] permissions;
+  string[] permissions;
 
   /**
    * The state of the most recent attempt to refresh the account owners.
@@ -130,6 +130,6 @@ class FinancialConnectionsAccount {
    * The status of the link to the account.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

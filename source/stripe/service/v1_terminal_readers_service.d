@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,11 +29,11 @@ class V1TerminalReadersService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) reader;
+    string reader;
 
   }
 
@@ -53,9 +54,11 @@ class V1TerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -74,9 +77,9 @@ class V1TerminalReadersService {
         Servers.getServerUrl(),
         "/v1/terminal/readers/{reader}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.reader.isNull)
-      requestor.setPathParam("reader", params.reader.get.to!string);
+      requestor.setPathParam("reader", params.reader);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -84,7 +87,7 @@ class V1TerminalReadersService {
   static class PostTerminalReadersReaderParams {
     /**
      */
-    Nullable!(Nullable!(string)) reader;
+    string reader;
 
   }
 
@@ -105,9 +108,11 @@ class V1TerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Json)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -127,7 +132,7 @@ class V1TerminalReadersService {
         Servers.getServerUrl(),
         "/v1/terminal/readers/{reader}");
     if (!params.reader.isNull)
-      requestor.setPathParam("reader", params.reader.get.to!string);
+      requestor.setPathParam("reader", params.reader);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -135,7 +140,7 @@ class V1TerminalReadersService {
   static class DeleteTerminalReadersReaderParams {
     /**
      */
-    Nullable!(Nullable!(string)) reader;
+    string reader;
 
   }
 
@@ -156,9 +161,11 @@ class V1TerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedTerminalReader)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -177,7 +184,7 @@ class V1TerminalReadersService {
         Servers.getServerUrl(),
         "/v1/terminal/readers/{reader}");
     if (!params.reader.isNull)
-      requestor.setPathParam("reader", params.reader.get.to!string);
+      requestor.setPathParam("reader", params.reader);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -185,7 +192,7 @@ class V1TerminalReadersService {
   static class PostTerminalReadersReaderProcessPaymentIntentParams {
     /**
      */
-    Nullable!(Nullable!(string)) reader;
+    string reader;
 
   }
 
@@ -215,13 +222,13 @@ class V1TerminalReadersService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * PaymentIntent ID
      */
     @optional
-    Nullable!(string) payment_intent;
+    string payment_intent;
 
   }
 
@@ -242,9 +249,11 @@ class V1TerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TerminalReader)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -264,7 +273,7 @@ class V1TerminalReadersService {
         Servers.getServerUrl(),
         "/v1/terminal/readers/{reader}/process_payment_intent");
     if (!params.reader.isNull)
-      requestor.setPathParam("reader", params.reader.get.to!string);
+      requestor.setPathParam("reader", params.reader);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -273,7 +282,7 @@ class V1TerminalReadersService {
   static class PostTerminalReadersReaderProcessSetupIntentParams {
     /**
      */
-    Nullable!(Nullable!(string)) reader;
+    string reader;
 
   }
 
@@ -288,13 +297,13 @@ class V1TerminalReadersService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * SetupIntent ID
      */
     @optional
-    Nullable!(string) setup_intent;
+    string setup_intent;
 
   }
 
@@ -315,9 +324,11 @@ class V1TerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TerminalReader)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -337,7 +348,7 @@ class V1TerminalReadersService {
         Servers.getServerUrl(),
         "/v1/terminal/readers/{reader}/process_setup_intent");
     if (!params.reader.isNull)
-      requestor.setPathParam("reader", params.reader.get.to!string);
+      requestor.setPathParam("reader", params.reader);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -346,7 +357,7 @@ class V1TerminalReadersService {
   static class PostTerminalReadersReaderSetReaderDisplayParams {
     /**
      */
-    Nullable!(Nullable!(string)) reader;
+    string reader;
 
   }
 
@@ -355,11 +366,11 @@ class V1TerminalReadersService {
      * Type
      */
     @optional
-    Nullable!(string) type;
+    string type;
 
     static class Cart {
       @optional
-      Nullable!(string) currency;
+      string currency;
 
       @optional
       Nullable!(int) tax;
@@ -369,7 +380,7 @@ class V1TerminalReadersService {
 
       static class LineItem {
         @optional
-        Nullable!(string) description;
+        string description;
 
         @optional
         Nullable!(int) amount;
@@ -394,7 +405,7 @@ class V1TerminalReadersService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
   }
 
@@ -415,9 +426,11 @@ class V1TerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TerminalReader)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -437,7 +450,7 @@ class V1TerminalReadersService {
         Servers.getServerUrl(),
         "/v1/terminal/readers/{reader}/set_reader_display");
     if (!params.reader.isNull)
-      requestor.setPathParam("reader", params.reader.get.to!string);
+      requestor.setPathParam("reader", params.reader);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -446,7 +459,7 @@ class V1TerminalReadersService {
   static class PostTerminalReadersReaderCancelActionParams {
     /**
      */
-    Nullable!(Nullable!(string)) reader;
+    string reader;
 
   }
 
@@ -467,9 +480,11 @@ class V1TerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TerminalReader)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -488,7 +503,7 @@ class V1TerminalReadersService {
         Servers.getServerUrl(),
         "/v1/terminal/readers/{reader}/cancel_action");
     if (!params.reader.isNull)
-      requestor.setPathParam("reader", params.reader.get.to!string);
+      requestor.setPathParam("reader", params.reader);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -497,7 +512,7 @@ class V1TerminalReadersService {
     /**
      * Filters readers by device type
      */
-    Nullable!(Nullable!(string)) device_type;
+    string device_type;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -505,23 +520,23 @@ class V1TerminalReadersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A location ID to filter the response list to only readers at the specific location
      */
-    Nullable!(Nullable!(string)) location;
+    string location;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -529,12 +544,12 @@ class V1TerminalReadersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * A status filter to filter readers to only offline or online readers
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
   }
 
@@ -552,7 +567,7 @@ class V1TerminalReadersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * A list of readers
@@ -564,7 +579,7 @@ class V1TerminalReadersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -583,9 +598,11 @@ class V1TerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TerminalReaderRetrieveReader)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -604,19 +621,19 @@ class V1TerminalReadersService {
         Servers.getServerUrl(),
         "/v1/terminal/readers");
     if (!params.device_type.isNull)
-      requestor.setQueryParam("device_type", params.device_type.get.to!string);
+      requestor.setQueryParam!("deepObject")("device_type", params.device_type);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.location.isNull)
-      requestor.setQueryParam("location", params.location.get.to!string);
+      requestor.setQueryParam!("deepObject")("location", params.location);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -635,26 +652,26 @@ class V1TerminalReadersService {
      * The location to assign the reader to.
      */
     @optional
-    Nullable!(string) location;
+    string location;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * Custom label given to the reader for easier identification. If no label is specified, the
      * registration code will be used.
      */
     @optional
-    Nullable!(string) label;
+    string label;
 
     /**
      * A code generated by the reader used for registering to an account.
      */
     @optional
-    Nullable!(string) registration_code;
+    string registration_code;
 
   }
 
@@ -675,9 +692,11 @@ class V1TerminalReadersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TerminalReader)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

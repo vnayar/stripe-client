@@ -11,33 +11,33 @@ import std.typecons : Nullable;
  */
 class SourceTypeAcssDebit {
   @optional
-  Nullable!(string) country;
+  string country;
 
   @optional
-  Nullable!(string) routing_number;
+  string routing_number;
 
   @optional
-  Nullable!(string) bank_address_postal_code;
+  string bank_address_postal_code;
 
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   @optional
-  Nullable!(string) category;
+  string category;
 
   @optional
-  Nullable!(string) bank_address_line_2;
+  string bank_address_line_2;
 
   @optional
-  Nullable!(string) bank_address_line_1;
+  string bank_address_line_1;
 
   @optional
-  Nullable!(string) bank_address_city;
+  string bank_address_city;
 
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

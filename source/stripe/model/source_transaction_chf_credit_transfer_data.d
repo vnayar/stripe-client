@@ -14,30 +14,30 @@ class SourceTransactionChfCreditTransferData {
    * Sender's name.
    */
   @optional
-  Nullable!(string) sender_name;
+  string sender_name;
 
   /**
    * Sender's country address.
    */
   @optional
-  Nullable!(string) sender_address_country;
+  string sender_address_country;
 
   /**
    * Reference associated with the transfer.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   /**
    * Sender's bank account IBAN.
    */
   @optional
-  Nullable!(string) sender_iban;
+  string sender_iban;
 
   /**
    * Sender's line 1 address.
    */
   @optional
-  Nullable!(string) sender_address_line1;
+  string sender_address_line1;
 
 }

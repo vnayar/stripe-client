@@ -15,6 +15,6 @@ class PaymentMethodOptionsCustomerBalanceEuBankAccount {
    * `ES`, `FR`, `IE`, or `NL`.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
 }

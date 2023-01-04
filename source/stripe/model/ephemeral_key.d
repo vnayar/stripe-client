@@ -21,7 +21,7 @@ class EphemeralKey {
    * The key's secret. You can use this value to make authorized requests to the Stripe API.
    */
   @optional
-  Nullable!(string) secret;
+  string secret;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -39,12 +39,12 @@ class EphemeralKey {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
 }

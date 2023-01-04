@@ -23,7 +23,7 @@ class PaymentMethodOptionsBoleto {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * The number of calendar days before a Boleto voucher expires. For example, if you create a

@@ -14,6 +14,6 @@ class PaymentMethodSofort {
    * Two-letter ISO code representing the country the bank account is located in.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
 }

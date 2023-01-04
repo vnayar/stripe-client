@@ -17,7 +17,7 @@ class AccountFutureRequirements {
    * required, they appear in `currently_due` as well.
    */
   @optional
-  Nullable!(string)[] eventually_due;
+  string[] eventually_due;
 
   /**
    * Fields that may become required depending on the results of verification or review. Will be
@@ -25,7 +25,7 @@ class AccountFutureRequirements {
    * fields move to `eventually_due` or `currently_due`.
    */
   @optional
-  Nullable!(string)[] pending_verification;
+  string[] pending_verification;
 
   /**
    * Fields that weren't collected by `requirements.current_deadline`. These fields need to be
@@ -33,7 +33,7 @@ class AccountFutureRequirements {
    * `future_requirements.past_due` will always be a subset of `requirements.past_due`.
    */
   @optional
-  Nullable!(string)[] past_due;
+  string[] past_due;
 
   /**
    * Fields that are due and can be satisfied by providing the corresponding alternative fields
@@ -48,7 +48,7 @@ class AccountFutureRequirements {
    * `requirements` hash.
    */
   @optional
-  Nullable!(string)[] currently_due;
+  string[] currently_due;
 
   /**
    * Fields that are `currently_due` and need to be collected again because validation or
@@ -72,6 +72,6 @@ class AccountFutureRequirements {
    * will never disable the account.
    */
   @optional
-  Nullable!(string) disabled_reason;
+  string disabled_reason;
 
 }

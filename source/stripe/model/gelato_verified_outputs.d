@@ -22,7 +22,7 @@ class GelatoVerifiedOutputs {
    * The user's verified last name.
    */
   @optional
-  Nullable!(string) last_name;
+  string last_name;
 
   /**
    * The user's verified address.
@@ -34,18 +34,18 @@ class GelatoVerifiedOutputs {
    * The user's verified id number type.
    */
   @optional
-  Nullable!(string) id_number_type;
+  string id_number_type;
 
   /**
    * The user's verified id number.
    */
   @optional
-  Nullable!(string) id_number;
+  string id_number;
 
   /**
    * The user's verified first name.
    */
   @optional
-  Nullable!(string) first_name;
+  string first_name;
 
 }

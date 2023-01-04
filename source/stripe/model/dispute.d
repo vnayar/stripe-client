@@ -46,7 +46,7 @@ class Dispute {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   @optional
   DisputeEvidenceDetails evidence_details;
@@ -57,14 +57,14 @@ class Dispute {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Reason given by cardholder for dispute. Possible values are `bank_cannot_process`,
@@ -74,7 +74,7 @@ class Dispute {
    * Read more about [dispute reasons](https://stripe.com/docs/disputes/categories).
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   /**
    * ID of the charge that was disputed.
@@ -100,7 +100,7 @@ class Dispute {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   DisputeEvidence evidence;
@@ -117,6 +117,6 @@ class Dispute {
    * `charge_refunded`, `won`, or `lost`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

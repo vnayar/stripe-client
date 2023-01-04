@@ -29,7 +29,7 @@ class Product {
    * invoices. When set, this will be included in associated invoice line item descriptions.
    */
   @optional
-  Nullable!(string) unit_label;
+  string unit_label;
 
   /**
    * A [tax code](https://stripe.com/docs/tax/tax-categories) ID.
@@ -43,7 +43,7 @@ class Product {
    * used.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * The ID of the [Price](https://stripe.com/docs/api/prices) object that is the default price
@@ -56,7 +56,7 @@ class Product {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The dimensions of this product for shipping purposes.
@@ -70,13 +70,13 @@ class Product {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The product's name, meant to be displayable to the customer.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * Whether the product is currently available for purchase.
@@ -95,19 +95,19 @@ class Product {
    * A URL of a publicly-accessible webpage for this product.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
   /**
    * A list of up to 8 URLs of images for this product, meant to be displayable to the customer.
    */
   @optional
-  Nullable!(string)[] images;
+  string[] images;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was last updated. Measured in seconds since the Unix epoch.
@@ -121,7 +121,7 @@ class Product {
    * purposes.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

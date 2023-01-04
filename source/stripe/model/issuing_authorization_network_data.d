@@ -15,6 +15,6 @@ class IssuingAuthorizationNetworkData {
    * by the network; in this case, the value will be `null`.
    */
   @optional
-  Nullable!(string) acquiring_institution_id;
+  string acquiring_institution_id;
 
 }

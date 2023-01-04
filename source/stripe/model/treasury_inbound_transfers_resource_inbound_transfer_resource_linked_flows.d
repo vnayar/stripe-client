@@ -15,6 +15,6 @@ class TreasuryInboundTransfersResourceInboundTransferResourceLinkedFlows {
    * contains a reference to the ReceivedDebit return.
    */
   @optional
-  Nullable!(string) received_debit;
+  string received_debit;
 
 }

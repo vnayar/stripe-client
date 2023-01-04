@@ -27,7 +27,7 @@ class CheckoutCardPaymentMethodOptions {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * Provides information about a card payment that customers see on their statements.
@@ -37,7 +37,7 @@ class CheckoutCardPaymentMethodOptions {
    * appear truncated to 17 characters.
    */
   @optional
-  Nullable!(string) statement_descriptor_suffix_kanji;
+  string statement_descriptor_suffix_kanji;
 
   /**
    * Provides information about a card payment that customers see on their statements.
@@ -47,6 +47,6 @@ class CheckoutCardPaymentMethodOptions {
    * appear truncated to 22 characters.
    */
   @optional
-  Nullable!(string) statement_descriptor_suffix_kana;
+  string statement_descriptor_suffix_kana;
 
 }

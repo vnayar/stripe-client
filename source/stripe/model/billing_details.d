@@ -15,13 +15,13 @@ class BillingDetails {
    * Email address.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   /**
    * Billing phone number (including extension).
    */
   @optional
-  Nullable!(string) phone;
+  string phone;
 
   /**
    * Billing address.
@@ -33,6 +33,6 @@ class BillingDetails {
    * Full name.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
 }

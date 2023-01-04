@@ -14,12 +14,12 @@ class CountrySpecVerificationFieldDetails {
    * Fields which every account must eventually provide.
    */
   @optional
-  Nullable!(string)[] minimum;
+  string[] minimum;
 
   /**
    * Additional fields which are only required for some users.
    */
   @optional
-  Nullable!(string)[] additional;
+  string[] additional;
 
 }

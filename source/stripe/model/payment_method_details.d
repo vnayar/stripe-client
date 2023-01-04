@@ -135,7 +135,7 @@ class PaymentMethodDetails {
    * It contains information specific to the payment method.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   PaymentMethodDetailsAuBecsDebit au_becs_debit;

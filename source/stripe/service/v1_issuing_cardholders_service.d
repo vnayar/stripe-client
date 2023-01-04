@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,12 +27,12 @@ class V1IssuingCardholdersService {
   static class GetIssuingCardholdersCardholderParams {
     /**
      */
-    Nullable!(Nullable!(string)) cardholder;
+    string cardholder;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -52,9 +53,11 @@ class V1IssuingCardholdersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCardholder)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -73,9 +76,9 @@ class V1IssuingCardholdersService {
         Servers.getServerUrl(),
         "/v1/issuing/cardholders/{cardholder}");
     if (!params.cardholder.isNull)
-      requestor.setPathParam("cardholder", params.cardholder.get.to!string);
+      requestor.setPathParam("cardholder", params.cardholder);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -83,7 +86,7 @@ class V1IssuingCardholdersService {
   static class PostIssuingCardholdersCardholderParams {
     /**
      */
-    Nullable!(Nullable!(string)) cardholder;
+    string cardholder;
 
   }
 
@@ -104,9 +107,11 @@ class V1IssuingCardholdersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCardholder)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -126,7 +131,7 @@ class V1IssuingCardholdersService {
         Servers.getServerUrl(),
         "/v1/issuing/cardholders/{cardholder}");
     if (!params.cardholder.isNull)
-      requestor.setPathParam("cardholder", params.cardholder.get.to!string);
+      requestor.setPathParam("cardholder", params.cardholder);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -135,12 +140,12 @@ class V1IssuingCardholdersService {
     /**
      * Only return cardholders that were created during the given date interval.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * Only return cardholders that have the given email address.
      */
-    Nullable!(Nullable!(string)) email;
+    string email;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -148,23 +153,23 @@ class V1IssuingCardholdersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Only return cardholders that have the given phone number.
      */
-    Nullable!(Nullable!(string)) phone_number;
+    string phone_number;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -172,18 +177,18 @@ class V1IssuingCardholdersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return cardholders that have the given status. One of `active`, `inactive`, or
      * `blocked`.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
     /**
      * Only return cardholders that have the given type. One of `individual` or `company`.
      */
-    Nullable!(Nullable!(string)) type;
+    string type;
 
   }
 
@@ -201,7 +206,7 @@ class V1IssuingCardholdersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       IssuingCardholder[] data;
@@ -210,7 +215,7 @@ class V1IssuingCardholdersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -229,9 +234,11 @@ class V1IssuingCardholdersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCardholderList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -251,23 +258,23 @@ class V1IssuingCardholdersService {
         Servers.getServerUrl(),
         "/v1/issuing/cardholders");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.email.isNull)
-      requestor.setQueryParam("email", params.email.get.to!string);
+      requestor.setQueryParam!("deepObject")("email", params.email);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.phone_number.isNull)
-      requestor.setQueryParam("phone_number", params.phone_number.get.to!string);
+      requestor.setQueryParam!("deepObject")("phone_number", params.phone_number);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     if (!params.type.isNull)
-      requestor.setQueryParam("type", params.type.get.to!string);
+      requestor.setQueryParam!("deepObject")("type", params.type);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -277,7 +284,7 @@ class V1IssuingCardholdersService {
      * The cardholder's email address.
      */
     @optional
-    Nullable!(string) email;
+    string email;
 
     static class AuthorizationControlsParamV2 {
       static class SpendingLimitsParam {
@@ -285,10 +292,10 @@ class V1IssuingCardholdersService {
         Nullable!(int) amount;
 
         @optional
-        Nullable!(string)[] categories;
+        string[] categories;
 
         @optional
-        Nullable!(string) interval;
+        string interval;
 
       }
 
@@ -296,13 +303,13 @@ class V1IssuingCardholdersService {
       SpendingLimitsParam[] spending_limits;
 
       @optional
-      Nullable!(string)[] allowed_categories;
+      string[] allowed_categories;
 
       @optional
-      Nullable!(string)[] blocked_categories;
+      string[] blocked_categories;
 
       @optional
-      Nullable!(string) spending_limits_currency;
+      string spending_limits_currency;
 
     }
 
@@ -320,11 +327,11 @@ class V1IssuingCardholdersService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     static class CompanyParam {
       @optional
-      Nullable!(string) tax_id;
+      string tax_id;
 
     }
 
@@ -339,33 +346,33 @@ class V1IssuingCardholdersService {
      * this field is 24 characters. This field cannot contain any special characters or numbers.
      */
     @optional
-    Nullable!(string) name;
+    string name;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     static class BillingSpecs {
       static class RequiredAddress {
         @optional
-        Nullable!(string) line1;
+        string line1;
 
         @optional
-        Nullable!(string) line2;
+        string line2;
 
         @optional
-        Nullable!(string) country;
+        string country;
 
         @optional
-        Nullable!(string) postal_code;
+        string postal_code;
 
         @optional
-        Nullable!(string) city;
+        string city;
 
         @optional
-        Nullable!(string) state;
+        string state;
 
       }
 
@@ -397,18 +404,18 @@ class V1IssuingCardholdersService {
       DateOfBirthSpecs dob;
 
       @optional
-      Nullable!(string) first_name;
+      string first_name;
 
       @optional
-      Nullable!(string) last_name;
+      string last_name;
 
       static class PersonVerificationParam {
         static class PersonVerificationDocumentParam {
           @optional
-          Nullable!(string) front;
+          string front;
 
           @optional
-          Nullable!(string) back;
+          string back;
 
         }
 
@@ -436,19 +443,19 @@ class V1IssuingCardholdersService {
      * details.
      */
     @optional
-    Nullable!(string) phone_number;
+    string phone_number;
 
     /**
      * One of `individual` or `company`.
      */
     @optional
-    Nullable!(string) type;
+    string type;
 
     /**
      * Specifies whether to permit authorizations on this cardholder's cards. Defaults to `active`.
      */
     @optional
-    Nullable!(string) status;
+    string status;
 
   }
 
@@ -469,9 +476,11 @@ class V1IssuingCardholdersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingCardholder)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

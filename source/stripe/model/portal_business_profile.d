@@ -14,18 +14,18 @@ class PortalBusinessProfile {
    * A link to the business’s publicly available terms of service.
    */
   @optional
-  Nullable!(string) terms_of_service_url;
+  string terms_of_service_url;
 
   /**
    * A link to the business’s publicly available privacy policy.
    */
   @optional
-  Nullable!(string) privacy_policy_url;
+  string privacy_policy_url;
 
   /**
    * The messaging shown to customers in the portal.
    */
   @optional
-  Nullable!(string) headline;
+  string headline;
 
 }

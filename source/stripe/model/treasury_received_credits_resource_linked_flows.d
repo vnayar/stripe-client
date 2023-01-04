@@ -16,26 +16,26 @@ class TreasuryReceivedCreditsResourceLinkedFlows {
    * transaction](https://stripe.com/docs/api#issuing_transactions) object.
    */
   @optional
-  Nullable!(string) issuing_transaction;
+  string issuing_transaction;
 
   /**
    * The type of flow that originated the ReceivedCredit (for example, `outbound_payment`).
    */
   @optional
-  Nullable!(string) source_flow_type;
+  string source_flow_type;
 
   /**
    * The CreditReversal created as a result of this ReceivedCredit being reversed.
    */
   @optional
-  Nullable!(string) credit_reversal;
+  string credit_reversal;
 
   /**
    * ID of the source flow. Set if `network` is `stripe` and the source flow is visible to the
    * user. Examples of source flows include OutboundPayments, payouts, or CreditReversals.
    */
   @optional
-  Nullable!(string) source_flow;
+  string source_flow;
 
   /**
    * The expandable object of the source flow.
@@ -48,6 +48,6 @@ class TreasuryReceivedCreditsResourceLinkedFlows {
    * Authorization](https://stripe.com/docs/api#issuing_authorizations) object.
    */
   @optional
-  Nullable!(string) issuing_authorization;
+  string issuing_authorization;
 
 }

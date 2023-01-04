@@ -24,7 +24,7 @@ class CurrencyOption {
    * places. Only set if `billing_scheme=per_unit`.
    */
   @optional
-  Nullable!(string) unit_amount_decimal;
+  string unit_amount_decimal;
 
   /**
    * When set, provides configuration for the amount to be adjusted by the customer during
@@ -46,6 +46,6 @@ class CurrencyOption {
    * `exclusive`, it cannot be changed.
    */
   @optional
-  Nullable!(string) tax_behavior;
+  string tax_behavior;
 
 }

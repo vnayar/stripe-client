@@ -14,6 +14,6 @@ class PortalFlowsFlowSubscriptionCancel {
    * The ID of the subscription to be canceled.
    */
   @optional
-  Nullable!(string) subscription;
+  string subscription;
 
 }

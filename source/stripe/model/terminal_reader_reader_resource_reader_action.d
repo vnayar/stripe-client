@@ -18,7 +18,7 @@ class TerminalReaderReaderResourceReaderAction {
    * Detailed failure message, only set if status is `failed`.
    */
   @optional
-  Nullable!(string) failure_message;
+  string failure_message;
 
   @optional
   TerminalReaderReaderResourceProcessSetupIntentAction process_setup_intent;
@@ -30,7 +30,7 @@ class TerminalReaderReaderResourceReaderAction {
    * Type of action performed by the reader.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   TerminalReaderReaderResourceSetReaderDisplayAction set_reader_display;
@@ -39,12 +39,12 @@ class TerminalReaderReaderResourceReaderAction {
    * Failure code, only set if status is `failed`.
    */
   @optional
-  Nullable!(string) failure_code;
+  string failure_code;
 
   /**
    * Status of the action performed by the reader.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

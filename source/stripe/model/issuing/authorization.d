@@ -52,7 +52,7 @@ class IssuingAuthorization {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -60,14 +60,14 @@ class IssuingAuthorization {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Details about the authorization, such as identifiers, set by the card network.
@@ -93,7 +93,7 @@ class IssuingAuthorization {
    * `samsung_pay`. Will populate as `null` when no digital wallet was utilized.
    */
   @optional
-  Nullable!(string) wallet;
+  string wallet;
 
   @optional
   IssuingCard card;
@@ -130,7 +130,7 @@ class IssuingAuthorization {
    * [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) merchant_currency;
+  string merchant_currency;
 
   /**
    * Detailed breakdown of amount components. These amounts are denominated in `currency` and in
@@ -143,7 +143,7 @@ class IssuingAuthorization {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The pending authorization request. This field will only be non-null during an
@@ -156,7 +156,7 @@ class IssuingAuthorization {
    * How the card details were provided.
    */
   @optional
-  Nullable!(string) authorization_method;
+  string authorization_method;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -171,7 +171,7 @@ class IssuingAuthorization {
    * The current status of the authorization in its lifecycle.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * [Treasury](https://stripe.com/docs/api/treasury) details related to this authorization if it

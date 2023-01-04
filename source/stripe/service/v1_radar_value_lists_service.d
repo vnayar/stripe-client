@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,11 +29,11 @@ class V1RadarValueListsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) value_list;
+    string value_list;
 
   }
 
@@ -53,9 +54,11 @@ class V1RadarValueListsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(RadarValueList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -74,9 +77,9 @@ class V1RadarValueListsService {
         Servers.getServerUrl(),
         "/v1/radar/value_lists/{value_list}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.value_list.isNull)
-      requestor.setPathParam("value_list", params.value_list.get.to!string);
+      requestor.setPathParam("value_list", params.value_list);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -84,7 +87,7 @@ class V1RadarValueListsService {
   static class PostRadarValueListsValueListParams {
     /**
      */
-    Nullable!(Nullable!(string)) value_list;
+    string value_list;
 
   }
 
@@ -105,9 +108,11 @@ class V1RadarValueListsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(RadarValueList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -128,7 +133,7 @@ class V1RadarValueListsService {
         Servers.getServerUrl(),
         "/v1/radar/value_lists/{value_list}");
     if (!params.value_list.isNull)
-      requestor.setPathParam("value_list", params.value_list.get.to!string);
+      requestor.setPathParam("value_list", params.value_list);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -136,7 +141,7 @@ class V1RadarValueListsService {
   static class DeleteRadarValueListsValueListParams {
     /**
      */
-    Nullable!(Nullable!(string)) value_list;
+    string value_list;
 
   }
 
@@ -157,9 +162,11 @@ class V1RadarValueListsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedRadarValueList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -179,7 +186,7 @@ class V1RadarValueListsService {
         Servers.getServerUrl(),
         "/v1/radar/value_lists/{value_list}");
     if (!params.value_list.isNull)
-      requestor.setPathParam("value_list", params.value_list.get.to!string);
+      requestor.setPathParam("value_list", params.value_list);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -188,16 +195,16 @@ class V1RadarValueListsService {
     /**
      * The alias used to reference the value list when writing rules.
      */
-    Nullable!(Nullable!(string)) alias_;
+    string alias_;
 
     /**
      * A value contained within a value list - returns all value lists containing this value.
      */
-    Nullable!(Nullable!(string)) contains;
+    string contains;
 
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -205,18 +212,18 @@ class V1RadarValueListsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -224,7 +231,7 @@ class V1RadarValueListsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -242,7 +249,7 @@ class V1RadarValueListsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       RadarValueList[] data;
@@ -251,7 +258,7 @@ class V1RadarValueListsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -270,9 +277,11 @@ class V1RadarValueListsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(RadarListListList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -292,19 +301,19 @@ class V1RadarValueListsService {
         Servers.getServerUrl(),
         "/v1/radar/value_lists");
     if (!params.alias_.isNull)
-      requestor.setQueryParam("alias", params.alias_.get.to!string);
+      requestor.setQueryParam!("deepObject")("alias", params.alias_);
     if (!params.contains.isNull)
-      requestor.setQueryParam("contains", params.contains.get.to!string);
+      requestor.setQueryParam!("deepObject")("contains", params.contains);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -314,7 +323,7 @@ class V1RadarValueListsService {
      * The name of the value list for use in rules.
      */
     @optional
-    Nullable!(string) alias_;
+    string alias_;
 
     /**
      * Type of the items in the value list. One of `card_fingerprint`, `card_bin`, `email`,
@@ -322,13 +331,13 @@ class V1RadarValueListsService {
      * the item type is unknown or mixed.
      */
     @optional
-    Nullable!(string) item_type;
+    string item_type;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -337,13 +346,13 @@ class V1RadarValueListsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * The human-readable name of the value list.
      */
     @optional
-    Nullable!(string) name;
+    string name;
 
   }
 
@@ -364,9 +373,11 @@ class V1RadarValueListsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(RadarValueList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

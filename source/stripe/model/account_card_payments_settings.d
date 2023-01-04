@@ -18,7 +18,7 @@ class AccountCardPaymentsSettings {
    * descriptor space for the dynamic portion.
    */
   @optional
-  Nullable!(string) statement_descriptor_prefix_kanji;
+  string statement_descriptor_prefix_kanji;
 
   /**
    * The default text that appears on credit card statements when a charge is made. This field
@@ -27,7 +27,7 @@ class AccountCardPaymentsSettings {
    * portion.
    */
   @optional
-  Nullable!(string) statement_descriptor_prefix;
+  string statement_descriptor_prefix;
 
   /**
    * The Kana variation of the default text that appears on credit card statements when a charge
@@ -36,7 +36,7 @@ class AccountCardPaymentsSettings {
    * descriptor space for the dynamic portion.
    */
   @optional
-  Nullable!(string) statement_descriptor_prefix_kana;
+  string statement_descriptor_prefix_kana;
 
   @optional
   AccountDeclineChargeOn decline_on;

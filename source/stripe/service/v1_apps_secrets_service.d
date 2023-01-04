@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -30,18 +31,18 @@ class V1AppsSecretsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Specifies the scoping of the secret. Requests originating from UI extensions can only access
@@ -49,14 +50,14 @@ class V1AppsSecretsService {
      */
     static class ScopeParam {
       @optional
-      Nullable!(string) type;
+      string type;
 
       @optional
-      Nullable!(string) user;
+      string user;
 
     }
 
-    Nullable!(ScopeParam) scope_;
+    ScopeParam scope_;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -64,7 +65,7 @@ class V1AppsSecretsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -82,7 +83,7 @@ class V1AppsSecretsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       AppsSecret[] data;
@@ -91,7 +92,7 @@ class V1AppsSecretsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -110,9 +111,11 @@ class V1AppsSecretsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(SecretServiceResourceSecretList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -131,15 +134,15 @@ class V1AppsSecretsService {
         Servers.getServerUrl(),
         "/v1/apps/secrets");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.scope_.isNull)
-      requestor.setQueryParam("scope", params.scope_.get.to!string);
+      requestor.setQueryParam!("deepObject")("scope", params.scope_);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -149,14 +152,14 @@ class V1AppsSecretsService {
      * The plaintext secret value to be stored.
      */
     @optional
-    Nullable!(string) payload;
+    string payload;
 
     static class ScopeParam {
       @optional
-      Nullable!(string) type;
+      string type;
 
       @optional
-      Nullable!(string) user;
+      string user;
 
     }
 
@@ -171,7 +174,7 @@ class V1AppsSecretsService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The Unix timestamp for the expiry time of the secret, after which the secret deletes.
@@ -183,7 +186,7 @@ class V1AppsSecretsService {
      * A name for the secret that's unique within the scope.
      */
     @optional
-    Nullable!(string) name;
+    string name;
 
   }
 
@@ -204,9 +207,11 @@ class V1AppsSecretsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(AppsSecret)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

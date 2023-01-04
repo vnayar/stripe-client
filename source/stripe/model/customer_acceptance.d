@@ -23,7 +23,7 @@ class CustomerAcceptance {
    * `offline`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   OfflineAcceptance offline;

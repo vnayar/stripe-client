@@ -14,12 +14,12 @@ class InvoicesLineItemsCreditedItems {
    * Invoice containing the credited invoice line items
    */
   @optional
-  Nullable!(string) invoice;
+  string invoice;
 
   /**
    * Credited invoice line items
    */
   @optional
-  Nullable!(string)[] invoice_line_items;
+  string[] invoice_line_items;
 
 }

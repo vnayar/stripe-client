@@ -21,13 +21,13 @@ class WebhookEndpoint {
    * signatures](https://stripe.com/docs/webhooks/signatures). Only returned at creation.
    */
   @optional
-  Nullable!(string) secret;
+  string secret;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -35,19 +35,19 @@ class WebhookEndpoint {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The URL of the webhook endpoint.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
   /**
    * The ID of the associated Connect application.
    */
   @optional
-  Nullable!(string) application;
+  string application;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -60,19 +60,19 @@ class WebhookEndpoint {
    * The API version events are rendered as for this webhook endpoint.
    */
   @optional
-  Nullable!(string) api_version;
+  string api_version;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * An optional description of what the webhook is used for.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -85,12 +85,12 @@ class WebhookEndpoint {
    * enabled, except those that require explicit selection.
    */
   @optional
-  Nullable!(string)[] enabled_events;
+  string[] enabled_events;
 
   /**
    * The status of the webhook. It can be `enabled` or `disabled`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

@@ -14,13 +14,13 @@ class AccountTosAcceptance {
    * The user's service agreement type
    */
   @optional
-  Nullable!(string) service_agreement;
+  string service_agreement;
 
   /**
    * The IP address from which the account representative accepted their service agreement
    */
   @optional
-  Nullable!(string) ip;
+  string ip;
 
   /**
    * The Unix timestamp marking when the account representative accepted their service agreement
@@ -33,6 +33,6 @@ class AccountTosAcceptance {
    * agreement
    */
   @optional
-  Nullable!(string) user_agent;
+  string user_agent;
 
 }

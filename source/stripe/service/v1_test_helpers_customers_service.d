@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1TestHelpersCustomersService {
   static class PostTestHelpersCustomersCustomerFundCashBalanceParams {
     /**
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
   }
 
@@ -44,13 +45,13 @@ class V1TestHelpersCustomersService {
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * A description of the test funding. This simulates free-text references supplied by customers
@@ -59,7 +60,7 @@ class V1TestHelpersCustomersService {
      * applies to different user inputs.
      */
     @optional
-    Nullable!(string) reference;
+    string reference;
 
   }
 
@@ -80,9 +81,11 @@ class V1TestHelpersCustomersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CustomerCashBalanceTransaction)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -102,7 +105,7 @@ class V1TestHelpersCustomersService {
         Servers.getServerUrl(),
         "/v1/test_helpers/customers/{customer}/fund_cash_balance");
     if (!params.customer.isNull)
-      requestor.setPathParam("customer", params.customer.get.to!string);
+      requestor.setPathParam("customer", params.customer);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);

@@ -21,7 +21,7 @@ class SubscriptionPaymentMethodOptionsCard {
    * how this configuration interacts with Radar and our SCA Engine.
    */
   @optional
-  Nullable!(string) request_three_d_secure;
+  string request_three_d_secure;
 
   @optional
   InvoiceMandateOptionsCard mandate_options;
@@ -31,6 +31,6 @@ class SubscriptionPaymentMethodOptionsCard {
    * card attached to the Subscription. Can be only set confirm-time.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
 }

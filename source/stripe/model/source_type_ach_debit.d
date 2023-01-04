@@ -11,21 +11,21 @@ import std.typecons : Nullable;
  */
 class SourceTypeAchDebit {
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
-  Nullable!(string) country;
+  string country;
 
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   @optional
-  Nullable!(string) routing_number;
+  string routing_number;
 
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

@@ -14,6 +14,6 @@ class PaymentMethodDetailsAfterpayClearpay {
    * Order identifier shown to the merchant in Afterpay’s online portal.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
 }

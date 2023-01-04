@@ -23,6 +23,6 @@ class SourceCodeVerificationFlow {
    * 0).
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

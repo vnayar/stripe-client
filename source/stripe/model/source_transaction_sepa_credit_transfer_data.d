@@ -14,18 +14,18 @@ class SourceTransactionSepaCreditTransferData {
    * Sender's name.
    */
   @optional
-  Nullable!(string) sender_name;
+  string sender_name;
 
   /**
    * Reference associated with the transfer.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   /**
    * Sender's bank account IBAN.
    */
   @optional
-  Nullable!(string) sender_iban;
+  string sender_iban;
 
 }

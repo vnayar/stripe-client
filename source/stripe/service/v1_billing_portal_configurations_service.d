@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,12 +27,12 @@ class V1BillingPortalConfigurationsService {
   static class GetBillingPortalConfigurationsConfigurationParams {
     /**
      */
-    Nullable!(Nullable!(string)) configuration;
+    string configuration;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -52,9 +53,11 @@ class V1BillingPortalConfigurationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BillingPortalConfiguration)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -73,9 +76,9 @@ class V1BillingPortalConfigurationsService {
         Servers.getServerUrl(),
         "/v1/billing_portal/configurations/{configuration}");
     if (!params.configuration.isNull)
-      requestor.setPathParam("configuration", params.configuration.get.to!string);
+      requestor.setPathParam("configuration", params.configuration);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -83,7 +86,7 @@ class V1BillingPortalConfigurationsService {
   static class PostBillingPortalConfigurationsConfigurationParams {
     /**
      */
-    Nullable!(Nullable!(string)) configuration;
+    string configuration;
 
   }
 
@@ -104,9 +107,11 @@ class V1BillingPortalConfigurationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BillingPortalConfiguration)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -125,7 +130,7 @@ class V1BillingPortalConfigurationsService {
         Servers.getServerUrl(),
         "/v1/billing_portal/configurations/{configuration}");
     if (!params.configuration.isNull)
-      requestor.setPathParam("configuration", params.configuration.get.to!string);
+      requestor.setPathParam("configuration", params.configuration);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -135,7 +140,7 @@ class V1BillingPortalConfigurationsService {
      * Only return configurations that are active or inactive (e.g., pass `true` to only list active
      * configurations).
      */
-    Nullable!(Nullable!(bool)) active;
+    Nullable!(bool) active;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -143,24 +148,24 @@ class V1BillingPortalConfigurationsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * Only return the default or non-default configurations (e.g., pass `true` to only list the
      * default configuration).
      */
-    Nullable!(Nullable!(bool)) is_default;
+    Nullable!(bool) is_default;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -168,7 +173,7 @@ class V1BillingPortalConfigurationsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -186,7 +191,7 @@ class V1BillingPortalConfigurationsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       BillingPortalConfiguration[] data;
@@ -195,7 +200,7 @@ class V1BillingPortalConfigurationsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -214,9 +219,11 @@ class V1BillingPortalConfigurationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PortalConfigurationList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -235,17 +242,17 @@ class V1BillingPortalConfigurationsService {
         Servers.getServerUrl(),
         "/v1/billing_portal/configurations");
     if (!params.active.isNull)
-      requestor.setQueryParam("active", params.active.get.to!string);
+      requestor.setQueryParam!("deepObject")("active", params.active);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.is_default.isNull)
-      requestor.setQueryParam("is_default", params.is_default.get.to!string);
+      requestor.setQueryParam!("deepObject")("is_default", params.is_default);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -258,17 +265,17 @@ class V1BillingPortalConfigurationsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     static class BusinessProfileCreateParam {
       @optional
-      Nullable!(string) terms_of_service_url;
+      string terms_of_service_url;
 
       @optional
-      Nullable!(string) privacy_policy_url;
+      string privacy_policy_url;
 
       @optional
-      Nullable!(string) headline;
+      string headline;
 
     }
 
@@ -291,7 +298,7 @@ class V1BillingPortalConfigurationsService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     static class FeaturesCreationParam {
       static class CustomerUpdateCreationParam {
@@ -311,7 +318,7 @@ class V1BillingPortalConfigurationsService {
         Nullable!(bool) enabled;
 
         @optional
-        Nullable!(string) proration_behavior;
+        string proration_behavior;
 
         @optional
         Json default_allowed_updates;
@@ -359,10 +366,10 @@ class V1BillingPortalConfigurationsService {
         Nullable!(bool) enabled;
 
         @optional
-        Nullable!(string) proration_behavior;
+        string proration_behavior;
 
         @optional
-        Nullable!(string) mode;
+        string mode;
 
       }
 
@@ -419,9 +426,11 @@ class V1BillingPortalConfigurationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BillingPortalConfiguration)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

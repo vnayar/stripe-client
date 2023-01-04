@@ -39,7 +39,7 @@ class Payout {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Returns `true` if the payout was created by an [automated payout
@@ -53,7 +53,7 @@ class Payout {
    * Message to user further explaining reason for payout failure if available.
    */
   @optional
-  Nullable!(string) failure_message;
+  string failure_message;
 
   /**
    * ID of the bank account or card the payout was sent to.
@@ -67,14 +67,14 @@ class Payout {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * If the payout was reversed, this is the ID of the payout that reverses this payout.
@@ -93,7 +93,7 @@ class Payout {
    * The source balance this payout came from. One of `card`, `fpx`, or `bank_account`.
    */
   @optional
-  Nullable!(string) source_type;
+  string source_type;
 
   /**
    * The method used to send this payout, which can be `standard` or `instant`. `instant` is only
@@ -102,7 +102,7 @@ class Payout {
    * information.)
    */
   @optional
-  Nullable!(string) method;
+  string method;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -115,25 +115,25 @@ class Payout {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Extra information about a payout to be displayed on the user's bank statement.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Can be `bank_account` or `card`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -154,7 +154,7 @@ class Payout {
    * failures](https://stripe.com/docs/api#payout_failures) for a list of failure codes.
    */
   @optional
-  Nullable!(string) failure_code;
+  string failure_code;
 
   /**
    * If the payout reverses another, this is the ID of the original payout.
@@ -170,6 +170,6 @@ class Payout {
    * `failed`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

@@ -16,7 +16,7 @@ class PaymentLinksResourceAfterCompletion {
    * The specified behavior after the purchase is complete.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   PaymentLinksResourceCompletionBehaviorConfirmationPage hosted_confirmation;

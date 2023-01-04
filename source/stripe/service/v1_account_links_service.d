@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -29,7 +30,7 @@ class V1AccountLinksService {
      * `account_update`.
      */
     @optional
-    Nullable!(string) type;
+    string type;
 
     /**
      * The URL the user will be redirected to if the account link is expired, has been
@@ -40,32 +41,32 @@ class V1AccountLinksService {
      * error to the user.
      */
     @optional
-    Nullable!(string) refresh_url;
+    string refresh_url;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The identifier of the account to create an account link for.
      */
     @optional
-    Nullable!(string) account;
+    string account;
 
     /**
      * Which information the platform needs to collect from the user. One of `currently_due` or
      * `eventually_due`. Default is `currently_due`.
      */
     @optional
-    Nullable!(string) collect;
+    string collect;
 
     /**
      * The URL that the user will be redirected to upon leaving or completing the linked flow.
      */
     @optional
-    Nullable!(string) return_url;
+    string return_url;
 
   }
 
@@ -86,9 +87,11 @@ class V1AccountLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(AccountLink)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

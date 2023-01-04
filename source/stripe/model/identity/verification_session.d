@@ -35,7 +35,7 @@ class IdentityVerificationSession {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -43,7 +43,7 @@ class IdentityVerificationSession {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The short-lived client secret used by Stripe.js to [show a verification
@@ -55,7 +55,7 @@ class IdentityVerificationSession {
    * more.
    */
   @optional
-  Nullable!(string) client_secret;
+  string client_secret;
 
   /**
    * If present, this property tells you the last error encountered when processing the
@@ -73,7 +73,7 @@ class IdentityVerificationSession {
    * ect) to learn how to redirect users to Stripe.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -86,14 +86,14 @@ class IdentityVerificationSession {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The type of [verification check](https://stripe.com/docs/identity/verification-checks) to be
    * performed.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * ID of the most recent VerificationReport. [Learn more about accessing detailed verification
@@ -123,6 +123,6 @@ class IdentityVerificationSession {
    * sessions](https://stripe.com/docs/identity/how-sessions-work).
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

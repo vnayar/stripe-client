@@ -36,7 +36,7 @@ class IssuingDisputeDuplicateEvidence {
    * Explanation of why the cardholder is disputing this transaction.
    */
   @optional
-  Nullable!(string) explanation;
+  string explanation;
 
   /**
    * (ID of a [file upload](https://stripe.com/docs/guides/file-upload)) Copy of the receipt
@@ -50,6 +50,6 @@ class IssuingDisputeDuplicateEvidence {
    * more transactions that are copies of each other, this is original undisputed one.
    */
   @optional
-  Nullable!(string) original_transaction;
+  string original_transaction;
 
 }

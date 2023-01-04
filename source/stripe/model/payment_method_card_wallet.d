@@ -26,7 +26,7 @@ class PaymentMethodCardWallet {
    * (For tokenized numbers only.) The last four digits of the device account number.
    */
   @optional
-  Nullable!(string) dynamic_last4;
+  string dynamic_last4;
 
   @optional
   PaymentMethodCardWalletSamsungPay samsung_pay;
@@ -47,6 +47,6 @@ class PaymentMethodCardWallet {
    * card wallet type.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
 }

@@ -15,12 +15,12 @@ class PaymentIntentNextActionRedirectToUrl {
    * this specified URL after completion.
    */
   @optional
-  Nullable!(string) return_url;
+  string return_url;
 
   /**
    * The URL you must redirect your customer to in order to authenticate the payment.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
 }

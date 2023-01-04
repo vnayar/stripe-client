@@ -19,7 +19,7 @@ class Capability {
    * The identifier for the capability.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Whether the capability has been requested.
@@ -40,7 +40,7 @@ class Capability {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   AccountCapabilityFutureRequirements future_requirements;
@@ -55,6 +55,6 @@ class Capability {
    * The status of the capability. Can be `active`, `inactive`, `pending`, or `unrequested`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

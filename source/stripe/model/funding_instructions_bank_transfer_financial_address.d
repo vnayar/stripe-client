@@ -19,7 +19,7 @@ class FundingInstructionsBankTransferFinancialAddress {
    * The type of financial address
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   FundingInstructionsBankTransferSortCodeRecord sort_code;
@@ -37,6 +37,6 @@ class FundingInstructionsBankTransferFinancialAddress {
    * The payment networks supported by this FinancialAddress
    */
   @optional
-  Nullable!(string)[] supported_networks;
+  string[] supported_networks;
 
 }

@@ -23,7 +23,7 @@ class LegalEntityPersonVerification {
    * may say "Provided identity information could not be verified".
    */
   @optional
-  Nullable!(string) details;
+  string details;
 
   @optional
   LegalEntityPersonVerificationDocument document;
@@ -33,7 +33,7 @@ class LegalEntityPersonVerification {
    * `verified`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * One of `document_address_mismatch`, `document_dob_mismatch`, `document_duplicate_type`,
@@ -42,6 +42,6 @@ class LegalEntityPersonVerification {
    * verification state for the person.
    */
   @optional
-  Nullable!(string) details_code;
+  string details_code;
 
 }

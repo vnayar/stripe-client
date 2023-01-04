@@ -54,7 +54,7 @@ class Balance {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Funds that are available to be transferred or paid out, whether automatically by Stripe or

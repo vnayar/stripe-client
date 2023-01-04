@@ -17,7 +17,7 @@ class AccountRequirements {
    * required, they appear in `currently_due` as well, and `current_deadline` becomes set.
    */
   @optional
-  Nullable!(string)[] eventually_due;
+  string[] eventually_due;
 
   /**
    * Fields that may become required depending on the results of verification or review. Will be
@@ -25,14 +25,14 @@ class AccountRequirements {
    * fields move to `eventually_due`, `currently_due`, or `past_due`.
    */
   @optional
-  Nullable!(string)[] pending_verification;
+  string[] pending_verification;
 
   /**
    * Fields that weren't collected by `current_deadline`. These fields need to be collected to
    * enable the account.
    */
   @optional
-  Nullable!(string)[] past_due;
+  string[] past_due;
 
   /**
    * Fields that are due and can be satisfied by providing the corresponding alternative fields
@@ -46,7 +46,7 @@ class AccountRequirements {
    * `current_deadline`, these fields appear in `past_due` as well, and the account is disabled.
    */
   @optional
-  Nullable!(string)[] currently_due;
+  string[] currently_due;
 
   /**
    * Fields that are `currently_due` and need to be collected again because validation or
@@ -69,6 +69,6 @@ class AccountRequirements {
    * `rejected.listed`, `rejected.terms_of_service`, `rejected.other`, `under_review`, or `other`.
    */
   @optional
-  Nullable!(string) disabled_reason;
+  string disabled_reason;
 
 }

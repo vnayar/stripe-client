@@ -15,49 +15,49 @@ class IssuingAuthorizationMerchantData {
    * different network_id fields to the same merchant.
    */
   @optional
-  Nullable!(string) network_id;
+  string network_id;
 
   /**
    * Country where the seller is located
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * State where the seller is located
    */
   @optional
-  Nullable!(string) state;
+  string state;
 
   /**
    * The merchant category code for the seller’s business
    */
   @optional
-  Nullable!(string) category_code;
+  string category_code;
 
   /**
    * Name of the seller
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * A categorization of the seller's type of business. See our [merchant categories
    * guide](https://stripe.com/docs/issuing/merchant-categories) for a list of possible values.
    */
   @optional
-  Nullable!(string) category;
+  string category;
 
   /**
    * Postal code where the seller is located
    */
   @optional
-  Nullable!(string) postal_code;
+  string postal_code;
 
   /**
    * City where the seller is located
    */
   @optional
-  Nullable!(string) city;
+  string city;
 
 }

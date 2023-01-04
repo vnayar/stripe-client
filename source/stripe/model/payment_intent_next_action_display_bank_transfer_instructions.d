@@ -15,14 +15,14 @@ class PaymentIntentNextActionDisplayBankTransferInstructions {
    * Type of bank transfer
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * A list of financial addresses that can be used to fund the customer balance
@@ -34,14 +34,14 @@ class PaymentIntentNextActionDisplayBankTransferInstructions {
    * A link to a hosted page that guides your customer through completing the transfer.
    */
   @optional
-  Nullable!(string) hosted_instructions_url;
+  string hosted_instructions_url;
 
   /**
    * A string identifying this payment. Instruct your customer to include this code in the
    * reference or memo field of their bank transfer.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   /**
    * The remaining amount that needs to be transferred to complete the payment.

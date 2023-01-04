@@ -45,7 +45,7 @@ class MandatePaymentMethodDetails {
    * specific to the payment method.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   MandateAcssDebit acss_debit;

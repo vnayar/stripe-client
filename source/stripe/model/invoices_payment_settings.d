@@ -19,14 +19,14 @@ class InvoicesPaymentSettings {
    * settings](https://dashboard.stripe.com/settings/billing/invoice).
    */
   @optional
-  Nullable!(string)[] payment_method_types;
+  string[] payment_method_types;
 
   /**
    * ID of the mandate to be used for this invoice. It must correspond to the payment method used
    * to pay the invoice, including the invoice's default_payment_method or default_source, if set.
    */
   @optional
-  Nullable!(string) default_mandate;
+  string default_mandate;
 
   /**
    * Payment-method-specific configuration to provide to the invoice’s PaymentIntent.

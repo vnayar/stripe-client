@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,12 +27,12 @@ class V1IssuingAuthorizationsService {
   static class GetIssuingAuthorizationsAuthorizationParams {
     /**
      */
-    Nullable!(Nullable!(string)) authorization;
+    string authorization;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -52,9 +53,11 @@ class V1IssuingAuthorizationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingAuthorization)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -73,9 +76,9 @@ class V1IssuingAuthorizationsService {
         Servers.getServerUrl(),
         "/v1/issuing/authorizations/{authorization}");
     if (!params.authorization.isNull)
-      requestor.setPathParam("authorization", params.authorization.get.to!string);
+      requestor.setPathParam("authorization", params.authorization);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -83,7 +86,7 @@ class V1IssuingAuthorizationsService {
   static class PostIssuingAuthorizationsAuthorizationParams {
     /**
      */
-    Nullable!(Nullable!(string)) authorization;
+    string authorization;
 
   }
 
@@ -104,9 +107,11 @@ class V1IssuingAuthorizationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingAuthorization)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -126,7 +131,7 @@ class V1IssuingAuthorizationsService {
         Servers.getServerUrl(),
         "/v1/issuing/authorizations/{authorization}");
     if (!params.authorization.isNull)
-      requestor.setPathParam("authorization", params.authorization.get.to!string);
+      requestor.setPathParam("authorization", params.authorization);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -134,7 +139,7 @@ class V1IssuingAuthorizationsService {
   static class PostIssuingAuthorizationsAuthorizationDeclineParams {
     /**
      */
-    Nullable!(Nullable!(string)) authorization;
+    string authorization;
 
   }
 
@@ -155,9 +160,11 @@ class V1IssuingAuthorizationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingAuthorization)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -182,7 +189,7 @@ class V1IssuingAuthorizationsService {
         Servers.getServerUrl(),
         "/v1/issuing/authorizations/{authorization}/decline");
     if (!params.authorization.isNull)
-      requestor.setPathParam("authorization", params.authorization.get.to!string);
+      requestor.setPathParam("authorization", params.authorization);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -190,7 +197,7 @@ class V1IssuingAuthorizationsService {
   static class PostIssuingAuthorizationsAuthorizationApproveParams {
     /**
      */
-    Nullable!(Nullable!(string)) authorization;
+    string authorization;
 
   }
 
@@ -211,9 +218,11 @@ class V1IssuingAuthorizationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingAuthorization)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -238,7 +247,7 @@ class V1IssuingAuthorizationsService {
         Servers.getServerUrl(),
         "/v1/issuing/authorizations/{authorization}/approve");
     if (!params.authorization.isNull)
-      requestor.setPathParam("authorization", params.authorization.get.to!string);
+      requestor.setPathParam("authorization", params.authorization);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -247,17 +256,17 @@ class V1IssuingAuthorizationsService {
     /**
      * Only return authorizations that belong to the given card.
      */
-    Nullable!(Nullable!(string)) card;
+    string card;
 
     /**
      * Only return authorizations that belong to the given cardholder.
      */
-    Nullable!(Nullable!(string)) cardholder;
+    string cardholder;
 
     /**
      * Only return authorizations that were created during the given date interval.
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -265,18 +274,18 @@ class V1IssuingAuthorizationsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -284,12 +293,12 @@ class V1IssuingAuthorizationsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return authorizations with the given status. One of `pending`, `closed`, or `reversed`.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
   }
 
@@ -307,7 +316,7 @@ class V1IssuingAuthorizationsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       IssuingAuthorization[] data;
@@ -316,7 +325,7 @@ class V1IssuingAuthorizationsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -335,9 +344,11 @@ class V1IssuingAuthorizationsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(IssuingAuthorizationList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -357,21 +368,21 @@ class V1IssuingAuthorizationsService {
         Servers.getServerUrl(),
         "/v1/issuing/authorizations");
     if (!params.card.isNull)
-      requestor.setQueryParam("card", params.card.get.to!string);
+      requestor.setQueryParam!("deepObject")("card", params.card);
     if (!params.cardholder.isNull)
-      requestor.setQueryParam("cardholder", params.cardholder.get.to!string);
+      requestor.setQueryParam!("deepObject")("cardholder", params.cardholder);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

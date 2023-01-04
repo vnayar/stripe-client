@@ -22,7 +22,7 @@ class IssuingCardShipping {
    * Shipment service, such as `standard` or `express`.
    */
   @optional
-  Nullable!(string) service;
+  string service;
 
   /**
    * Whether a signature is required for card delivery. This feature is only supported for US
@@ -36,13 +36,13 @@ class IssuingCardShipping {
    * The delivery company that shipped a card.
    */
   @optional
-  Nullable!(string) carrier;
+  string carrier;
 
   /**
    * Recipient name.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   @optional
   Address address;
@@ -51,21 +51,21 @@ class IssuingCardShipping {
    * Packaging options.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The phone number of the receiver of the bulk shipment. This phone number will be provided to
    * the shipping company, who might use it to contact the receiver in case of delivery issues.
    */
   @optional
-  Nullable!(string) phone_number;
+  string phone_number;
 
   /**
    * A link to the shipping carrier's site where you can view detailed information about a card
    * shipment.
    */
   @optional
-  Nullable!(string) tracking_url;
+  string tracking_url;
 
   /**
    * A unix timestamp representing a best estimate of when the card will be delivered.
@@ -77,12 +77,12 @@ class IssuingCardShipping {
    * A tracking number for a card shipment.
    */
   @optional
-  Nullable!(string) tracking_number;
+  string tracking_number;
 
   /**
    * The delivery status of the card.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

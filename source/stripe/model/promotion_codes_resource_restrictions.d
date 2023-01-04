@@ -15,7 +15,7 @@ class PromotionCodesResourceRestrictions {
    * Three-letter [ISO code](https://stripe.com/docs/currencies) for minimum_amount
    */
   @optional
-  Nullable!(string) minimum_amount_currency;
+  string minimum_amount_currency;
 
   /**
    * Promotion code restrictions defined in each available currency option. Each key must be a

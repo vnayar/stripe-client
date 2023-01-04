@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -30,23 +31,23 @@ class V1TreasuryOutboundTransfersService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * Returns objects associated with this FinancialAccount.
      */
-    Nullable!(Nullable!(string)) financial_account;
+    string financial_account;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -54,13 +55,13 @@ class V1TreasuryOutboundTransfersService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * Only return OutboundTransfers that have the given status: `processing`, `canceled`, `failed`,
      * `posted`, or `returned`.
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
   }
 
@@ -78,7 +79,7 @@ class V1TreasuryOutboundTransfersService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -90,7 +91,7 @@ class V1TreasuryOutboundTransfersService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -109,9 +110,11 @@ class V1TreasuryOutboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryOutboundTransfersResourceOutboundTransferList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -130,17 +133,17 @@ class V1TreasuryOutboundTransfersService {
         Servers.getServerUrl(),
         "/v1/treasury/outbound_transfers");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.financial_account.isNull)
-      requestor.setQueryParam("financial_account", params.financial_account.get.to!string);
+      requestor.setQueryParam!("deepObject")("financial_account", params.financial_account);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -158,7 +161,7 @@ class V1TreasuryOutboundTransfersService {
      * `transfer`.
      */
     @optional
-    Nullable!(string) statement_descriptor;
+    string statement_descriptor;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -167,20 +170,20 @@ class V1TreasuryOutboundTransfersService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * The PaymentMethod to use as the payment instrument for the OutboundTransfer.
      */
     @optional
-    Nullable!(string) destination_payment_method;
+    string destination_payment_method;
 
     static class PaymentMethodOptions {
       @optional
@@ -198,19 +201,19 @@ class V1TreasuryOutboundTransfersService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The FinancialAccount to pull funds from.
      */
     @optional
-    Nullable!(string) financial_account;
+    string financial_account;
 
     /**
      * An arbitrary string attached to the object. Often useful for displaying to users.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
   }
 
@@ -231,9 +234,11 @@ class V1TreasuryOutboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryOutboundTransfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -260,11 +265,11 @@ class V1TreasuryOutboundTransfersService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) outbound_transfer;
+    string outbound_transfer;
 
   }
 
@@ -285,9 +290,11 @@ class V1TreasuryOutboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryOutboundTransfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -307,9 +314,9 @@ class V1TreasuryOutboundTransfersService {
         Servers.getServerUrl(),
         "/v1/treasury/outbound_transfers/{outbound_transfer}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.outbound_transfer.isNull)
-      requestor.setPathParam("outbound_transfer", params.outbound_transfer.get.to!string);
+      requestor.setPathParam("outbound_transfer", params.outbound_transfer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -317,7 +324,7 @@ class V1TreasuryOutboundTransfersService {
   static class PostTreasuryOutboundTransfersOutboundTransferCancelParams {
     /**
      */
-    Nullable!(Nullable!(string)) outbound_transfer;
+    string outbound_transfer;
 
   }
 
@@ -338,9 +345,11 @@ class V1TreasuryOutboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryOutboundTransfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -359,7 +368,7 @@ class V1TreasuryOutboundTransfersService {
         Servers.getServerUrl(),
         "/v1/treasury/outbound_transfers/{outbound_transfer}/cancel");
     if (!params.outbound_transfer.isNull)
-      requestor.setPathParam("outbound_transfer", params.outbound_transfer.get.to!string);
+      requestor.setPathParam("outbound_transfer", params.outbound_transfer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

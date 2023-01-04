@@ -16,13 +16,13 @@ class NotificationEventRequest {
    * [dashboard](https://dashboard.stripe.com/logs), but currently not in the API.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The idempotency key transmitted during the request, if any. *Note: This property is populated
    * only for events on or after May 23, 2017*.
    */
   @optional
-  Nullable!(string) idempotency_key;
+  string idempotency_key;
 
 }

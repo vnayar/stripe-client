@@ -14,7 +14,7 @@ class PaymentMethodOptionsWechatPay {
    * The app ID registered with WeChat Pay. Only required when client is ios or android.
    */
   @optional
-  Nullable!(string) app_id;
+  string app_id;
 
   /**
    * Indicates that you intend to make future payments with this PaymentIntent's payment method.
@@ -29,12 +29,12 @@ class PaymentMethodOptionsWechatPay {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * The client type that the end customer will pay from
    */
   @optional
-  Nullable!(string) client;
+  string client;
 
 }

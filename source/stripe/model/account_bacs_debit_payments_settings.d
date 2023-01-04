@@ -15,6 +15,6 @@ class AccountBacsDebitPaymentsSettings {
    * Debit, this will appear on the mandate, and as the statement descriptor.
    */
   @optional
-  Nullable!(string) display_name;
+  string display_name;
 
 }

@@ -14,12 +14,12 @@ class ChargeFraudDetails {
    * Assessments from Stripe. If set, the value is `fraudulent`.
    */
   @optional
-  Nullable!(string) stripe_report;
+  string stripe_report;
 
   /**
    * Assessments reported by you. If set, possible values of are `safe` and `fraudulent`.
    */
   @optional
-  Nullable!(string) user_report;
+  string user_report;
 
 }

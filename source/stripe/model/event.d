@@ -43,7 +43,7 @@ class Event {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Number of webhooks that have yet to be successfully delivered (i.e., to return a 20x
@@ -64,13 +64,13 @@ class Event {
    * events on or after October 31, 2014*.
    */
   @optional
-  Nullable!(string) api_version;
+  string api_version;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   NotificationEventData data;
@@ -85,7 +85,7 @@ class Event {
    * Description of the event (e.g., `invoice.created` or `charge.refunded`).
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -97,6 +97,6 @@ class Event {
    * The connected account that originated the event.
    */
   @optional
-  Nullable!(string) account;
+  string account;
 
 }

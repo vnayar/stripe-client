@@ -22,7 +22,7 @@ class TreasuryFinancialAccountsResourceAchToggleSettings {
    * Whether the Feature is operational.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * Additional details; includes at least one entry when the status is not `active`.

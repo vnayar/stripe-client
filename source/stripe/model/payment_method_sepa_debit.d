@@ -15,19 +15,19 @@ class PaymentMethodSepaDebit {
    * Branch code of bank associated with the bank account.
    */
   @optional
-  Nullable!(string) branch_code;
+  string branch_code;
 
   /**
    * Last four characters of the IBAN.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Two-letter ISO code representing the country the bank account is located in.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * Information about the object that generated this PaymentMethod.
@@ -39,13 +39,13 @@ class PaymentMethodSepaDebit {
    * Bank code of bank associated with the bank account.
    */
   @optional
-  Nullable!(string) bank_code;
+  string bank_code;
 
   /**
    * Uniquely identifies this particular bank account. You can use this attribute to check whether
    * two bank accounts are the same.
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
 }

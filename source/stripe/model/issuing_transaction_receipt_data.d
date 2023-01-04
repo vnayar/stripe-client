@@ -14,7 +14,7 @@ class IssuingTransactionReceiptData {
    * The description of the item. The maximum length of this field is 26 characters.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The quantity of the item.

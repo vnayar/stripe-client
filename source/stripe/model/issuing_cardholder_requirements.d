@@ -15,12 +15,12 @@ class IssuingCardholderRequirements {
    * `cardholder_verification_required` reason.
    */
   @optional
-  Nullable!(string) disabled_reason;
+  string disabled_reason;
 
   /**
    * Array of fields that need to be collected in order to verify and re-enable the cardholder.
    */
   @optional
-  Nullable!(string)[] past_due;
+  string[] past_due;
 
 }

@@ -14,6 +14,6 @@ class SetupIntentTypeSpecificPaymentMethodOptionsClient {
    * Bank account verification method.
    */
   @optional
-  Nullable!(string) verification_method;
+  string verification_method;
 
 }

@@ -18,7 +18,7 @@ class CheckoutAcssDebitPaymentMethodOptions {
    * Currency supported by the bank account. Returned when the Session is in `setup` mode.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Indicates that you intend to make future payments with this PaymentIntent's payment method.
@@ -33,12 +33,12 @@ class CheckoutAcssDebitPaymentMethodOptions {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * Bank account verification method.
    */
   @optional
-  Nullable!(string) verification_method;
+  string verification_method;
 
 }

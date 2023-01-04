@@ -28,13 +28,13 @@ class TransferSchedule {
    * if `interval` is weekly.
    */
   @optional
-  Nullable!(string) weekly_anchor;
+  string weekly_anchor;
 
   /**
    * How frequently funds will be paid out. One of `manual` (payouts only created via API call),
    * `daily`, `weekly`, or `monthly`.
    */
   @optional
-  Nullable!(string) interval;
+  string interval;
 
 }

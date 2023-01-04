@@ -16,7 +16,7 @@ class TerminalReaderReaderResourceSetReaderDisplayAction {
    * Type of information to be displayed by the reader.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Cart object to be displayed by the reader.

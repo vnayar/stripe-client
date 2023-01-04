@@ -24,14 +24,14 @@ class PaymentMethodOptionsCustomerBalance {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * The funding method type to be used when there are not enough funds in the customer balance.
    * Permitted values include: `bank_transfer`.
    */
   @optional
-  Nullable!(string) funding_type;
+  string funding_type;
 
   @optional
   PaymentMethodOptionsCustomerBalanceBankTransfer bank_transfer;

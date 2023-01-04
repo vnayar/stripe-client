@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,7 +27,7 @@ class V1TestHelpersTreasuryOutboundTransfersService {
   static class PostTestHelpersTreasuryOutboundTransfersOutboundTransferReturnParams {
     /**
      */
-    Nullable!(Nullable!(string)) outbound_transfer;
+    string outbound_transfer;
 
   }
 
@@ -47,9 +48,11 @@ class V1TestHelpersTreasuryOutboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryOutboundTransfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -69,7 +72,7 @@ class V1TestHelpersTreasuryOutboundTransfersService {
         Servers.getServerUrl(),
         "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return");
     if (!params.outbound_transfer.isNull)
-      requestor.setPathParam("outbound_transfer", params.outbound_transfer.get.to!string);
+      requestor.setPathParam("outbound_transfer", params.outbound_transfer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -77,7 +80,7 @@ class V1TestHelpersTreasuryOutboundTransfersService {
   static class PostTestHelpersTreasuryOutboundTransfersOutboundTransferFailParams {
     /**
      */
-    Nullable!(Nullable!(string)) outbound_transfer;
+    string outbound_transfer;
 
   }
 
@@ -98,9 +101,11 @@ class V1TestHelpersTreasuryOutboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryOutboundTransfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -120,7 +125,7 @@ class V1TestHelpersTreasuryOutboundTransfersService {
         Servers.getServerUrl(),
         "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail");
     if (!params.outbound_transfer.isNull)
-      requestor.setPathParam("outbound_transfer", params.outbound_transfer.get.to!string);
+      requestor.setPathParam("outbound_transfer", params.outbound_transfer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -128,7 +133,7 @@ class V1TestHelpersTreasuryOutboundTransfersService {
   static class PostTestHelpersTreasuryOutboundTransfersOutboundTransferPostParams {
     /**
      */
-    Nullable!(Nullable!(string)) outbound_transfer;
+    string outbound_transfer;
 
   }
 
@@ -149,9 +154,11 @@ class V1TestHelpersTreasuryOutboundTransfersService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryOutboundTransfer)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -171,7 +178,7 @@ class V1TestHelpersTreasuryOutboundTransfersService {
         Servers.getServerUrl(),
         "/v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post");
     if (!params.outbound_transfer.isNull)
-      requestor.setPathParam("outbound_transfer", params.outbound_transfer.get.to!string);
+      requestor.setPathParam("outbound_transfer", params.outbound_transfer);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,7 +28,7 @@ class V1FinancialConnectionsAccountsService {
   static class PostFinancialConnectionsAccountsAccountDisconnectParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -48,9 +49,11 @@ class V1FinancialConnectionsAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FinancialConnectionsAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -70,7 +73,7 @@ class V1FinancialConnectionsAccountsService {
         Servers.getServerUrl(),
         "/v1/financial_connections/accounts/{account}/disconnect");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -78,7 +81,7 @@ class V1FinancialConnectionsAccountsService {
   static class PostFinancialConnectionsAccountsAccountRefreshParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
   }
 
@@ -87,13 +90,13 @@ class V1FinancialConnectionsAccountsService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The list of account features that you would like to refresh.
      */
     @optional
-    Nullable!(string)[] features;
+    string[] features;
 
   }
 
@@ -114,9 +117,11 @@ class V1FinancialConnectionsAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FinancialConnectionsAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -136,7 +141,7 @@ class V1FinancialConnectionsAccountsService {
         Servers.getServerUrl(),
         "/v1/financial_connections/accounts/{account}/refresh");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -145,7 +150,7 @@ class V1FinancialConnectionsAccountsService {
   static class GetFinancialConnectionsAccountsAccountOwnersParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -153,23 +158,23 @@ class V1FinancialConnectionsAccountsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * The ID of the ownership object to fetch owners from.
      */
-    Nullable!(Nullable!(string)) ownership;
+    string ownership;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -177,7 +182,7 @@ class V1FinancialConnectionsAccountsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -195,7 +200,7 @@ class V1FinancialConnectionsAccountsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -207,7 +212,7 @@ class V1FinancialConnectionsAccountsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -226,9 +231,11 @@ class V1FinancialConnectionsAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BankConnectionsResourceOwnerList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -247,17 +254,17 @@ class V1FinancialConnectionsAccountsService {
         Servers.getServerUrl(),
         "/v1/financial_connections/accounts/{account}/owners");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.ownership.isNull)
-      requestor.setQueryParam("ownership", params.ownership.get.to!string);
+      requestor.setQueryParam!("deepObject")("ownership", params.ownership);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -269,14 +276,14 @@ class V1FinancialConnectionsAccountsService {
      */
     static class AccountholderParams {
       @optional
-      Nullable!(string) customer;
+      string customer;
 
       @optional
-      Nullable!(string) account;
+      string account;
 
     }
 
-    Nullable!(AccountholderParams) account_holder;
+    AccountholderParams account_holder;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -284,23 +291,23 @@ class V1FinancialConnectionsAccountsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * If present, only return accounts that were collected as part of the given session.
      */
-    Nullable!(Nullable!(string)) session;
+    string session;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -308,7 +315,7 @@ class V1FinancialConnectionsAccountsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -326,7 +333,7 @@ class V1FinancialConnectionsAccountsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -338,7 +345,7 @@ class V1FinancialConnectionsAccountsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -357,9 +364,11 @@ class V1FinancialConnectionsAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BankConnectionsResourceLinkedAccountList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -378,17 +387,17 @@ class V1FinancialConnectionsAccountsService {
         Servers.getServerUrl(),
         "/v1/financial_connections/accounts");
     if (!params.account_holder.isNull)
-      requestor.setQueryParam("account_holder", params.account_holder.get.to!string);
+      requestor.setQueryParam!("deepObject")("account_holder", params.account_holder);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.session.isNull)
-      requestor.setQueryParam("session", params.session.get.to!string);
+      requestor.setQueryParam!("deepObject")("session", params.session);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -396,12 +405,12 @@ class V1FinancialConnectionsAccountsService {
   static class GetFinancialConnectionsAccountsAccountParams {
     /**
      */
-    Nullable!(Nullable!(string)) account;
+    string account;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
   }
 
@@ -422,9 +431,11 @@ class V1FinancialConnectionsAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(FinancialConnectionsAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -443,9 +454,9 @@ class V1FinancialConnectionsAccountsService {
         Servers.getServerUrl(),
         "/v1/financial_connections/accounts/{account}");
     if (!params.account.isNull)
-      requestor.setPathParam("account", params.account.get.to!string);
+      requestor.setPathParam("account", params.account);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

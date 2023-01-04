@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -40,9 +41,11 @@ class V1EphemeralKeysService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(EphemeralKey)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -66,7 +69,7 @@ class V1EphemeralKeysService {
   static class DeleteEphemeralKeysKeyParams {
     /**
      */
-    Nullable!(Nullable!(string)) key;
+    string key;
 
   }
 
@@ -87,9 +90,11 @@ class V1EphemeralKeysService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(EphemeralKey)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -108,7 +113,7 @@ class V1EphemeralKeysService {
         Servers.getServerUrl(),
         "/v1/ephemeral_keys/{key}");
     if (!params.key.isNull)
-      requestor.setPathParam("key", params.key.get.to!string);
+      requestor.setPathParam("key", params.key);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

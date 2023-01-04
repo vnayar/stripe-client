@@ -15,18 +15,18 @@ class FundingInstructionsBankTransferSortCodeRecord {
    * The six-digit sort code
    */
   @optional
-  Nullable!(string) sort_code;
+  string sort_code;
 
   /**
    * The name of the person or business that owns the bank account
    */
   @optional
-  Nullable!(string) account_holder_name;
+  string account_holder_name;
 
   /**
    * The account number
    */
   @optional
-  Nullable!(string) account_number;
+  string account_number;
 
 }

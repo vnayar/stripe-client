@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -28,13 +29,13 @@ class V1CreditNotesPreviewLinesService {
      * The integer amount in cents (or local equivalent) representing the total amount of the credit
      * note.
      */
-    Nullable!(Nullable!(int)) amount;
+    Nullable!(int) amount;
 
     /**
      * The integer amount in cents (or local equivalent) representing the amount to credit the
      * customer's balance, which will be automatically applied to their next invoice.
      */
-    Nullable!(Nullable!(int)) credit_amount;
+    Nullable!(int) credit_amount;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -42,23 +43,23 @@ class V1CreditNotesPreviewLinesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * ID of the invoice.
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Line items that make up the credit note.
@@ -74,28 +75,28 @@ class V1CreditNotesPreviewLinesService {
       Nullable!(int) quantity;
 
       @optional
-      Nullable!(string) invoice_line_item;
+      string invoice_line_item;
 
       @optional
-      Nullable!(string) unit_amount_decimal;
+      string unit_amount_decimal;
 
       @optional
-      Nullable!(string) description;
+      string description;
 
       @optional
-      Nullable!(string) type;
+      string type;
 
       @optional
       Json tax_rates;
 
     }
 
-    Nullable!(CreditNoteLineItemParams[]) lines;
+    CreditNoteLineItemParams[] lines;
 
     /**
      * The credit note's memo appears on the credit note PDF.
      */
-    Nullable!(Nullable!(string)) memo;
+    string memo;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -103,30 +104,30 @@ class V1CreditNotesPreviewLinesService {
      * structured format. Individual keys can be unset by posting an empty value to them. All keys
      * can be unset by posting an empty value to `metadata`.
      */
-    Nullable!(Nullable!(string)[string]) metadata;
+    string[string] metadata;
 
     /**
      * The integer amount in cents (or local equivalent) representing the amount that is credited
      * outside of Stripe.
      */
-    Nullable!(Nullable!(int)) out_of_band_amount;
+    Nullable!(int) out_of_band_amount;
 
     /**
      * Reason for issuing this credit note, one of `duplicate`, `fraudulent`, `order_change`, or
      * `product_unsatisfactory`
      */
-    Nullable!(Nullable!(string)) reason;
+    string reason;
 
     /**
      * ID of an existing refund to link this credit note to.
      */
-    Nullable!(Nullable!(string)) refund;
+    string refund;
 
     /**
      * The integer amount in cents (or local equivalent) representing the amount to refund. If set,
      * a refund will be created for the charge associated with the invoice.
      */
-    Nullable!(Nullable!(int)) refund_amount;
+    Nullable!(int) refund_amount;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -134,7 +135,7 @@ class V1CreditNotesPreviewLinesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -152,7 +153,7 @@ class V1CreditNotesPreviewLinesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -164,7 +165,7 @@ class V1CreditNotesPreviewLinesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -183,9 +184,11 @@ class V1CreditNotesPreviewLinesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(CreditNoteLinesList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -206,33 +209,33 @@ class V1CreditNotesPreviewLinesService {
         Servers.getServerUrl(),
         "/v1/credit_notes/preview/lines");
     if (!params.amount.isNull)
-      requestor.setQueryParam("amount", params.amount.get.to!string);
+      requestor.setQueryParam!("deepObject")("amount", params.amount);
     if (!params.credit_amount.isNull)
-      requestor.setQueryParam("credit_amount", params.credit_amount.get.to!string);
+      requestor.setQueryParam!("deepObject")("credit_amount", params.credit_amount);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.invoice.isNull)
-      requestor.setQueryParam("invoice", params.invoice.get.to!string);
+      requestor.setQueryParam!("deepObject")("invoice", params.invoice);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.lines.isNull)
-      requestor.setQueryParam("lines", params.lines.get.to!string);
+      requestor.setQueryParam!("deepObject")("lines", params.lines);
     if (!params.memo.isNull)
-      requestor.setQueryParam("memo", params.memo.get.to!string);
+      requestor.setQueryParam!("deepObject")("memo", params.memo);
     if (!params.metadata.isNull)
-      requestor.setQueryParam("metadata", params.metadata.get.to!string);
+      requestor.setQueryParam!("deepObject")("metadata", params.metadata);
     if (!params.out_of_band_amount.isNull)
-      requestor.setQueryParam("out_of_band_amount", params.out_of_band_amount.get.to!string);
+      requestor.setQueryParam!("deepObject")("out_of_band_amount", params.out_of_band_amount);
     if (!params.reason.isNull)
-      requestor.setQueryParam("reason", params.reason.get.to!string);
+      requestor.setQueryParam!("deepObject")("reason", params.reason);
     if (!params.refund.isNull)
-      requestor.setQueryParam("refund", params.refund.get.to!string);
+      requestor.setQueryParam!("deepObject")("refund", params.refund);
     if (!params.refund_amount.isNull)
-      requestor.setQueryParam("refund_amount", params.refund_amount.get.to!string);
+      requestor.setQueryParam!("deepObject")("refund_amount", params.refund_amount);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

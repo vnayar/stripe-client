@@ -22,7 +22,7 @@ class ApiErrors {
    * provide one.
    */
   @optional
-  Nullable!(string) decline_code;
+  string decline_code;
 
   @optional
   PaymentIntent payment_intent;
@@ -32,21 +32,21 @@ class ApiErrors {
    * reported.
    */
   @optional
-  Nullable!(string) doc_url;
+  string doc_url;
 
   /**
    * A human-readable message providing more details about the error. For card errors, these
    * messages can be shown to your users.
    */
   @optional
-  Nullable!(string) message;
+  string message;
 
   /**
    * For some errors that could be handled programmatically, a short string indicating the [error
    * code](https://stripe.com/docs/error-codes) reported.
    */
   @optional
-  Nullable!(string) code;
+  string code;
 
   /**
    * The source object for errors returned on a request involving a source.
@@ -58,14 +58,14 @@ class ApiErrors {
    * For card errors, the ID of the failed charge.
    */
   @optional
-  Nullable!(string) charge;
+  string charge;
 
   /**
    * If the error is specific to the type of payment method, the payment method type that had a
    * problem. This field is only populated for invoice-related errors.
    */
   @optional
-  Nullable!(string) payment_method_type;
+  string payment_method_type;
 
   @optional
   PaymentMethod payment_method;
@@ -78,19 +78,19 @@ class ApiErrors {
    * `invalid_request_error`
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * If the error is parameter-specific, the parameter related to the error. For example, you can
    * use this to display a message near the correct form field.
    */
   @optional
-  Nullable!(string) param;
+  string param;
 
   /**
    * A URL to the request log entry in your dashboard.
    */
   @optional
-  Nullable!(string) request_log_url;
+  string request_log_url;
 
 }

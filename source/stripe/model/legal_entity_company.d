@@ -18,7 +18,7 @@ class LegalEntityCompany {
    * The jurisdiction in which the `tax_id` is registered (Germany-based companies only).
    */
   @optional
-  Nullable!(string) tax_id_registrar;
+  string tax_id_registrar;
 
   /**
    * The category identifying the legal structure of the company or legal entity. See [Business
@@ -26,7 +26,7 @@ class LegalEntityCompany {
    * details.
    */
   @optional
-  Nullable!(string) structure;
+  string structure;
 
   /**
    * The Kana variation of the company's primary address (Japan only).
@@ -59,13 +59,13 @@ class LegalEntityCompany {
    * The company's legal name.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * The company's phone number (used for verification).
    */
   @optional
-  Nullable!(string) phone;
+  string phone;
 
   /**
    * Whether the company's business ID number was provided.
@@ -77,7 +77,7 @@ class LegalEntityCompany {
    * The Kana variation of the company's legal name (Japan only).
    */
   @optional
-  Nullable!(string) name_kana;
+  string name_kana;
 
   @optional
   Address address;
@@ -119,6 +119,6 @@ class LegalEntityCompany {
    * The Kanji variation of the company's legal name (Japan only).
    */
   @optional
-  Nullable!(string) name_kanji;
+  string name_kanji;
 
 }

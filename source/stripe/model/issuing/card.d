@@ -24,7 +24,7 @@ class IssuingCard {
    * via "List all cards" or any other endpoint.
    */
   @optional
-  Nullable!(string) cvc;
+  string cvc;
 
   /**
    * The card this card replaces, if any.
@@ -46,13 +46,13 @@ class IssuingCard {
    * via "List all cards" or any other endpoint.
    */
   @optional
-  Nullable!(string) number;
+  string number;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   @optional
   IssuingCardAuthorizationControls spending_controls;
@@ -63,14 +63,14 @@ class IssuingCard {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Supported currencies are `usd` in the US, `eur` in the EU, and `gbp` in the UK.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The expiration month of the card.
@@ -82,7 +82,7 @@ class IssuingCard {
    * The reason why the previous card needed to be replaced.
    */
   @optional
-  Nullable!(string) replacement_reason;
+  string replacement_reason;
 
   /**
    * The expiration year of the card.
@@ -94,7 +94,7 @@ class IssuingCard {
    * The brand of the card.
    */
   @optional
-  Nullable!(string) brand;
+  string brand;
 
   @optional
   IssuingCardholder cardholder;
@@ -103,7 +103,7 @@ class IssuingCard {
    * The last 4 digits of the card number.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -116,19 +116,19 @@ class IssuingCard {
    * The financial account this card is attached to.
    */
   @optional
-  Nullable!(string) financial_account;
+  string financial_account;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The reason why the card was canceled.
    */
   @optional
-  Nullable!(string) cancellation_reason;
+  string cancellation_reason;
 
   /**
    * Where and how the card will be shipped.
@@ -146,7 +146,7 @@ class IssuingCard {
    * The type of the card.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Information relating to digital wallets (like Apple Pay and Google Pay).
@@ -158,6 +158,6 @@ class IssuingCard {
    * Whether authorizations can be approved on this card.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

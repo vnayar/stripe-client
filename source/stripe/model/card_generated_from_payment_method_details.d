@@ -16,7 +16,7 @@ class CardGeneratedFromPaymentMethodDetails {
    * this `card` payment method. Always `card_present`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   PaymentMethodDetailsCardPresent card_present;

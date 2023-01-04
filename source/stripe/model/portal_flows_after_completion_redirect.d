@@ -14,6 +14,6 @@ class PortalFlowsAfterCompletionRedirect {
    * The URL the customer will be redirected to after the flow is completed.
    */
   @optional
-  Nullable!(string) return_url;
+  string return_url;
 
 }

@@ -14,26 +14,26 @@ class PaymentIntentNextActionPromptpayDisplayQrCode {
    * The SVG path used to render the QR code, can be used as the source in an HTML img tag
    */
   @optional
-  Nullable!(string) image_url_svg;
+  string image_url_svg;
 
   /**
    * The URL to the hosted PromptPay instructions page, which allows customers to view the
    * PromptPay QR code.
    */
   @optional
-  Nullable!(string) hosted_instructions_url;
+  string hosted_instructions_url;
 
   /**
    * The raw data string used to generate QR code, it should be used together with QR code
    * library.
    */
   @optional
-  Nullable!(string) data;
+  string data;
 
   /**
    * The PNG path used to render the QR code, can be used as the source in an HTML img tag
    */
   @optional
-  Nullable!(string) image_url_png;
+  string image_url_png;
 
 }

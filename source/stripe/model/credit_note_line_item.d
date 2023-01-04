@@ -24,7 +24,7 @@ class CreditNoteLineItem {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The cost of each unit of product being credited.
@@ -55,7 +55,7 @@ class CreditNoteLineItem {
    * ID of the invoice line item being credited
    */
   @optional
-  Nullable!(string) invoice_line_item;
+  string invoice_line_item;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -74,13 +74,13 @@ class CreditNoteLineItem {
    * Same as `unit_amount`, but contains a decimal value with at most 12 decimal places.
    */
   @optional
-  Nullable!(string) unit_amount_decimal;
+  string unit_amount_decimal;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The integer amount in %s representing the discount being credited for this line item.
@@ -92,7 +92,7 @@ class CreditNoteLineItem {
    * Description of the item being credited.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The type of the credit note line item, one of `invoice_line_item` or `custom_line_item`. When
@@ -100,7 +100,7 @@ class CreditNoteLineItem {
    * resource the value of which is the id of the credited line item on the invoice.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The tax rates which apply to the line item.
@@ -113,6 +113,6 @@ class CreditNoteLineItem {
    * all tax and discounts.
    */
   @optional
-  Nullable!(string) unit_amount_excluding_tax;
+  string unit_amount_excluding_tax;
 
 }

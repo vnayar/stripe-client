@@ -14,24 +14,24 @@ class RadarReviewResourceSession {
    * The platform for the browser session (e.g., `Macintosh`).
    */
   @optional
-  Nullable!(string) platform;
+  string platform;
 
   /**
    * The version for the browser session (e.g., `61.0.3163.100`).
    */
   @optional
-  Nullable!(string) version_;
+  string version_;
 
   /**
    * Information about the device used for the browser session (e.g., `Samsung SM-G930T`).
    */
   @optional
-  Nullable!(string) device;
+  string device;
 
   /**
    * The browser used in this browser session (e.g., `Chrome`).
    */
   @optional
-  Nullable!(string) browser;
+  string browser;
 
 }

@@ -30,7 +30,7 @@ class InvoiceSettingCustomerSetting {
    * Default footer to be displayed on invoices for this customer.
    */
   @optional
-  Nullable!(string) footer;
+  string footer;
 
   /**
    * Default options for invoice PDF rendering for this customer.

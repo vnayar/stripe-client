@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -30,20 +31,20 @@ class V1InvoicesService {
      * The collection method of the invoice to retrieve. Either `charge_automatically` or
      * `send_invoice`.
      */
-    Nullable!(Nullable!(string)) collection_method;
+    string collection_method;
 
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * Only return invoices for the customer specified by this customer ID.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      */
-    Nullable!(Json) due_date;
+    Json due_date;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -51,18 +52,18 @@ class V1InvoicesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -70,18 +71,18 @@ class V1InvoicesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
     /**
      * The status of the invoice, one of `draft`, `open`, `paid`, `uncollectible`, or `void`. [Learn
      * more](https://stripe.com/docs/billing/invoices/workflow#workflow-overview)
      */
-    Nullable!(Nullable!(string)) status;
+    string status;
 
     /**
      * Only return invoices for the subscription specified by this subscription ID.
      */
-    Nullable!(Nullable!(string)) subscription;
+    string subscription;
 
   }
 
@@ -99,7 +100,7 @@ class V1InvoicesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Invoice[] data;
@@ -108,7 +109,7 @@ class V1InvoicesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -127,9 +128,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(InvoicesList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -149,25 +152,25 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices");
     if (!params.collection_method.isNull)
-      requestor.setQueryParam("collection_method", params.collection_method.get.to!string);
+      requestor.setQueryParam!("deepObject")("collection_method", params.collection_method);
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.due_date.isNull)
-      requestor.setQueryParam("due_date", params.due_date.get.to!string);
+      requestor.setQueryParam!("deepObject")("due_date", params.due_date);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     if (!params.status.isNull)
-      requestor.setQueryParam("status", params.status.get.to!string);
+      requestor.setQueryParam!("deepObject")("status", params.status);
     if (!params.subscription.isNull)
-      requestor.setQueryParam("subscription", params.subscription.get.to!string);
+      requestor.setQueryParam!("deepObject")("subscription", params.subscription);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -189,9 +192,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -218,7 +223,7 @@ class V1InvoicesService {
   static class PostInvoicesInvoiceMarkUncollectibleParams {
     /**
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
   }
 
@@ -239,9 +244,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -261,7 +268,7 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices/{invoice}/mark_uncollectible");
     if (!params.invoice.isNull)
-      requestor.setPathParam("invoice", params.invoice.get.to!string);
+      requestor.setPathParam("invoice", params.invoice);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -269,7 +276,7 @@ class V1InvoicesService {
   static class PostInvoicesInvoicePayParams {
     /**
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
   }
 
@@ -290,9 +297,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -315,7 +324,7 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices/{invoice}/pay");
     if (!params.invoice.isNull)
-      requestor.setPathParam("invoice", params.invoice.get.to!string);
+      requestor.setPathParam("invoice", params.invoice);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -327,22 +336,22 @@ class V1InvoicesService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -350,7 +359,7 @@ class V1InvoicesService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -368,7 +377,7 @@ class V1InvoicesService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -380,7 +389,7 @@ class V1InvoicesService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -399,9 +408,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(InvoiceLinesList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -422,15 +433,15 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices/{invoice}/lines");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.invoice.isNull)
-      requestor.setPathParam("invoice", params.invoice.get.to!string);
+      requestor.setPathParam("invoice", params.invoice);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -438,7 +449,7 @@ class V1InvoicesService {
   static class PostInvoicesInvoiceSendParams {
     /**
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
   }
 
@@ -459,9 +470,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -486,7 +499,7 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices/{invoice}/send");
     if (!params.invoice.isNull)
-      requestor.setPathParam("invoice", params.invoice.get.to!string);
+      requestor.setPathParam("invoice", params.invoice);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -494,7 +507,7 @@ class V1InvoicesService {
   static class PostInvoicesInvoiceFinalizeParams {
     /**
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
   }
 
@@ -515,9 +528,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -538,7 +553,7 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices/{invoice}/finalize");
     if (!params.invoice.isNull)
-      requestor.setPathParam("invoice", params.invoice.get.to!string);
+      requestor.setPathParam("invoice", params.invoice);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -546,7 +561,7 @@ class V1InvoicesService {
   static class PostInvoicesInvoiceVoidParams {
     /**
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
   }
 
@@ -567,9 +582,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -590,7 +607,7 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices/{invoice}/void");
     if (!params.invoice.isNull)
-      requestor.setPathParam("invoice", params.invoice.get.to!string);
+      requestor.setPathParam("invoice", params.invoice);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -599,11 +616,11 @@ class V1InvoicesService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
   }
 
@@ -624,9 +641,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -645,9 +664,9 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices/{invoice}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.invoice.isNull)
-      requestor.setPathParam("invoice", params.invoice.get.to!string);
+      requestor.setPathParam("invoice", params.invoice);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -655,7 +674,7 @@ class V1InvoicesService {
   static class PostInvoicesInvoiceParams {
     /**
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
   }
 
@@ -676,9 +695,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -704,7 +725,7 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices/{invoice}");
     if (!params.invoice.isNull)
-      requestor.setPathParam("invoice", params.invoice.get.to!string);
+      requestor.setPathParam("invoice", params.invoice);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -712,7 +733,7 @@ class V1InvoicesService {
   static class DeleteInvoicesInvoiceParams {
     /**
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
   }
 
@@ -733,9 +754,11 @@ class V1InvoicesService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedInvoice)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -756,7 +779,7 @@ class V1InvoicesService {
         Servers.getServerUrl(),
         "/v1/invoices/{invoice}");
     if (!params.invoice.isNull)
-      requestor.setPathParam("invoice", params.invoice.get.to!string);
+      requestor.setPathParam("invoice", params.invoice);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

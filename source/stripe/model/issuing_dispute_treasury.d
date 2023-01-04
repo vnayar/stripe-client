@@ -15,13 +15,13 @@ class IssuingDisputeTreasury {
    * representing this Issuing dispute
    */
   @optional
-  Nullable!(string) debit_reversal;
+  string debit_reversal;
 
   /**
    * The Treasury [ReceivedDebit](https://stripe.com/docs/api/treasury/received_debits) that is
    * being disputed.
    */
   @optional
-  Nullable!(string) received_debit;
+  string received_debit;
 
 }

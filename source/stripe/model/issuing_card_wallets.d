@@ -19,7 +19,7 @@ class IssuingCardWallets {
    * Unique identifier for a card used with digital wallets
    */
   @optional
-  Nullable!(string) primary_account_identifier;
+  string primary_account_identifier;
 
   @optional
   IssuingCardGooglePay google_pay;

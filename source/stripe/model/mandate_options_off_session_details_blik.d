@@ -20,7 +20,7 @@ class MandateOptionsOffSessionDetailsBlik {
    * Currency of each recurring payment.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Frequency indicator of each recurring payment.
@@ -32,6 +32,6 @@ class MandateOptionsOffSessionDetailsBlik {
    * Frequency interval of each recurring payment.
    */
   @optional
-  Nullable!(string) interval;
+  string interval;
 
 }

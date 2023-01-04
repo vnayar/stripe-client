@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,13 +28,13 @@ class V1InvoiceitemsService {
   static class GetInvoiceitemsParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * The identifier of the customer whose invoice items to return. If none is provided, all
      * invoice items will be returned.
      */
-    Nullable!(Nullable!(string)) customer;
+    string customer;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -41,31 +42,31 @@ class V1InvoiceitemsService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * Only return invoice items belonging to this invoice. If none is provided, all invoice items
      * will be returned. If specifying an invoice, no customer identifier is needed.
      */
-    Nullable!(Nullable!(string)) invoice;
+    string invoice;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * Set to `true` to only show pending invoice items, which are not yet attached to any invoices.
      * Set to `false` to only show invoice items already attached to invoices. If unspecified, no
      * filter is applied.
      */
-    Nullable!(Nullable!(bool)) pending;
+    Nullable!(bool) pending;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -73,7 +74,7 @@ class V1InvoiceitemsService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -91,7 +92,7 @@ class V1InvoiceitemsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       Invoiceitem[] data;
@@ -100,7 +101,7 @@ class V1InvoiceitemsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -119,9 +120,11 @@ class V1InvoiceitemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(InvoicesItemsList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -141,21 +144,21 @@ class V1InvoiceitemsService {
         Servers.getServerUrl(),
         "/v1/invoiceitems");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.customer.isNull)
-      requestor.setQueryParam("customer", params.customer.get.to!string);
+      requestor.setQueryParam!("deepObject")("customer", params.customer);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.invoice.isNull)
-      requestor.setQueryParam("invoice", params.invoice.get.to!string);
+      requestor.setQueryParam!("deepObject")("invoice", params.invoice);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.pending.isNull)
-      requestor.setQueryParam("pending", params.pending.get.to!string);
+      requestor.setQueryParam!("deepObject")("pending", params.pending);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -181,7 +184,7 @@ class V1InvoiceitemsService {
      * invoices and there is a maximum of 250 items per invoice.
      */
     @optional
-    Nullable!(string) invoice;
+    string invoice;
 
     static class Period {
       @optional
@@ -211,7 +214,7 @@ class V1InvoiceitemsService {
      * particular subscription.
      */
     @optional
-    Nullable!(string) subscription;
+    string subscription;
 
     /**
      * The integer unit amount in cents (or local equivalent) of the charge to be applied to the
@@ -225,7 +228,7 @@ class V1InvoiceitemsService {
      * The ID of the customer who will be billed when this invoice item is billed.
      */
     @optional
-    Nullable!(string) customer;
+    string customer;
 
     /**
      * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -241,7 +244,7 @@ class V1InvoiceitemsService {
      * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Non-negative integer. The quantity of units for the invoice item.
@@ -251,16 +254,16 @@ class V1InvoiceitemsService {
 
     static class OneTimePriceData {
       @optional
-      Nullable!(string) currency;
+      string currency;
 
       @optional
-      Nullable!(string) unit_amount_decimal;
+      string unit_amount_decimal;
 
       @optional
-      Nullable!(string) product;
+      string product;
 
       @optional
-      Nullable!(string) tax_behavior;
+      string tax_behavior;
 
       @optional
       Nullable!(int) unit_amount;
@@ -277,14 +280,14 @@ class V1InvoiceitemsService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * Same as `unit_amount`, but accepts a decimal value in cents (or local equivalent) with at
      * most 12 decimal places. Only one of `unit_amount` and `unit_amount_decimal` can be set.
      */
     @optional
-    Nullable!(string) unit_amount_decimal;
+    string unit_amount_decimal;
 
     /**
      * Specifies whether the price is considered inclusive of taxes or exclusive of taxes. One of
@@ -292,7 +295,7 @@ class V1InvoiceitemsService {
      * `exclusive`, it cannot be changed.
      */
     @optional
-    Nullable!(string) tax_behavior;
+    string tax_behavior;
 
     /**
      * The coupons to redeem into discounts for the invoice item or invoice line item.
@@ -305,7 +308,7 @@ class V1InvoiceitemsService {
      * the invoice for easy tracking.
      */
     @optional
-    Nullable!(string) description;
+    string description;
 
     /**
      * Controls whether discounts apply to this invoice item. Defaults to false for prorations or
@@ -319,13 +322,13 @@ class V1InvoiceitemsService {
      * invoice do not apply to this invoice item.
      */
     @optional
-    Nullable!(string)[] tax_rates;
+    string[] tax_rates;
 
     /**
      * The ID of the price object.
      */
     @optional
-    Nullable!(string) price;
+    string price;
 
   }
 
@@ -346,9 +349,11 @@ class V1InvoiceitemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoiceitem)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -376,11 +381,11 @@ class V1InvoiceitemsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) invoiceitem;
+    string invoiceitem;
 
   }
 
@@ -401,9 +406,11 @@ class V1InvoiceitemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoiceitem)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -422,9 +429,9 @@ class V1InvoiceitemsService {
         Servers.getServerUrl(),
         "/v1/invoiceitems/{invoiceitem}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.invoiceitem.isNull)
-      requestor.setPathParam("invoiceitem", params.invoiceitem.get.to!string);
+      requestor.setPathParam("invoiceitem", params.invoiceitem);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -432,7 +439,7 @@ class V1InvoiceitemsService {
   static class PostInvoiceitemsInvoiceitemParams {
     /**
      */
-    Nullable!(Nullable!(string)) invoiceitem;
+    string invoiceitem;
 
   }
 
@@ -453,9 +460,11 @@ class V1InvoiceitemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(Invoiceitem)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -475,7 +484,7 @@ class V1InvoiceitemsService {
         Servers.getServerUrl(),
         "/v1/invoiceitems/{invoiceitem}");
     if (!params.invoiceitem.isNull)
-      requestor.setPathParam("invoiceitem", params.invoiceitem.get.to!string);
+      requestor.setPathParam("invoiceitem", params.invoiceitem);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -483,7 +492,7 @@ class V1InvoiceitemsService {
   static class DeleteInvoiceitemsInvoiceitemParams {
     /**
      */
-    Nullable!(Nullable!(string)) invoiceitem;
+    string invoiceitem;
 
   }
 
@@ -504,9 +513,11 @@ class V1InvoiceitemsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedInvoiceitem)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -526,7 +537,7 @@ class V1InvoiceitemsService {
         Servers.getServerUrl(),
         "/v1/invoiceitems/{invoiceitem}");
     if (!params.invoiceitem.isNull)
-      requestor.setPathParam("invoiceitem", params.invoiceitem.get.to!string);
+      requestor.setPathParam("invoiceitem", params.invoiceitem);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

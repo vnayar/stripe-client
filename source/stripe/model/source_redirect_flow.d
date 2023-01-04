@@ -17,13 +17,13 @@ class SourceRedirectFlow {
    * if the redirect status is `failed`.
    */
   @optional
-  Nullable!(string) failure_reason;
+  string failure_reason;
 
   /**
    * The URL you provide to redirect the customer to after they authenticated their payment.
    */
   @optional
-  Nullable!(string) return_url;
+  string return_url;
 
   /**
    * The status of the redirect, either `pending` (ready to be used by your customer to
@@ -32,13 +32,13 @@ class SourceRedirectFlow {
    * reused).
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * The URL provided to you to redirect a customer to as part of a `redirect` authentication
    * flow.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
 }

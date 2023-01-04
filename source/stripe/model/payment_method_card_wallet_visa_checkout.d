@@ -16,7 +16,7 @@ class PaymentMethodCardWalletVisaCheckout {
    * at the time of authorization or settlement. They cannot be set or mutated.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   /**
    * Owner's verified shipping address. Values are verified or provided by the wallet directly (if
@@ -37,6 +37,6 @@ class PaymentMethodCardWalletVisaCheckout {
    * supported) at the time of authorization or settlement. They cannot be set or mutated.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
 }

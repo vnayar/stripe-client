@@ -21,7 +21,7 @@ class SubscriptionScheduleConfigurationItem {
    * the phase is entered.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Quantity of the plan to which the customer should be subscribed.

@@ -24,6 +24,6 @@ class SubscriptionsResourcePauseCollection {
    * `mark_uncollectible`, or `void`.
    */
   @optional
-  Nullable!(string) behavior;
+  string behavior;
 
 }

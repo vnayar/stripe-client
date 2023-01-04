@@ -18,13 +18,13 @@ class PaymentMethodDetailsP24 {
    * `toyota_bank`, `bank_pekao_sa`, `volkswagen_bank`, `bank_millennium`, `alior_bank`, or `boz`.
    */
   @optional
-  Nullable!(string) bank;
+  string bank;
 
   /**
    * Unique reference for this Przelewy24 payment.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   /**
    * Owner's verified full name. Values are verified or provided by Przelewy24 directly
@@ -32,6 +32,6 @@ class PaymentMethodDetailsP24 {
    * Przelewy24 rarely provides this information so the attribute is usually empty.
    */
   @optional
-  Nullable!(string) verified_name;
+  string verified_name;
 
 }

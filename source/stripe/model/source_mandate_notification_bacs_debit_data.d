@@ -14,6 +14,6 @@ class SourceMandateNotificationBacsDebitData {
    * Last 4 digits of the account number associated with the debit.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
 }

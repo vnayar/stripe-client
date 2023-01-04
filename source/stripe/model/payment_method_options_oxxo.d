@@ -23,7 +23,7 @@ class PaymentMethodOptionsOxxo {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * The number of calendar days before an OXXO invoice expires. For example, if you create an

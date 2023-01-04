@@ -17,13 +17,13 @@ class RadarValueListItem {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The name or email address of the user who added this item to the value list.
    */
   @optional
-  Nullable!(string) created_by;
+  string created_by;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -36,7 +36,7 @@ class RadarValueListItem {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -48,12 +48,12 @@ class RadarValueListItem {
    * The value of the item.
    */
   @optional
-  Nullable!(string) value;
+  string value;
 
   /**
    * The identifier of the value list this item belongs to.
    */
   @optional
-  Nullable!(string) value_list;
+  string value_list;
 
 }

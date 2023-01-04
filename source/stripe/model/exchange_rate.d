@@ -24,7 +24,7 @@ class ExchangeRate {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Hash where the keys are supported currencies and the values are the exchange rate at which
@@ -38,6 +38,6 @@ class ExchangeRate {
    * code](https://www.iso.org/iso-4217-currency-codes.html) in lowercase.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
 }

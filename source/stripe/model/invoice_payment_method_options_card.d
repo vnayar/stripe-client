@@ -21,7 +21,7 @@ class InvoicePaymentMethodOptionsCard {
    * how this configuration interacts with Radar and our SCA Engine.
    */
   @optional
-  Nullable!(string) request_three_d_secure;
+  string request_three_d_secure;
 
   @optional
   InvoiceInstallmentsCard installments;

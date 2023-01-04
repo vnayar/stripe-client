@@ -15,7 +15,7 @@ class RefundNextAction {
    * Type of the next action to perform.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Contains the refund details.

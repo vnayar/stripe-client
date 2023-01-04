@@ -14,12 +14,12 @@ class PaymentMethodDetailsMultibanco {
    * Entity number associated with this Multibanco payment.
    */
   @optional
-  Nullable!(string) entity;
+  string entity;
 
   /**
    * Reference number associated with this Multibanco payment.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
 }

@@ -18,7 +18,7 @@ class PersonRequirements {
    * is disabled.
    */
   @optional
-  Nullable!(string)[] currently_due;
+  string[] currently_due;
 
   /**
    * Fields that need to be collected assuming all volume thresholds are reached. As they become
@@ -26,14 +26,14 @@ class PersonRequirements {
    * becomes set.
    */
   @optional
-  Nullable!(string)[] eventually_due;
+  string[] eventually_due;
 
   /**
    * Fields that weren't collected by the account's `current_deadline`. These fields need to be
    * collected to enable the person's account.
    */
   @optional
-  Nullable!(string)[] past_due;
+  string[] past_due;
 
   /**
    * Fields that are due and can be satisfied by providing the corresponding alternative fields
@@ -55,6 +55,6 @@ class PersonRequirements {
    * fields move to `eventually_due`, `currently_due`, or `past_due`.
    */
   @optional
-  Nullable!(string)[] pending_verification;
+  string[] pending_verification;
 
 }

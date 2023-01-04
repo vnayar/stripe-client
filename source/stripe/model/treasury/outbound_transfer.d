@@ -31,7 +31,7 @@ class TreasuryOutboundTransfer {
    * Information about the OutboundTransfer to be sent to the recipient account.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   @optional
   TreasuryOutboundTransfersResourceStatusTransitions status_transitions;
@@ -40,7 +40,7 @@ class TreasuryOutboundTransfer {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -48,20 +48,20 @@ class TreasuryOutboundTransfer {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The PaymentMethod used as the payment instrument for an OutboundTransfer.
    */
   @optional
-  Nullable!(string) destination_payment_method;
+  string destination_payment_method;
 
   /**
    * The Transaction associated with this object.
@@ -98,19 +98,19 @@ class TreasuryOutboundTransfer {
    * The FinancialAccount that funds were pulled from.
    */
   @optional
-  Nullable!(string) financial_account;
+  string financial_account;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   @optional
   OutboundTransfersPaymentMethodDetails destination_payment_method_details;
@@ -128,7 +128,7 @@ class TreasuryOutboundTransfer {
    * licenses.
    */
   @optional
-  Nullable!(string) hosted_regulatory_receipt_url;
+  string hosted_regulatory_receipt_url;
 
   /**
    * Current status of the OutboundTransfer: `processing`, `failed`, `canceled`, `posted`,
@@ -138,6 +138,6 @@ class TreasuryOutboundTransfer {
    * destination, its status will change to `returned`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

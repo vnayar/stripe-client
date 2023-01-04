@@ -20,14 +20,14 @@ class TaxRate {
    * alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2:US), without country
    * prefix. For example, "NY" for New York, United States.
    */
   @optional
-  Nullable!(string) state;
+  string state;
 
   /**
    * This specifies if the tax rate is inclusive or exclusive.
@@ -39,7 +39,7 @@ class TaxRate {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -47,7 +47,7 @@ class TaxRate {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Defaults to `true`. When set to `false`, this tax rate cannot be used with new applications
@@ -69,7 +69,7 @@ class TaxRate {
    * PDF, and the hosted invoice page.
    */
   @optional
-  Nullable!(string) display_name;
+  string display_name;
 
   /**
    * This represents the tax rate percent out of 100.
@@ -81,27 +81,27 @@ class TaxRate {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The high-level tax type, such as `vat` or `sales_tax`.
    */
   @optional
-  Nullable!(string) tax_type;
+  string tax_type;
 
   /**
    * An arbitrary string attached to the tax rate for your internal use only. It will not be
    * visible to your customers.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The jurisdiction for the tax rate. You can use this label field for tax reporting purposes.
    * It also appears on your customer’s invoice.
    */
   @optional
-  Nullable!(string) jurisdiction;
+  string jurisdiction;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

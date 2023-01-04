@@ -14,6 +14,6 @@ class InvoicePaymentMethodOptionsBancontact {
    * Preferred language of the Bancontact authorization page that the customer is redirected to.
    */
   @optional
-  Nullable!(string) preferred_language;
+  string preferred_language;
 
 }

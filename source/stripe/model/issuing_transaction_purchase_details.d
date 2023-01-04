@@ -36,7 +36,7 @@ class IssuingTransactionPurchaseDetails {
    * A merchant-specific order number.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   /**
    * Information about lodging that was purchased with this transaction.

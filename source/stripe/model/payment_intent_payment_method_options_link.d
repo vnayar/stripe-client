@@ -23,18 +23,18 @@ class PaymentIntentPaymentMethodOptionsLink {
    * [SCA](https://stripe.com/docs/strong-customer-authentication).
    */
   @optional
-  Nullable!(string) setup_future_usage;
+  string setup_future_usage;
 
   /**
    * Controls when the funds will be captured from the customer's account.
    */
   @optional
-  Nullable!(string) capture_method;
+  string capture_method;
 
   /**
    * Token used for persistent Link logins.
    */
   @optional
-  Nullable!(string) persistent_token;
+  string persistent_token;
 
 }

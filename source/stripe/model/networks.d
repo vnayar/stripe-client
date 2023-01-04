@@ -14,12 +14,12 @@ class Networks {
    * All available networks for the card.
    */
   @optional
-  Nullable!(string)[] available;
+  string[] available;
 
   /**
    * The preferred network for the card.
    */
   @optional
-  Nullable!(string) preferred;
+  string preferred;
 
 }

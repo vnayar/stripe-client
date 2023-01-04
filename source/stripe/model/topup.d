@@ -27,25 +27,25 @@ class Topup {
    * contain at least one letter.
    */
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * A string that identifies this top-up as part of a group.
    */
   @optional
-  Nullable!(string) transfer_group;
+  string transfer_group;
 
   /**
    * Message to user further explaining reason for top-up failure if available.
    */
   @optional
-  Nullable!(string) failure_message;
+  string failure_message;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -53,14 +53,14 @@ class Topup {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * For most Stripe users, the source of every top-up is a bank account. This hash is then the
@@ -94,13 +94,13 @@ class Topup {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -113,13 +113,13 @@ class Topup {
    * section](https://stripe.com/docs/api#errors) for a list of codes).
    */
   @optional
-  Nullable!(string) failure_code;
+  string failure_code;
 
   /**
    * The status of the top-up is either `canceled`, `failed`, `pending`, `reversed`, or
    * `succeeded`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

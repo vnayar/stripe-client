@@ -15,12 +15,12 @@ class TreasuryFinancialAccountsResourcePlatformRestrictions {
    * Restricts all inbound money movement.
    */
   @optional
-  Nullable!(string) inbound_flows;
+  string inbound_flows;
 
   /**
    * Restricts all outbound money movement.
    */
   @optional
-  Nullable!(string) outbound_flows;
+  string outbound_flows;
 
 }

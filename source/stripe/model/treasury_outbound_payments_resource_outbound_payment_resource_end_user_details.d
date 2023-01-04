@@ -23,6 +23,6 @@ class TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetails {
    * determine if the OutboundPayment is authorized or should be blocked.
    */
   @optional
-  Nullable!(string) ip_address;
+  string ip_address;
 
 }

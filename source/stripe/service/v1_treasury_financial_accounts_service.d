@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,27 +28,27 @@ class V1TreasuryFinancialAccountsService {
   static class GetTreasuryFinancialAccountsParams {
     /**
      */
-    Nullable!(Json) created;
+    Json created;
 
     /**
      * An object ID cursor for use in pagination.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit ranging from 1 to 100 (defaults to 10).
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * An object ID cursor for use in pagination.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -65,7 +66,7 @@ class V1TreasuryFinancialAccountsService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       TreasuryFinancialAccount[] data;
@@ -74,7 +75,7 @@ class V1TreasuryFinancialAccountsService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -93,9 +94,11 @@ class V1TreasuryFinancialAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryFinancialAccountsResourceFinancialAccountList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -114,15 +117,15 @@ class V1TreasuryFinancialAccountsService {
         Servers.getServerUrl(),
         "/v1/treasury/financial_accounts");
     if (!params.created.isNull)
-      requestor.setQueryParam("created", params.created.get.to!string);
+      requestor.setQueryParam!("deepObject")("created", params.created);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -130,10 +133,10 @@ class V1TreasuryFinancialAccountsService {
   static class PostTreasuryFinancialAccountsBody {
     static class PlatformRestrictions {
       @optional
-      Nullable!(string) inbound_flows;
+      string inbound_flows;
 
       @optional
-      Nullable!(string) outbound_flows;
+      string outbound_flows;
 
     }
 
@@ -150,13 +153,13 @@ class V1TreasuryFinancialAccountsService {
      * can be unset by posting an empty value to `metadata`.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     static class FeatureAccess {
       static class OutboundPayments {
@@ -265,7 +268,7 @@ class V1TreasuryFinancialAccountsService {
      * The currencies the FinancialAccount can hold a balance in.
      */
     @optional
-    Nullable!(string)[] supported_currencies;
+    string[] supported_currencies;
 
   }
 
@@ -286,9 +289,11 @@ class V1TreasuryFinancialAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryFinancialAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -316,11 +321,11 @@ class V1TreasuryFinancialAccountsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) financial_account;
+    string financial_account;
 
   }
 
@@ -341,9 +346,11 @@ class V1TreasuryFinancialAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryFinancialAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -362,9 +369,9 @@ class V1TreasuryFinancialAccountsService {
         Servers.getServerUrl(),
         "/v1/treasury/financial_accounts/{financial_account}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.financial_account.isNull)
-      requestor.setPathParam("financial_account", params.financial_account.get.to!string);
+      requestor.setPathParam("financial_account", params.financial_account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -372,7 +379,7 @@ class V1TreasuryFinancialAccountsService {
   static class PostTreasuryFinancialAccountsFinancialAccountParams {
     /**
      */
-    Nullable!(Nullable!(string)) financial_account;
+    string financial_account;
 
   }
 
@@ -393,9 +400,11 @@ class V1TreasuryFinancialAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryFinancialAccount)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -414,7 +423,7 @@ class V1TreasuryFinancialAccountsService {
         Servers.getServerUrl(),
         "/v1/treasury/financial_accounts/{financial_account}");
     if (!params.financial_account.isNull)
-      requestor.setPathParam("financial_account", params.financial_account.get.to!string);
+      requestor.setPathParam("financial_account", params.financial_account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -423,11 +432,11 @@ class V1TreasuryFinancialAccountsService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) financial_account;
+    string financial_account;
 
   }
 
@@ -448,9 +457,11 @@ class V1TreasuryFinancialAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryFinancialAccountFeatures)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -469,9 +480,9 @@ class V1TreasuryFinancialAccountsService {
         Servers.getServerUrl(),
         "/v1/treasury/financial_accounts/{financial_account}/features");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.financial_account.isNull)
-      requestor.setPathParam("financial_account", params.financial_account.get.to!string);
+      requestor.setPathParam("financial_account", params.financial_account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -479,7 +490,7 @@ class V1TreasuryFinancialAccountsService {
   static class PostTreasuryFinancialAccountsFinancialAccountFeaturesParams {
     /**
      */
-    Nullable!(Nullable!(string)) financial_account;
+    string financial_account;
 
   }
 
@@ -500,9 +511,11 @@ class V1TreasuryFinancialAccountsService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TreasuryFinancialAccountFeatures)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -521,7 +534,7 @@ class V1TreasuryFinancialAccountsService {
         Servers.getServerUrl(),
         "/v1/treasury/financial_accounts/{financial_account}/features");
     if (!params.financial_account.isNull)
-      requestor.setPathParam("financial_account", params.financial_account.get.to!string);
+      requestor.setPathParam("financial_account", params.financial_account);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

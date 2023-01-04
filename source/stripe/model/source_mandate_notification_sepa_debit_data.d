@@ -14,18 +14,18 @@ class SourceMandateNotificationSepaDebitData {
    * Last 4 digits of the account number associated with the debit.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * SEPA creditor ID.
    */
   @optional
-  Nullable!(string) creditor_identifier;
+  string creditor_identifier;
 
   /**
    * Mandate reference associated with the debit.
    */
   @optional
-  Nullable!(string) mandate_reference;
+  string mandate_reference;
 
 }

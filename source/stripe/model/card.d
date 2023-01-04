@@ -21,26 +21,26 @@ class Card {
    * State/County/Province/Region.
    */
   @optional
-  Nullable!(string) address_state;
+  string address_state;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * City/District/Suburb/Town/Village.
    */
   @optional
-  Nullable!(string) address_city;
+  string address_city;
 
   /**
    * Card brand. Can be `American Express`, `Diners Club`, `Discover`, `JCB`, `MasterCard`,
    * `UnionPay`, `Visa`, or `Unknown`.
    */
   @optional
-  Nullable!(string) brand;
+  string brand;
 
   /**
    * Whether this card is the default external account for its currency.
@@ -52,13 +52,13 @@ class Card {
    * Cardholder name.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * Address line 2 (Apartment/Suite/Unit/Building).
    */
   @optional
-  Nullable!(string) address_line2;
+  string address_line2;
 
   /**
    * The customer that this card belongs to. This attribute will not be in the card object if the
@@ -71,7 +71,7 @@ class Card {
    * (For tokenized numbers only.) The last four digits of the device account number.
    */
   @optional
-  Nullable!(string) dynamic_last4;
+  string dynamic_last4;
 
   /**
    * Three-letter [ISO code for currency](https://stripe.com/docs/payouts). Only applicable on
@@ -79,32 +79,32 @@ class Card {
    * funds in this currency.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Card funding type. Can be `credit`, `debit`, `prepaid`, or `unknown`.
    */
   @optional
-  Nullable!(string) funding;
+  string funding;
 
   /**
    * Address line 1 (Street address/PO Box/Company name).
    */
   @optional
-  Nullable!(string) address_line1;
+  string address_line1;
 
   /**
    * The last four digits of the card.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Two-letter ISO code representing the country of the card. You could use this attribute to get
    * a sense of the international breakdown of cards you've collected.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -112,7 +112,7 @@ class Card {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Two-digit number representing the card's expiration month.
@@ -125,21 +125,21 @@ class Card {
    * (includes Google Pay), `apple_pay`, `masterpass`, `visa_checkout`, or null.
    */
   @optional
-  Nullable!(string) tokenization_method;
+  string tokenization_method;
 
   /**
    * A set of available payout methods for this card. Only values from this set should be passed
    * as the `method` when creating a payout.
    */
   @optional
-  Nullable!(string)[] available_payout_methods;
+  string[] available_payout_methods;
 
   /**
    * If `address_zip` was provided, results of the check: `pass`, `fail`, `unavailable`, or
    * `unchecked`.
    */
   @optional
-  Nullable!(string) address_zip_check;
+  string address_zip_check;
 
   /**
    * Uniquely identifies this particular card number. You can use this attribute to check whether
@@ -150,26 +150,26 @@ class Card {
    * fingerprints for the same card --- one for India and one for the rest of the world.*
    */
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
   /**
    * For external accounts, possible values are `new` and `errored`. If a transfer fails, the
    * status is set to `errored` and transfers are stopped until account details are updated.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * ZIP or postal code.
    */
   @optional
-  Nullable!(string) address_zip;
+  string address_zip;
 
   /**
    * Billing address country, if provided when creating card.
    */
   @optional
-  Nullable!(string) address_country;
+  string address_country;
 
   /**
    * Four-digit number representing the card's expiration year.
@@ -185,20 +185,20 @@ class Card {
    * charge](https://support.stripe.com/questions/check-if-a-card-is-valid-without-a-charge).
    */
   @optional
-  Nullable!(string) cvc_check;
+  string cvc_check;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * If `address_line1` was provided, results of the check: `pass`, `fail`, `unavailable`, or
    * `unchecked`.
    */
   @optional
-  Nullable!(string) address_line1_check;
+  string address_line1_check;
 
   /**
    * The account this card belongs to. This attribute will not be in the card object if the card

@@ -24,7 +24,7 @@ class Item {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The taxes applied to the line item.
@@ -43,7 +43,7 @@ class Item {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The quantity of products being purchased.
@@ -67,7 +67,7 @@ class Item {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The discounts applied to the line item.
@@ -80,7 +80,7 @@ class Item {
    * product name.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The price used to generate the line item.

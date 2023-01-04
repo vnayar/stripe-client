@@ -23,7 +23,7 @@ class SubscriptionSchedulesResourceDefaultSettings {
    * invoice with payment instructions and mark the subscription as `active`.
    */
   @optional
-  Nullable!(string) collection_method;
+  string collection_method;
 
   /**
    * The subscription schedule's default invoice settings.
@@ -39,7 +39,7 @@ class SubscriptionSchedulesResourceDefaultSettings {
    * [documentation](https://stripe.com/docs/billing/subscriptions/billing-cycle).
    */
   @optional
-  Nullable!(string) billing_cycle_anchor;
+  string billing_cycle_anchor;
 
   /**
    * A non-negative decimal between 0 and 100, with at most two decimal places. This represents
@@ -68,7 +68,7 @@ class SubscriptionSchedulesResourceDefaultSettings {
    * optionally store an explanation of the subscription.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The account (if any) the associated subscription's payments will be attributed to for tax

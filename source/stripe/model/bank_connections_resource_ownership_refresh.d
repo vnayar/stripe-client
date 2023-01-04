@@ -14,7 +14,7 @@ class BankConnectionsResourceOwnershipRefresh {
    * The status of the last refresh attempt.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
   /**
    * The time at which the last refresh attempt was initiated. Measured in seconds since the Unix

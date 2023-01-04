@@ -29,7 +29,7 @@ class TreasuryFinancialAccount {
    * alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)).
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   @optional
   TreasuryFinancialAccountFeatures features;
@@ -44,13 +44,13 @@ class TreasuryFinancialAccount {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The array of paths to pending Features in the Features hash.
    */
   @optional
-  Nullable!(string)[] pending_features;
+  string[] pending_features;
 
   @optional
   TreasuryFinancialAccountsResourceStatusDetails status_details;
@@ -61,13 +61,13 @@ class TreasuryFinancialAccount {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The array of paths to restricted Features in the Features hash.
    */
   @optional
-  Nullable!(string)[] restricted_features;
+  string[] restricted_features;
 
   @optional
   TreasuryFinancialAccountsResourceBalance balance;
@@ -83,20 +83,20 @@ class TreasuryFinancialAccount {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The currencies the FinancialAccount can hold a balance in. Three-letter [ISO currency
    * code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase.
    */
   @optional
-  Nullable!(string)[] supported_currencies;
+  string[] supported_currencies;
 
   /**
    * The array of paths to active Features in the Features hash.
    */
   @optional
-  Nullable!(string)[] active_features;
+  string[] active_features;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -108,6 +108,6 @@ class TreasuryFinancialAccount {
    * The enum specifying what state the account is in.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

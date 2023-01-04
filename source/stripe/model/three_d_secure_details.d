@@ -14,26 +14,26 @@ class ThreeDSecureDetails {
    * The version of 3D Secure that was used.
    */
   @optional
-  Nullable!(string) version_;
+  string version_;
 
   /**
    * Additional information about why 3D Secure succeeded or failed based
    * on the `result`.
    */
   @optional
-  Nullable!(string) result_reason;
+  string result_reason;
 
   /**
    * Indicates the outcome of 3D Secure authentication.
    */
   @optional
-  Nullable!(string) result;
+  string result;
 
   /**
    * For authenticated transactions: how the customer was authenticated by
    * the issuing bank.
    */
   @optional
-  Nullable!(string) authentication_flow;
+  string authentication_flow;
 
 }

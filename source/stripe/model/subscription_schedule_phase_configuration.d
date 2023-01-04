@@ -28,7 +28,7 @@ class SubscriptionSchedulePhaseConfiguration {
    * are `create_prorations` and `none`.
    */
   @optional
-  Nullable!(string) proration_behavior;
+  string proration_behavior;
 
   /**
    * The start of this phase of the subscription schedule.
@@ -56,7 +56,7 @@ class SubscriptionSchedulePhaseConfiguration {
    * invoice with payment instructions and mark the subscription as `active`.
    */
   @optional
-  Nullable!(string) collection_method;
+  string collection_method;
 
   /**
    * The invoice settings applicable during this phase.
@@ -78,14 +78,14 @@ class SubscriptionSchedulePhaseConfiguration {
    * [documentation](https://stripe.com/docs/billing/subscriptions/billing-cycle).
    */
   @optional
-  Nullable!(string) billing_cycle_anchor;
+  string billing_cycle_anchor;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The default tax rates to apply to the subscription during this phase of the subscription
@@ -116,7 +116,7 @@ class SubscriptionSchedulePhaseConfiguration {
    * not affect the current phase's `metadata`.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * ID of the default payment method for the subscription schedule. It must belong to the
@@ -138,7 +138,7 @@ class SubscriptionSchedulePhaseConfiguration {
    * optionally store an explanation of the subscription.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * The account (if any) the associated subscription's payments will be attributed to for tax

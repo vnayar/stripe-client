@@ -26,19 +26,19 @@ class TerminalReader {
    * `verifone_P400`, or `simulated_wisepos_e`.
    */
   @optional
-  Nullable!(string) device_type;
+  string device_type;
 
   /**
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The local IP address of the reader.
    */
   @optional
-  Nullable!(string) ip_address;
+  string ip_address;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -46,13 +46,13 @@ class TerminalReader {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * Serial number of the reader.
    */
   @optional
-  Nullable!(string) serial_number;
+  string serial_number;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -71,24 +71,24 @@ class TerminalReader {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Custom label given to the reader for easier identification.
    */
   @optional
-  Nullable!(string) label;
+  string label;
 
   /**
    * The current software version of the reader.
    */
   @optional
-  Nullable!(string) device_sw_version;
+  string device_sw_version;
 
   /**
    * The networking status of the reader.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

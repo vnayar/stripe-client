@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,7 +28,7 @@ class V1TestHelpersTestClocksService {
   static class PostTestHelpersTestClocksTestClockAdvanceParams {
     /**
      */
-    Nullable!(Nullable!(string)) test_clock;
+    string test_clock;
 
   }
 
@@ -36,7 +37,7 @@ class V1TestHelpersTestClocksService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The time to advance the test clock. Must be after the test clock's current frozen time.
@@ -66,9 +67,11 @@ class V1TestHelpersTestClocksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TestHelpersTestClock)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -89,7 +92,7 @@ class V1TestHelpersTestClocksService {
         Servers.getServerUrl(),
         "/v1/test_helpers/test_clocks/{test_clock}/advance");
     if (!params.test_clock.isNull)
-      requestor.setPathParam("test_clock", params.test_clock.get.to!string);
+      requestor.setPathParam("test_clock", params.test_clock);
     requestor.setHeaderParam("Content-Type", "application/x-www-form-urlencoded");
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
@@ -102,18 +105,18 @@ class V1TestHelpersTestClocksService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -121,7 +124,7 @@ class V1TestHelpersTestClocksService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -139,7 +142,7 @@ class V1TestHelpersTestClocksService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       TestHelpersTestClock[] data;
@@ -148,7 +151,7 @@ class V1TestHelpersTestClocksService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -167,9 +170,11 @@ class V1TestHelpersTestClocksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(BillingClocksResourceBillingClockList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -188,13 +193,13 @@ class V1TestHelpersTestClocksService {
         Servers.getServerUrl(),
         "/v1/test_helpers/test_clocks");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -204,7 +209,7 @@ class V1TestHelpersTestClocksService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * The initial frozen time for this test clock.
@@ -216,7 +221,7 @@ class V1TestHelpersTestClocksService {
      * The name for this test clock.
      */
     @optional
-    Nullable!(string) name;
+    string name;
 
   }
 
@@ -237,9 +242,11 @@ class V1TestHelpersTestClocksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TestHelpersTestClock)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -266,11 +273,11 @@ class V1TestHelpersTestClocksService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) test_clock;
+    string test_clock;
 
   }
 
@@ -291,9 +298,11 @@ class V1TestHelpersTestClocksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(TestHelpersTestClock)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -312,9 +321,9 @@ class V1TestHelpersTestClocksService {
         Servers.getServerUrl(),
         "/v1/test_helpers/test_clocks/{test_clock}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.test_clock.isNull)
-      requestor.setPathParam("test_clock", params.test_clock.get.to!string);
+      requestor.setPathParam("test_clock", params.test_clock);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -322,7 +331,7 @@ class V1TestHelpersTestClocksService {
   static class DeleteTestHelpersTestClocksTestClockParams {
     /**
      */
-    Nullable!(Nullable!(string)) test_clock;
+    string test_clock;
 
   }
 
@@ -343,9 +352,11 @@ class V1TestHelpersTestClocksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(DeletedTestHelpersTestClock)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -364,7 +375,7 @@ class V1TestHelpersTestClocksService {
         Servers.getServerUrl(),
         "/v1/test_helpers/test_clocks/{test_clock}");
     if (!params.test_clock.isNull)
-      requestor.setPathParam("test_clock", params.test_clock.get.to!string);
+      requestor.setPathParam("test_clock", params.test_clock);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

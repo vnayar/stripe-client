@@ -15,7 +15,7 @@ class PaymentPagesCheckoutSessionConsentCollection {
    * to pay.
    */
   @optional
-  Nullable!(string) terms_of_service;
+  string terms_of_service;
 
   /**
    * If set to `auto`, enables the collection of customer consent for promotional communications.
@@ -24,6 +24,6 @@ class PaymentPagesCheckoutSessionConsentCollection {
    * from the merchant depending on the customer's locale. Only available to US merchants.
    */
   @optional
-  Nullable!(string) promotions;
+  string promotions;
 
 }

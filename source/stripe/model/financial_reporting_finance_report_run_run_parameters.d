@@ -14,13 +14,13 @@ class FinancialReportingFinanceReportRunRunParameters {
    * Connected account ID by which to filter the report run.
    */
   @optional
-  Nullable!(string) connected_account;
+  string connected_account;
 
   /**
    * Category of balance transactions to be included in the report run.
    */
   @optional
-  Nullable!(string) reporting_category;
+  string reporting_category;
 
   /**
    * Starting timestamp of data to be included in the report run.
@@ -32,7 +32,7 @@ class FinancialReportingFinanceReportRunRunParameters {
    * Currency of objects to be included in the report run.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Defaults to `Etc/UTC`. The output timezone for all timestamps in the report. A list of
@@ -41,13 +41,13 @@ class FinancialReportingFinanceReportRunRunParameters {
    * `interval_end`.
    */
   @optional
-  Nullable!(string) timezone;
+  string timezone;
 
   /**
    * The set of output columns requested for inclusion in the report run.
    */
   @optional
-  Nullable!(string)[] columns;
+  string[] columns;
 
   /**
    * Ending timestamp of data to be included in the report run (exclusive).
@@ -59,6 +59,6 @@ class FinancialReportingFinanceReportRunRunParameters {
    * Payout ID by which to filter the report run.
    */
   @optional
-  Nullable!(string) payout;
+  string payout;
 
 }

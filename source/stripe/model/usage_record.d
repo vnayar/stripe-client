@@ -25,7 +25,7 @@ class UsageRecord {
    * The ID of the subscription item this usage record contains data for.
    */
   @optional
-  Nullable!(string) subscription_item;
+  string subscription_item;
 
   /**
    * The timestamp when this usage occurred.
@@ -43,12 +43,12 @@ class UsageRecord {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
 }

@@ -22,6 +22,6 @@ class PaymentMethodEps {
    * `sparda_bank_wien`, `volksbank_gruppe`, `volkskreditbank_ag`, or `vr_bank_braunau`.
    */
   @optional
-  Nullable!(string) bank;
+  string bank;
 
 }

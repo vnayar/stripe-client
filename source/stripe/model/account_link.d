@@ -30,12 +30,12 @@ class AccountLink {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * The URL for the account link.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
 }

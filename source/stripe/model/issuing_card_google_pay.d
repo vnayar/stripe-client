@@ -20,6 +20,6 @@ class IssuingCardGooglePay {
    * Reason the card is ineligible for Google Pay
    */
   @optional
-  Nullable!(string) ineligible_reason;
+  string ineligible_reason;
 
 }

@@ -15,13 +15,13 @@ class PaymentPagesCheckoutSessionConsent {
    * service.
    */
   @optional
-  Nullable!(string) terms_of_service;
+  string terms_of_service;
 
   /**
    * If `opt_in`, the customer consents to receiving promotional communications
    * from the merchant about this Checkout Session.
    */
   @optional
-  Nullable!(string) promotions;
+  string promotions;
 
 }

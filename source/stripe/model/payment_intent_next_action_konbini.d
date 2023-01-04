@@ -19,7 +19,7 @@ class PaymentIntentNextActionKonbini {
    * Konbini voucher.
    */
   @optional
-  Nullable!(string) hosted_voucher_url;
+  string hosted_voucher_url;
 
   /**
    * The timestamp at which the pending Konbini payment expires.

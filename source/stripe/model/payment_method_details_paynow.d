@@ -14,6 +14,6 @@ class PaymentMethodDetailsPaynow {
    * Reference number associated with this PayNow payment
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
 }

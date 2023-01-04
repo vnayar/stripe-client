@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -26,10 +27,10 @@ class V1AppsSecretsDeleteService {
   static class PostAppsSecretsDeleteBody {
     static class ScopeParam {
       @optional
-      Nullable!(string) type;
+      string type;
 
       @optional
-      Nullable!(string) user;
+      string user;
 
     }
 
@@ -44,13 +45,13 @@ class V1AppsSecretsDeleteService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * A name for the secret that's unique within the scope.
      */
     @optional
-    Nullable!(string) name;
+    string name;
 
   }
 
@@ -71,9 +72,11 @@ class V1AppsSecretsDeleteService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(AppsSecret)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 

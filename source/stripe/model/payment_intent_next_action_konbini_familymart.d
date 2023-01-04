@@ -14,12 +14,12 @@ class PaymentIntentNextActionKonbiniFamilymart {
    * The payment code.
    */
   @optional
-  Nullable!(string) payment_code;
+  string payment_code;
 
   /**
    * The confirmation number.
    */
   @optional
-  Nullable!(string) confirmation_number;
+  string confirmation_number;
 
 }

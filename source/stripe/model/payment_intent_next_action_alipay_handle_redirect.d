@@ -15,26 +15,26 @@ class PaymentIntentNextActionAlipayHandleRedirect {
    * this specified URL after completion.
    */
   @optional
-  Nullable!(string) return_url;
+  string return_url;
 
   /**
    * The native data to be used with Alipay SDK you must redirect your customer to in order to
    * authenticate the payment in an Android App.
    */
   @optional
-  Nullable!(string) native_data;
+  string native_data;
 
   /**
    * The native URL you must redirect your customer to in order to authenticate the payment in an
    * iOS App.
    */
   @optional
-  Nullable!(string) native_url;
+  string native_url;
 
   /**
    * The URL you must redirect your customer to in order to authenticate the payment.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
 }

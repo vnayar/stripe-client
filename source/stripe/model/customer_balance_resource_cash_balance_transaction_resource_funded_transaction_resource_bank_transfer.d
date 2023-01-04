@@ -16,13 +16,13 @@ class CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionReso
    * `eu_bank_transfer`, `gb_bank_transfer`, `jp_bank_transfer`, or `mx_bank_transfer`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * The user-supplied reference field on the bank transfer.
    */
   @optional
-  Nullable!(string) reference;
+  string reference;
 
   @optional
   CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransferResourceEuBankTransfer eu_bank_transfer;

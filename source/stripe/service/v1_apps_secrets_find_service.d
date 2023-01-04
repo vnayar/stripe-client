@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -27,12 +28,12 @@ class V1AppsSecretsFindService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A name for the secret that's unique within the scope.
      */
-    Nullable!(Nullable!(string)) name;
+    string name;
 
     /**
      * Specifies the scoping of the secret. Requests originating from UI extensions can only access
@@ -40,14 +41,14 @@ class V1AppsSecretsFindService {
      */
     static class ScopeParam {
       @optional
-      Nullable!(string) type;
+      string type;
 
       @optional
-      Nullable!(string) user;
+      string user;
 
     }
 
-    Nullable!(ScopeParam) scope_;
+    ScopeParam scope_;
 
   }
 
@@ -68,9 +69,11 @@ class V1AppsSecretsFindService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(AppsSecret)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -89,11 +92,11 @@ class V1AppsSecretsFindService {
         Servers.getServerUrl(),
         "/v1/apps/secrets/find");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.name.isNull)
-      requestor.setQueryParam("name", params.name.get.to!string);
+      requestor.setQueryParam!("deepObject")("name", params.name);
     if (!params.scope_.isNull)
-      requestor.setQueryParam("scope", params.scope_.get.to!string);
+      requestor.setQueryParam!("deepObject")("scope", params.scope_);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

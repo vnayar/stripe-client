@@ -29,7 +29,7 @@ class IssuingDispute {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -37,13 +37,13 @@ class IssuingDispute {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The currency the `transaction` was made in.
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The transaction being disputed.
@@ -68,7 +68,7 @@ class IssuingDispute {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * [Treasury](https://stripe.com/docs/api/treasury) details related to this dispute if it was
@@ -90,6 +90,6 @@ class IssuingDispute {
    * Current status of the dispute.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

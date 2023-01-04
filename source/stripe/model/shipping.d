@@ -15,13 +15,13 @@ class Shipping {
    * Recipient phone (including extension).
    */
   @optional
-  Nullable!(string) phone;
+  string phone;
 
   /**
    * The delivery service that shipped a physical product, such as Fedex, UPS, USPS, etc.
    */
   @optional
-  Nullable!(string) carrier;
+  string carrier;
 
   @optional
   Address address;
@@ -31,12 +31,12 @@ class Shipping {
    * tracking numbers were generated for this purchase, please separate them with commas.
    */
   @optional
-  Nullable!(string) tracking_number;
+  string tracking_number;
 
   /**
    * Recipient name.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
 }

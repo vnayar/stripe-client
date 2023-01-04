@@ -19,13 +19,13 @@ class SubscriptionItem {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The `subscription` this `subscription_item` belongs to.
    */
   @optional
-  Nullable!(string) subscription;
+  string subscription;
 
   /**
    * Set of [key-value pairs](https://stripe.com/docs/api/metadata) that you can attach to an
@@ -33,7 +33,7 @@ class SubscriptionItem {
    * structured format.
    */
   @optional
-  Nullable!(string)[string] metadata;
+  string[string] metadata;
 
   /**
    * The [quantity](https://stripe.com/docs/subscriptions/quantities) of the plan to which the
@@ -53,7 +53,7 @@ class SubscriptionItem {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.

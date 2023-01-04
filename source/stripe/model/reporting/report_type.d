@@ -24,14 +24,14 @@ class ReportingReportType {
    * `balance.summary.1`.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * List of column names that are included by default when this Report Type gets run. (If the
    * Report Type doesn't support the `columns` parameter, this will be null.)
    */
   @optional
-  Nullable!(string)[] default_columns;
+  string[] default_columns;
 
   /**
    * Most recent time for which this Report Type is available. Measured in seconds since the Unix
@@ -51,7 +51,7 @@ class ReportingReportType {
    * Human-readable name of the Report Type
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -64,7 +64,7 @@ class ReportingReportType {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * When this Report Type was latest updated. Measured in seconds since the Unix epoch.

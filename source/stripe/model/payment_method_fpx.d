@@ -17,6 +17,6 @@ class PaymentMethodFpx {
    * `deutsche_bank`, `maybank2e`, `pb_enterprise`, or `bank_of_china`.
    */
   @optional
-  Nullable!(string) bank;
+  string bank;
 
 }

@@ -17,7 +17,7 @@ class TreasuryReceivedCreditsResourceSourceFlowsDetails {
    * The type of the source flow that originated the ReceivedCredit.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   TreasuryOutboundPayment outbound_payment;

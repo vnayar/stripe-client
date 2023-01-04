@@ -27,7 +27,7 @@ class ReportingReportRun {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The file object representing the result of the report run (populated when
@@ -47,13 +47,13 @@ class ReportingReportRun {
    * `"balance.summary.1"`.
    */
   @optional
-  Nullable!(string) report_type;
+  string report_type;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Timestamp at which this run successfully finished (populated when
@@ -73,7 +73,7 @@ class ReportingReportRun {
    *  `status=failed`).
    */
   @optional
-  Nullable!(string) error;
+  string error;
 
   /**
    * Status of this report run. This will be `pending` when the run is initially created.
@@ -83,6 +83,6 @@ class ReportingReportRun {
    * `error` field will be populated.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

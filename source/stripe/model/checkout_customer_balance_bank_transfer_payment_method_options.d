@@ -16,7 +16,7 @@ class CheckoutCustomerBalanceBankTransferPaymentMethodOptions {
    * include: `eu_bank_transfer`, `gb_bank_transfer`, `jp_bank_transfer`, or `mx_bank_transfer`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * List of address types that should be returned in the financial_addresses response. If not
@@ -24,7 +24,7 @@ class CheckoutCustomerBalanceBankTransferPaymentMethodOptions {
    * Permitted values include: `sort_code`, `zengin`, `iban`, or `spei`.
    */
   @optional
-  Nullable!(string)[] requested_address_types;
+  string[] requested_address_types;
 
   @optional
   PaymentMethodOptionsCustomerBalanceEuBankAccount eu_bank_transfer;

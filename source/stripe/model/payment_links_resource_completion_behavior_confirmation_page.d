@@ -14,6 +14,6 @@ class PaymentLinksResourceCompletionBehaviorConfirmationPage {
    * The custom message that is displayed to the customer after the purchase is complete.
    */
   @optional
-  Nullable!(string) custom_message;
+  string custom_message;
 
 }

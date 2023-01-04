@@ -17,6 +17,6 @@ class RadarRadarOptions {
    * metadata and device details that help Radar make more accurate predictions on your payments.
    */
   @optional
-  Nullable!(string) session;
+  string session;
 
 }

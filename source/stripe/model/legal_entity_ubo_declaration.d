@@ -14,7 +14,7 @@ class LegalEntityUboDeclaration {
    * The IP address from which the beneficial owner attestation was made.
    */
   @optional
-  Nullable!(string) ip;
+  string ip;
 
   /**
    * The Unix timestamp marking when the beneficial owner attestation was made.
@@ -26,6 +26,6 @@ class LegalEntityUboDeclaration {
    * The user-agent string from the browser where the beneficial owner attestation was made.
    */
   @optional
-  Nullable!(string) user_agent;
+  string user_agent;
 
 }

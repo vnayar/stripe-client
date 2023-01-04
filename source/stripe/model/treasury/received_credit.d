@@ -27,14 +27,14 @@ class TreasuryReceivedCredit {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The Transaction associated with this object.
@@ -59,19 +59,19 @@ class TreasuryReceivedCredit {
    * The rails used to send the funds.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * The FinancialAccount that received the funds.
    */
   @optional
-  Nullable!(string) financial_account;
+  string financial_account;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   @optional
   TreasuryReceivedCreditsResourceLinkedFlows linked_flows;
@@ -80,7 +80,7 @@ class TreasuryReceivedCredit {
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -95,14 +95,14 @@ class TreasuryReceivedCredit {
    * licenses.
    */
   @optional
-  Nullable!(string) hosted_regulatory_receipt_url;
+  string hosted_regulatory_receipt_url;
 
   /**
    * Reason for the failure. A ReceivedCredit might fail because the receiving FinancialAccount is
    * closed or frozen.
    */
   @optional
-  Nullable!(string) failure_code;
+  string failure_code;
 
   @optional
   TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatingPaymentMethodDetails initiating_payment_method_details;
@@ -113,6 +113,6 @@ class TreasuryReceivedCredit {
    * `failure_code` field.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

@@ -15,13 +15,13 @@ class IssuingTransactionTreasury {
    * representing this Issuing transaction if it is a refund
    */
   @optional
-  Nullable!(string) received_credit;
+  string received_credit;
 
   /**
    * The Treasury [ReceivedDebit](https://stripe.com/docs/api/treasury/received_debits)
    * representing this Issuing transaction if it is a capture
    */
   @optional
-  Nullable!(string) received_debit;
+  string received_debit;
 
 }

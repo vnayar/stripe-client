@@ -15,12 +15,12 @@ class GelatoSelfieReportError {
    * your users.
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   /**
    * A short machine-readable string giving the reason for the verification failure.
    */
   @optional
-  Nullable!(string) code;
+  string code;
 
 }

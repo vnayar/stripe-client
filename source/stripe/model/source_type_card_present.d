@@ -11,72 +11,72 @@ import std.typecons : Nullable;
  */
 class SourceTypeCardPresent {
   @optional
-  Nullable!(string) reader;
+  string reader;
 
   @optional
-  Nullable!(string) application_cryptogram;
+  string application_cryptogram;
 
   @optional
-  Nullable!(string) country;
+  string country;
 
   @optional
-  Nullable!(string) read_method;
+  string read_method;
 
   @optional
-  Nullable!(string) pos_entry_mode;
+  string pos_entry_mode;
 
   @optional
-  Nullable!(string) evidence_customer_signature;
+  string evidence_customer_signature;
 
   @optional
   Nullable!(int) exp_month;
 
   @optional
-  Nullable!(string) dedicated_file_name;
+  string dedicated_file_name;
 
   @optional
   Nullable!(int) exp_year;
 
   @optional
-  Nullable!(string) brand;
+  string brand;
 
   @optional
-  Nullable!(string) authorization_response_code;
+  string authorization_response_code;
 
   @optional
-  Nullable!(string) funding;
+  string funding;
 
   @optional
-  Nullable!(string) cvm_type;
+  string cvm_type;
 
   @optional
-  Nullable!(string) data_type;
+  string data_type;
 
   @optional
-  Nullable!(string) evidence_transaction_certificate;
+  string evidence_transaction_certificate;
 
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   @optional
-  Nullable!(string) transaction_status_information;
+  string transaction_status_information;
 
   @optional
-  Nullable!(string) pos_device_id;
+  string pos_device_id;
 
   @optional
-  Nullable!(string) terminal_verification_results;
+  string terminal_verification_results;
 
   @optional
-  Nullable!(string) authorization_code;
+  string authorization_code;
 
   @optional
-  Nullable!(string) application_preferred_name;
+  string application_preferred_name;
 
   @optional
-  Nullable!(string) fingerprint;
+  string fingerprint;
 
   @optional
-  Nullable!(string) emv_auth_data;
+  string emv_auth_data;
 
 }

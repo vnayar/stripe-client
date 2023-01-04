@@ -16,14 +16,14 @@ class AccountBusinessProfile {
    * MCCs are used to classify businesses based on the goods or services they provide.
    */
   @optional
-  Nullable!(string) mcc;
+  string mcc;
 
   /**
    * Internal-only description of the product sold or service provided by the business. It's used
    * by Stripe for risk and underwriting purposes.
    */
   @optional
-  Nullable!(string) product_description;
+  string product_description;
 
   /**
    * A publicly available mailing address for sending support issues to.
@@ -35,30 +35,30 @@ class AccountBusinessProfile {
    * A publicly available website for handling support issues.
    */
   @optional
-  Nullable!(string) support_url;
+  string support_url;
 
   /**
    * The business's publicly available website.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
   /**
    * The customer-facing business name.
    */
   @optional
-  Nullable!(string) name;
+  string name;
 
   /**
    * A publicly available email address for sending support issues to.
    */
   @optional
-  Nullable!(string) support_email;
+  string support_email;
 
   /**
    * A publicly available phone number to call with support issues.
    */
   @optional
-  Nullable!(string) support_phone;
+  string support_phone;
 
 }

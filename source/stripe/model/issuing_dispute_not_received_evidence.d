@@ -28,18 +28,18 @@ class IssuingDisputeNotReceivedEvidence {
    * Description of the merchandise or service that was purchased.
    */
   @optional
-  Nullable!(string) product_description;
+  string product_description;
 
   /**
    * Whether the product was a merchandise or service.
    */
   @optional
-  Nullable!(string) product_type;
+  string product_type;
 
   /**
    * Explanation of why the cardholder is disputing this transaction.
    */
   @optional
-  Nullable!(string) explanation;
+  string explanation;
 
 }

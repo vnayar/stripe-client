@@ -24,6 +24,6 @@ class PortalLoginPage {
    * a link to their customer portal.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
 }

@@ -14,6 +14,6 @@ class CouponAppliesTo {
    * A list of product IDs this coupon applies to
    */
   @optional
-  Nullable!(string)[] products;
+  string[] products;
 
 }

@@ -69,7 +69,7 @@ class SetupAttemptPaymentMethodDetails {
    * confirmation-specific information for the payment method.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   @optional
   SetupAttemptPaymentMethodDetailsAcssDebit acss_debit;

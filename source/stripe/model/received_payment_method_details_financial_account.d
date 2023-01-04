@@ -15,12 +15,12 @@ class ReceivedPaymentMethodDetailsFinancialAccount {
    * `stripe`.
    */
   @optional
-  Nullable!(string) network;
+  string network;
 
   /**
    * The FinancialAccount ID.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
 }

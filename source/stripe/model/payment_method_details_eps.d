@@ -22,7 +22,7 @@ class PaymentMethodDetailsEps {
    * `sparda_bank_wien`, `volksbank_gruppe`, `volkskreditbank_ag`, or `vr_bank_braunau`.
    */
   @optional
-  Nullable!(string) bank;
+  string bank;
 
   /**
    * Owner's verified full name. Values are verified or provided by EPS directly
@@ -30,6 +30,6 @@ class PaymentMethodDetailsEps {
    * EPS rarely provides this information so the attribute is usually empty.
    */
   @optional
-  Nullable!(string) verified_name;
+  string verified_name;
 
 }

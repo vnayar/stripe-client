@@ -32,7 +32,7 @@ class IssuingAuthorizationPendingRequest {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * The amount the merchant is requesting to be authorized in the `merchant_currency`. The amount
@@ -45,7 +45,7 @@ class IssuingAuthorizationPendingRequest {
    * The local currency the merchant is requesting to authorize.
    */
   @optional
-  Nullable!(string) merchant_currency;
+  string merchant_currency;
 
   /**
    * Detailed breakdown of amount components. These amounts are denominated in `currency` and in

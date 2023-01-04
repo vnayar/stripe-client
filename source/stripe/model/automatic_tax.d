@@ -23,6 +23,6 @@ class AutomaticTax {
    * The status of the most recent automated tax calculation for this invoice.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

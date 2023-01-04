@@ -14,7 +14,7 @@ class InvoiceMandateOptionsCard {
    * A description of the mandate or subscription that is meant to be displayed to the customer.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Amount to be charged for future payments.
@@ -28,6 +28,6 @@ class InvoiceMandateOptionsCard {
    * for the `amount` param.
    */
   @optional
-  Nullable!(string) amount_type;
+  string amount_type;
 
 }

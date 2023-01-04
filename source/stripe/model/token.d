@@ -39,7 +39,7 @@ class Token {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   @optional
   Card card;
@@ -61,13 +61,13 @@ class Token {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * Type of the token: `account`, `bank_account`, `card`, or `pii`.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -79,6 +79,6 @@ class Token {
    * IP address of the client that generated the token.
    */
   @optional
-  Nullable!(string) client_ip;
+  string client_ip;
 
 }

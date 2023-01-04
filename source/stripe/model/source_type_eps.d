@@ -11,9 +11,9 @@ import std.typecons : Nullable;
  */
 class SourceTypeEps {
   @optional
-  Nullable!(string) statement_descriptor;
+  string statement_descriptor;
 
   @optional
-  Nullable!(string) reference;
+  string reference;
 
 }

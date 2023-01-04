@@ -14,18 +14,18 @@ class TreasurySharedResourceInitiatingPaymentMethodDetailsUsBankAccount {
    * The last four digits of the bank account number.
    */
   @optional
-  Nullable!(string) last4;
+  string last4;
 
   /**
    * Bank name.
    */
   @optional
-  Nullable!(string) bank_name;
+  string bank_name;
 
   /**
    * The routing number for the bank account.
    */
   @optional
-  Nullable!(string) routing_number;
+  string routing_number;
 
 }

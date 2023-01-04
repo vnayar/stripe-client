@@ -24,21 +24,21 @@ class IssuingAuthorizationRequest {
    * additional detail on the reason for the outcome.
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * If approve/decline decision is directly responsed to the webhook with json payload and if the
    * response is invalid (e.g., parsing errors), we surface the detailed message via this field.
    */
   @optional
-  Nullable!(string) reason_message;
+  string reason_message;
 
   /**
    * Whether this request was approved.
@@ -61,7 +61,7 @@ class IssuingAuthorizationRequest {
    * currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) merchant_currency;
+  string merchant_currency;
 
   /**
    * Detailed breakdown of amount components. These amounts are denominated in `currency` and in

@@ -14,18 +14,18 @@ class TaxIdVerification {
    * Verified address.
    */
   @optional
-  Nullable!(string) verified_address;
+  string verified_address;
 
   /**
    * Verified name.
    */
   @optional
-  Nullable!(string) verified_name;
+  string verified_name;
 
   /**
    * Verification status, one of `pending`, `verified`, `unverified`, or `unavailable`.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }

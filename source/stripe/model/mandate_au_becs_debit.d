@@ -15,6 +15,6 @@ class MandateAuBecsDebit {
    * and should be shared with them exclusively.
    */
   @optional
-  Nullable!(string) url;
+  string url;
 
 }

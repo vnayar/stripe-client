@@ -14,18 +14,18 @@ class CustomerTaxLocation {
    * The customer's country as identified by Stripe Tax.
    */
   @optional
-  Nullable!(string) country;
+  string country;
 
   /**
    * The data source used to infer the customer's location.
    */
   @optional
-  Nullable!(string) source;
+  string source;
 
   /**
    * The customer's state, county, province, or region as identified by Stripe Tax.
    */
   @optional
-  Nullable!(string) state;
+  string state;
 
 }

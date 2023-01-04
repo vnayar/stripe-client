@@ -18,7 +18,7 @@ class ChargeOutcome {
    * authorization, and may temporarily appear as "pending" on a cardholder's statement.
    */
   @optional
-  Nullable!(string) network_status;
+  string network_status;
 
   /**
    * Stripe Radar's evaluation of the riskiness of the payment. Possible values for evaluated
@@ -28,7 +28,7 @@ class ChargeOutcome {
    * `unknown`. This field is only available with Radar.
    */
   @optional
-  Nullable!(string) risk_level;
+  string risk_level;
 
   /**
    * An enumerated value providing a more detailed explanation of the outcome's `type`. Charges
@@ -38,7 +38,7 @@ class ChargeOutcome {
    * [understanding declines](https://stripe.com/docs/declines) for more details.
    */
   @optional
-  Nullable!(string) reason;
+  string reason;
 
   /**
    * The ID of the Radar rule that matched the payment, if applicable.
@@ -52,7 +52,7 @@ class ChargeOutcome {
    * reviews](https://stripe.com/docs/radar/reviews) for details.
    */
   @optional
-  Nullable!(string) type;
+  string type;
 
   /**
    * Stripe Radar's evaluation of the riskiness of the payment. Possible values for evaluated
@@ -68,6 +68,6 @@ class ChargeOutcome {
    * of the payment), not your customer.
    */
   @optional
-  Nullable!(string) seller_message;
+  string seller_message;
 
 }

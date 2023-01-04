@@ -15,7 +15,7 @@ class UsageRecordSummary {
    * The invoice in which this usage period has been billed for.
    */
   @optional
-  Nullable!(string) invoice;
+  string invoice;
 
   @optional
   Period period;
@@ -24,7 +24,7 @@ class UsageRecordSummary {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * The total usage within this usage period.
@@ -36,7 +36,7 @@ class UsageRecordSummary {
    * The ID of the subscription item this summary is describing.
    */
   @optional
-  Nullable!(string) subscription_item;
+  string subscription_item;
 
   /**
    * Has the value `true` if the object exists in live mode or the value `false` if the object
@@ -49,6 +49,6 @@ class UsageRecordSummary {
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
 }

@@ -9,6 +9,7 @@ import vibe.data.json : Json, deserializeJson;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
+import openapi_client.util : isNull;
 import openapi_client.apirequest : ApiRequest;
 import openapi_client.handler : ResponseHandler;
 
@@ -29,7 +30,7 @@ class V1PaymentLinksService {
      * Only return payment links that are active or inactive (e.g., pass `false` to list all
      * inactive payment links).
      */
-    Nullable!(Nullable!(bool)) active;
+    Nullable!(bool) active;
 
     /**
      * A cursor for use in pagination. `ending_before` is an object ID that defines your place in
@@ -37,18 +38,18 @@ class V1PaymentLinksService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -56,7 +57,7 @@ class V1PaymentLinksService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -74,7 +75,7 @@ class V1PaymentLinksService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       @optional
       PaymentLink[] data;
@@ -83,7 +84,7 @@ class V1PaymentLinksService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -102,9 +103,11 @@ class V1PaymentLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentLinksResourcePaymentLinkList)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -123,15 +126,15 @@ class V1PaymentLinksService {
         Servers.getServerUrl(),
         "/v1/payment_links");
     if (!params.active.isNull)
-      requestor.setQueryParam("active", params.active.get.to!string);
+      requestor.setQueryParam!("deepObject")("active", params.active);
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -141,7 +144,7 @@ class V1PaymentLinksService {
      * Configuration for collecting the customer's billing address.
      */
     @optional
-    Nullable!(string) billing_address_collection;
+    string billing_address_collection;
 
     static class CustomTextParam {
       @optional
@@ -160,10 +163,10 @@ class V1PaymentLinksService {
 
     static class ConsentCollectionParams {
       @optional
-      Nullable!(string) terms_of_service;
+      string terms_of_service;
 
       @optional
-      Nullable!(string) promotions;
+      string promotions;
 
     }
 
@@ -183,15 +186,15 @@ class V1PaymentLinksService {
      * trial](https://stripe.com/docs/payments/checkout/free-trials).
      */
     @optional
-    Nullable!(string) payment_method_collection;
+    string payment_method_collection;
 
     static class AfterCompletionParams {
       @optional
-      Nullable!(string) type;
+      string type;
 
       static class AfterCompletionConfirmationPageParams {
         @optional
-        Nullable!(string) custom_message;
+        string custom_message;
 
       }
 
@@ -200,7 +203,7 @@ class V1PaymentLinksService {
 
       static class AfterCompletionRedirectParams {
         @optional
-        Nullable!(string) url;
+        string url;
 
       }
 
@@ -219,11 +222,11 @@ class V1PaymentLinksService {
      * The account on behalf of which to charge.
      */
     @optional
-    Nullable!(string) on_behalf_of;
+    string on_behalf_of;
 
     static class ShippingOptionParams {
       @optional
-      Nullable!(string) shipping_rate;
+      string shipping_rate;
 
     }
 
@@ -255,7 +258,7 @@ class V1PaymentLinksService {
      * sessions](https://stripe.com/docs/api/checkout/sessions) created by this payment link.
      */
     @optional
-    Nullable!(string)[string] metadata;
+    string[string] metadata;
 
     /**
      * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
@@ -263,7 +266,7 @@ class V1PaymentLinksService {
      * by each line item's price.
      */
     @optional
-    Nullable!(string) currency;
+    string currency;
 
     /**
      * Enables user redeemable promotion codes.
@@ -285,7 +288,7 @@ class V1PaymentLinksService {
       Nullable!(int) quantity;
 
       @optional
-      Nullable!(string) price;
+      string price;
 
       static class AdjustableQuantityParams {
         @optional
@@ -313,10 +316,10 @@ class V1PaymentLinksService {
 
     static class PaymentIntentDataParams {
       @optional
-      Nullable!(string) setup_future_usage;
+      string setup_future_usage;
 
       @optional
-      Nullable!(string) capture_method;
+      string capture_method;
 
     }
 
@@ -331,18 +334,18 @@ class V1PaymentLinksService {
      * Specifies which fields in the response should be expanded.
      */
     @optional
-    Nullable!(string)[] expand;
+    string[] expand;
 
     /**
      * Configures whether [checkout sessions](https://stripe.com/docs/api/checkout/sessions) created
      * by this payment link create a [Customer](https://stripe.com/docs/api/customers).
      */
     @optional
-    Nullable!(string) customer_creation;
+    string customer_creation;
 
     static class SubscriptionDataParams {
       @optional
-      Nullable!(string) description;
+      string description;
 
       @optional
       Nullable!(int) trial_period_days;
@@ -374,7 +377,7 @@ class V1PaymentLinksService {
       Nullable!(int) amount;
 
       @optional
-      Nullable!(string) destination;
+      string destination;
 
     }
 
@@ -400,11 +403,11 @@ class V1PaymentLinksService {
      * `donate.stripe.com`).
      */
     @optional
-    Nullable!(string) submit_type;
+    string submit_type;
 
     static class ShippingAddressCollectionParams {
       @optional
-      Nullable!(string)[] allowed_countries;
+      string[] allowed_countries;
 
     }
 
@@ -434,7 +437,7 @@ class V1PaymentLinksService {
      * od-product-support)).
      */
     @optional
-    Nullable!(string)[] payment_method_types;
+    string[] payment_method_types;
 
   }
 
@@ -455,9 +458,11 @@ class V1PaymentLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentLink)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -484,11 +489,11 @@ class V1PaymentLinksService {
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      */
-    Nullable!(Nullable!(string)) payment_link;
+    string payment_link;
 
   }
 
@@ -509,9 +514,11 @@ class V1PaymentLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentLink)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -530,9 +537,9 @@ class V1PaymentLinksService {
         Servers.getServerUrl(),
         "/v1/payment_links/{payment_link}");
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.payment_link.isNull)
-      requestor.setPathParam("payment_link", params.payment_link.get.to!string);
+      requestor.setPathParam("payment_link", params.payment_link);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -540,7 +547,7 @@ class V1PaymentLinksService {
   static class PostPaymentLinksPaymentLinkParams {
     /**
      */
-    Nullable!(Nullable!(string)) payment_link;
+    string payment_link;
 
   }
 
@@ -561,9 +568,11 @@ class V1PaymentLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentLink)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -582,7 +591,7 @@ class V1PaymentLinksService {
         Servers.getServerUrl(),
         "/v1/payment_links/{payment_link}");
     if (!params.payment_link.isNull)
-      requestor.setPathParam("payment_link", params.payment_link.get.to!string);
+      requestor.setPathParam("payment_link", params.payment_link);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
@@ -594,22 +603,22 @@ class V1PaymentLinksService {
      * `obj_bar`, your subsequent call can include `ending_before=obj_bar` in order to fetch the
      * previous page of the list.
      */
-    Nullable!(Nullable!(string)) ending_before;
+    string ending_before;
 
     /**
      * Specifies which fields in the response should be expanded.
      */
-    Nullable!(Nullable!(string)[]) expand;
+    string[] expand;
 
     /**
      * A limit on the number of objects to be returned. Limit can range between 1 and 100, and the
      * default is 10.
      */
-    Nullable!(Nullable!(int)) limit;
+    Nullable!(int) limit;
 
     /**
      */
-    Nullable!(Nullable!(string)) payment_link;
+    string payment_link;
 
     /**
      * A cursor for use in pagination. `starting_after` is an object ID that defines your place in
@@ -617,7 +626,7 @@ class V1PaymentLinksService {
      * `obj_foo`, your subsequent call can include `starting_after=obj_foo` in order to fetch the
      * next page of the list.
      */
-    Nullable!(Nullable!(string)) starting_after;
+    string starting_after;
 
   }
 
@@ -635,7 +644,7 @@ class V1PaymentLinksService {
        * has the value `list`.
        */
       @optional
-      Nullable!(string) object;
+      string object;
 
       /**
        * Details about each object.
@@ -647,7 +656,7 @@ class V1PaymentLinksService {
        * The URL where this list can be accessed.
        */
       @optional
-      Nullable!(string) url;
+      string url;
 
     }
 
@@ -666,9 +675,11 @@ class V1PaymentLinksService {
      */
     void handleResponse(HTTPClientResponse res) {
       if (res.statusCode >= 200 && res.statusCode <= 200) {
+        if (handleResponse200 is null) throw new Exception("Unhandled response status code 200");
         handleResponse200(deserializeJson!(PaymentLinksResourceListLineItems)(res.readJson()));
         return;
       }
+      if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
@@ -689,15 +700,15 @@ class V1PaymentLinksService {
         Servers.getServerUrl(),
         "/v1/payment_links/{payment_link}/line_items");
     if (!params.ending_before.isNull)
-      requestor.setQueryParam("ending_before", params.ending_before.get.to!string);
+      requestor.setQueryParam!("deepObject")("ending_before", params.ending_before);
     if (!params.expand.isNull)
-      requestor.setQueryParam("expand", params.expand.get.to!string);
+      requestor.setQueryParam!("deepObject")("expand", params.expand);
     if (!params.limit.isNull)
-      requestor.setQueryParam("limit", params.limit.get.to!string);
+      requestor.setQueryParam!("deepObject")("limit", params.limit);
     if (!params.payment_link.isNull)
-      requestor.setPathParam("payment_link", params.payment_link.get.to!string);
+      requestor.setPathParam("payment_link", params.payment_link);
     if (!params.starting_after.isNull)
-      requestor.setQueryParam("starting_after", params.starting_after.get.to!string);
+      requestor.setQueryParam!("deepObject")("starting_after", params.starting_after);
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }

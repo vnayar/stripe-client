@@ -16,7 +16,7 @@ class SourceOrder {
    * The email address of the customer placing the order.
    */
   @optional
-  Nullable!(string) email;
+  string email;
 
   @optional
   Shipping shipping;
@@ -33,7 +33,7 @@ class SourceOrder {
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * List of items constituting the order.

@@ -51,6 +51,6 @@ class PersonRelationship {
    * The person's title (e.g., CEO, Support Engineer).
    */
   @optional
-  Nullable!(string) title;
+  string title;
 
 }

@@ -37,7 +37,7 @@ class TreasuryTransaction {
      * has the value `list`.
      */
     @optional
-    Nullable!(string) object;
+    string object;
 
     /**
      * Details about each object.
@@ -49,7 +49,7 @@ class TreasuryTransaction {
      * The URL where this list can be accessed.
      */
     @optional
-    Nullable!(string) url;
+    string url;
 
   }
 
@@ -64,20 +64,20 @@ class TreasuryTransaction {
    * Unique identifier for the object.
    */
   @optional
-  Nullable!(string) id;
+  string id;
 
   /**
    * Type of the flow that created the Transaction.
    */
   @optional
-  Nullable!(string) flow_type;
+  string flow_type;
 
   /**
    * Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in
    * lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).
    */
   @optional
-  Nullable!(string) currency;
+  string currency;
 
   /**
    * Details of the flow that created the Transaction.
@@ -99,19 +99,19 @@ class TreasuryTransaction {
    * The FinancialAccount associated with this object.
    */
   @optional
-  Nullable!(string) financial_account;
+  string financial_account;
 
   /**
    * String representing the object's type. Objects of the same type share the same value.
    */
   @optional
-  Nullable!(string) object;
+  string object;
 
   /**
    * An arbitrary string attached to the object. Often useful for displaying to users.
    */
   @optional
-  Nullable!(string) description;
+  string description;
 
   /**
    * Time at which the object was created. Measured in seconds since the Unix epoch.
@@ -123,12 +123,12 @@ class TreasuryTransaction {
    * ID of the flow that created the Transaction.
    */
   @optional
-  Nullable!(string) flow;
+  string flow;
 
   /**
    * Status of the Transaction.
    */
   @optional
-  Nullable!(string) status;
+  string status;
 
 }
