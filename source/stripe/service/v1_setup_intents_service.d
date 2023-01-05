@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -40,6 +41,8 @@ class V1SetupIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSetupIntentsIntentResponseHandler : ResponseHandler {
@@ -66,6 +69,8 @@ class V1SetupIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -101,6 +106,8 @@ class V1SetupIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostSetupIntentsIntentResponseHandler : ResponseHandler {
@@ -127,6 +134,8 @@ class V1SetupIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -201,6 +210,8 @@ class V1SetupIntentsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSetupIntentsResponseHandler : ResponseHandler {
@@ -228,6 +239,8 @@ class V1SetupIntentsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -252,6 +265,8 @@ class V1SetupIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -312,6 +327,8 @@ class V1SetupIntentsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -336,6 +353,8 @@ class V1SetupIntentsService {
     /**
      */
     string intent;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -363,6 +382,8 @@ class V1SetupIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -399,6 +420,8 @@ class V1SetupIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostSetupIntentsIntentCancelResponseHandler : ResponseHandler {
@@ -425,6 +448,8 @@ class V1SetupIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -455,6 +480,8 @@ class V1SetupIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostSetupIntentsIntentVerifyMicrodepositsResponseHandler : ResponseHandler {
@@ -482,6 +509,8 @@ class V1SetupIntentsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -501,5 +530,7 @@ class V1SetupIntentsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

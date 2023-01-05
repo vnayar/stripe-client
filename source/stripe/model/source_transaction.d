@@ -3,6 +3,7 @@ module stripe.model.source_transaction;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -91,5 +92,7 @@ class SourceTransaction {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

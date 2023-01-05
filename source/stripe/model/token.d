@@ -3,6 +3,7 @@ module stripe.model.token;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -80,5 +81,7 @@ class Token {
    */
   @optional
   string client_ip;
+
+  mixin AddBuilder!(typeof(this));
 
 }

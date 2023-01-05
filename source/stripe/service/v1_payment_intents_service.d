@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -28,6 +29,8 @@ class V1PaymentIntentsService {
     /**
      */
     string intent;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -71,6 +74,8 @@ class V1PaymentIntentsService {
       @optional
       Nullable!(int) amount;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -90,6 +95,8 @@ class V1PaymentIntentsService {
      */
     @optional
     Nullable!(int) application_fee_amount;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -117,6 +124,8 @@ class V1PaymentIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -168,6 +177,8 @@ class V1PaymentIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPaymentIntentsIntentVerifyMicrodepositsResponseHandler : ResponseHandler {
@@ -195,6 +206,8 @@ class V1PaymentIntentsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -219,6 +232,8 @@ class V1PaymentIntentsService {
     /**
      */
     string intent;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -246,6 +261,8 @@ class V1PaymentIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -306,6 +323,8 @@ class V1PaymentIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPaymentIntentsIntentResponseHandler : ResponseHandler {
@@ -332,6 +351,8 @@ class V1PaymentIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -367,6 +388,8 @@ class V1PaymentIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPaymentIntentsIntentResponseHandler : ResponseHandler {
@@ -393,6 +416,8 @@ class V1PaymentIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -424,6 +449,8 @@ class V1PaymentIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPaymentIntentsIntentCaptureResponseHandler : ResponseHandler {
@@ -450,6 +477,8 @@ class V1PaymentIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -481,6 +510,8 @@ class V1PaymentIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPaymentIntentsIntentCancelResponseHandler : ResponseHandler {
@@ -507,6 +538,8 @@ class V1PaymentIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -542,6 +575,8 @@ class V1PaymentIntentsService {
      */
     string intent;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPaymentIntentsIntentApplyCustomerBalanceResponseHandler : ResponseHandler {
@@ -568,6 +603,8 @@ class V1PaymentIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -628,6 +665,8 @@ class V1PaymentIntentsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPaymentIntentsResponseHandler : ResponseHandler {
@@ -655,6 +694,8 @@ class V1PaymentIntentsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -679,6 +720,8 @@ class V1PaymentIntentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -746,15 +789,21 @@ class V1PaymentIntentsService {
           @optional
           string ip_address;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
         OnlineParam online;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       CustomerAcceptanceParam customer_acceptance;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -795,6 +844,8 @@ class V1PaymentIntentsService {
         @optional
         string bank;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -812,6 +863,8 @@ class V1PaymentIntentsService {
 
         @optional
         string account_number;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -858,6 +911,8 @@ class V1PaymentIntentsService {
         @optional
         string session;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -891,6 +946,8 @@ class V1PaymentIntentsService {
         @optional
         string name;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -920,6 +977,8 @@ class V1PaymentIntentsService {
       @optional
       Json grabpay;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -936,6 +995,8 @@ class V1PaymentIntentsService {
     static class AutomaticPaymentMethodsParam {
       @optional
       Nullable!(bool) enabled;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -993,6 +1054,8 @@ class V1PaymentIntentsService {
       @optional
       string session;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -1008,6 +1071,8 @@ class V1PaymentIntentsService {
 
       @optional
       string destination;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -1180,6 +1245,8 @@ class V1PaymentIntentsService {
       @optional
       Json grabpay;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -1259,6 +1326,8 @@ class V1PaymentIntentsService {
         @optional
         string state;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -1269,6 +1338,8 @@ class V1PaymentIntentsService {
 
       @optional
       string name;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -1285,6 +1356,8 @@ class V1PaymentIntentsService {
      */
     @optional
     string[] payment_method_types;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1313,6 +1386,8 @@ class V1PaymentIntentsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -1340,5 +1415,7 @@ class V1PaymentIntentsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

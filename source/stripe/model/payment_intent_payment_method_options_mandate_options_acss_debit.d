@@ -3,6 +3,7 @@ module stripe.model.payment_intent_payment_method_options_mandate_options_acss_d
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -34,5 +35,7 @@ class PaymentIntentPaymentMethodOptionsMandateOptionsAcssDebit {
    */
   @optional
   string payment_schedule;
+
+  mixin AddBuilder!(typeof(this));
 
 }

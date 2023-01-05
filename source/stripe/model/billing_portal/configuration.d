@@ -3,6 +3,7 @@ module stripe.model.billing_portal.configuration;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -92,5 +93,7 @@ class BillingPortalConfiguration {
    */
   @optional
   string default_return_url;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.quotes_resource_subscription_data_subscription_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -31,5 +32,7 @@ class QuotesResourceSubscriptionDataSubscriptionData {
    */
   @optional
   Nullable!(long) effective_date;
+
+  mixin AddBuilder!(typeof(this));
 
 }

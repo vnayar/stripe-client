@@ -3,6 +3,7 @@ module stripe.model.deleted_webhook_endpoint;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class DeletedWebhookEndpoint {
    */
   @optional
   Nullable!(bool) deleted;
+
+  mixin AddBuilder!(typeof(this));
 
 }

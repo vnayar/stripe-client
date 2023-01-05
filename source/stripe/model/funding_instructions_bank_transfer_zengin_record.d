@@ -3,6 +3,7 @@ module stripe.model.funding_instructions_bank_transfer_zengin_record;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -52,5 +53,7 @@ class FundingInstructionsBankTransferZenginRecord {
    */
   @optional
   string account_type;
+
+  mixin AddBuilder!(typeof(this));
 
 }

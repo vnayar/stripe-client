@@ -3,6 +3,7 @@ module stripe.model.issuing.settlement;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -112,5 +113,7 @@ class IssuingSettlement {
    */
   @optional
   string settlement_service;
+
+  mixin AddBuilder!(typeof(this));
 
 }

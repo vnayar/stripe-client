@@ -3,6 +3,7 @@ module stripe.model.credit_note;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -108,6 +109,8 @@ class CreditNote {
      */
     @optional
     string url;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -222,5 +225,7 @@ class CreditNote {
    */
   @optional
   string memo;
+
+  mixin AddBuilder!(typeof(this));
 
 }

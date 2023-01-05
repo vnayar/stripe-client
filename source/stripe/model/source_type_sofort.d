@@ -3,6 +3,7 @@ module stripe.model.source_type_sofort;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -30,5 +31,7 @@ class SourceTypeSofort {
 
   @optional
   string preferred_language;
+
+  mixin AddBuilder!(typeof(this));
 
 }

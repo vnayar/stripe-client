@@ -3,6 +3,7 @@ module stripe.model.subscriptions_resource_payment_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class SubscriptionsResourcePaymentSettings {
    */
   @optional
   string save_default_payment_method;
+
+  mixin AddBuilder!(typeof(this));
 
 }

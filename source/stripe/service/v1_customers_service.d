@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -54,6 +55,8 @@ class V1CustomersService {
      */
     string subscription_exposed_id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerSubscriptionsSubscriptionExposedIdResponseHandler : ResponseHandler {
@@ -80,6 +83,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -114,6 +119,8 @@ class V1CustomersService {
      */
     string subscription_exposed_id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerSubscriptionsSubscriptionExposedIdResponseHandler : ResponseHandler {
@@ -140,6 +147,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -175,6 +184,8 @@ class V1CustomersService {
      */
     string subscription_exposed_id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdResponseHandler : ResponseHandler {
@@ -201,6 +212,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -282,6 +295,8 @@ class V1CustomersService {
      */
     string test_clock;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersResponseHandler : ResponseHandler {
@@ -309,6 +324,8 @@ class V1CustomersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -333,6 +350,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -392,6 +411,8 @@ class V1CustomersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -423,6 +444,8 @@ class V1CustomersService {
      */
     string transaction;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerBalanceTransactionsTransactionResponseHandler : ResponseHandler {
@@ -449,6 +472,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -484,6 +509,8 @@ class V1CustomersService {
      */
     string transaction;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerBalanceTransactionsTransactionResponseHandler : ResponseHandler {
@@ -510,6 +537,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -544,6 +573,8 @@ class V1CustomersService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerDiscountResponseHandler : ResponseHandler {
@@ -571,6 +602,8 @@ class V1CustomersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -596,6 +629,8 @@ class V1CustomersService {
     /**
      */
     string customer;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -623,6 +658,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -676,6 +713,8 @@ class V1CustomersService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerCardsResponseHandler : ResponseHandler {
@@ -703,6 +742,8 @@ class V1CustomersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -727,6 +768,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -764,6 +807,8 @@ class V1CustomersService {
      */
     string customer;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerCardsResponseHandler : ResponseHandler {
@@ -790,6 +835,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -848,6 +895,8 @@ class V1CustomersService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerSubscriptionsResponseHandler : ResponseHandler {
@@ -878,6 +927,8 @@ class V1CustomersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -902,6 +953,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -939,6 +992,8 @@ class V1CustomersService {
      */
     string customer;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerSubscriptionsResponseHandler : ResponseHandler {
@@ -965,6 +1020,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1023,6 +1080,8 @@ class V1CustomersService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerSourcesResponseHandler : ResponseHandler {
@@ -1053,6 +1112,8 @@ class V1CustomersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -1077,6 +1138,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1113,6 +1176,8 @@ class V1CustomersService {
      */
     string customer;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerSourcesResponseHandler : ResponseHandler {
@@ -1139,6 +1204,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1179,6 +1246,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerBankAccountsIdResponseHandler : ResponseHandler {
@@ -1205,6 +1274,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1241,6 +1312,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerBankAccountsIdResponseHandler : ResponseHandler {
@@ -1267,6 +1340,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1299,6 +1374,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteCustomersCustomerBankAccountsIdResponseHandler : ResponseHandler {
@@ -1325,6 +1402,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1362,6 +1441,8 @@ class V1CustomersService {
      */
     string payment_method;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerPaymentMethodsPaymentMethodResponseHandler : ResponseHandler {
@@ -1388,6 +1469,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1427,6 +1510,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerCardsIdResponseHandler : ResponseHandler {
@@ -1453,6 +1538,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1488,6 +1575,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerCardsIdResponseHandler : ResponseHandler {
@@ -1514,6 +1603,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1546,6 +1637,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteCustomersCustomerCardsIdResponseHandler : ResponseHandler {
@@ -1572,6 +1665,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1604,6 +1699,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerBankAccountsIdVerifyResponseHandler : ResponseHandler {
@@ -1630,6 +1727,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1663,6 +1762,8 @@ class V1CustomersService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerCashBalanceResponseHandler : ResponseHandler {
@@ -1689,6 +1790,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1717,6 +1820,8 @@ class V1CustomersService {
      */
     string customer;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerCashBalanceResponseHandler : ResponseHandler {
@@ -1743,6 +1848,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1778,6 +1885,8 @@ class V1CustomersService {
      */
     string transaction;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerCashBalanceTransactionsTransactionResponseHandler : ResponseHandler {
@@ -1804,6 +1913,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1862,6 +1973,8 @@ class V1CustomersService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerCashBalanceTransactionsResponseHandler : ResponseHandler {
@@ -1892,6 +2005,8 @@ class V1CustomersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -1916,6 +2031,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1960,6 +2077,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerSourcesIdResponseHandler : ResponseHandler {
@@ -1986,6 +2105,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2020,6 +2141,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerSourcesIdResponseHandler : ResponseHandler {
@@ -2046,6 +2169,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2078,6 +2203,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteCustomersCustomerSourcesIdResponseHandler : ResponseHandler {
@@ -2104,6 +2231,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2159,6 +2288,8 @@ class V1CustomersService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerBankAccountsResponseHandler : ResponseHandler {
@@ -2189,6 +2320,8 @@ class V1CustomersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -2213,6 +2346,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2250,6 +2385,8 @@ class V1CustomersService {
      */
     string customer;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerBankAccountsResponseHandler : ResponseHandler {
@@ -2276,6 +2413,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2311,6 +2450,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerSourcesIdVerifyResponseHandler : ResponseHandler {
@@ -2337,6 +2478,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2374,6 +2517,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerTaxIdsIdResponseHandler : ResponseHandler {
@@ -2400,6 +2545,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2434,6 +2581,8 @@ class V1CustomersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteCustomersCustomerTaxIdsIdResponseHandler : ResponseHandler {
@@ -2460,6 +2609,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2522,6 +2673,8 @@ class V1CustomersService {
      */
     string type;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerPaymentMethodsResponseHandler : ResponseHandler {
@@ -2549,6 +2702,8 @@ class V1CustomersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -2573,6 +2728,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2618,6 +2775,8 @@ class V1CustomersService {
      */
     string subscription_exposed_id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountResponseHandler : ResponseHandler {
@@ -2644,6 +2803,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2677,6 +2838,8 @@ class V1CustomersService {
      */
     string subscription_exposed_id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteCustomersCustomerSubscriptionsSubscriptionExposedIdDiscountResponseHandler : ResponseHandler {
@@ -2703,6 +2866,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2737,6 +2902,8 @@ class V1CustomersService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerResponseHandler : ResponseHandler {
@@ -2763,6 +2930,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2791,6 +2960,8 @@ class V1CustomersService {
      */
     string customer;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerResponseHandler : ResponseHandler {
@@ -2817,6 +2988,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2853,6 +3026,8 @@ class V1CustomersService {
      */
     string customer;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteCustomersCustomerResponseHandler : ResponseHandler {
@@ -2880,6 +3055,8 @@ class V1CustomersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -2905,6 +3082,8 @@ class V1CustomersService {
     /**
      */
     string customer;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2939,10 +3118,14 @@ class V1CustomersService {
         @optional
         string country;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       EuBankAccountParams eu_bank_transfer;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -2951,6 +3134,8 @@ class V1CustomersService {
      */
     @optional
     BankTransferParams bank_transfer;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -2978,6 +3163,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -3038,6 +3225,8 @@ class V1CustomersService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerTaxIdsResponseHandler : ResponseHandler {
@@ -3068,6 +3257,8 @@ class V1CustomersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -3092,6 +3283,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -3126,6 +3319,8 @@ class V1CustomersService {
      */
     string customer;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerTaxIdsBody {
@@ -3153,6 +3348,8 @@ class V1CustomersService {
     @optional
     string value;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerTaxIdsResponseHandler : ResponseHandler {
@@ -3179,6 +3376,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -3234,6 +3433,8 @@ class V1CustomersService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCustomersCustomerBalanceTransactionsResponseHandler : ResponseHandler {
@@ -3264,6 +3465,8 @@ class V1CustomersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -3288,6 +3491,8 @@ class V1CustomersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -3322,6 +3527,8 @@ class V1CustomersService {
     /**
      */
     string customer;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -3364,6 +3571,8 @@ class V1CustomersService {
     @optional
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCustomersCustomerBalanceTransactionsResponseHandler : ResponseHandler {
@@ -3391,6 +3600,8 @@ class V1CustomersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -3413,5 +3624,7 @@ class V1CustomersService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

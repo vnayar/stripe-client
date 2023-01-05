@@ -3,6 +3,7 @@ module stripe.model.subscription_schedule_phase_configuration;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -163,5 +164,7 @@ class SubscriptionSchedulePhaseConfiguration {
    */
   @optional
   Nullable!(long) trial_end;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.issuing_cardholder_id_document;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class IssuingCardholderIdDocument {
    */
   @optional
   Json back;
+
+  mixin AddBuilder!(typeof(this));
 
 }

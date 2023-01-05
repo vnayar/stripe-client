@@ -3,6 +3,7 @@ module stripe.model.account_bacs_debit_payments_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -16,5 +17,7 @@ class AccountBacsDebitPaymentsSettings {
    */
   @optional
   string display_name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

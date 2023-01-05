@@ -3,6 +3,7 @@ module stripe.model.setup_intent;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -210,5 +211,7 @@ class SetupIntent {
    */
   @optional
   Json mandate;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.issuing_card_authorization_controls;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -42,5 +43,7 @@ class IssuingCardAuthorizationControls {
    */
   @optional
   string spending_limits_currency;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.source_type_card;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -51,5 +52,7 @@ class SourceTypeCard {
 
   @optional
   string fingerprint;
+
+  mixin AddBuilder!(typeof(this));
 
 }

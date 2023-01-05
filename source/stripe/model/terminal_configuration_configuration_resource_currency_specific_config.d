@@ -3,6 +3,7 @@ module stripe.model.terminal_configuration_configuration_resource_currency_speci
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class TerminalConfigurationConfigurationResourceCurrencySpecificConfig {
    */
   @optional
   Nullable!(int) smart_tip_threshold;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.apple_pay_domain;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -37,5 +38,7 @@ class ApplePayDomain {
 
   @optional
   string domain_name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

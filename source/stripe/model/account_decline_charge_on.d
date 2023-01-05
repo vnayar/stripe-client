@@ -3,6 +3,7 @@ module stripe.model.account_decline_charge_on;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -23,5 +24,7 @@ class AccountDeclineChargeOn {
    */
   @optional
   Nullable!(bool) avs_failure;
+
+  mixin AddBuilder!(typeof(this));
 
 }

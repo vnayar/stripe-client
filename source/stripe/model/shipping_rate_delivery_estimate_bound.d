@@ -3,6 +3,7 @@ module stripe.model.shipping_rate_delivery_estimate_bound;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class ShippingRateDeliveryEstimateBound {
    */
   @optional
   Nullable!(int) value;
+
+  mixin AddBuilder!(typeof(this));
 
 }

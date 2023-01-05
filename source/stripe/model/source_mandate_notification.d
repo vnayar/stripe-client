@@ -3,6 +3,7 @@ module stripe.model.source_mandate_notification;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -82,5 +83,7 @@ class SourceMandateNotification {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

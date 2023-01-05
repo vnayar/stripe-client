@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -68,6 +69,8 @@ class V1AccountLinksService {
     @optional
     string return_url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountLinksResponseHandler : ResponseHandler {
@@ -95,6 +98,8 @@ class V1AccountLinksService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -114,5 +119,7 @@ class V1AccountLinksService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.country_spec;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -64,5 +65,7 @@ class CountrySpec {
    */
   @optional
   string[][string] supported_bank_account_currencies;
+
+  mixin AddBuilder!(typeof(this));
 
 }

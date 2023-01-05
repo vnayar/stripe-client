@@ -3,6 +3,7 @@ module stripe.model.person_relationship;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -52,5 +53,7 @@ class PersonRelationship {
    */
   @optional
   string title;
+
+  mixin AddBuilder!(typeof(this));
 
 }

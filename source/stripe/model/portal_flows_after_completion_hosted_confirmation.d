@@ -3,6 +3,7 @@ module stripe.model.portal_flows_after_completion_hosted_confirmation;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -15,5 +16,7 @@ class PortalFlowsAfterCompletionHostedConfirmation {
    */
   @optional
   string custom_message;
+
+  mixin AddBuilder!(typeof(this));
 
 }

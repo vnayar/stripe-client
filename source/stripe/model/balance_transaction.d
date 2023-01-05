@@ -3,6 +3,7 @@ module stripe.model.balance_transaction;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -139,5 +140,7 @@ class BalanceTransaction {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

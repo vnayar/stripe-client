@@ -3,6 +3,7 @@ module stripe.model.payment_intent_next_action_alipay_handle_redirect;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -36,5 +37,7 @@ class PaymentIntentNextActionAlipayHandleRedirect {
    */
   @optional
   string url;
+
+  mixin AddBuilder!(typeof(this));
 
 }

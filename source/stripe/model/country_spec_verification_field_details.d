@@ -3,6 +3,7 @@ module stripe.model.country_spec_verification_field_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class CountrySpecVerificationFieldDetails {
    */
   @optional
   string[] additional;
+
+  mixin AddBuilder!(typeof(this));
 
 }

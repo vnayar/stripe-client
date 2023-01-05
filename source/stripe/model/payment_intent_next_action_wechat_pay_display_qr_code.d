@@ -3,6 +3,7 @@ module stripe.model.payment_intent_next_action_wechat_pay_display_qr_code;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -40,5 +41,7 @@ class PaymentIntentNextActionWechatPayDisplayQrCode {
    */
   @optional
   string data;
+
+  mixin AddBuilder!(typeof(this));
 
 }

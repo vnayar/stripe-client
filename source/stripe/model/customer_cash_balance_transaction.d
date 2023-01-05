@@ -3,6 +3,7 @@ module stripe.model.customer_cash_balance_transaction;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -97,5 +98,7 @@ class CustomerCashBalanceTransaction {
    */
   @optional
   Nullable!(int) net_amount;
+
+  mixin AddBuilder!(typeof(this));
 
 }

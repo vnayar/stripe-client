@@ -3,6 +3,7 @@ module stripe.model.treasury_outbound_payments_resource_returned_status;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class TreasuryOutboundPaymentsResourceReturnedStatus {
    */
   @optional
   string code;
+
+  mixin AddBuilder!(typeof(this));
 
 }

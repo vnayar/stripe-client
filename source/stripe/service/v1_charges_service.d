@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -58,6 +59,8 @@ class V1ChargesService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetChargesChargeRefundsResponseHandler : ResponseHandler {
@@ -88,6 +91,8 @@ class V1ChargesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -112,6 +117,8 @@ class V1ChargesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -149,6 +156,8 @@ class V1ChargesService {
      */
     string charge;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostChargesChargeRefundsResponseHandler : ResponseHandler {
@@ -176,6 +185,8 @@ class V1ChargesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -200,6 +211,8 @@ class V1ChargesService {
     /**
      */
     string charge;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -227,6 +240,8 @@ class V1ChargesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -301,6 +316,8 @@ class V1ChargesService {
      */
     string transfer_group;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetChargesResponseHandler : ResponseHandler {
@@ -328,6 +345,8 @@ class V1ChargesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -352,6 +371,8 @@ class V1ChargesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -413,6 +434,8 @@ class V1ChargesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -443,6 +466,8 @@ class V1ChargesService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetChargesChargeDisputeResponseHandler : ResponseHandler {
@@ -469,6 +494,8 @@ class V1ChargesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -497,6 +524,8 @@ class V1ChargesService {
      */
     string charge;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostChargesChargeDisputeResponseHandler : ResponseHandler {
@@ -523,6 +552,8 @@ class V1ChargesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -553,6 +584,8 @@ class V1ChargesService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetChargesChargeResponseHandler : ResponseHandler {
@@ -579,6 +612,8 @@ class V1ChargesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -609,6 +644,8 @@ class V1ChargesService {
      */
     string charge;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostChargesChargeResponseHandler : ResponseHandler {
@@ -636,6 +673,8 @@ class V1ChargesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -661,6 +700,8 @@ class V1ChargesService {
     /**
      */
     string charge;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -688,6 +729,8 @@ class V1ChargesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -723,6 +766,8 @@ class V1ChargesService {
      */
     string charge;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostChargesChargeDisputeCloseResponseHandler : ResponseHandler {
@@ -749,6 +794,8 @@ class V1ChargesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -783,6 +830,8 @@ class V1ChargesService {
      */
     string refund;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetChargesChargeRefundsRefundResponseHandler : ResponseHandler {
@@ -809,6 +858,8 @@ class V1ChargesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -843,6 +894,8 @@ class V1ChargesService {
      */
     string refund;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostChargesChargeRefundsRefundResponseHandler : ResponseHandler {
@@ -870,6 +923,8 @@ class V1ChargesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -891,5 +946,7 @@ class V1ChargesService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

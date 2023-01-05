@@ -3,6 +3,7 @@ module stripe.model.account_tos_acceptance;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -34,5 +35,7 @@ class AccountTosAcceptance {
    */
   @optional
   string user_agent;
+
+  mixin AddBuilder!(typeof(this));
 
 }

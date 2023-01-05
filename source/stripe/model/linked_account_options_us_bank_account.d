@@ -3,6 +3,7 @@ module stripe.model.linked_account_options_us_bank_account;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class LinkedAccountOptionsUsBankAccount {
    */
   @optional
   string return_url;
+
+  mixin AddBuilder!(typeof(this));
 
 }

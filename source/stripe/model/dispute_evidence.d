@@ -3,6 +3,7 @@ module stripe.model.dispute_evidence;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -196,5 +197,7 @@ class DisputeEvidence {
    */
   @optional
   Json customer_signature;
+
+  mixin AddBuilder!(typeof(this));
 
 }

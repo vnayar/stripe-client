@@ -3,6 +3,7 @@ module stripe.model.treasury_shared_resource_initiating_payment_method_details_i
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -41,5 +42,7 @@ class TreasurySharedResourceInitiatingPaymentMethodDetailsInitiatingPaymentMetho
    */
   @optional
   string balance;
+
+  mixin AddBuilder!(typeof(this));
 
 }

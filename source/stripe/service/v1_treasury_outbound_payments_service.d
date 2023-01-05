@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1TreasuryOutboundPaymentsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryOutboundPaymentsIdResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1TreasuryOutboundPaymentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -89,6 +94,8 @@ class V1TreasuryOutboundPaymentsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTreasuryOutboundPaymentsIdCancelResponseHandler : ResponseHandler {
@@ -115,6 +122,8 @@ class V1TreasuryOutboundPaymentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -180,6 +189,8 @@ class V1TreasuryOutboundPaymentsService {
      */
     string status;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryOutboundPaymentsResponseHandler : ResponseHandler {
@@ -210,6 +221,8 @@ class V1TreasuryOutboundPaymentsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -234,6 +247,8 @@ class V1TreasuryOutboundPaymentsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -288,6 +303,8 @@ class V1TreasuryOutboundPaymentsService {
         @optional
         string name;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -309,6 +326,8 @@ class V1TreasuryOutboundPaymentsService {
         @optional
         string routing_number;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -316,6 +335,8 @@ class V1TreasuryOutboundPaymentsService {
 
       @optional
       string financial_account;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -347,6 +368,8 @@ class V1TreasuryOutboundPaymentsService {
 
       @optional
       string ip_address;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -390,6 +413,8 @@ class V1TreasuryOutboundPaymentsService {
       @optional
       Json us_bank_account;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -415,6 +440,8 @@ class V1TreasuryOutboundPaymentsService {
      */
     @optional
     string description;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -443,6 +470,8 @@ class V1TreasuryOutboundPaymentsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -461,5 +490,7 @@ class V1TreasuryOutboundPaymentsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

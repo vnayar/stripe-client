@@ -3,6 +3,7 @@ module stripe.model.treasury_outbound_transfers_resource_returned_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class TreasuryOutboundTransfersResourceReturnedDetails {
    */
   @optional
   string code;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.treasury_financial_accounts_resource_balance;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -29,5 +30,7 @@ class TreasuryFinancialAccountsResourceBalance {
    */
   @optional
   Nullable!(int)[string] inbound_pending;
+
+  mixin AddBuilder!(typeof(this));
 
 }

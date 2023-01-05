@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -40,6 +41,8 @@ class V1SourcesService {
      */
     string source;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSourcesSourceMandateNotificationsMandateNotificationResponseHandler : ResponseHandler {
@@ -66,6 +69,8 @@ class V1SourcesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -116,6 +121,8 @@ class V1SourcesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -149,6 +156,8 @@ class V1SourcesService {
      */
     string source;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSourcesSourceResponseHandler : ResponseHandler {
@@ -175,6 +184,8 @@ class V1SourcesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -206,6 +217,8 @@ class V1SourcesService {
      */
     string source;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostSourcesSourceResponseHandler : ResponseHandler {
@@ -232,6 +245,8 @@ class V1SourcesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -289,6 +304,8 @@ class V1SourcesService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSourcesSourceSourceTransactionsResponseHandler : ResponseHandler {
@@ -316,6 +333,8 @@ class V1SourcesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -340,6 +359,8 @@ class V1SourcesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -374,6 +395,8 @@ class V1SourcesService {
      */
     string source;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostSourcesSourceVerifyBody {
@@ -388,6 +411,8 @@ class V1SourcesService {
      */
     @optional
     string[] values;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -415,6 +440,8 @@ class V1SourcesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -452,6 +479,8 @@ class V1SourcesService {
      */
     string source_transaction;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSourcesSourceSourceTransactionsSourceTransactionResponseHandler : ResponseHandler {
@@ -479,6 +508,8 @@ class V1SourcesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -504,5 +535,7 @@ class V1SourcesService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

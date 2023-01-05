@@ -3,6 +3,7 @@ module stripe.model.shipping_rate_fixed_amount;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -31,5 +32,7 @@ class ShippingRateFixedAmount {
    */
   @optional
   ShippingRateCurrencyOption[string] currency_options;
+
+  mixin AddBuilder!(typeof(this));
 
 }

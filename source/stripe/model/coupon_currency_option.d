@@ -3,6 +3,7 @@ module stripe.model.coupon_currency_option;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -16,5 +17,7 @@ class CouponCurrencyOption {
    */
   @optional
   Nullable!(int) amount_off;
+
+  mixin AddBuilder!(typeof(this));
 
 }

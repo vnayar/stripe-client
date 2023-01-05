@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1PromotionCodesService {
      */
     string promotion_code;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPromotionCodesPromotionCodeResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1PromotionCodesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -90,6 +95,8 @@ class V1PromotionCodesService {
      */
     string promotion_code;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPromotionCodesPromotionCodeResponseHandler : ResponseHandler {
@@ -116,6 +123,8 @@ class V1PromotionCodesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -192,6 +201,8 @@ class V1PromotionCodesService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPromotionCodesResponseHandler : ResponseHandler {
@@ -219,6 +230,8 @@ class V1PromotionCodesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -243,6 +256,8 @@ class V1PromotionCodesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -289,6 +304,8 @@ class V1PromotionCodesService {
         @optional
         Nullable!(int) minimum_amount;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -299,6 +316,8 @@ class V1PromotionCodesService {
 
       @optional
       Nullable!(bool) first_time_transaction;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -364,6 +383,8 @@ class V1PromotionCodesService {
     @optional
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPromotionCodesResponseHandler : ResponseHandler {
@@ -391,6 +412,8 @@ class V1PromotionCodesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -410,5 +433,7 @@ class V1PromotionCodesService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

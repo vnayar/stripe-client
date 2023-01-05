@@ -3,6 +3,7 @@ module stripe.model.checkout_customer_balance_bank_transfer_payment_method_optio
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -28,5 +29,7 @@ class CheckoutCustomerBalanceBankTransferPaymentMethodOptions {
 
   @optional
   PaymentMethodOptionsCustomerBalanceEuBankAccount eu_bank_transfer;
+
+  mixin AddBuilder!(typeof(this));
 
 }

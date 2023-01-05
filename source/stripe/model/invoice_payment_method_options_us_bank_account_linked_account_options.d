@@ -3,6 +3,7 @@ module stripe.model.invoice_payment_method_options_us_bank_account_linked_accoun
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -15,5 +16,7 @@ class InvoicePaymentMethodOptionsUsBankAccountLinkedAccountOptions {
    */
   @optional
   string[] permissions;
+
+  mixin AddBuilder!(typeof(this));
 
 }

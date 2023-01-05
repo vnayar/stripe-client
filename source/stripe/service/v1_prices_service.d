@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -81,6 +82,8 @@ class V1PricesService {
       @optional
       string interval;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     AllPricesRecurringParams recurring;
@@ -97,6 +100,8 @@ class V1PricesService {
      * Only return prices of type `recurring` or `one_time`.
      */
     string type;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -128,6 +133,8 @@ class V1PricesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -152,6 +159,8 @@ class V1PricesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -214,6 +223,8 @@ class V1PricesService {
       @optional
       string interval;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -259,6 +270,8 @@ class V1PricesService {
       @optional
       string round;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -299,6 +312,8 @@ class V1PricesService {
 
       @optional
       Nullable!(int) maximum;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -351,6 +366,8 @@ class V1PricesService {
         @optional
         string flat_amount_decimal;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -372,6 +389,8 @@ class V1PricesService {
         @optional
         Nullable!(int) maximum;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -382,6 +401,8 @@ class V1PricesService {
 
       @optional
       string tax_behavior;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -414,6 +435,8 @@ class V1PricesService {
 
       @optional
       Nullable!(bool) active;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -454,6 +477,8 @@ class V1PricesService {
       @optional
       string flat_amount_decimal;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -462,6 +487,8 @@ class V1PricesService {
      */
     @optional
     Tier[] tiers;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -489,6 +516,8 @@ class V1PricesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -519,6 +548,8 @@ class V1PricesService {
      */
     string price;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPricesPriceResponseHandler : ResponseHandler {
@@ -545,6 +576,8 @@ class V1PricesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -573,6 +606,8 @@ class V1PricesService {
      */
     string price;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPricesPriceResponseHandler : ResponseHandler {
@@ -600,6 +635,8 @@ class V1PricesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -620,5 +657,7 @@ class V1PricesService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

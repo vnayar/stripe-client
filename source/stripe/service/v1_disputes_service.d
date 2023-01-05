@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -66,6 +67,8 @@ class V1DisputesService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetDisputesResponseHandler : ResponseHandler {
@@ -93,6 +96,8 @@ class V1DisputesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -117,6 +122,8 @@ class V1DisputesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -155,6 +162,8 @@ class V1DisputesService {
      */
     string dispute;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostDisputesDisputeCloseResponseHandler : ResponseHandler {
@@ -181,6 +190,8 @@ class V1DisputesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -215,6 +226,8 @@ class V1DisputesService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetDisputesDisputeResponseHandler : ResponseHandler {
@@ -241,6 +254,8 @@ class V1DisputesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -269,6 +284,8 @@ class V1DisputesService {
      */
     string dispute;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostDisputesDisputeResponseHandler : ResponseHandler {
@@ -296,6 +313,8 @@ class V1DisputesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -321,5 +340,7 @@ class V1DisputesService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

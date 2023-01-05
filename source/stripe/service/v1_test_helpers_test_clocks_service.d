@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -30,6 +31,8 @@ class V1TestHelpersTestClocksService {
      */
     string test_clock;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTestHelpersTestClocksTestClockAdvanceBody {
@@ -47,6 +50,8 @@ class V1TestHelpersTestClocksService {
      */
     @optional
     Nullable!(long) frozen_time;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -74,6 +79,8 @@ class V1TestHelpersTestClocksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -126,6 +133,8 @@ class V1TestHelpersTestClocksService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTestHelpersTestClocksResponseHandler : ResponseHandler {
@@ -153,6 +162,8 @@ class V1TestHelpersTestClocksService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -177,6 +188,8 @@ class V1TestHelpersTestClocksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -223,6 +236,8 @@ class V1TestHelpersTestClocksService {
     @optional
     string name;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTestHelpersTestClocksResponseHandler : ResponseHandler {
@@ -249,6 +264,8 @@ class V1TestHelpersTestClocksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -279,6 +296,8 @@ class V1TestHelpersTestClocksService {
      */
     string test_clock;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTestHelpersTestClocksTestClockResponseHandler : ResponseHandler {
@@ -305,6 +324,8 @@ class V1TestHelpersTestClocksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -333,6 +354,8 @@ class V1TestHelpersTestClocksService {
      */
     string test_clock;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteTestHelpersTestClocksTestClockResponseHandler : ResponseHandler {
@@ -360,6 +383,8 @@ class V1TestHelpersTestClocksService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -379,5 +404,7 @@ class V1TestHelpersTestClocksService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

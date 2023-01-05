@@ -3,6 +3,7 @@ module stripe.model.terminal_reader_reader_resource_process_payment_intent_actio
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class TerminalReaderReaderResourceProcessPaymentIntentAction {
    */
   @optional
   Json payment_intent;
+
+  mixin AddBuilder!(typeof(this));
 
 }

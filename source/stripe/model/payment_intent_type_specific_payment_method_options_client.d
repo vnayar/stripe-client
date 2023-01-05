@@ -3,6 +3,7 @@ module stripe.model.payment_intent_type_specific_payment_method_options_client;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -40,5 +41,7 @@ class PaymentIntentTypeSpecificPaymentMethodOptionsClient {
    */
   @optional
   string verification_method;
+
+  mixin AddBuilder!(typeof(this));
 
 }

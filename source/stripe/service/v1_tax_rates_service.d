@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1TaxRatesService {
      */
     string tax_rate;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTaxRatesTaxRateResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1TaxRatesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -88,6 +93,8 @@ class V1TaxRatesService {
      */
     string tax_rate;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTaxRatesTaxRateResponseHandler : ResponseHandler {
@@ -114,6 +121,8 @@ class V1TaxRatesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -178,6 +187,8 @@ class V1TaxRatesService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTaxRatesResponseHandler : ResponseHandler {
@@ -205,6 +216,8 @@ class V1TaxRatesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -229,6 +242,8 @@ class V1TaxRatesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -339,6 +354,8 @@ class V1TaxRatesService {
     @optional
     string jurisdiction;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTaxRatesResponseHandler : ResponseHandler {
@@ -366,6 +383,8 @@ class V1TaxRatesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -384,5 +403,7 @@ class V1TaxRatesService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.payment_method_details_us_bank_account;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -46,5 +47,7 @@ class PaymentMethodDetailsUsBankAccount {
    */
   @optional
   string fingerprint;
+
+  mixin AddBuilder!(typeof(this));
 
 }

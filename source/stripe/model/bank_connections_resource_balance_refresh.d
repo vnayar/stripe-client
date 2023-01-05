@@ -3,6 +3,7 @@ module stripe.model.bank_connections_resource_balance_refresh;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class BankConnectionsResourceBalanceRefresh {
    */
   @optional
   Nullable!(long) last_attempted_at;
+
+  mixin AddBuilder!(typeof(this));
 
 }

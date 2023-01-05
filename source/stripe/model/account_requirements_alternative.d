@@ -3,6 +3,7 @@ module stripe.model.account_requirements_alternative;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class AccountRequirementsAlternative {
    */
   @optional
   string[] alternative_fields_due;
+
+  mixin AddBuilder!(typeof(this));
 
 }

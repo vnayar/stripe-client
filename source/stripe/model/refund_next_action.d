@@ -3,6 +3,7 @@ module stripe.model.refund_next_action;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class RefundNextAction {
    */
   @optional
   RefundNextActionDisplayDetails display_details;
+
+  mixin AddBuilder!(typeof(this));
 
 }

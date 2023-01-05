@@ -3,6 +3,7 @@ module stripe.model.payment_flows_installment_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -16,5 +17,7 @@ class PaymentFlowsInstallmentOptions {
 
   @optional
   PaymentMethodDetailsCardInstallmentsPlan plan;
+
+  mixin AddBuilder!(typeof(this));
 
 }

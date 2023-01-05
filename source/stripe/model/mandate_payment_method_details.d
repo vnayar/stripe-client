@@ -3,6 +3,7 @@ module stripe.model.mandate_payment_method_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -49,5 +50,7 @@ class MandatePaymentMethodDetails {
 
   @optional
   MandateAcssDebit acss_debit;
+
+  mixin AddBuilder!(typeof(this));
 
 }

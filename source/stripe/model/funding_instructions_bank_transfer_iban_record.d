@@ -3,6 +3,7 @@ module stripe.model.funding_instructions_bank_transfer_iban_record;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -35,5 +36,7 @@ class FundingInstructionsBankTransferIbanRecord {
    */
   @optional
   string iban;
+
+  mixin AddBuilder!(typeof(this));
 
 }

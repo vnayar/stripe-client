@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -55,6 +56,8 @@ class V1AppsSecretsService {
       @optional
       string user;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     ScopeParam scope_;
@@ -66,6 +69,8 @@ class V1AppsSecretsService {
      * next page of the list.
      */
     string starting_after;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -94,6 +99,8 @@ class V1AppsSecretsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -118,6 +125,8 @@ class V1AppsSecretsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -161,6 +170,8 @@ class V1AppsSecretsService {
       @optional
       string user;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -187,6 +198,8 @@ class V1AppsSecretsService {
      */
     @optional
     string name;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -215,6 +228,8 @@ class V1AppsSecretsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -233,5 +248,7 @@ class V1AppsSecretsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

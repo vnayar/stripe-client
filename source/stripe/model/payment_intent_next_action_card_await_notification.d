@@ -3,6 +3,7 @@ module stripe.model.payment_intent_next_action_card_await_notification;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -23,5 +24,7 @@ class PaymentIntentNextActionCardAwaitNotification {
    */
   @optional
   Nullable!(long) charge_attempt_at;
+
+  mixin AddBuilder!(typeof(this));
 
 }

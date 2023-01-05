@@ -3,6 +3,7 @@ module stripe.model.payment_intent_next_action_verify_with_microdeposits;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -29,5 +30,7 @@ class PaymentIntentNextActionVerifyWithMicrodeposits {
    */
   @optional
   string microdeposit_type;
+
+  mixin AddBuilder!(typeof(this));
 
 }

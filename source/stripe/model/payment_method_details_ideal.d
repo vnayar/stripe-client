@@ -3,6 +3,7 @@ module stripe.model.payment_method_details_ideal;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -50,5 +51,7 @@ class PaymentMethodDetailsIdeal {
    */
   @optional
   string verified_name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

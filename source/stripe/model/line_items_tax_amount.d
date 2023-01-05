@@ -3,6 +3,7 @@ module stripe.model.line_items_tax_amount;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -19,5 +20,7 @@ class LineItemsTaxAmount {
 
   @optional
   TaxRate rate;
+
+  mixin AddBuilder!(typeof(this));
 
 }

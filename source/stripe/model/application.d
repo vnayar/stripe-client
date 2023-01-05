@@ -3,6 +3,7 @@ module stripe.model.application;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class Application {
    */
   @optional
   string name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

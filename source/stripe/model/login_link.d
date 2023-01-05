@@ -3,6 +3,7 @@ module stripe.model.login_link;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class LoginLink {
    */
   @optional
   string url;
+
+  mixin AddBuilder!(typeof(this));
 
 }

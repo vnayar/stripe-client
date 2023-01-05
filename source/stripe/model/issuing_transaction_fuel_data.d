@@ -3,6 +3,7 @@ module stripe.model.issuing_transaction_fuel_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -36,5 +37,7 @@ class IssuingTransactionFuelData {
    */
   @optional
   string volume_decimal;
+
+  mixin AddBuilder!(typeof(this));
 
 }

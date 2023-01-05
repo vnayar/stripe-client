@@ -3,6 +3,7 @@ module stripe.model.account_sepa_debit_payments_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -15,5 +16,7 @@ class AccountSepaDebitPaymentsSettings {
    */
   @optional
   string creditor_id;
+
+  mixin AddBuilder!(typeof(this));
 
 }

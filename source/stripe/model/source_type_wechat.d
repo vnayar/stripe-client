@@ -3,6 +3,7 @@ module stripe.model.source_type_wechat;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -18,5 +19,7 @@ class SourceTypeWechat {
 
   @optional
   string qr_code_url;
+
+  mixin AddBuilder!(typeof(this));
 
 }

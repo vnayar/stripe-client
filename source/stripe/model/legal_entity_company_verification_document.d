@@ -3,6 +3,7 @@ module stripe.model.legal_entity_company_verification_document;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -41,5 +42,7 @@ class LegalEntityCompanyVerificationDocument {
    */
   @optional
   string details_code;
+
+  mixin AddBuilder!(typeof(this));
 
 }

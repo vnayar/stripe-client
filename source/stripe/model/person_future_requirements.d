@@ -3,6 +3,7 @@ module stripe.model.person_future_requirements;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -58,5 +59,7 @@ class PersonFutureRequirements {
    */
   @optional
   string[] pending_verification;
+
+  mixin AddBuilder!(typeof(this));
 
 }

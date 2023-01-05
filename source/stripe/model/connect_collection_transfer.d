@@ -3,6 +3,7 @@ module stripe.model.connect_collection_transfer;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -48,5 +49,7 @@ class ConnectCollectionTransfer {
    */
   @optional
   Json destination;
+
+  mixin AddBuilder!(typeof(this));
 
 }

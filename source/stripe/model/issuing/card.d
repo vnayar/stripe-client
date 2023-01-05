@@ -3,6 +3,7 @@ module stripe.model.issuing.card;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -159,5 +160,7 @@ class IssuingCard {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

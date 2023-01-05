@@ -3,6 +3,7 @@ module stripe.model.invoice_mandate_options_card;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -29,5 +30,7 @@ class InvoiceMandateOptionsCard {
    */
   @optional
   string amount_type;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.payment_flows_amount_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -13,5 +14,7 @@ import stripe.model.payment_flows_amount_details_resource_tip : PaymentFlowsAmou
 class PaymentFlowsAmountDetails {
   @optional
   PaymentFlowsAmountDetailsResourceTip tip;
+
+  mixin AddBuilder!(typeof(this));
 
 }

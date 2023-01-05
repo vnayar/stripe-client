@@ -3,6 +3,7 @@ module stripe.model.treasury.received_credit;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -114,5 +115,7 @@ class TreasuryReceivedCredit {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

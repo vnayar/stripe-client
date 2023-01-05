@@ -3,6 +3,7 @@ module stripe.model.payment_pages_checkout_session_custom_text;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class PaymentPagesCheckoutSessionCustomText {
    */
   @optional
   PaymentPagesCheckoutSessionCustomTextPosition submit;
+
+  mixin AddBuilder!(typeof(this));
 
 }

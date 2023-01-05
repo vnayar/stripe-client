@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1ReportingReportRunsService {
      */
     string report_run;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetReportingReportRunsReportRunResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1ReportingReportRunsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -115,6 +120,8 @@ class V1ReportingReportRunsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetReportingReportRunsResponseHandler : ResponseHandler {
@@ -142,6 +149,8 @@ class V1ReportingReportRunsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -166,6 +175,8 @@ class V1ReportingReportRunsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -234,6 +245,8 @@ class V1ReportingReportRunsService {
       @optional
       string payout;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -243,6 +256,8 @@ class V1ReportingReportRunsService {
      */
     @optional
     RunParameterSpecs parameters;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -271,6 +286,8 @@ class V1ReportingReportRunsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -290,5 +307,7 @@ class V1ReportingReportRunsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.payment_pages_checkout_session_shipping_address_collection;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -18,5 +19,7 @@ class PaymentPagesCheckoutSessionShippingAddressCollection {
    */
   @optional
   string[] allowed_countries;
+
+  mixin AddBuilder!(typeof(this));
 
 }

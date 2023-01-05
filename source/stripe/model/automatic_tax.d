@@ -3,6 +3,7 @@ module stripe.model.automatic_tax;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class AutomaticTax {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

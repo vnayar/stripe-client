@@ -3,6 +3,7 @@ module stripe.model.payment_method_details_p24;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class PaymentMethodDetailsP24 {
    */
   @optional
   string verified_name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

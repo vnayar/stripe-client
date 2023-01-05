@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -75,6 +76,8 @@ class V1CreditNotesPreviewService {
       @optional
       Json tax_rates;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     CreditNoteLineItemParams[] lines;
@@ -115,6 +118,8 @@ class V1CreditNotesPreviewService {
      */
     Nullable!(int) refund_amount;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCreditNotesPreviewResponseHandler : ResponseHandler {
@@ -141,6 +146,8 @@ class V1CreditNotesPreviewService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -181,5 +188,7 @@ class V1CreditNotesPreviewService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

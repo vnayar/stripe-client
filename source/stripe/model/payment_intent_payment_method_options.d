@@ -3,6 +3,7 @@ module stripe.model.payment_intent_payment_method_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -130,5 +131,7 @@ class PaymentIntentPaymentMethodOptions {
 
   @optional
   Json grabpay;
+
+  mixin AddBuilder!(typeof(this));
 
 }

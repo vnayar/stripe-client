@@ -3,6 +3,7 @@ module stripe.model.treasury_received_debits_resource_reversal_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class TreasuryReceivedDebitsResourceReversalDetails {
    */
   @optional
   string restricted_reason;
+
+  mixin AddBuilder!(typeof(this));
 
 }

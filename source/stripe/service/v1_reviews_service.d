@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -56,6 +57,8 @@ class V1ReviewsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetReviewsResponseHandler : ResponseHandler {
@@ -83,6 +86,8 @@ class V1ReviewsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -107,6 +112,8 @@ class V1ReviewsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -143,6 +150,8 @@ class V1ReviewsService {
      */
     string review;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostReviewsReviewApproveResponseHandler : ResponseHandler {
@@ -169,6 +178,8 @@ class V1ReviewsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -201,6 +212,8 @@ class V1ReviewsService {
      */
     string review;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetReviewsReviewResponseHandler : ResponseHandler {
@@ -228,6 +241,8 @@ class V1ReviewsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -249,5 +264,7 @@ class V1ReviewsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

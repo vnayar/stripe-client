@@ -3,6 +3,7 @@ module stripe.model.account_payments_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -48,5 +49,7 @@ class AccountPaymentsSettings {
    */
   @optional
   string statement_descriptor_kanji;
+
+  mixin AddBuilder!(typeof(this));
 
 }

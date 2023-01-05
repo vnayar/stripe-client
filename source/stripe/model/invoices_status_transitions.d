@@ -3,6 +3,7 @@ module stripe.model.invoices_status_transitions;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class InvoicesStatusTransitions {
    */
   @optional
   Nullable!(long) voided_at;
+
+  mixin AddBuilder!(typeof(this));
 
 }

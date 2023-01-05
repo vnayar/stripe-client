@@ -3,6 +3,7 @@ module stripe.model.notification_event_request;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class NotificationEventRequest {
    */
   @optional
   string idempotency_key;
+
+  mixin AddBuilder!(typeof(this));
 
 }

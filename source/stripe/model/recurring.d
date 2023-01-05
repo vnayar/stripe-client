@@ -3,6 +3,7 @@ module stripe.model.recurring;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -41,5 +42,7 @@ class Recurring {
    */
   @optional
   string interval;
+
+  mixin AddBuilder!(typeof(this));
 
 }

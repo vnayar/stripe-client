@@ -3,6 +3,7 @@ module stripe.model.account_branding_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -37,5 +38,7 @@ class AccountBrandingSettings {
    */
   @optional
   string secondary_color;
+
+  mixin AddBuilder!(typeof(this));
 
 }

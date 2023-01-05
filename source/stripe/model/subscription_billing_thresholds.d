@@ -3,6 +3,7 @@ module stripe.model.subscription_billing_thresholds;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class SubscriptionBillingThresholds {
    */
   @optional
   Nullable!(bool) reset_billing_cycle_anchor;
+
+  mixin AddBuilder!(typeof(this));
 
 }

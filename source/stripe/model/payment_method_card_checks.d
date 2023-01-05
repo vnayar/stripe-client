@@ -3,6 +3,7 @@ module stripe.model.payment_method_card_checks;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -30,5 +31,7 @@ class PaymentMethodCardChecks {
    */
   @optional
   string address_postal_code_check;
+
+  mixin AddBuilder!(typeof(this));
 
 }

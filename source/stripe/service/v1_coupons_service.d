@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -59,6 +60,8 @@ class V1CouponsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCouponsResponseHandler : ResponseHandler {
@@ -86,6 +89,8 @@ class V1CouponsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -110,6 +115,8 @@ class V1CouponsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -164,6 +171,8 @@ class V1CouponsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -200,6 +209,8 @@ class V1CouponsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCouponsCouponResponseHandler : ResponseHandler {
@@ -226,6 +237,8 @@ class V1CouponsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -254,6 +267,8 @@ class V1CouponsService {
      */
     string coupon;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCouponsCouponResponseHandler : ResponseHandler {
@@ -281,6 +296,8 @@ class V1CouponsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -306,6 +323,8 @@ class V1CouponsService {
     /**
      */
     string coupon;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -334,6 +353,8 @@ class V1CouponsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -356,5 +377,7 @@ class V1CouponsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

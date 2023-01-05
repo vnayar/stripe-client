@@ -3,6 +3,7 @@ module stripe.model.charge;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -84,6 +85,8 @@ class Charge {
      */
     @optional
     string url;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -363,5 +366,7 @@ class Charge {
    */
   @optional
   string failure_code;
+
+  mixin AddBuilder!(typeof(this));
 
 }

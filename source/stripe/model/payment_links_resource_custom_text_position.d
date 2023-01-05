@@ -3,6 +3,7 @@ module stripe.model.payment_links_resource_custom_text_position;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -15,5 +16,7 @@ class PaymentLinksResourceCustomTextPosition {
    */
   @optional
   string message;
+
+  mixin AddBuilder!(typeof(this));
 
 }

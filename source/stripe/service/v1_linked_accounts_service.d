@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -36,6 +37,8 @@ class V1LinkedAccountsService {
 
       @optional
       string account;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -73,6 +76,8 @@ class V1LinkedAccountsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetLinkedAccountsResponseHandler : ResponseHandler {
@@ -103,6 +108,8 @@ class V1LinkedAccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -127,6 +134,8 @@ class V1LinkedAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -195,6 +204,8 @@ class V1LinkedAccountsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetLinkedAccountsAccountOwnersResponseHandler : ResponseHandler {
@@ -225,6 +236,8 @@ class V1LinkedAccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -249,6 +262,8 @@ class V1LinkedAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -285,6 +300,8 @@ class V1LinkedAccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostLinkedAccountsAccountRefreshBody {
@@ -299,6 +316,8 @@ class V1LinkedAccountsService {
      */
     @optional
     string[] features;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -326,6 +345,8 @@ class V1LinkedAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -359,6 +380,8 @@ class V1LinkedAccountsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetLinkedAccountsAccountResponseHandler : ResponseHandler {
@@ -385,6 +408,8 @@ class V1LinkedAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -413,6 +438,8 @@ class V1LinkedAccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostLinkedAccountsAccountDisconnectResponseHandler : ResponseHandler {
@@ -440,6 +467,8 @@ class V1LinkedAccountsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -460,5 +489,7 @@ class V1LinkedAccountsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

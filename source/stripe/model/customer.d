@@ -3,6 +3,7 @@ module stripe.model.customer;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -80,6 +81,8 @@ class Customer {
     @optional
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -142,6 +145,8 @@ class Customer {
     @optional
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -201,6 +206,8 @@ class Customer {
      */
     @optional
     string url;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -296,5 +303,7 @@ class Customer {
    */
   @optional
   string tax_exempt;
+
+  mixin AddBuilder!(typeof(this));
 
 }

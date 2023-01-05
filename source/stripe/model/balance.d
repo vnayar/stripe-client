@@ -3,6 +3,7 @@ module stripe.model.balance;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -67,5 +68,7 @@ class Balance {
 
   @optional
   BalanceDetail issuing;
+
+  mixin AddBuilder!(typeof(this));
 
 }

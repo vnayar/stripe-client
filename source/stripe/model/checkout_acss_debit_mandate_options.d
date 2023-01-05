@@ -3,6 +3,7 @@ module stripe.model.checkout_acss_debit_mandate_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -41,5 +42,7 @@ class CheckoutAcssDebitMandateOptions {
    */
   @optional
   string[] default_for;
+
+  mixin AddBuilder!(typeof(this));
 
 }

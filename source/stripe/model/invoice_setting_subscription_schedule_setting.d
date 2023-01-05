@@ -3,6 +3,7 @@ module stripe.model.invoice_setting_subscription_schedule_setting;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -17,5 +18,7 @@ class InvoiceSettingSubscriptionScheduleSetting {
    */
   @optional
   Nullable!(int) days_until_due;
+
+  mixin AddBuilder!(typeof(this));
 
 }

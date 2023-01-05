@@ -3,6 +3,7 @@ module stripe.model.source_order_item;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -47,5 +48,7 @@ class SourceOrderItem {
    */
   @optional
   string parent;
+
+  mixin AddBuilder!(typeof(this));
 
 }

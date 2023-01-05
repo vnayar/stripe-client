@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -28,6 +29,8 @@ class V1FinancialConnectionsSessionsService {
     static class FiltersParams {
       @optional
       string[] countries;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -53,6 +56,8 @@ class V1FinancialConnectionsSessionsService {
       @optional
       string account;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -74,6 +79,8 @@ class V1FinancialConnectionsSessionsService {
      */
     @optional
     string return_url;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -101,6 +108,8 @@ class V1FinancialConnectionsSessionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -132,6 +141,8 @@ class V1FinancialConnectionsSessionsService {
      */
     string session;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetFinancialConnectionsSessionsSessionResponseHandler : ResponseHandler {
@@ -159,6 +170,8 @@ class V1FinancialConnectionsSessionsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -180,5 +193,7 @@ class V1FinancialConnectionsSessionsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.quotes_resource_automatic_tax;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class QuotesResourceAutomaticTax {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

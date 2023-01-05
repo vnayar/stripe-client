@@ -3,6 +3,7 @@ module stripe.model.invoice;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -233,6 +234,8 @@ class Invoice {
      */
     @optional
     string url;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -616,5 +619,7 @@ class Invoice {
    */
   @optional
   InvoiceTaxAmount[] total_tax_amounts;
+
+  mixin AddBuilder!(typeof(this));
 
 }

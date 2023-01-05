@@ -3,6 +3,7 @@ module stripe.model.issuing_transaction_flight_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -40,5 +41,7 @@ class IssuingTransactionFlightData {
    */
   @optional
   IssuingTransactionFlightDataLeg[] segments;
+
+  mixin AddBuilder!(typeof(this));
 
 }

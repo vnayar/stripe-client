@@ -3,6 +3,7 @@ module stripe.model.payment_links_resource_subscription_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -23,5 +24,7 @@ class PaymentLinksResourceSubscriptionData {
    */
   @optional
   Nullable!(int) trial_period_days;
+
+  mixin AddBuilder!(typeof(this));
 
 }

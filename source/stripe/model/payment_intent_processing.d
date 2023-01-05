@@ -3,6 +3,7 @@ module stripe.model.payment_intent_processing;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -19,5 +20,7 @@ class PaymentIntentProcessing {
    */
   @optional
   string type;
+
+  mixin AddBuilder!(typeof(this));
 
 }

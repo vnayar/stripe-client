@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1IssuingCardsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingCardsCardResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1IssuingCardsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -88,6 +93,8 @@ class V1IssuingCardsService {
      */
     string card;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostIssuingCardsCardResponseHandler : ResponseHandler {
@@ -114,6 +121,8 @@ class V1IssuingCardsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -199,6 +208,8 @@ class V1IssuingCardsService {
      */
     string type;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingCardsResponseHandler : ResponseHandler {
@@ -226,6 +237,8 @@ class V1IssuingCardsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -250,6 +263,8 @@ class V1IssuingCardsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -304,6 +319,8 @@ class V1IssuingCardsService {
         @optional
         string interval;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -314,6 +331,8 @@ class V1IssuingCardsService {
 
       @optional
       string[] blocked_categories;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -402,6 +421,8 @@ class V1IssuingCardsService {
         @optional
         string state;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -417,10 +438,14 @@ class V1IssuingCardsService {
         @optional
         string eori_number;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       CustomsParam customs;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -435,6 +460,8 @@ class V1IssuingCardsService {
      */
     @optional
     string status;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -463,6 +490,8 @@ class V1IssuingCardsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -481,5 +510,7 @@ class V1IssuingCardsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

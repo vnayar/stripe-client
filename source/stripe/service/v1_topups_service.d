@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -69,6 +70,8 @@ class V1TopupsService {
      */
     string status;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTopupsResponseHandler : ResponseHandler {
@@ -96,6 +99,8 @@ class V1TopupsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -120,6 +125,8 @@ class V1TopupsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -210,6 +217,8 @@ class V1TopupsService {
     @optional
     string description;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTopupsResponseHandler : ResponseHandler {
@@ -236,6 +245,8 @@ class V1TopupsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -266,6 +277,8 @@ class V1TopupsService {
      */
     string topup;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTopupsTopupResponseHandler : ResponseHandler {
@@ -292,6 +305,8 @@ class V1TopupsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -322,6 +337,8 @@ class V1TopupsService {
      */
     string topup;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTopupsTopupResponseHandler : ResponseHandler {
@@ -349,6 +366,8 @@ class V1TopupsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -373,6 +392,8 @@ class V1TopupsService {
     /**
      */
     string topup;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -401,6 +422,8 @@ class V1TopupsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -420,5 +443,7 @@ class V1TopupsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

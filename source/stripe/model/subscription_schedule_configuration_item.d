@@ -3,6 +3,7 @@ module stripe.model.subscription_schedule_configuration_item;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -48,5 +49,7 @@ class SubscriptionScheduleConfigurationItem {
    */
   @optional
   SubscriptionItemBillingThresholds billing_thresholds;
+
+  mixin AddBuilder!(typeof(this));
 
 }

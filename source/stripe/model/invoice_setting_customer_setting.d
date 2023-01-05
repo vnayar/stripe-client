@@ -3,6 +3,7 @@ module stripe.model.invoice_setting_customer_setting;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -37,5 +38,7 @@ class InvoiceSettingCustomerSetting {
    */
   @optional
   InvoiceSettingRenderingOptions rendering_options;
+
+  mixin AddBuilder!(typeof(this));
 
 }

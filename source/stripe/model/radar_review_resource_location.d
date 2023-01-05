@@ -3,6 +3,7 @@ module stripe.model.radar_review_resource_location;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -39,5 +40,7 @@ class RadarReviewResourceLocation {
    */
   @optional
   string region;
+
+  mixin AddBuilder!(typeof(this));
 
 }

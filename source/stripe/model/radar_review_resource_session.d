@@ -3,6 +3,7 @@ module stripe.model.radar_review_resource_session;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class RadarReviewResourceSession {
    */
   @optional
   string browser;
+
+  mixin AddBuilder!(typeof(this));
 
 }

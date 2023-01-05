@@ -3,6 +3,7 @@ module stripe.model.payment_intent_next_action_display_bank_transfer_instruction
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -48,5 +49,7 @@ class PaymentIntentNextActionDisplayBankTransferInstructions {
    */
   @optional
   Nullable!(int) amount_remaining;
+
+  mixin AddBuilder!(typeof(this));
 
 }

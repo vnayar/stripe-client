@@ -3,6 +3,7 @@ module stripe.model.customer_balance_transaction;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -111,5 +112,7 @@ class CustomerBalanceTransaction {
    */
   @optional
   Json credit_note;
+
+  mixin AddBuilder!(typeof(this));
 
 }

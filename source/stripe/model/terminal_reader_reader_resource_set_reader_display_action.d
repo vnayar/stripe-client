@@ -3,6 +3,7 @@ module stripe.model.terminal_reader_reader_resource_set_reader_display_action;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -23,5 +24,7 @@ class TerminalReaderReaderResourceSetReaderDisplayAction {
    */
   @optional
   TerminalReaderReaderResourceCart cart;
+
+  mixin AddBuilder!(typeof(this));
 
 }

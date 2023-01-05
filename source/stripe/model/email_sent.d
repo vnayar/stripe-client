@@ -3,6 +3,7 @@ module stripe.model.email_sent;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class EmailSent {
    */
   @optional
   Nullable!(long) email_sent_at;
+
+  mixin AddBuilder!(typeof(this));
 
 }

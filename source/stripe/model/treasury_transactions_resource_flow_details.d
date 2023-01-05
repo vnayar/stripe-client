@@ -3,6 +3,7 @@ module stripe.model.treasury_transactions_resource_flow_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -47,5 +48,7 @@ class TreasuryTransactionsResourceFlowDetails {
 
   @optional
   TreasuryReceivedDebit received_debit;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.source_transaction_gbp_credit_transfer_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -54,5 +55,7 @@ class SourceTransactionGbpCreditTransferData {
    */
   @optional
   string fingerprint;
+
+  mixin AddBuilder!(typeof(this));
 
 }

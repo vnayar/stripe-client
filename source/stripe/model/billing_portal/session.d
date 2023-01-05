@@ -3,6 +3,7 @@ module stripe.model.billing_portal.session;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -97,5 +98,7 @@ class BillingPortalSession {
    */
   @optional
   string on_behalf_of;
+
+  mixin AddBuilder!(typeof(this));
 
 }

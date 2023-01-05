@@ -3,6 +3,7 @@ module stripe.model.portal_flows_flow;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -26,5 +27,7 @@ class PortalFlowsFlow {
 
   @optional
   PortalFlowsFlowAfterCompletion after_completion;
+
+  mixin AddBuilder!(typeof(this));
 
 }

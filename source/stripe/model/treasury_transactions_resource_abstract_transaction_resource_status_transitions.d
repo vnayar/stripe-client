@@ -3,6 +3,7 @@ module stripe.model.treasury_transactions_resource_abstract_transaction_resource
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class TreasuryTransactionsResourceAbstractTransactionResourceStatusTransitions {
    */
   @optional
   Nullable!(long) posted_at;
+
+  mixin AddBuilder!(typeof(this));
 
 }

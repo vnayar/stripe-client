@@ -3,6 +3,7 @@ module stripe.model.setup_intent_next_action;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -32,5 +33,7 @@ class SetupIntentNextAction {
 
   @optional
   SetupIntentNextActionVerifyWithMicrodeposits verify_with_microdeposits;
+
+  mixin AddBuilder!(typeof(this));
 
 }

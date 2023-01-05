@@ -3,6 +3,7 @@ module stripe.model.checkout_sepa_debit_payment_method_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class CheckoutSepaDebitPaymentMethodOptions {
    */
   @optional
   string setup_future_usage;
+
+  mixin AddBuilder!(typeof(this));
 
 }

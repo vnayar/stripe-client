@@ -3,6 +3,7 @@ module stripe.model.portal_customer_update;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class PortalCustomerUpdate {
    */
   @optional
   string[] allowed_updates;
+
+  mixin AddBuilder!(typeof(this));
 
 }

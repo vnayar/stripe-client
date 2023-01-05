@@ -3,6 +3,7 @@ module stripe.model.treasury_transactions_resource_balance_impact;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -30,5 +31,7 @@ class TreasuryTransactionsResourceBalanceImpact {
    */
   @optional
   Nullable!(int) inbound_pending;
+
+  mixin AddBuilder!(typeof(this));
 
 }

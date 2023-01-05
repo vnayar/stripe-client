@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1RefundsService {
      */
     string refund;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetRefundsRefundResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1RefundsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -88,6 +93,8 @@ class V1RefundsService {
      */
     string refund;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostRefundsRefundResponseHandler : ResponseHandler {
@@ -114,6 +121,8 @@ class V1RefundsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -142,6 +151,8 @@ class V1RefundsService {
      */
     string refund;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostRefundsRefundCancelResponseHandler : ResponseHandler {
@@ -168,6 +179,8 @@ class V1RefundsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -233,6 +246,8 @@ class V1RefundsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetRefundsResponseHandler : ResponseHandler {
@@ -260,6 +275,8 @@ class V1RefundsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -284,6 +301,8 @@ class V1RefundsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -344,6 +363,8 @@ class V1RefundsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -360,5 +381,7 @@ class V1RefundsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.checkout_card_payment_method_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -48,5 +49,7 @@ class CheckoutCardPaymentMethodOptions {
    */
   @optional
   string statement_descriptor_suffix_kana;
+
+  mixin AddBuilder!(typeof(this));
 
 }

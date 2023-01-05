@@ -3,6 +3,7 @@ module stripe.model.fee_refund;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -67,5 +68,7 @@ class FeeRefund {
    */
   @optional
   Nullable!(long) created;
+
+  mixin AddBuilder!(typeof(this));
 
 }

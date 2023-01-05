@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -81,6 +82,8 @@ class V1ProductsService {
      */
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetProductsResponseHandler : ResponseHandler {
@@ -111,6 +114,8 @@ class V1ProductsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -135,6 +140,8 @@ class V1ProductsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -219,6 +226,8 @@ class V1ProductsService {
       @optional
       Nullable!(float) weight;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -254,6 +263,8 @@ class V1ProductsService {
           @optional
           string flat_amount_decimal;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
@@ -275,6 +286,8 @@ class V1ProductsService {
           @optional
           Nullable!(int) maximum;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
@@ -285,6 +298,8 @@ class V1ProductsService {
 
         @optional
         string tax_behavior;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -298,6 +313,8 @@ class V1ProductsService {
         @optional
         string interval;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -305,6 +322,8 @@ class V1ProductsService {
 
       @optional
       string tax_behavior;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -368,6 +387,8 @@ class V1ProductsService {
     @optional
     Nullable!(bool) shippable;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostProductsResponseHandler : ResponseHandler {
@@ -394,6 +415,8 @@ class V1ProductsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -424,6 +447,8 @@ class V1ProductsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetProductsIdResponseHandler : ResponseHandler {
@@ -450,6 +475,8 @@ class V1ProductsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -480,6 +507,8 @@ class V1ProductsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostProductsIdResponseHandler : ResponseHandler {
@@ -507,6 +536,8 @@ class V1ProductsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -532,6 +563,8 @@ class V1ProductsService {
     /**
      */
     string id;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -560,6 +593,8 @@ class V1ProductsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -581,5 +616,7 @@ class V1ProductsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

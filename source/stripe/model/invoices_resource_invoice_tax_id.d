@@ -3,6 +3,7 @@ module stripe.model.invoices_resource_invoice_tax_id;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class InvoicesResourceInvoiceTaxId {
    */
   @optional
   string value;
+
+  mixin AddBuilder!(typeof(this));
 
 }

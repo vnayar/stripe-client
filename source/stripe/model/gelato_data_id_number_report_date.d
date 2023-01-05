@@ -3,6 +3,7 @@ module stripe.model.gelato_data_id_number_report_date;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -28,5 +29,7 @@ class GelatoDataIdNumberReportDate {
    */
   @optional
   Nullable!(int) day;
+
+  mixin AddBuilder!(typeof(this));
 
 }

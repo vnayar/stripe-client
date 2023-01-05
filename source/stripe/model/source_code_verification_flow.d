@@ -3,6 +3,7 @@ module stripe.model.source_code_verification_flow;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class SourceCodeVerificationFlow {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

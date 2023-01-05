@@ -3,6 +3,7 @@ module stripe.model.payment_pages_checkout_session_customer_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -52,5 +53,7 @@ class PaymentPagesCheckoutSessionCustomerDetails {
    */
   @optional
   string name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

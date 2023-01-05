@@ -3,6 +3,7 @@ module stripe.model.setup_attempt_payment_method_details_bancontact;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -61,5 +62,7 @@ class SetupAttemptPaymentMethodDetailsBancontact {
    */
   @optional
   string preferred_language;
+
+  mixin AddBuilder!(typeof(this));
 
 }

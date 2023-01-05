@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1ShippingRatesService {
      */
     string shipping_rate_token;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetShippingRatesShippingRateTokenResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1ShippingRatesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -88,6 +93,8 @@ class V1ShippingRatesService {
      */
     string shipping_rate_token;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostShippingRatesShippingRateTokenResponseHandler : ResponseHandler {
@@ -114,6 +121,8 @@ class V1ShippingRatesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -179,6 +188,8 @@ class V1ShippingRatesService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetShippingRatesResponseHandler : ResponseHandler {
@@ -206,6 +217,8 @@ class V1ShippingRatesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -230,6 +243,8 @@ class V1ShippingRatesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -272,6 +287,8 @@ class V1ShippingRatesService {
         @optional
         Nullable!(int) value;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -279,6 +296,8 @@ class V1ShippingRatesService {
 
       @optional
       DeliveryEstimateBound maximum;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -303,10 +322,14 @@ class V1ShippingRatesService {
         @optional
         string tax_behavior;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       CurrencyOption[string] currency_options;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -358,6 +381,8 @@ class V1ShippingRatesService {
     @optional
     string type;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostShippingRatesResponseHandler : ResponseHandler {
@@ -385,6 +410,8 @@ class V1ShippingRatesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -403,5 +430,7 @@ class V1ShippingRatesService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

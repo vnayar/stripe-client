@@ -3,6 +3,7 @@ module stripe.model.checkout_acss_debit_payment_method_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -40,5 +41,7 @@ class CheckoutAcssDebitPaymentMethodOptions {
    */
   @optional
   string verification_method;
+
+  mixin AddBuilder!(typeof(this));
 
 }

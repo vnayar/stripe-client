@@ -3,6 +3,7 @@ module stripe.model.source_transaction_chf_credit_transfer_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -39,5 +40,7 @@ class SourceTransactionChfCreditTransferData {
    */
   @optional
   string sender_address_line1;
+
+  mixin AddBuilder!(typeof(this));
 
 }

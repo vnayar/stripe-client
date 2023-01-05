@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -67,6 +68,8 @@ class V1IdentityVerificationReportsService {
      */
     string verification_session;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIdentityVerificationReportsResponseHandler : ResponseHandler {
@@ -94,6 +97,8 @@ class V1IdentityVerificationReportsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -118,6 +123,8 @@ class V1IdentityVerificationReportsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -161,6 +168,8 @@ class V1IdentityVerificationReportsService {
      */
     string report;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIdentityVerificationReportsReportResponseHandler : ResponseHandler {
@@ -188,6 +197,8 @@ class V1IdentityVerificationReportsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -209,5 +220,7 @@ class V1IdentityVerificationReportsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -40,6 +41,8 @@ class V1BillingPortalSessionsService {
         @optional
         string subscription;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -53,6 +56,8 @@ class V1BillingPortalSessionsService {
           @optional
           string custom_message;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
@@ -62,15 +67,21 @@ class V1BillingPortalSessionsService {
           @optional
           string return_url;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
         AfterCompletionRedirectParam redirect;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       FlowDataAfterCompletionParam after_completion;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -118,6 +129,8 @@ class V1BillingPortalSessionsService {
     @optional
     string on_behalf_of;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostBillingPortalSessionsResponseHandler : ResponseHandler {
@@ -145,6 +158,8 @@ class V1BillingPortalSessionsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -163,5 +178,7 @@ class V1BillingPortalSessionsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

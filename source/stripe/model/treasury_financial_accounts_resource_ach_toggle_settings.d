@@ -3,6 +3,7 @@ module stripe.model.treasury_financial_accounts_resource_ach_toggle_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -29,5 +30,7 @@ class TreasuryFinancialAccountsResourceAchToggleSettings {
    */
   @optional
   TreasuryFinancialAccountsResourceTogglesSettingStatusDetails[] status_details;
+
+  mixin AddBuilder!(typeof(this));
 
 }

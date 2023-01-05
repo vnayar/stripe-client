@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1IssuingCardholdersService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingCardholdersCardholderResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1IssuingCardholdersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -88,6 +93,8 @@ class V1IssuingCardholdersService {
      */
     string cardholder;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostIssuingCardholdersCardholderResponseHandler : ResponseHandler {
@@ -114,6 +121,8 @@ class V1IssuingCardholdersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -190,6 +199,8 @@ class V1IssuingCardholdersService {
      */
     string type;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingCardholdersResponseHandler : ResponseHandler {
@@ -217,6 +228,8 @@ class V1IssuingCardholdersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -241,6 +254,8 @@ class V1IssuingCardholdersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -297,6 +312,8 @@ class V1IssuingCardholdersService {
         @optional
         string interval;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -310,6 +327,8 @@ class V1IssuingCardholdersService {
 
       @optional
       string spending_limits_currency;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -332,6 +351,8 @@ class V1IssuingCardholdersService {
     static class CompanyParam {
       @optional
       string tax_id;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -374,10 +395,14 @@ class V1IssuingCardholdersService {
         @optional
         string state;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       RequiredAddress address;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -398,6 +423,8 @@ class V1IssuingCardholdersService {
         @optional
         Nullable!(int) day;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -417,15 +444,21 @@ class V1IssuingCardholdersService {
           @optional
           string back;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
         PersonVerificationDocumentParam document;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       PersonVerificationParam verification;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -457,6 +490,8 @@ class V1IssuingCardholdersService {
     @optional
     string status;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostIssuingCardholdersResponseHandler : ResponseHandler {
@@ -484,6 +519,8 @@ class V1IssuingCardholdersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -502,5 +539,7 @@ class V1IssuingCardholdersService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

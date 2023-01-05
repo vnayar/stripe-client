@@ -3,6 +3,7 @@ module stripe.model.terminal.location;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -54,5 +55,7 @@ class TerminalLocation {
    */
   @optional
   string object;
+
+  mixin AddBuilder!(typeof(this));
 
 }

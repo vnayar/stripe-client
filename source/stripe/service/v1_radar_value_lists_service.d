@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -35,6 +36,8 @@ class V1RadarValueListsService {
      */
     string value_list;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetRadarValueListsValueListResponseHandler : ResponseHandler {
@@ -61,6 +64,8 @@ class V1RadarValueListsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -89,6 +94,8 @@ class V1RadarValueListsService {
      */
     string value_list;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostRadarValueListsValueListResponseHandler : ResponseHandler {
@@ -115,6 +122,8 @@ class V1RadarValueListsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -143,6 +152,8 @@ class V1RadarValueListsService {
      */
     string value_list;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteRadarValueListsValueListResponseHandler : ResponseHandler {
@@ -169,6 +180,8 @@ class V1RadarValueListsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -233,6 +246,8 @@ class V1RadarValueListsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetRadarValueListsResponseHandler : ResponseHandler {
@@ -260,6 +275,8 @@ class V1RadarValueListsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -284,6 +301,8 @@ class V1RadarValueListsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -354,6 +373,8 @@ class V1RadarValueListsService {
     @optional
     string name;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostRadarValueListsResponseHandler : ResponseHandler {
@@ -381,6 +402,8 @@ class V1RadarValueListsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -399,5 +422,7 @@ class V1RadarValueListsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

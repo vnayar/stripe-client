@@ -3,6 +3,7 @@ module stripe.model.funding_instructions_bank_transfer_sort_code_record;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -28,5 +29,7 @@ class FundingInstructionsBankTransferSortCodeRecord {
    */
   @optional
   string account_number;
+
+  mixin AddBuilder!(typeof(this));
 
 }

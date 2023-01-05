@@ -3,6 +3,7 @@ module stripe.model.payment_method_options_card_mandate_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -69,5 +70,7 @@ class PaymentMethodOptionsCardMandateOptions {
    */
   @optional
   string interval;
+
+  mixin AddBuilder!(typeof(this));
 
 }

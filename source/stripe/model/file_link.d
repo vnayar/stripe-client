@@ -3,6 +3,7 @@ module stripe.model.file_link;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -70,5 +71,7 @@ class FileLink {
    */
   @optional
   Json file;
+
+  mixin AddBuilder!(typeof(this));
 
 }

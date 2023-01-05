@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -29,6 +30,8 @@ class V1AccountService {
      * Specifies which fields in the response should be expanded.
      */
     string[] expand;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -57,6 +60,8 @@ class V1AccountService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -76,5 +81,7 @@ class V1AccountService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

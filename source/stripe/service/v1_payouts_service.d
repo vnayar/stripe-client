@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -28,6 +29,8 @@ class V1PayoutsService {
     /**
      */
     string payout;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -55,6 +58,8 @@ class V1PayoutsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -87,6 +92,8 @@ class V1PayoutsService {
      */
     string payout;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPayoutsPayoutResponseHandler : ResponseHandler {
@@ -113,6 +120,8 @@ class V1PayoutsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -143,6 +152,8 @@ class V1PayoutsService {
      */
     string payout;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPayoutsPayoutResponseHandler : ResponseHandler {
@@ -169,6 +180,8 @@ class V1PayoutsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -237,6 +250,8 @@ class V1PayoutsService {
      */
     string status;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPayoutsResponseHandler : ResponseHandler {
@@ -264,6 +279,8 @@ class V1PayoutsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -288,6 +305,8 @@ class V1PayoutsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -392,6 +411,8 @@ class V1PayoutsService {
     @optional
     string description;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPayoutsResponseHandler : ResponseHandler {
@@ -418,6 +439,8 @@ class V1PayoutsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -451,6 +474,8 @@ class V1PayoutsService {
      */
     string payout;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPayoutsPayoutReverseResponseHandler : ResponseHandler {
@@ -478,6 +503,8 @@ class V1PayoutsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -502,5 +529,7 @@ class V1PayoutsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

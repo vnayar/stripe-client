@@ -3,6 +3,7 @@ module stripe.model.deleted_price;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class DeletedPrice {
    */
   @optional
   Nullable!(bool) deleted;
+
+  mixin AddBuilder!(typeof(this));
 
 }

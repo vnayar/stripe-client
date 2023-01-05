@@ -3,6 +3,7 @@ module stripe.model.deleted_payment_source;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -12,4 +13,6 @@ import stripe.model.deleted_card : DeletedCard;
 /**
  */
 class DeletedPaymentSource {
+  mixin AddBuilder!(typeof(this));
+
 }

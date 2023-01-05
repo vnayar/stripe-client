@@ -3,6 +3,7 @@ module stripe.model.subscription_schedules_resource_default_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -87,5 +88,7 @@ class SubscriptionSchedulesResourceDefaultSettings {
 
   @optional
   SubscriptionSchedulesResourceDefaultSettingsAutomaticTax automatic_tax;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -37,6 +38,8 @@ class V1SubscriptionItemsService {
      */
     string item;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSubscriptionItemsItemResponseHandler : ResponseHandler {
@@ -63,6 +66,8 @@ class V1SubscriptionItemsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -91,6 +96,8 @@ class V1SubscriptionItemsService {
      */
     string item;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostSubscriptionItemsItemResponseHandler : ResponseHandler {
@@ -118,6 +125,8 @@ class V1SubscriptionItemsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -142,6 +151,8 @@ class V1SubscriptionItemsService {
     /**
      */
     string item;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -170,6 +181,8 @@ class V1SubscriptionItemsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -195,6 +208,8 @@ class V1SubscriptionItemsService {
     /**
      */
     string subscription_item;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -230,6 +245,8 @@ class V1SubscriptionItemsService {
     @optional
     Nullable!(int) quantity;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostSubscriptionItemsSubscriptionItemUsageRecordsResponseHandler : ResponseHandler {
@@ -256,6 +273,8 @@ class V1SubscriptionItemsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -328,6 +347,8 @@ class V1SubscriptionItemsService {
      */
     string subscription;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSubscriptionItemsResponseHandler : ResponseHandler {
@@ -355,6 +376,8 @@ class V1SubscriptionItemsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -379,6 +402,8 @@ class V1SubscriptionItemsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -460,6 +485,8 @@ class V1SubscriptionItemsService {
         @optional
         string interval;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -473,6 +500,8 @@ class V1SubscriptionItemsService {
 
       @optional
       Nullable!(int) unit_amount;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -539,6 +568,8 @@ class V1SubscriptionItemsService {
     @optional
     string price;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostSubscriptionItemsResponseHandler : ResponseHandler {
@@ -565,6 +596,8 @@ class V1SubscriptionItemsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -618,6 +651,8 @@ class V1SubscriptionItemsService {
      */
     string subscription_item;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSubscriptionItemsSubscriptionItemUsageRecordSummariesResponseHandler : ResponseHandler {
@@ -645,6 +680,8 @@ class V1SubscriptionItemsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -669,6 +706,8 @@ class V1SubscriptionItemsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -703,5 +742,7 @@ class V1SubscriptionItemsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

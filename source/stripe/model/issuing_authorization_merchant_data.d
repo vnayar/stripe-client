@@ -3,6 +3,7 @@ module stripe.model.issuing_authorization_merchant_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -59,5 +60,7 @@ class IssuingAuthorizationMerchantData {
    */
   @optional
   string city;
+
+  mixin AddBuilder!(typeof(this));
 
 }

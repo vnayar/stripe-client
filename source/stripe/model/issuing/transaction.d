@@ -3,6 +3,7 @@ module stripe.model.issuing.transaction;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -153,5 +154,7 @@ class IssuingTransaction {
    */
   @optional
   Json authorization;
+
+  mixin AddBuilder!(typeof(this));
 
 }

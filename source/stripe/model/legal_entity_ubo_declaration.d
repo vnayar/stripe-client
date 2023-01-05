@@ -3,6 +3,7 @@ module stripe.model.legal_entity_ubo_declaration;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class LegalEntityUboDeclaration {
    */
   @optional
   string user_agent;
+
+  mixin AddBuilder!(typeof(this));
 
 }

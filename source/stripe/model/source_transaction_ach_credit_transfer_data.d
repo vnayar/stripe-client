@@ -3,6 +3,7 @@ module stripe.model.source_transaction_ach_credit_transfer_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class SourceTransactionAchCreditTransferData {
    */
   @optional
   string fingerprint;
+
+  mixin AddBuilder!(typeof(this));
 
 }

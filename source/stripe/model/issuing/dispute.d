@@ -3,6 +3,7 @@ module stripe.model.issuing.dispute;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -91,5 +92,7 @@ class IssuingDispute {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

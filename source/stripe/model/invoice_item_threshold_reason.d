@@ -3,6 +3,7 @@ module stripe.model.invoice_item_threshold_reason;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class InvoiceItemThresholdReason {
    */
   @optional
   string[] line_item_ids;
+
+  mixin AddBuilder!(typeof(this));
 
 }

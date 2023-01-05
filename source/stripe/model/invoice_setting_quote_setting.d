@@ -3,6 +3,7 @@ module stripe.model.invoice_setting_quote_setting;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -16,5 +17,7 @@ class InvoiceSettingQuoteSetting {
    */
   @optional
   Nullable!(int) days_until_due;
+
+  mixin AddBuilder!(typeof(this));
 
 }

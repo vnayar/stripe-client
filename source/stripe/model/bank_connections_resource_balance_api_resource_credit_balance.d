@@ -3,6 +3,7 @@ module stripe.model.bank_connections_resource_balance_api_resource_credit_balanc
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -19,5 +20,7 @@ class BankConnectionsResourceBalanceApiResourceCreditBalance {
    */
   @optional
   Nullable!(int)[string] used;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.subscription_schedule_add_invoice_item;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class SubscriptionScheduleAddInvoiceItem {
    */
   @optional
   Json price;
+
+  mixin AddBuilder!(typeof(this));
 
 }

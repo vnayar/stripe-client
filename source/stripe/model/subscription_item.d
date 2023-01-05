@@ -3,6 +3,7 @@ module stripe.model.subscription_item;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -70,5 +71,7 @@ class SubscriptionItem {
 
   @optional
   Price price;
+
+  mixin AddBuilder!(typeof(this));
 
 }

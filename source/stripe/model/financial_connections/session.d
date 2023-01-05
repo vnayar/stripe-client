@@ -3,6 +3,7 @@ module stripe.model.financial_connections.session;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -82,6 +83,8 @@ class FinancialConnectionsSession {
     @optional
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -95,5 +98,7 @@ class FinancialConnectionsSession {
    */
   @optional
   string[] permissions;
+
+  mixin AddBuilder!(typeof(this));
 
 }

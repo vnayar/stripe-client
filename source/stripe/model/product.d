@@ -3,6 +3,7 @@ module stripe.model.product;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -134,5 +135,7 @@ class Product {
    */
   @optional
   Nullable!(bool) shippable;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -35,6 +36,8 @@ class V1ApplePayDomainsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetApplePayDomainsDomainResponseHandler : ResponseHandler {
@@ -61,6 +64,8 @@ class V1ApplePayDomainsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -89,6 +94,8 @@ class V1ApplePayDomainsService {
      */
     string domain;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteApplePayDomainsDomainResponseHandler : ResponseHandler {
@@ -115,6 +122,8 @@ class V1ApplePayDomainsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -168,6 +177,8 @@ class V1ApplePayDomainsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetApplePayDomainsResponseHandler : ResponseHandler {
@@ -195,6 +206,8 @@ class V1ApplePayDomainsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -219,6 +232,8 @@ class V1ApplePayDomainsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -258,6 +273,8 @@ class V1ApplePayDomainsService {
     @optional
     string domain_name;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostApplePayDomainsResponseHandler : ResponseHandler {
@@ -285,6 +302,8 @@ class V1ApplePayDomainsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -303,5 +322,7 @@ class V1ApplePayDomainsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

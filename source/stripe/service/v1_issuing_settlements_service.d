@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -57,6 +58,8 @@ class V1IssuingSettlementsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingSettlementsResponseHandler : ResponseHandler {
@@ -84,6 +87,8 @@ class V1IssuingSettlementsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -108,6 +113,8 @@ class V1IssuingSettlementsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -148,6 +155,8 @@ class V1IssuingSettlementsService {
      */
     string settlement;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingSettlementsSettlementResponseHandler : ResponseHandler {
@@ -174,6 +183,8 @@ class V1IssuingSettlementsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -202,6 +213,8 @@ class V1IssuingSettlementsService {
      */
     string settlement;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostIssuingSettlementsSettlementResponseHandler : ResponseHandler {
@@ -229,6 +242,8 @@ class V1IssuingSettlementsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -249,5 +264,7 @@ class V1IssuingSettlementsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

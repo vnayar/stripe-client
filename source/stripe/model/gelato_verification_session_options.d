@@ -3,6 +3,7 @@ module stripe.model.gelato_verification_session_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -17,5 +18,7 @@ class GelatoVerificationSessionOptions {
 
   @optional
   GelatoSessionIdNumberOptions id_number;
+
+  mixin AddBuilder!(typeof(this));
 
 }

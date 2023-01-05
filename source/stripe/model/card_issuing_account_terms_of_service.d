@@ -3,6 +3,7 @@ module stripe.model.card_issuing_account_terms_of_service;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -28,5 +29,7 @@ class CardIssuingAccountTermsOfService {
    */
   @optional
   string user_agent;
+
+  mixin AddBuilder!(typeof(this));
 
 }

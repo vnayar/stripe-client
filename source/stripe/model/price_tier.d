@@ -3,6 +3,7 @@ module stripe.model.price_tier;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -39,5 +40,7 @@ class PriceTier {
    */
   @optional
   string flat_amount_decimal;
+
+  mixin AddBuilder!(typeof(this));
 
 }

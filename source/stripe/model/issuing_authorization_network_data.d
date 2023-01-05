@@ -3,6 +3,7 @@ module stripe.model.issuing_authorization_network_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -16,5 +17,7 @@ class IssuingAuthorizationNetworkData {
    */
   @optional
   string acquiring_institution_id;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -28,6 +29,8 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
     /**
      */
     string id;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -56,6 +59,8 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -81,6 +86,8 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
     /**
      */
     string id;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -109,6 +116,8 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -134,6 +143,8 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
     /**
      */
     string id;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -162,6 +173,8 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -182,5 +195,7 @@ class V1TestHelpersTreasuryOutboundPaymentsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

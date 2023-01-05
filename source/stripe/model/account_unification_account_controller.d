@@ -3,6 +3,7 @@ module stripe.model.account_unification_account_controller;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -25,5 +26,7 @@ class AccountUnificationAccountController {
    */
   @optional
   Nullable!(bool) is_controller;
+
+  mixin AddBuilder!(typeof(this));
 
 }

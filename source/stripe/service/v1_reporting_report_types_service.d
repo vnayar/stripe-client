@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -29,6 +30,8 @@ class V1ReportingReportTypesService {
      * Specifies which fields in the response should be expanded.
      */
     string[] expand;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -57,6 +60,8 @@ class V1ReportingReportTypesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -81,6 +86,8 @@ class V1ReportingReportTypesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -112,6 +119,8 @@ class V1ReportingReportTypesService {
      */
     string report_type;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetReportingReportTypesReportTypeResponseHandler : ResponseHandler {
@@ -139,6 +148,8 @@ class V1ReportingReportTypesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -161,5 +172,7 @@ class V1ReportingReportTypesService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

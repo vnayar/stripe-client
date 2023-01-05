@@ -3,6 +3,7 @@ module stripe.model.payment_pages_checkout_session_shipping_option;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class PaymentPagesCheckoutSessionShippingOption {
    */
   @optional
   Nullable!(int) shipping_amount;
+
+  mixin AddBuilder!(typeof(this));
 
 }

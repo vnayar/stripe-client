@@ -3,6 +3,7 @@ module stripe.model.checkout_alipay_payment_method_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class CheckoutAlipayPaymentMethodOptions {
    */
   @optional
   string setup_future_usage;
+
+  mixin AddBuilder!(typeof(this));
 
 }

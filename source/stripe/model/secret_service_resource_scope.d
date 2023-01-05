@@ -3,6 +3,7 @@ module stripe.model.secret_service_resource_scope;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class SecretServiceResourceScope {
    */
   @optional
   string user;
+
+  mixin AddBuilder!(typeof(this));
 
 }

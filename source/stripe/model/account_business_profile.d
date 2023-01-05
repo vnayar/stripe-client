@@ -3,6 +3,7 @@ module stripe.model.account_business_profile;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -60,5 +61,7 @@ class AccountBusinessProfile {
    */
   @optional
   string support_phone;
+
+  mixin AddBuilder!(typeof(this));
 
 }

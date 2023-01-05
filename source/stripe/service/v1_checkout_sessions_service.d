@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -37,6 +38,8 @@ class V1CheckoutSessionsService {
     static class CustomerDetailsParams {
       @optional
       string email;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -79,6 +82,8 @@ class V1CheckoutSessionsService {
      */
     string subscription;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCheckoutSessionsResponseHandler : ResponseHandler {
@@ -106,6 +111,8 @@ class V1CheckoutSessionsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -130,6 +137,8 @@ class V1CheckoutSessionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -180,6 +189,8 @@ class V1CheckoutSessionsService {
       @optional
       Json submit;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -197,6 +208,8 @@ class V1CheckoutSessionsService {
 
       @optional
       string on_behalf_of;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -287,6 +300,8 @@ class V1CheckoutSessionsService {
             @optional
             Nullable!(int) value;
 
+            mixin AddBuilder!(typeof(this));
+
           }
 
           @optional
@@ -294,6 +309,8 @@ class V1CheckoutSessionsService {
 
           @optional
           DeliveryEstimateBound maximum;
+
+          mixin AddBuilder!(typeof(this));
 
         }
 
@@ -317,10 +334,14 @@ class V1CheckoutSessionsService {
             @optional
             string tax_behavior;
 
+            mixin AddBuilder!(typeof(this));
+
           }
 
           @optional
           CurrencyOption[string] currency_options;
+
+          mixin AddBuilder!(typeof(this));
 
         }
 
@@ -339,10 +360,14 @@ class V1CheckoutSessionsService {
         @optional
         string type;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       MethodParams shipping_rate_data;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -375,10 +400,14 @@ class V1CheckoutSessionsService {
         @optional
         Json rendering_options;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       InvoiceDataParams invoice_data;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -404,6 +433,8 @@ class V1CheckoutSessionsService {
       @optional
       string name;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -419,6 +450,8 @@ class V1CheckoutSessionsService {
 
       @optional
       string promotions;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -493,6 +526,8 @@ class V1CheckoutSessionsService {
           @optional
           string name;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
@@ -505,10 +540,14 @@ class V1CheckoutSessionsService {
           @optional
           string interval;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
         RecurringAdhoc recurring;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -537,10 +576,14 @@ class V1CheckoutSessionsService {
         @optional
         Nullable!(int) maximum;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       AdjustableQuantityParams adjustable_quantity;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -607,6 +650,8 @@ class V1CheckoutSessionsService {
           @optional
           string state;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
@@ -617,6 +662,8 @@ class V1CheckoutSessionsService {
 
         @optional
         string name;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -636,10 +683,14 @@ class V1CheckoutSessionsService {
         @optional
         string destination;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       TransferDataParams transfer_data;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -658,10 +709,14 @@ class V1CheckoutSessionsService {
         @optional
         Nullable!(bool) allow_promotion_codes;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       RecoveryParams recovery;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -713,6 +768,8 @@ class V1CheckoutSessionsService {
         @optional
         string destination;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -720,6 +777,8 @@ class V1CheckoutSessionsService {
 
       @optional
       string on_behalf_of;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -733,6 +792,8 @@ class V1CheckoutSessionsService {
     static class ShippingAddressCollectionParams {
       @optional
       string[] allowed_countries;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -753,6 +814,8 @@ class V1CheckoutSessionsService {
       @optional
       Nullable!(bool) enabled;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -765,6 +828,8 @@ class V1CheckoutSessionsService {
       static class PaymentMethodOptionsParam {
         @optional
         string setup_future_usage;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -843,6 +908,8 @@ class V1CheckoutSessionsService {
       @optional
       PaymentMethodOptionsParam pix;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -867,6 +934,8 @@ class V1CheckoutSessionsService {
 
       @optional
       string promotion_code;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -895,6 +964,8 @@ class V1CheckoutSessionsService {
       @optional
       Nullable!(bool) enabled;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -919,6 +990,8 @@ class V1CheckoutSessionsService {
       @optional
       Nullable!(bool) enabled;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -927,6 +1000,8 @@ class V1CheckoutSessionsService {
      */
     @optional
     AutomaticTaxParams automatic_tax;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -955,6 +1030,8 @@ class V1CheckoutSessionsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -978,6 +1055,8 @@ class V1CheckoutSessionsService {
     /**
      */
     string session;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1005,6 +1084,8 @@ class V1CheckoutSessionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1060,6 +1141,8 @@ class V1CheckoutSessionsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCheckoutSessionsSessionLineItemsResponseHandler : ResponseHandler {
@@ -1090,6 +1173,8 @@ class V1CheckoutSessionsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -1114,6 +1199,8 @@ class V1CheckoutSessionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1155,6 +1242,8 @@ class V1CheckoutSessionsService {
      */
     string session;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCheckoutSessionsSessionResponseHandler : ResponseHandler {
@@ -1182,6 +1271,8 @@ class V1CheckoutSessionsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -1203,5 +1294,7 @@ class V1CheckoutSessionsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

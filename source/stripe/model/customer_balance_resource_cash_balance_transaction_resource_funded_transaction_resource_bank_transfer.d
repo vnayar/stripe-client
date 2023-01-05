@@ -3,6 +3,7 @@ module stripe.model.customer_balance_resource_cash_balance_transaction_resource_
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -26,5 +27,7 @@ class CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionReso
 
   @optional
   CustomerBalanceResourceCashBalanceTransactionResourceFundedTransactionResourceBankTransferResourceEuBankTransfer eu_bank_transfer;
+
+  mixin AddBuilder!(typeof(this));
 
 }

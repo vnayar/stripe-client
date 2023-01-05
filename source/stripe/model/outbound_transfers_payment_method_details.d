@@ -3,6 +3,7 @@ module stripe.model.outbound_transfers_payment_method_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -23,5 +24,7 @@ class OutboundTransfersPaymentMethodDetails {
 
   @optional
   OutboundTransfersPaymentMethodDetailsUsBankAccount us_bank_account;
+
+  mixin AddBuilder!(typeof(this));
 
 }

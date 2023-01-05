@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -50,6 +51,8 @@ class V1TreasuryFinancialAccountsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryFinancialAccountsResponseHandler : ResponseHandler {
@@ -77,6 +80,8 @@ class V1TreasuryFinancialAccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -101,6 +106,8 @@ class V1TreasuryFinancialAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -138,6 +145,8 @@ class V1TreasuryFinancialAccountsService {
       @optional
       string outbound_flows;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -167,6 +176,8 @@ class V1TreasuryFinancialAccountsService {
           @optional
           Nullable!(bool) requested;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
@@ -176,10 +187,14 @@ class V1TreasuryFinancialAccountsService {
           @optional
           Nullable!(bool) requested;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
         AccessWithAchDetails ach;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -191,10 +206,14 @@ class V1TreasuryFinancialAccountsService {
           @optional
           Nullable!(bool) requested;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
         Access aba;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -204,6 +223,8 @@ class V1TreasuryFinancialAccountsService {
       static class Access {
         @optional
         Nullable!(bool) requested;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -218,6 +239,8 @@ class V1TreasuryFinancialAccountsService {
           @optional
           Nullable!(bool) requested;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
@@ -227,10 +250,14 @@ class V1TreasuryFinancialAccountsService {
           @optional
           Nullable!(bool) requested;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
         AccessWithAchDetails ach;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -242,10 +269,14 @@ class V1TreasuryFinancialAccountsService {
           @optional
           Nullable!(bool) requested;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
         AccessWithAchDetails ach;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -254,6 +285,8 @@ class V1TreasuryFinancialAccountsService {
 
       @optional
       Access intra_stripe_flows;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -269,6 +302,8 @@ class V1TreasuryFinancialAccountsService {
      */
     @optional
     string[] supported_currencies;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -296,6 +331,8 @@ class V1TreasuryFinancialAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -327,6 +364,8 @@ class V1TreasuryFinancialAccountsService {
      */
     string financial_account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryFinancialAccountsFinancialAccountResponseHandler : ResponseHandler {
@@ -353,6 +392,8 @@ class V1TreasuryFinancialAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -381,6 +422,8 @@ class V1TreasuryFinancialAccountsService {
      */
     string financial_account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTreasuryFinancialAccountsFinancialAccountResponseHandler : ResponseHandler {
@@ -407,6 +450,8 @@ class V1TreasuryFinancialAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -438,6 +483,8 @@ class V1TreasuryFinancialAccountsService {
      */
     string financial_account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryFinancialAccountsFinancialAccountFeaturesResponseHandler : ResponseHandler {
@@ -464,6 +511,8 @@ class V1TreasuryFinancialAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -492,6 +541,8 @@ class V1TreasuryFinancialAccountsService {
      */
     string financial_account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTreasuryFinancialAccountsFinancialAccountFeaturesResponseHandler : ResponseHandler {
@@ -519,6 +570,8 @@ class V1TreasuryFinancialAccountsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -538,5 +591,7 @@ class V1TreasuryFinancialAccountsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

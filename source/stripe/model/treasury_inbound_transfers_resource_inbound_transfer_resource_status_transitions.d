@@ -3,6 +3,7 @@ module stripe.model.treasury_inbound_transfers_resource_inbound_transfer_resourc
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class TreasuryInboundTransfersResourceInboundTransferResourceStatusTransitions {
    */
   @optional
   Nullable!(long) succeeded_at;
+
+  mixin AddBuilder!(typeof(this));
 
 }

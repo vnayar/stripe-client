@@ -3,6 +3,7 @@ module stripe.model.subscription;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -143,6 +144,8 @@ class Subscription {
      */
     @optional
     string url;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -371,5 +374,7 @@ class Subscription {
 
   @optional
   SubscriptionAutomaticTax automatic_tax;
+
+  mixin AddBuilder!(typeof(this));
 
 }

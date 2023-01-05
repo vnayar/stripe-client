@@ -3,6 +3,7 @@ module stripe.model.quote;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -187,6 +188,8 @@ class Quote {
     @optional
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -275,5 +278,7 @@ class Quote {
 
   @optional
   QuotesResourceAutomaticTax automatic_tax;
+
+  mixin AddBuilder!(typeof(this));
 
 }

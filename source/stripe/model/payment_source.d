@@ -3,6 +3,7 @@ module stripe.model.payment_source;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -14,4 +15,6 @@ import stripe.model.source : Source;
 /**
  */
 class PaymentSource {
+  mixin AddBuilder!(typeof(this));
+
 }

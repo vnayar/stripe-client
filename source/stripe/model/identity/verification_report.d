@@ -3,6 +3,7 @@ module stripe.model.identity.verification_report;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -73,5 +74,7 @@ class IdentityVerificationReport {
 
   @optional
   GelatoIdNumberReport id_number;
+
+  mixin AddBuilder!(typeof(this));
 
 }

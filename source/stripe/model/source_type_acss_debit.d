@@ -3,6 +3,7 @@ module stripe.model.source_type_acss_debit;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -39,5 +40,7 @@ class SourceTypeAcssDebit {
 
   @optional
   string fingerprint;
+
+  mixin AddBuilder!(typeof(this));
 
 }

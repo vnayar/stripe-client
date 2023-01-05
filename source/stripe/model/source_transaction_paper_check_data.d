@@ -3,6 +3,7 @@ module stripe.model.source_transaction_paper_check_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class SourceTransactionPaperCheckData {
    */
   @optional
   string invoices;
+
+  mixin AddBuilder!(typeof(this));
 
 }

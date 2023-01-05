@@ -3,6 +3,7 @@ module stripe.model.payment_pages_checkout_session_invoice_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -51,5 +52,7 @@ class PaymentPagesCheckoutSessionInvoiceSettings {
    */
   @optional
   InvoiceSettingRenderingOptions rendering_options;
+
+  mixin AddBuilder!(typeof(this));
 
 }

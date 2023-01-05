@@ -3,6 +3,7 @@ module stripe.model.payment_method_options_affirm;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -30,5 +31,7 @@ class PaymentMethodOptionsAffirm {
    */
   @optional
   string capture_method;
+
+  mixin AddBuilder!(typeof(this));
 
 }

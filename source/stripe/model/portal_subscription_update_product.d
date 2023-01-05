@@ -3,6 +3,7 @@ module stripe.model.portal_subscription_update_product;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class PortalSubscriptionUpdateProduct {
    */
   @optional
   string[] prices;
+
+  mixin AddBuilder!(typeof(this));
 
 }

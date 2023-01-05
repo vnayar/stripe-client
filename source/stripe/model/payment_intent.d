@@ -3,6 +3,7 @@ module stripe.model.payment_intent;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -313,5 +314,7 @@ class PaymentIntent {
    */
   @optional
   Shipping shipping;
+
+  mixin AddBuilder!(typeof(this));
 
 }

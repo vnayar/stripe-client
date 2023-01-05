@@ -3,6 +3,7 @@ module stripe.model.payment_flows_private_payment_methods_alipay_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -29,5 +30,7 @@ class PaymentFlowsPrivatePaymentMethodsAlipayDetails {
    */
   @optional
   string buyer_id;
+
+  mixin AddBuilder!(typeof(this));
 
 }

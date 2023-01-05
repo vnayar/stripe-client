@@ -3,6 +3,7 @@ module stripe.model.treasury_shared_resource_billing_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -25,5 +26,7 @@ class TreasurySharedResourceBillingDetails {
    */
   @optional
   string name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

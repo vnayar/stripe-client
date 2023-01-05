@@ -3,6 +3,7 @@ module stripe.model.terminal_reader_reader_resource_cart;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -38,5 +39,7 @@ class TerminalReaderReaderResourceCart {
    */
   @optional
   TerminalReaderReaderResourceLineItem[] line_items;
+
+  mixin AddBuilder!(typeof(this));
 
 }

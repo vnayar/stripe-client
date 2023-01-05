@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -28,6 +29,8 @@ class V1TestHelpersCustomersService {
     /**
      */
     string customer;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -62,6 +65,8 @@ class V1TestHelpersCustomersService {
     @optional
     string reference;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTestHelpersCustomersCustomerFundCashBalanceResponseHandler : ResponseHandler {
@@ -89,6 +94,8 @@ class V1TestHelpersCustomersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -110,5 +117,7 @@ class V1TestHelpersCustomersService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

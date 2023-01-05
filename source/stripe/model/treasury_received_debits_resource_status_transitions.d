@@ -3,6 +3,7 @@ module stripe.model.treasury_received_debits_resource_status_transitions;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -15,5 +16,7 @@ class TreasuryReceivedDebitsResourceStatusTransitions {
    */
   @optional
   Nullable!(long) completed_at;
+
+  mixin AddBuilder!(typeof(this));
 
 }

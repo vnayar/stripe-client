@@ -3,6 +3,7 @@ module stripe.model.account_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -45,5 +46,7 @@ class AccountSettings {
 
   @optional
   AccountBrandingSettings branding;
+
+  mixin AddBuilder!(typeof(this));
 
 }

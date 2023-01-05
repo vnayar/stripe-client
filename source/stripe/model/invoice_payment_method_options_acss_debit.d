@@ -3,6 +3,7 @@ module stripe.model.invoice_payment_method_options_acss_debit;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -19,5 +20,7 @@ class InvoicePaymentMethodOptionsAcssDebit {
    */
   @optional
   string verification_method;
+
+  mixin AddBuilder!(typeof(this));
 
 }

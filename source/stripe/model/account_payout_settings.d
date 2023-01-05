@@ -3,6 +3,7 @@ module stripe.model.account_payout_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -29,5 +30,7 @@ class AccountPayoutSettings {
 
   @optional
   TransferSchedule schedule;
+
+  mixin AddBuilder!(typeof(this));
 
 }

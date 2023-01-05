@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -62,6 +63,8 @@ class V1FilesService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetFilesResponseHandler : ResponseHandler {
@@ -89,6 +92,8 @@ class V1FilesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -113,6 +118,8 @@ class V1FilesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -156,6 +163,8 @@ class V1FilesService {
       @optional
       Nullable!(bool) create;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -184,6 +193,8 @@ class V1FilesService {
     @optional
     string purpose;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostFilesResponseHandler : ResponseHandler {
@@ -210,6 +221,8 @@ class V1FilesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -244,6 +257,8 @@ class V1FilesService {
      */
     string file;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetFilesFileResponseHandler : ResponseHandler {
@@ -271,6 +286,8 @@ class V1FilesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -294,5 +311,7 @@ class V1FilesService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

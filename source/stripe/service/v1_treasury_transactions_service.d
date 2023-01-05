@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1TreasuryTransactionsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryTransactionsIdResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1TreasuryTransactionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -139,9 +144,13 @@ class V1TreasuryTransactionsService {
       @optional
       Json posted_at;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     StatusTransitionTimestampSpecs status_transitions;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -173,6 +182,8 @@ class V1TreasuryTransactionsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -197,6 +208,8 @@ class V1TreasuryTransactionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -233,5 +246,7 @@ class V1TreasuryTransactionsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

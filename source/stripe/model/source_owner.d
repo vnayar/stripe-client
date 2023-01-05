@@ -3,6 +3,7 @@ module stripe.model.source_owner;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -66,5 +67,7 @@ class SourceOwner {
    */
   @optional
   Address address;
+
+  mixin AddBuilder!(typeof(this));
 
 }

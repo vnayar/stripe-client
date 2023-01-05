@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -31,6 +32,8 @@ class V1InvoicesUpcomingService {
     static class AutomaticTaxParam {
       @optional
       Nullable!(bool) enabled;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -72,6 +75,8 @@ class V1InvoicesUpcomingService {
         @optional
         string value;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -84,10 +89,14 @@ class V1InvoicesUpcomingService {
         @optional
         Json ip_address;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       TaxParam tax;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -127,6 +136,8 @@ class V1InvoicesUpcomingService {
         @optional
         Nullable!(long) start;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -160,6 +171,8 @@ class V1InvoicesUpcomingService {
         @optional
         Nullable!(int) unit_amount;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -185,6 +198,8 @@ class V1InvoicesUpcomingService {
 
       @optional
       string price;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -270,6 +285,8 @@ class V1InvoicesUpcomingService {
           @optional
           string interval;
 
+          mixin AddBuilder!(typeof(this));
+
         }
 
         @optional
@@ -284,6 +301,8 @@ class V1InvoicesUpcomingService {
         @optional
         Nullable!(int) unit_amount;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -297,6 +316,8 @@ class V1InvoicesUpcomingService {
 
       @optional
       string price;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -340,6 +361,8 @@ class V1InvoicesUpcomingService {
      */
     Nullable!(bool) subscription_trial_from_plan;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetInvoicesUpcomingResponseHandler : ResponseHandler {
@@ -366,6 +389,8 @@ class V1InvoicesUpcomingService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -441,5 +466,7 @@ class V1InvoicesUpcomingService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

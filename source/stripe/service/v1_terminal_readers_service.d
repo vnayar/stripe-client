@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -35,6 +36,8 @@ class V1TerminalReadersService {
      */
     string reader;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTerminalReadersReaderResponseHandler : ResponseHandler {
@@ -61,6 +64,8 @@ class V1TerminalReadersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -89,6 +94,8 @@ class V1TerminalReadersService {
      */
     string reader;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTerminalReadersReaderResponseHandler : ResponseHandler {
@@ -116,6 +123,8 @@ class V1TerminalReadersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -141,6 +150,8 @@ class V1TerminalReadersService {
     /**
      */
     string reader;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -169,6 +180,8 @@ class V1TerminalReadersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -194,6 +207,8 @@ class V1TerminalReadersService {
      */
     string reader;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTerminalReadersReaderProcessPaymentIntentBody {
@@ -202,6 +217,8 @@ class V1TerminalReadersService {
         @optional
         Nullable!(int) amount_eligible;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -209,6 +226,8 @@ class V1TerminalReadersService {
 
       @optional
       Nullable!(bool) skip_tipping;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -229,6 +248,8 @@ class V1TerminalReadersService {
      */
     @optional
     string payment_intent;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -257,6 +278,8 @@ class V1TerminalReadersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -284,6 +307,8 @@ class V1TerminalReadersService {
      */
     string reader;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTerminalReadersReaderProcessSetupIntentBody {
@@ -304,6 +329,8 @@ class V1TerminalReadersService {
      */
     @optional
     string setup_intent;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -332,6 +359,8 @@ class V1TerminalReadersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -358,6 +387,8 @@ class V1TerminalReadersService {
     /**
      */
     string reader;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -388,10 +419,14 @@ class V1TerminalReadersService {
         @optional
         Nullable!(int) quantity;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       LineItem[] line_items;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -406,6 +441,8 @@ class V1TerminalReadersService {
      */
     @optional
     string[] expand;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -434,6 +471,8 @@ class V1TerminalReadersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -461,6 +500,8 @@ class V1TerminalReadersService {
      */
     string reader;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTerminalReadersReaderCancelActionResponseHandler : ResponseHandler {
@@ -487,6 +528,8 @@ class V1TerminalReadersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -551,6 +594,8 @@ class V1TerminalReadersService {
      */
     string status;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTerminalReadersResponseHandler : ResponseHandler {
@@ -581,6 +626,8 @@ class V1TerminalReadersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -605,6 +652,8 @@ class V1TerminalReadersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -673,6 +722,8 @@ class V1TerminalReadersService {
     @optional
     string registration_code;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTerminalReadersResponseHandler : ResponseHandler {
@@ -700,6 +751,8 @@ class V1TerminalReadersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -718,5 +771,7 @@ class V1TerminalReadersService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

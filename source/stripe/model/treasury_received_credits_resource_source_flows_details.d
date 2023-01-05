@@ -3,6 +3,7 @@ module stripe.model.treasury_received_credits_resource_source_flows_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class TreasuryReceivedCreditsResourceSourceFlowsDetails {
 
   @optional
   Payout payout;
+
+  mixin AddBuilder!(typeof(this));
 
 }

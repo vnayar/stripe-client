@@ -3,6 +3,7 @@ module stripe.model.deleted_application;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class DeletedApplication {
    */
   @optional
   string name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1BillingPortalConfigurationsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetBillingPortalConfigurationsConfigurationResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1BillingPortalConfigurationsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -88,6 +93,8 @@ class V1BillingPortalConfigurationsService {
      */
     string configuration;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostBillingPortalConfigurationsConfigurationResponseHandler : ResponseHandler {
@@ -114,6 +121,8 @@ class V1BillingPortalConfigurationsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -175,6 +184,8 @@ class V1BillingPortalConfigurationsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetBillingPortalConfigurationsResponseHandler : ResponseHandler {
@@ -202,6 +213,8 @@ class V1BillingPortalConfigurationsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -226,6 +239,8 @@ class V1BillingPortalConfigurationsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -277,6 +292,8 @@ class V1BillingPortalConfigurationsService {
       @optional
       string headline;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -308,6 +325,8 @@ class V1BillingPortalConfigurationsService {
         @optional
         Json allowed_updates;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -326,6 +345,8 @@ class V1BillingPortalConfigurationsService {
         @optional
         Json products;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -335,6 +356,8 @@ class V1BillingPortalConfigurationsService {
         @optional
         Nullable!(bool) enabled;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -343,6 +366,8 @@ class V1BillingPortalConfigurationsService {
       static class PaymentMethodUpdateParam {
         @optional
         Nullable!(bool) enabled;
+
+        mixin AddBuilder!(typeof(this));
 
       }
 
@@ -356,6 +381,8 @@ class V1BillingPortalConfigurationsService {
 
           @optional
           Json options;
+
+          mixin AddBuilder!(typeof(this));
 
         }
 
@@ -371,6 +398,8 @@ class V1BillingPortalConfigurationsService {
         @optional
         string mode;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -380,10 +409,14 @@ class V1BillingPortalConfigurationsService {
         @optional
         Nullable!(bool) enabled;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       SubscriptionPauseParam subscription_pause;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -397,6 +430,8 @@ class V1BillingPortalConfigurationsService {
       @optional
       Nullable!(bool) enabled;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -406,6 +441,8 @@ class V1BillingPortalConfigurationsService {
      */
     @optional
     LoginPageCreateParam login_page;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -434,6 +471,8 @@ class V1BillingPortalConfigurationsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -452,5 +491,7 @@ class V1BillingPortalConfigurationsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

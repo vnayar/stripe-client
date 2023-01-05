@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -29,6 +30,8 @@ class V1FinancialConnectionsAccountsService {
     /**
      */
     string account;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -57,6 +60,8 @@ class V1FinancialConnectionsAccountsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -83,6 +88,8 @@ class V1FinancialConnectionsAccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostFinancialConnectionsAccountsAccountRefreshBody {
@@ -97,6 +104,8 @@ class V1FinancialConnectionsAccountsService {
      */
     @optional
     string[] features;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -124,6 +133,8 @@ class V1FinancialConnectionsAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -184,6 +195,8 @@ class V1FinancialConnectionsAccountsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetFinancialConnectionsAccountsAccountOwnersResponseHandler : ResponseHandler {
@@ -214,6 +227,8 @@ class V1FinancialConnectionsAccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -238,6 +253,8 @@ class V1FinancialConnectionsAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -281,6 +298,8 @@ class V1FinancialConnectionsAccountsService {
       @optional
       string account;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     AccountholderParams account_holder;
@@ -317,6 +336,8 @@ class V1FinancialConnectionsAccountsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetFinancialConnectionsAccountsResponseHandler : ResponseHandler {
@@ -347,6 +368,8 @@ class V1FinancialConnectionsAccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -371,6 +394,8 @@ class V1FinancialConnectionsAccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -412,6 +437,8 @@ class V1FinancialConnectionsAccountsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetFinancialConnectionsAccountsAccountResponseHandler : ResponseHandler {
@@ -439,6 +466,8 @@ class V1FinancialConnectionsAccountsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -460,5 +489,7 @@ class V1FinancialConnectionsAccountsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

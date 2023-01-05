@@ -3,6 +3,7 @@ module stripe.model.mandate_options_off_session_details_blik;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class MandateOptionsOffSessionDetailsBlik {
    */
   @optional
   string interval;
+
+  mixin AddBuilder!(typeof(this));
 
 }

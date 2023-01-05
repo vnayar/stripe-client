@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -72,6 +73,8 @@ class V1IssuingTransactionsService {
      */
     string type;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingTransactionsResponseHandler : ResponseHandler {
@@ -99,6 +102,8 @@ class V1IssuingTransactionsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -123,6 +128,8 @@ class V1IssuingTransactionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -169,6 +176,8 @@ class V1IssuingTransactionsService {
      */
     string transaction;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingTransactionsTransactionResponseHandler : ResponseHandler {
@@ -195,6 +204,8 @@ class V1IssuingTransactionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -223,6 +234,8 @@ class V1IssuingTransactionsService {
      */
     string transaction;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostIssuingTransactionsTransactionResponseHandler : ResponseHandler {
@@ -250,6 +263,8 @@ class V1IssuingTransactionsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -270,5 +285,7 @@ class V1IssuingTransactionsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

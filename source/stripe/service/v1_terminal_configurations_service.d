@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -35,6 +36,8 @@ class V1TerminalConfigurationsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTerminalConfigurationsConfigurationResponseHandler : ResponseHandler {
@@ -61,6 +64,8 @@ class V1TerminalConfigurationsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -89,6 +94,8 @@ class V1TerminalConfigurationsService {
      */
     string configuration;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTerminalConfigurationsConfigurationResponseHandler : ResponseHandler {
@@ -116,6 +123,8 @@ class V1TerminalConfigurationsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -140,6 +149,8 @@ class V1TerminalConfigurationsService {
     /**
      */
     string configuration;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -167,6 +178,8 @@ class V1TerminalConfigurationsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -221,6 +234,8 @@ class V1TerminalConfigurationsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTerminalConfigurationsResponseHandler : ResponseHandler {
@@ -248,6 +263,8 @@ class V1TerminalConfigurationsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -272,6 +289,8 @@ class V1TerminalConfigurationsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -326,6 +345,8 @@ class V1TerminalConfigurationsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -342,5 +363,7 @@ class V1TerminalConfigurationsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

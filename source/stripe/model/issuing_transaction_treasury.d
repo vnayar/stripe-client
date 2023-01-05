@@ -3,6 +3,7 @@ module stripe.model.issuing_transaction_treasury;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -23,5 +24,7 @@ class IssuingTransactionTreasury {
    */
   @optional
   string received_debit;
+
+  mixin AddBuilder!(typeof(this));
 
 }

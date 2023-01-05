@@ -3,6 +3,7 @@ module stripe.model.test_helpers.test_clock;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -65,5 +66,7 @@ class TestHelpersTestClock {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

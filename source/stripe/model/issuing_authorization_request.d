@@ -3,6 +3,7 @@ module stripe.model.issuing_authorization_request;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -75,5 +76,7 @@ class IssuingAuthorizationRequest {
    */
   @optional
   Nullable!(long) created;
+
+  mixin AddBuilder!(typeof(this));
 
 }

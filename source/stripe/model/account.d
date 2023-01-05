@@ -3,6 +3,7 @@ module stripe.model.account;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -158,6 +159,8 @@ class Account {
     @optional
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -171,5 +174,7 @@ class Account {
    */
   @optional
   Nullable!(bool) charges_enabled;
+
+  mixin AddBuilder!(typeof(this));
 
 }

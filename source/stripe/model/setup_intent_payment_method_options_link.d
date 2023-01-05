@@ -3,6 +3,7 @@ module stripe.model.setup_intent_payment_method_options_link;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -15,5 +16,7 @@ class SetupIntentPaymentMethodOptionsLink {
    */
   @optional
   string persistent_token;
+
+  mixin AddBuilder!(typeof(this));
 
 }

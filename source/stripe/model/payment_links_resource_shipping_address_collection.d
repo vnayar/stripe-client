@@ -3,6 +3,7 @@ module stripe.model.payment_links_resource_shipping_address_collection;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -17,5 +18,7 @@ class PaymentLinksResourceShippingAddressCollection {
    */
   @optional
   string[] allowed_countries;
+
+  mixin AddBuilder!(typeof(this));
 
 }

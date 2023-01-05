@@ -3,6 +3,7 @@ module stripe.model.api_errors;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -92,5 +93,7 @@ class ApiErrors {
    */
   @optional
   string request_log_url;
+
+  mixin AddBuilder!(typeof(this));
 
 }

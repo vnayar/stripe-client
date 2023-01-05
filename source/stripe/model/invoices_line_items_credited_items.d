@@ -3,6 +3,7 @@ module stripe.model.invoices_line_items_credited_items;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class InvoicesLineItemsCreditedItems {
    */
   @optional
   string[] invoice_line_items;
+
+  mixin AddBuilder!(typeof(this));
 
 }

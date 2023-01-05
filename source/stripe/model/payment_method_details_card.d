@@ -3,6 +3,7 @@ module stripe.model.payment_method_details_card;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -101,5 +102,7 @@ class PaymentMethodDetailsCard {
    */
   @optional
   string mandate;
+
+  mixin AddBuilder!(typeof(this));
 
 }

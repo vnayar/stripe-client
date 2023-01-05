@@ -3,6 +3,7 @@ module stripe.model.financial_reporting_finance_report_run_run_parameters;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -60,5 +61,7 @@ class FinancialReportingFinanceReportRunRunParameters {
    */
   @optional
   string payout;
+
+  mixin AddBuilder!(typeof(this));
 
 }

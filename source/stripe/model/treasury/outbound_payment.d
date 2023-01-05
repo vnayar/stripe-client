@@ -3,6 +3,7 @@ module stripe.model.treasury.outbound_payment;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -157,5 +158,7 @@ class TreasuryOutboundPayment {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

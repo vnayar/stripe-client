@@ -3,6 +3,7 @@ module stripe.model.financial_connections.account_owner;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -57,5 +58,7 @@ class FinancialConnectionsAccountOwner {
    */
   @optional
   string ownership;
+
+  mixin AddBuilder!(typeof(this));
 
 }

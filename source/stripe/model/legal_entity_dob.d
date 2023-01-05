@@ -3,6 +3,7 @@ module stripe.model.legal_entity_dob;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class LegalEntityDob {
    */
   @optional
   Nullable!(int) day;
+
+  mixin AddBuilder!(typeof(this));
 
 }

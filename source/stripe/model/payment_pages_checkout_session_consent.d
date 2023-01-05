@@ -3,6 +3,7 @@ module stripe.model.payment_pages_checkout_session_consent;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -23,5 +24,7 @@ class PaymentPagesCheckoutSessionConsent {
    */
   @optional
   string promotions;
+
+  mixin AddBuilder!(typeof(this));
 
 }

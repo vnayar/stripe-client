@@ -3,6 +3,7 @@ module stripe.model.subscription_pending_invoice_item_interval;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -23,5 +24,7 @@ class SubscriptionPendingInvoiceItemInterval {
    */
   @optional
   string interval;
+
+  mixin AddBuilder!(typeof(this));
 
 }

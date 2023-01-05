@@ -3,6 +3,7 @@ module stripe.model.account_capabilities;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -243,5 +244,7 @@ class AccountCapabilities {
    */
   @optional
   string acss_debit_payments;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.payment_intent_next_action_konbini_stores;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -37,5 +38,7 @@ class PaymentIntentNextActionKonbiniStores {
    */
   @optional
   PaymentIntentNextActionKonbiniFamilymart familymart;
+
+  mixin AddBuilder!(typeof(this));
 
 }

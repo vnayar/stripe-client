@@ -3,6 +3,7 @@ module stripe.model.issuing_card_shipping_customs;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -17,5 +18,7 @@ class IssuingCardShippingCustoms {
    */
   @optional
   string eori_number;
+
+  mixin AddBuilder!(typeof(this));
 
 }

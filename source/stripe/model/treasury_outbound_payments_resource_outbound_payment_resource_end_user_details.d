@@ -3,6 +3,7 @@ module stripe.model.treasury_outbound_payments_resource_outbound_payment_resourc
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class TreasuryOutboundPaymentsResourceOutboundPaymentResourceEndUserDetails {
    */
   @optional
   string ip_address;
+
+  mixin AddBuilder!(typeof(this));
 
 }

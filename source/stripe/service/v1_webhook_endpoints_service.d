@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -53,6 +54,8 @@ class V1WebhookEndpointsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetWebhookEndpointsResponseHandler : ResponseHandler {
@@ -80,6 +83,8 @@ class V1WebhookEndpointsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -104,6 +109,8 @@ class V1WebhookEndpointsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -180,6 +187,8 @@ class V1WebhookEndpointsService {
     @optional
     string[] enabled_events;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostWebhookEndpointsResponseHandler : ResponseHandler {
@@ -206,6 +215,8 @@ class V1WebhookEndpointsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -242,6 +253,8 @@ class V1WebhookEndpointsService {
      */
     string webhook_endpoint;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetWebhookEndpointsWebhookEndpointResponseHandler : ResponseHandler {
@@ -268,6 +281,8 @@ class V1WebhookEndpointsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -296,6 +311,8 @@ class V1WebhookEndpointsService {
      */
     string webhook_endpoint;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostWebhookEndpointsWebhookEndpointResponseHandler : ResponseHandler {
@@ -323,6 +340,8 @@ class V1WebhookEndpointsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -348,6 +367,8 @@ class V1WebhookEndpointsService {
     /**
      */
     string webhook_endpoint;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -376,6 +397,8 @@ class V1WebhookEndpointsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -397,5 +420,7 @@ class V1WebhookEndpointsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.issuing_dispute_duplicate_evidence;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -51,5 +52,7 @@ class IssuingDisputeDuplicateEvidence {
    */
   @optional
   string original_transaction;
+
+  mixin AddBuilder!(typeof(this));
 
 }

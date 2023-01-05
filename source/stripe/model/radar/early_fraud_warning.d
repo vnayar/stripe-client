@@ -3,6 +3,7 @@ module stripe.model.radar.early_fraud_warning;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -68,5 +69,7 @@ class RadarEarlyFraudWarning {
    */
   @optional
   Nullable!(long) created;
+
+  mixin AddBuilder!(typeof(this));
 
 }

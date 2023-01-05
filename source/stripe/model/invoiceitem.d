@@ -3,6 +3,7 @@ module stripe.model.invoiceitem;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -163,5 +164,7 @@ class Invoiceitem {
    */
   @optional
   Price price;
+
+  mixin AddBuilder!(typeof(this));
 
 }

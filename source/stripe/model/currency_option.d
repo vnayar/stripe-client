@@ -3,6 +3,7 @@ module stripe.model.currency_option;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -47,5 +48,7 @@ class CurrencyOption {
    */
   @optional
   string tax_behavior;
+
+  mixin AddBuilder!(typeof(this));
 
 }

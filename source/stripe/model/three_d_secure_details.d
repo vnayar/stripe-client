@@ -3,6 +3,7 @@ module stripe.model.three_d_secure_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -35,5 +36,7 @@ class ThreeDSecureDetails {
    */
   @optional
   string authentication_flow;
+
+  mixin AddBuilder!(typeof(this));
 
 }

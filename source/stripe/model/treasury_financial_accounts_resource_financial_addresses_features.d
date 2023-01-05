@@ -3,6 +3,7 @@ module stripe.model.treasury_financial_accounts_resource_financial_addresses_fea
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -14,5 +15,7 @@ import stripe.model.treasury_financial_accounts_resource_toggle_settings : Treas
 class TreasuryFinancialAccountsResourceFinancialAddressesFeatures {
   @optional
   TreasuryFinancialAccountsResourceToggleSettings aba;
+
+  mixin AddBuilder!(typeof(this));
 
 }

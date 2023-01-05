@@ -3,6 +3,7 @@ module stripe.model.bank_connections_resource_accountholder;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -31,5 +32,7 @@ class BankConnectionsResourceAccountholder {
    */
   @optional
   Json account;
+
+  mixin AddBuilder!(typeof(this));
 
 }

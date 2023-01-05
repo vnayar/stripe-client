@@ -3,6 +3,7 @@ module stripe.model.notification_event_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class NotificationEventData {
    */
   @optional
   Json object;
+
+  mixin AddBuilder!(typeof(this));
 
 }

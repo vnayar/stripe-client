@@ -3,6 +3,7 @@ module stripe.model.checkout_us_bank_account_payment_method_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -34,5 +35,7 @@ class CheckoutUsBankAccountPaymentMethodOptions {
 
   @optional
   LinkedAccountOptionsUsBankAccount financial_connections;
+
+  mixin AddBuilder!(typeof(this));
 
 }

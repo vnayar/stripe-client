@@ -3,6 +3,7 @@ module stripe.model.invoices_payment_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class InvoicesPaymentSettings {
    */
   @optional
   InvoicesPaymentMethodOptions payment_method_options;
+
+  mixin AddBuilder!(typeof(this));
 
 }

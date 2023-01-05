@@ -3,6 +3,7 @@ module stripe.model.gelato_verified_outputs;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -47,5 +48,7 @@ class GelatoVerifiedOutputs {
    */
   @optional
   string first_name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

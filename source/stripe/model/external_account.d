@@ -3,6 +3,7 @@ module stripe.model.external_account;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -12,4 +13,6 @@ import stripe.model.card : Card;
 /**
  */
 class ExternalAccount {
+  mixin AddBuilder!(typeof(this));
+
 }

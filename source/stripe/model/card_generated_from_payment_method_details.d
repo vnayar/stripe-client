@@ -3,6 +3,7 @@ module stripe.model.card_generated_from_payment_method_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -20,5 +21,7 @@ class CardGeneratedFromPaymentMethodDetails {
 
   @optional
   PaymentMethodDetailsCardPresent card_present;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.treasury_financial_accounts_resource_aba_record;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -40,5 +41,7 @@ class TreasuryFinancialAccountsResourceAbaRecord {
    */
   @optional
   string account_number_last4;
+
+  mixin AddBuilder!(typeof(this));
 
 }

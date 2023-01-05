@@ -3,6 +3,7 @@ module stripe.model.quotes_resource_computed;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class QuotesResourceComputed {
 
   @optional
   QuotesResourceUpfront upfront;
+
+  mixin AddBuilder!(typeof(this));
 
 }

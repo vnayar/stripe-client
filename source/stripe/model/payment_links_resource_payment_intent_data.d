@@ -3,6 +3,7 @@ module stripe.model.payment_links_resource_payment_intent_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class PaymentLinksResourcePaymentIntentData {
    */
   @optional
   string capture_method;
+
+  mixin AddBuilder!(typeof(this));
 
 }

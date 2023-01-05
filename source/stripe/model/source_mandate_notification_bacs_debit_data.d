@@ -3,6 +3,7 @@ module stripe.model.source_mandate_notification_bacs_debit_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -15,5 +16,7 @@ class SourceMandateNotificationBacsDebitData {
    */
   @optional
   string last4;
+
+  mixin AddBuilder!(typeof(this));
 
 }

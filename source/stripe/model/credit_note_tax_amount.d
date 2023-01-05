@@ -3,6 +3,7 @@ module stripe.model.credit_note_tax_amount;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -28,5 +29,7 @@ class CreditNoteTaxAmount {
    */
   @optional
   Nullable!(bool) inclusive;
+
+  mixin AddBuilder!(typeof(this));
 
 }

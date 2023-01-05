@@ -3,6 +3,7 @@ module stripe.model.coupon;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -131,5 +132,7 @@ class Coupon {
    */
   @optional
   Nullable!(bool) valid;
+
+  mixin AddBuilder!(typeof(this));
 
 }

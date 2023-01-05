@@ -3,6 +3,7 @@ module stripe.model.issuing_transaction_purchase_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -43,5 +44,7 @@ class IssuingTransactionPurchaseDetails {
    */
   @optional
   IssuingTransactionLodgingData lodging;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -35,6 +36,8 @@ class V1TerminalLocationsService {
      */
     string location;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTerminalLocationsLocationResponseHandler : ResponseHandler {
@@ -61,6 +64,8 @@ class V1TerminalLocationsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -89,6 +94,8 @@ class V1TerminalLocationsService {
      */
     string location;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTerminalLocationsLocationResponseHandler : ResponseHandler {
@@ -116,6 +123,8 @@ class V1TerminalLocationsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -141,6 +150,8 @@ class V1TerminalLocationsService {
     /**
      */
     string location;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -168,6 +179,8 @@ class V1TerminalLocationsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -217,6 +230,8 @@ class V1TerminalLocationsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTerminalLocationsResponseHandler : ResponseHandler {
@@ -244,6 +259,8 @@ class V1TerminalLocationsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -268,6 +285,8 @@ class V1TerminalLocationsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -342,6 +361,8 @@ class V1TerminalLocationsService {
       @optional
       string state;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -349,6 +370,8 @@ class V1TerminalLocationsService {
      */
     @optional
     CreateLocationAddressParam address;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -377,6 +400,8 @@ class V1TerminalLocationsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -397,5 +422,7 @@ class V1TerminalLocationsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

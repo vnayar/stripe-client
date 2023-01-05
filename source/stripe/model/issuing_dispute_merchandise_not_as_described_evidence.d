@@ -3,6 +3,7 @@ module stripe.model.issuing_dispute_merchandise_not_as_described_evidence;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -47,5 +48,7 @@ class IssuingDisputeMerchandiseNotAsDescribedEvidence {
    */
   @optional
   string return_description;
+
+  mixin AddBuilder!(typeof(this));
 
 }

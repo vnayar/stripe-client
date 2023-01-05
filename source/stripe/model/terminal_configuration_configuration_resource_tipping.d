@@ -3,6 +3,7 @@ module stripe.model.terminal_configuration_configuration_resource_tipping;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -52,5 +53,7 @@ class TerminalConfigurationConfigurationResourceTipping {
 
   @optional
   TerminalConfigurationConfigurationResourceCurrencySpecificConfig nok;
+
+  mixin AddBuilder!(typeof(this));
 
 }

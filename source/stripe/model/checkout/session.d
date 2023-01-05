@@ -3,6 +3,7 @@ module stripe.model.checkout.session;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -242,6 +243,8 @@ class CheckoutSession {
     @optional
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -372,5 +375,7 @@ class CheckoutSession {
 
   @optional
   PaymentPagesCheckoutSessionAutomaticTax automatic_tax;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.gelato_selfie_report;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -37,5 +38,7 @@ class GelatoSelfieReport {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

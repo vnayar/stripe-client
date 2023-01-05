@@ -3,6 +3,7 @@ module stripe.model.bank_account;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -140,5 +141,7 @@ class BankAccount {
    */
   @optional
   string status;
+
+  mixin AddBuilder!(typeof(this));
 
 }

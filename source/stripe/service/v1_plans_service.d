@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -35,6 +36,8 @@ class V1PlansService {
      */
     string plan;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPlansPlanResponseHandler : ResponseHandler {
@@ -61,6 +64,8 @@ class V1PlansService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -89,6 +94,8 @@ class V1PlansService {
      */
     string plan;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPlansPlanResponseHandler : ResponseHandler {
@@ -115,6 +122,8 @@ class V1PlansService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -143,6 +152,8 @@ class V1PlansService {
      */
     string plan;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeletePlansPlanResponseHandler : ResponseHandler {
@@ -169,6 +180,8 @@ class V1PlansService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -236,6 +249,8 @@ class V1PlansService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPlansResponseHandler : ResponseHandler {
@@ -266,6 +281,8 @@ class V1PlansService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -290,6 +307,8 @@ class V1PlansService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -358,6 +377,8 @@ class V1PlansService {
 
       @optional
       string round;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -473,6 +494,8 @@ class V1PlansService {
       @optional
       string flat_amount_decimal;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -481,6 +504,8 @@ class V1PlansService {
      */
     @optional
     Tier[] tiers;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -509,6 +534,8 @@ class V1PlansService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -528,5 +555,7 @@ class V1PlansService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

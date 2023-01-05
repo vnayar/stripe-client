@@ -3,6 +3,7 @@ module stripe.model.source_transaction_sepa_credit_transfer_data;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -27,5 +28,7 @@ class SourceTransactionSepaCreditTransferData {
    */
   @optional
   string sender_iban;
+
+  mixin AddBuilder!(typeof(this));
 
 }

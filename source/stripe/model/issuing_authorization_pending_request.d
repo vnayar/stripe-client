@@ -3,6 +3,7 @@ module stripe.model.issuing_authorization_pending_request;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -53,5 +54,7 @@ class IssuingAuthorizationPendingRequest {
    */
   @optional
   IssuingAuthorizationAmountDetails amount_details;
+
+  mixin AddBuilder!(typeof(this));
 
 }

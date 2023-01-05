@@ -3,6 +3,7 @@ module stripe.model.issuing_dispute_fraudulent_evidence;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -23,5 +24,7 @@ class IssuingDisputeFraudulentEvidence {
    */
   @optional
   string explanation;
+
+  mixin AddBuilder!(typeof(this));
 
 }

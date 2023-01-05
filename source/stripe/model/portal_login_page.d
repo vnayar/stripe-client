@@ -3,6 +3,7 @@ module stripe.model.portal_login_page;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -25,5 +26,7 @@ class PortalLoginPage {
    */
   @optional
   string url;
+
+  mixin AddBuilder!(typeof(this));
 
 }

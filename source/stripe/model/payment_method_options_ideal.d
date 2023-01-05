@@ -3,6 +3,7 @@ module stripe.model.payment_method_options_ideal;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -24,5 +25,7 @@ class PaymentMethodOptionsIdeal {
    */
   @optional
   string setup_future_usage;
+
+  mixin AddBuilder!(typeof(this));
 
 }

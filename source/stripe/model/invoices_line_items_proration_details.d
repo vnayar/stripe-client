@@ -3,6 +3,7 @@ module stripe.model.invoices_line_items_proration_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -17,5 +18,7 @@ class InvoicesLineItemsProrationDetails {
    */
   @optional
   InvoicesLineItemsCreditedItems credited_items;
+
+  mixin AddBuilder!(typeof(this));
 
 }

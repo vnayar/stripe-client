@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -67,6 +68,8 @@ class V1TreasuryCreditReversalsService {
      */
     string status;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryCreditReversalsResponseHandler : ResponseHandler {
@@ -97,6 +100,8 @@ class V1TreasuryCreditReversalsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -121,6 +126,8 @@ class V1TreasuryCreditReversalsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -176,6 +183,8 @@ class V1TreasuryCreditReversalsService {
     @optional
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTreasuryCreditReversalsResponseHandler : ResponseHandler {
@@ -202,6 +211,8 @@ class V1TreasuryCreditReversalsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -232,6 +243,8 @@ class V1TreasuryCreditReversalsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryCreditReversalsCreditReversalResponseHandler : ResponseHandler {
@@ -259,6 +272,8 @@ class V1TreasuryCreditReversalsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -281,5 +296,7 @@ class V1TreasuryCreditReversalsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

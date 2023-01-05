@@ -3,6 +3,7 @@ module stripe.model.source_type_ideal;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class SourceTypeIdeal {
 
   @optional
   string bic;
+
+  mixin AddBuilder!(typeof(this));
 
 }

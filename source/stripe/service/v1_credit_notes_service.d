@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -57,6 +58,8 @@ class V1CreditNotesService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCreditNotesCreditNoteLinesResponseHandler : ResponseHandler {
@@ -87,6 +90,8 @@ class V1CreditNotesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -111,6 +116,8 @@ class V1CreditNotesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -152,6 +159,8 @@ class V1CreditNotesService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCreditNotesIdResponseHandler : ResponseHandler {
@@ -178,6 +187,8 @@ class V1CreditNotesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -206,6 +217,8 @@ class V1CreditNotesService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCreditNotesIdResponseHandler : ResponseHandler {
@@ -232,6 +245,8 @@ class V1CreditNotesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -291,6 +306,8 @@ class V1CreditNotesService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetCreditNotesResponseHandler : ResponseHandler {
@@ -318,6 +335,8 @@ class V1CreditNotesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -342,6 +361,8 @@ class V1CreditNotesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -419,6 +440,8 @@ class V1CreditNotesService {
       @optional
       Json tax_rates;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -475,6 +498,8 @@ class V1CreditNotesService {
     @optional
     string memo;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCreditNotesResponseHandler : ResponseHandler {
@@ -501,6 +526,8 @@ class V1CreditNotesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -544,6 +571,8 @@ class V1CreditNotesService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostCreditNotesIdVoidResponseHandler : ResponseHandler {
@@ -571,6 +600,8 @@ class V1CreditNotesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -591,5 +622,7 @@ class V1CreditNotesService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.custom_unit_amount;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -28,5 +29,7 @@ class CustomUnitAmount {
    */
   @optional
   Nullable!(int) maximum;
+
+  mixin AddBuilder!(typeof(this));
 
 }

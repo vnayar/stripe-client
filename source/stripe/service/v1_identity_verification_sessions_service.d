@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -28,6 +29,8 @@ class V1IdentityVerificationSessionsService {
     /**
      */
     string session;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -55,6 +58,8 @@ class V1IdentityVerificationSessionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -84,6 +89,8 @@ class V1IdentityVerificationSessionsService {
      */
     string session;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostIdentityVerificationSessionsSessionRedactResponseHandler : ResponseHandler {
@@ -110,6 +117,8 @@ class V1IdentityVerificationSessionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -164,6 +173,8 @@ class V1IdentityVerificationSessionsService {
      */
     string session;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIdentityVerificationSessionsSessionResponseHandler : ResponseHandler {
@@ -190,6 +201,8 @@ class V1IdentityVerificationSessionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -221,6 +234,8 @@ class V1IdentityVerificationSessionsService {
      */
     string session;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostIdentityVerificationSessionsSessionResponseHandler : ResponseHandler {
@@ -247,6 +262,8 @@ class V1IdentityVerificationSessionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -309,6 +326,8 @@ class V1IdentityVerificationSessionsService {
      */
     string status;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIdentityVerificationSessionsResponseHandler : ResponseHandler {
@@ -336,6 +355,8 @@ class V1IdentityVerificationSessionsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -360,6 +381,8 @@ class V1IdentityVerificationSessionsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -418,6 +441,8 @@ class V1IdentityVerificationSessionsService {
       @optional
       Json document;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -431,6 +456,8 @@ class V1IdentityVerificationSessionsService {
      */
     @optional
     string return_url;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -459,6 +486,8 @@ class V1IdentityVerificationSessionsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -483,5 +512,7 @@ class V1IdentityVerificationSessionsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

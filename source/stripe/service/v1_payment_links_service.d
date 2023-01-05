@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -59,6 +60,8 @@ class V1PaymentLinksService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPaymentLinksResponseHandler : ResponseHandler {
@@ -86,6 +89,8 @@ class V1PaymentLinksService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -110,6 +115,8 @@ class V1PaymentLinksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -153,6 +160,8 @@ class V1PaymentLinksService {
       @optional
       Json submit;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -167,6 +176,8 @@ class V1PaymentLinksService {
 
       @optional
       string promotions;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -196,6 +207,8 @@ class V1PaymentLinksService {
         @optional
         string custom_message;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
@@ -205,10 +218,14 @@ class V1PaymentLinksService {
         @optional
         string url;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       AfterCompletionRedirectParams redirect;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -228,6 +245,8 @@ class V1PaymentLinksService {
       @optional
       string shipping_rate;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -240,6 +259,8 @@ class V1PaymentLinksService {
     static class TaxIdCollectionParams {
       @optional
       Nullable!(bool) enabled;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -300,10 +321,14 @@ class V1PaymentLinksService {
         @optional
         Nullable!(int) maximum;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       AdjustableQuantityParams adjustable_quantity;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -320,6 +345,8 @@ class V1PaymentLinksService {
 
       @optional
       string capture_method;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -350,6 +377,8 @@ class V1PaymentLinksService {
       @optional
       Nullable!(int) trial_period_days;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -362,6 +391,8 @@ class V1PaymentLinksService {
     static class PhoneNumberCollectionParams {
       @optional
       Nullable!(bool) enabled;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -378,6 +409,8 @@ class V1PaymentLinksService {
 
       @optional
       string destination;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -409,6 +442,8 @@ class V1PaymentLinksService {
       @optional
       string[] allowed_countries;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -420,6 +455,8 @@ class V1PaymentLinksService {
     static class AutomaticTaxParams {
       @optional
       Nullable!(bool) enabled;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -438,6 +475,8 @@ class V1PaymentLinksService {
      */
     @optional
     string[] payment_method_types;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -465,6 +504,8 @@ class V1PaymentLinksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -495,6 +536,8 @@ class V1PaymentLinksService {
      */
     string payment_link;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPaymentLinksPaymentLinkResponseHandler : ResponseHandler {
@@ -521,6 +564,8 @@ class V1PaymentLinksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -549,6 +594,8 @@ class V1PaymentLinksService {
      */
     string payment_link;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostPaymentLinksPaymentLinkResponseHandler : ResponseHandler {
@@ -575,6 +622,8 @@ class V1PaymentLinksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -628,6 +677,8 @@ class V1PaymentLinksService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetPaymentLinksPaymentLinkLineItemsResponseHandler : ResponseHandler {
@@ -658,6 +709,8 @@ class V1PaymentLinksService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -682,6 +735,8 @@ class V1PaymentLinksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -712,5 +767,7 @@ class V1PaymentLinksService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

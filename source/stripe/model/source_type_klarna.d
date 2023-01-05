@@ -3,6 +3,7 @@ module stripe.model.source_type_klarna;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -87,5 +88,7 @@ class SourceTypeKlarna {
 
   @optional
   string pay_now_asset_urls_standard;
+
+  mixin AddBuilder!(typeof(this));
 
 }

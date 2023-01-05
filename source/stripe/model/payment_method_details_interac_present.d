@@ -3,6 +3,7 @@ module stripe.model.payment_method_details_interac_present;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -109,5 +110,7 @@ class PaymentMethodDetailsInteracPresent {
    */
   @optional
   string emv_auth_data;
+
+  mixin AddBuilder!(typeof(this));
 
 }

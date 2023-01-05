@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -76,10 +77,14 @@ class V1TestHelpersTreasuryReceivedDebitsService {
         @optional
         string account_number;
 
+        mixin AddBuilder!(typeof(this));
+
       }
 
       @optional
       UsBankAccountSourceParams us_bank_account;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -88,6 +93,8 @@ class V1TestHelpersTreasuryReceivedDebitsService {
      */
     @optional
     SourceParams initiating_payment_method_details;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -116,6 +123,8 @@ class V1TestHelpersTreasuryReceivedDebitsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -135,5 +144,7 @@ class V1TestHelpersTreasuryReceivedDebitsService {
     Security.apply(requestor);
     requestor.makeRequest(requestBody, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

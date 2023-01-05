@@ -3,6 +3,7 @@ module stripe.model.setup_intent_payment_method_options_us_bank_account;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -19,5 +20,7 @@ class SetupIntentPaymentMethodOptionsUsBankAccount {
 
   @optional
   LinkedAccountOptionsUsBankAccount financial_connections;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.invoice_threshold_reason;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -22,5 +23,7 @@ class InvoiceThresholdReason {
    */
   @optional
   Nullable!(int) amount_gte;
+
+  mixin AddBuilder!(typeof(this));
 
 }

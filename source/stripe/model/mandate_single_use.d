@@ -3,6 +3,7 @@ module stripe.model.mandate_single_use;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class MandateSingleUse {
    */
   @optional
   string currency;
+
+  mixin AddBuilder!(typeof(this));
 
 }

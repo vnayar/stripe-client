@@ -3,6 +3,7 @@ module stripe.model.source_type_card_present;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -78,5 +79,7 @@ class SourceTypeCardPresent {
 
   @optional
   string emv_auth_data;
+
+  mixin AddBuilder!(typeof(this));
 
 }

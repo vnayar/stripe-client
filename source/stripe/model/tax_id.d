@@ -3,6 +3,7 @@ module stripe.model.tax_id;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -76,5 +77,7 @@ class TaxId {
    */
   @optional
   string value;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.treasury_financial_accounts_resource_toggles_setting_status_
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -28,5 +29,7 @@ class TreasuryFinancialAccountsResourceTogglesSettingStatusDetails {
    */
   @optional
   string restriction;
+
+  mixin AddBuilder!(typeof(this));
 
 }

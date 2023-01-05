@@ -3,6 +3,7 @@ module stripe.model.payment_method_details_ach_credit_transfer;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class PaymentMethodDetailsAchCreditTransfer {
    */
   @optional
   string swift_code;
+
+  mixin AddBuilder!(typeof(this));
 
 }

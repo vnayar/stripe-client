@@ -3,6 +3,7 @@ module stripe.model.transfer;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -103,6 +104,8 @@ class Transfer {
     @optional
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -163,5 +166,7 @@ class Transfer {
    */
   @optional
   Json destination_payment;
+
+  mixin AddBuilder!(typeof(this));
 
 }

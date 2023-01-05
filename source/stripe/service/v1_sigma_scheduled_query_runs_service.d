@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -52,6 +53,8 @@ class V1SigmaScheduledQueryRunsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSigmaScheduledQueryRunsResponseHandler : ResponseHandler {
@@ -79,6 +82,8 @@ class V1SigmaScheduledQueryRunsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -103,6 +108,8 @@ class V1SigmaScheduledQueryRunsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -140,6 +147,8 @@ class V1SigmaScheduledQueryRunsService {
      */
     string scheduled_query_run;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetSigmaScheduledQueryRunsScheduledQueryRunResponseHandler : ResponseHandler {
@@ -167,6 +176,8 @@ class V1SigmaScheduledQueryRunsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -188,5 +199,7 @@ class V1SigmaScheduledQueryRunsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

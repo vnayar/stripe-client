@@ -3,6 +3,7 @@ module stripe.model.payment_link;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -155,6 +156,8 @@ class PaymentLink {
     @optional
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -225,5 +228,7 @@ class PaymentLink {
 
   @optional
   PaymentLinksResourceAutomaticTax automatic_tax;
+
+  mixin AddBuilder!(typeof(this));
 
 }

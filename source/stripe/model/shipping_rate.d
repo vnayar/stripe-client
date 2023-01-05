@@ -3,6 +3,7 @@ module stripe.model.shipping_rate;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -91,5 +92,7 @@ class ShippingRate {
    */
   @optional
   Nullable!(long) created;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.terminal_configuration_configuration_resource_device_type_sp
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -16,5 +17,7 @@ class TerminalConfigurationConfigurationResourceDeviceTypeSpecificConfig {
    */
   @optional
   Json splashscreen;
+
+  mixin AddBuilder!(typeof(this));
 
 }

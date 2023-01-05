@@ -3,6 +3,7 @@ module stripe.model.charge_fraud_details;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class ChargeFraudDetails {
    */
   @optional
   string user_report;
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.gelato_session_document_options;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -40,5 +41,7 @@ class GelatoSessionDocumentOptions {
    */
   @optional
   Nullable!(bool) require_matching_selfie;
+
+  mixin AddBuilder!(typeof(this));
 
 }

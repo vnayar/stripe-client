@@ -3,6 +3,7 @@ module stripe.model.radar.value_list;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -97,6 +98,8 @@ class RadarValueList {
     @optional
     string url;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -104,5 +107,7 @@ class RadarValueList {
    */
   @optional
   RadarListListItemList list_items;
+
+  mixin AddBuilder!(typeof(this));
 
 }

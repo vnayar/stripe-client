@@ -3,6 +3,7 @@ module stripe.model.payment_method_options_customer_balance_eu_bank_account;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -16,5 +17,7 @@ class PaymentMethodOptionsCustomerBalanceEuBankAccount {
    */
   @optional
   string country;
+
+  mixin AddBuilder!(typeof(this));
 
 }

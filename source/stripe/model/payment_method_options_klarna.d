@@ -3,6 +3,7 @@ module stripe.model.payment_method_options_klarna;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -36,5 +37,7 @@ class PaymentMethodOptionsKlarna {
    */
   @optional
   string preferred_locale;
+
+  mixin AddBuilder!(typeof(this));
 
 }

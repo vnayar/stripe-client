@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -67,6 +68,8 @@ class V1IssuingDisputesService {
      */
     string transaction;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingDisputesResponseHandler : ResponseHandler {
@@ -94,6 +97,8 @@ class V1IssuingDisputesService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -118,6 +123,8 @@ class V1IssuingDisputesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -177,6 +184,8 @@ class V1IssuingDisputesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -208,6 +217,8 @@ class V1IssuingDisputesService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetIssuingDisputesDisputeResponseHandler : ResponseHandler {
@@ -234,6 +245,8 @@ class V1IssuingDisputesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -262,6 +275,8 @@ class V1IssuingDisputesService {
      */
     string dispute;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostIssuingDisputesDisputeResponseHandler : ResponseHandler {
@@ -288,6 +303,8 @@ class V1IssuingDisputesService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -316,6 +333,8 @@ class V1IssuingDisputesService {
      */
     string dispute;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostIssuingDisputesDisputeSubmitResponseHandler : ResponseHandler {
@@ -343,6 +362,8 @@ class V1IssuingDisputesService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -365,5 +386,7 @@ class V1IssuingDisputesService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

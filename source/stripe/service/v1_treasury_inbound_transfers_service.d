@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -34,6 +35,8 @@ class V1TreasuryInboundTransfersService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryInboundTransfersIdResponseHandler : ResponseHandler {
@@ -60,6 +63,8 @@ class V1TreasuryInboundTransfersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -122,6 +127,8 @@ class V1TreasuryInboundTransfersService {
      */
     string status;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetTreasuryInboundTransfersResponseHandler : ResponseHandler {
@@ -152,6 +159,8 @@ class V1TreasuryInboundTransfersService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -176,6 +185,8 @@ class V1TreasuryInboundTransfersService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -260,6 +271,8 @@ class V1TreasuryInboundTransfersService {
     @optional
     string description;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostTreasuryInboundTransfersResponseHandler : ResponseHandler {
@@ -287,6 +300,8 @@ class V1TreasuryInboundTransfersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -310,6 +325,8 @@ class V1TreasuryInboundTransfersService {
     /**
      */
     string inbound_transfer;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -338,6 +355,8 @@ class V1TreasuryInboundTransfersService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -357,5 +376,7 @@ class V1TreasuryInboundTransfersService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

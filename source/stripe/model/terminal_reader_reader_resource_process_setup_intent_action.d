@@ -3,6 +3,7 @@ module stripe.model.terminal_reader_reader_resource_process_setup_intent_action;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -25,5 +26,7 @@ class TerminalReaderReaderResourceProcessSetupIntentAction {
    */
   @optional
   string generated_card;
+
+  mixin AddBuilder!(typeof(this));
 
 }

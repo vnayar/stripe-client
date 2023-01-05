@@ -3,6 +3,7 @@ module stripe.model.portal_features;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -33,5 +34,7 @@ class PortalFeatures {
 
   @optional
   PortalSubscriptionPause subscription_pause;
+
+  mixin AddBuilder!(typeof(this));
 
 }

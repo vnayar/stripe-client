@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -76,6 +77,8 @@ class V1InvoiceitemsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetInvoiceitemsResponseHandler : ResponseHandler {
@@ -103,6 +106,8 @@ class V1InvoiceitemsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -127,6 +132,8 @@ class V1InvoiceitemsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -192,6 +199,8 @@ class V1InvoiceitemsService {
 
       @optional
       Nullable!(long) start;
+
+      mixin AddBuilder!(typeof(this));
 
     }
 
@@ -268,6 +277,8 @@ class V1InvoiceitemsService {
       @optional
       Nullable!(int) unit_amount;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -330,6 +341,8 @@ class V1InvoiceitemsService {
     @optional
     string price;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostInvoiceitemsResponseHandler : ResponseHandler {
@@ -356,6 +369,8 @@ class V1InvoiceitemsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -387,6 +402,8 @@ class V1InvoiceitemsService {
      */
     string invoiceitem;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetInvoiceitemsInvoiceitemResponseHandler : ResponseHandler {
@@ -413,6 +430,8 @@ class V1InvoiceitemsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -441,6 +460,8 @@ class V1InvoiceitemsService {
      */
     string invoiceitem;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostInvoiceitemsInvoiceitemResponseHandler : ResponseHandler {
@@ -468,6 +489,8 @@ class V1InvoiceitemsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -493,6 +516,8 @@ class V1InvoiceitemsService {
     /**
      */
     string invoiceitem;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -521,6 +546,8 @@ class V1InvoiceitemsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -541,5 +568,7 @@ class V1InvoiceitemsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.funding_instructions;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -48,5 +49,7 @@ class FundingInstructions {
 
   @optional
   FundingInstructionsBankTransfer bank_transfer;
+
+  mixin AddBuilder!(typeof(this));
 
 }

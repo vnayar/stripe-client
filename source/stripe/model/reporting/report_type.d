@@ -3,6 +3,7 @@ module stripe.model.reporting.report_type;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -78,5 +79,7 @@ class ReportingReportType {
    */
   @optional
   Nullable!(int) version_;
+
+  mixin AddBuilder!(typeof(this));
 
 }

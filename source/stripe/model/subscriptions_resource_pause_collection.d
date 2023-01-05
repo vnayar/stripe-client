@@ -3,6 +3,7 @@ module stripe.model.subscriptions_resource_pause_collection;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -25,5 +26,7 @@ class SubscriptionsResourcePauseCollection {
    */
   @optional
   string behavior;
+
+  mixin AddBuilder!(typeof(this));
 
 }

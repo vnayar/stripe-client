@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -66,6 +67,8 @@ class V1FileLinksService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetFileLinksResponseHandler : ResponseHandler {
@@ -96,6 +99,8 @@ class V1FileLinksService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -120,6 +125,8 @@ class V1FileLinksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -184,6 +191,8 @@ class V1FileLinksService {
     @optional
     string file;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostFileLinksResponseHandler : ResponseHandler {
@@ -210,6 +219,8 @@ class V1FileLinksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -240,6 +251,8 @@ class V1FileLinksService {
      */
     string link;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetFileLinksLinkResponseHandler : ResponseHandler {
@@ -266,6 +279,8 @@ class V1FileLinksService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -294,6 +309,8 @@ class V1FileLinksService {
      */
     string link;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostFileLinksLinkResponseHandler : ResponseHandler {
@@ -321,6 +338,8 @@ class V1FileLinksService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -340,5 +359,7 @@ class V1FileLinksService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

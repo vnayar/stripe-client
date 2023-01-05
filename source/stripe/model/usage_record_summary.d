@@ -3,6 +3,7 @@ module stripe.model.usage_record_summary;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -50,5 +51,7 @@ class UsageRecordSummary {
    */
   @optional
   string object;
+
+  mixin AddBuilder!(typeof(this));
 
 }

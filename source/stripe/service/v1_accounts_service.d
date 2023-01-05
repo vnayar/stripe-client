@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -43,6 +44,8 @@ class V1AccountsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetAccountsAccountResponseHandler : ResponseHandler {
@@ -69,6 +72,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -97,6 +102,8 @@ class V1AccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountResponseHandler : ResponseHandler {
@@ -123,6 +130,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -157,6 +166,8 @@ class V1AccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteAccountsAccountResponseHandler : ResponseHandler {
@@ -183,6 +194,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -251,6 +264,8 @@ class V1AccountsService {
       @optional
       Nullable!(bool) representative;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     AllPeopleRelationshipSpecs relationship;
@@ -262,6 +277,8 @@ class V1AccountsService {
      * next page of the list.
      */
     string starting_after;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -290,6 +307,8 @@ class V1AccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -314,6 +333,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -351,6 +372,8 @@ class V1AccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountPeopleResponseHandler : ResponseHandler {
@@ -378,6 +401,8 @@ class V1AccountsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -402,6 +427,8 @@ class V1AccountsService {
     /**
      */
     string account;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -429,6 +456,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -493,6 +522,8 @@ class V1AccountsService {
       @optional
       Nullable!(bool) representative;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     AllPeopleRelationshipSpecs relationship;
@@ -504,6 +535,8 @@ class V1AccountsService {
      * next page of the list.
      */
     string starting_after;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -532,6 +565,8 @@ class V1AccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -556,6 +591,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -593,6 +630,8 @@ class V1AccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountPersonsResponseHandler : ResponseHandler {
@@ -619,6 +658,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -654,6 +695,8 @@ class V1AccountsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetAccountsAccountExternalAccountsIdResponseHandler : ResponseHandler {
@@ -680,6 +723,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -714,6 +759,8 @@ class V1AccountsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountExternalAccountsIdResponseHandler : ResponseHandler {
@@ -740,6 +787,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -776,6 +825,8 @@ class V1AccountsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteAccountsAccountExternalAccountsIdResponseHandler : ResponseHandler {
@@ -802,6 +853,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -839,6 +892,8 @@ class V1AccountsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetAccountsAccountBankAccountsIdResponseHandler : ResponseHandler {
@@ -865,6 +920,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -899,6 +956,8 @@ class V1AccountsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountBankAccountsIdResponseHandler : ResponseHandler {
@@ -925,6 +984,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -961,6 +1022,8 @@ class V1AccountsService {
      */
     string id;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteAccountsAccountBankAccountsIdResponseHandler : ResponseHandler {
@@ -987,6 +1050,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1024,6 +1089,8 @@ class V1AccountsService {
      */
     string person;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetAccountsAccountPeoplePersonResponseHandler : ResponseHandler {
@@ -1050,6 +1117,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1084,6 +1153,8 @@ class V1AccountsService {
      */
     string person;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountPeoplePersonResponseHandler : ResponseHandler {
@@ -1110,6 +1181,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1142,6 +1215,8 @@ class V1AccountsService {
      */
     string person;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteAccountsAccountPeoplePersonResponseHandler : ResponseHandler {
@@ -1168,6 +1243,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1226,6 +1303,8 @@ class V1AccountsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetAccountsResponseHandler : ResponseHandler {
@@ -1253,6 +1332,8 @@ class V1AccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -1277,6 +1358,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1332,6 +1415,8 @@ class V1AccountsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -1366,6 +1451,8 @@ class V1AccountsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetAccountsAccountCapabilitiesCapabilityResponseHandler : ResponseHandler {
@@ -1392,6 +1479,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1426,6 +1515,8 @@ class V1AccountsService {
      */
     string capability;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountCapabilitiesCapabilityResponseHandler : ResponseHandler {
@@ -1452,6 +1543,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1480,6 +1573,8 @@ class V1AccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountRejectBody {
@@ -1494,6 +1589,8 @@ class V1AccountsService {
      */
     @optional
     string[] expand;
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1521,6 +1618,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1560,6 +1659,8 @@ class V1AccountsService {
      */
     string person;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetAccountsAccountPersonsPersonResponseHandler : ResponseHandler {
@@ -1586,6 +1687,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1620,6 +1723,8 @@ class V1AccountsService {
      */
     string person;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountPersonsPersonResponseHandler : ResponseHandler {
@@ -1646,6 +1751,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1678,6 +1785,8 @@ class V1AccountsService {
      */
     string person;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class DeleteAccountsAccountPersonsPersonResponseHandler : ResponseHandler {
@@ -1704,6 +1813,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1735,6 +1846,8 @@ class V1AccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountBankAccountsResponseHandler : ResponseHandler {
@@ -1761,6 +1874,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1814,6 +1929,8 @@ class V1AccountsService {
      */
     string starting_after;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetAccountsAccountExternalAccountsResponseHandler : ResponseHandler {
@@ -1845,6 +1962,8 @@ class V1AccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -1869,6 +1988,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1903,6 +2024,8 @@ class V1AccountsService {
      */
     string account;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class PostAccountsAccountExternalAccountsResponseHandler : ResponseHandler {
@@ -1929,6 +2052,8 @@ class V1AccountsService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -1960,6 +2085,8 @@ class V1AccountsService {
      */
     string[] expand;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetAccountsAccountCapabilitiesResponseHandler : ResponseHandler {
@@ -1987,6 +2114,8 @@ class V1AccountsService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -2012,6 +2141,8 @@ class V1AccountsService {
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   /**
@@ -2034,5 +2165,7 @@ class V1AccountsService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

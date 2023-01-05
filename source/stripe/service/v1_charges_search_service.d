@@ -6,6 +6,7 @@ import vibe.http.common : HTTPMethod;
 import vibe.stream.operations : readAllUTF8;
 import vibe.data.serialization : optional;
 import vibe.data.json : Json, deserializeJson;
+import builder : AddBuilder;
 
 import stripe.servers : Servers;
 import stripe.security : Security;
@@ -50,6 +51,8 @@ class V1ChargesSearchService {
      */
     string query;
 
+    mixin AddBuilder!(typeof(this));
+
   }
 
   static class GetChargesSearchResponseHandler : ResponseHandler {
@@ -79,6 +82,8 @@ class V1ChargesSearchService {
       @optional
       string url;
 
+      mixin AddBuilder!(typeof(this));
+
     }
 
     /**
@@ -103,6 +108,8 @@ class V1ChargesSearchService {
       if (handleResponsedefault is null) throw new Exception("Unhandled response status code default");
       handleResponsedefault(deserializeJson!(Error_)(res.readJson()));
     }
+
+    mixin AddBuilder!(typeof(this));
 
   }
 
@@ -136,5 +143,7 @@ class V1ChargesSearchService {
     Security.apply(requestor);
     requestor.makeRequest(null, responseHandler);
   }
+
+  mixin AddBuilder!(typeof(this));
 
 }

@@ -3,6 +3,7 @@ module stripe.model.invoice_setting_custom_field;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -21,5 +22,7 @@ class InvoiceSettingCustomField {
    */
   @optional
   string name;
+
+  mixin AddBuilder!(typeof(this));
 
 }

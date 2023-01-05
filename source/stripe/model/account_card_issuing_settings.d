@@ -3,6 +3,7 @@ module stripe.model.account_card_issuing_settings;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -13,5 +14,7 @@ import stripe.model.card_issuing_account_terms_of_service : CardIssuingAccountTe
 class AccountCardIssuingSettings {
   @optional
   CardIssuingAccountTermsOfService tos_acceptance;
+
+  mixin AddBuilder!(typeof(this));
 
 }

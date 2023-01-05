@@ -3,6 +3,7 @@ module stripe.model.source_redirect_flow;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -40,5 +41,7 @@ class SourceRedirectFlow {
    */
   @optional
   string url;
+
+  mixin AddBuilder!(typeof(this));
 
 }

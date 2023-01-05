@@ -3,6 +3,7 @@ module stripe.model.payment_method_options_oxxo;
 
 import vibe.data.serialization : optional;
 import vibe.data.json : Json;
+import builder : AddBuilder;
 
 import std.typecons : Nullable;
 
@@ -32,5 +33,7 @@ class PaymentMethodOptionsOxxo {
    */
   @optional
   Nullable!(int) expires_after_days;
+
+  mixin AddBuilder!(typeof(this));
 
 }
