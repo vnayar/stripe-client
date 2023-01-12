@@ -40,7 +40,7 @@ unittest {
     assert(checkoutSession.mode == "subscription");
     success = true;
   };
-  checkoutHandler.handleResponsedefault = (Error_ error) {
+  checkoutHandler.handleResponseDefault = (Error_ error) {
     import std.stdio;
     import vibe.data.json : serializeToJson;
     writeln("Got Error: ", serializeToJson(error));

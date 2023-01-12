@@ -22,7 +22,7 @@ unittest {
   handler.handleResponse200 = (V1ChargesService.GetChargesResponseHandler.ChargeList chargeList) {
     writeln(serializeToJson(chargeList));
   };
-  handler.handleResponsedefault = (Error_ error) {
+  handler.handleResponseDefault = (Error_ error) {
     import std.stdio;
     writeln("Got Error: ", serializeToJson(error));
     assert(false);

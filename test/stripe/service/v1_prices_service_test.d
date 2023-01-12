@@ -28,7 +28,7 @@ unittest {
     assert(priceList.data[0].recurring.interval_count == 1);
     success = true;
   };
-  handler.handleResponsedefault = (Error_ error) {
+  handler.handleResponseDefault = (Error_ error) {
     assert(false);
   };
   service.getPrices(params, handler);
@@ -50,7 +50,7 @@ unittest {
             assert(priceList.data[0].recurring.interval_count == 1);
             success = true;
           })
-          .handleResponsedefault((Error_ error) {
+          .handleResponseDefault((Error_ error) {
             assert(false);
           })
           .build());

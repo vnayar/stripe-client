@@ -97,6 +97,45 @@ To execute these integration tests, run the command:
 dub test --config=integration
 ```
 
+### Regenerating the Client Code from the OpenAPI Specification
+
+The OpenAPI specification is downloaded and saved into `json/spec3.json`. This file is selected and
+used with the `openapi-client` program to regenerate the source code residing under `source/stripe`.
+
+To regenerate this code, run the command:
+
+```
+dub build --config=generate
+```
+
+### Performance Testing
+
+The `openapi-client` can be invoked manually and passed through the tool
+[Valgrind](https://valgrind.org/) in order to assess its performance.
+
+Invoke Valgrind to inspect function calls with the command:
+
+```
+valgrind --tool=callgrind --collect-jumps=yes --callgrind-out-file=callgrind_out \
+  ../openapi-client/target/openapi-client -- --targetDir=source --openApiSpec=json/spec3.json --packageRoot=stripe
+```
+
+Demangle the symbols so that they are more human readable using the command:
+
+```
+ddemangle callgrind_out > callgrind_out.demangle
+```
+
+Finally, the demangled output can be viewed using the tool
+[kcachegrind](https://kcachegrind.sourceforge.net/html/Home.html).
+
+```
+kcachegrind callgrind_out.demangle
+```
+
+At the time of writing (2023-01-12), approximately 65% of the time is spent parsing the JSON itself,
+while only 9% of the time is spent writing the source code files.
+
 ## Future Features
 
 1. Greatly expand integration test coverage for many more useful endpoints.

@@ -3,9 +3,23 @@ description "A client library generated from Stripe's OpenAPI specification."
 authors "Vijay Nayar"
 copyright "Copyright © 2022, Vijay Nayar"
 license "LGPL"
-dependency "openapi-client" version="~>1.1.0"
+#targetType "none"
 targetType "library"
 targetPath "target"
+# Currently vibe 0.9.5 contains a large number of deprecation warnings.
+buildRequirements "silenceDeprecations"
+
+# The compiler runs out of memory if all files are compiled together, so compile an independent
+# chunk of them here.
+subPackage "./model/"
+subPackage "./service1/"
+subPackage "./service2/"
+subPackage "./service3/"
+
+dependency ":model" path="."
+dependency ":service1" path="."
+dependency ":service2" path="."
+dependency ":service3" path="."
 
 # The first configuration is used to build the library when used as a dub dependency.
 configuration "library" {
@@ -29,5 +43,19 @@ configuration "integration" {
 # command: dub build --config=generate
 configuration "generate" {
   targetType "library"
-  preGenerateCommands "dub run openapi-client@1.1.0 -- --targetDir=source --openApiSpec=json/spec3.json --packageRoot=stripe"
+  preGenerateCommands "rm -rf source/stripe/*"
+  preGenerateCommands "dub run openapi-client@2.0.0 -- --targetDir=source --openApiSpec=json/spec3.json --packageRoot=stripe"
+  preGenerateCommands "rm -rf model/source/stripe/*"
+  preGenerateCommands "mkdir -p model/source/stripe/model"
+  preGenerateCommands "mv source/stripe/model/* model/source/stripe/model/"
+  preGenerateCommands "mv source/stripe/*.d model/source/stripe/"
+  preGenerateCommands "rm -rf service1/source/stripe/*"
+  preGenerateCommands "mkdir -p service1/source/stripe/service"
+  preGenerateCommands "mv source/stripe/service/v1_[abcdefghi]* service1/source/stripe/service/"
+  preGenerateCommands "rm -rf service2/source/stripe/*"
+  preGenerateCommands "mkdir -p service2/source/stripe/service"
+  preGenerateCommands "mv source/stripe/service/v1_[jklmnopqr]* service2/source/stripe/service/"
+  preGenerateCommands "rm -rf service3/source/stripe/*"
+  preGenerateCommands "mkdir -p service3/source/stripe/service"
+  preGenerateCommands "mv source/stripe/service/v1_[stuvwxyz]* service3/source/stripe/service/"
 }
